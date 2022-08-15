@@ -80,9 +80,8 @@ module.exports = {
             if (wc.time < Date.now() / 1000) {
               await CasesModel.findOneAndUpdate({ case: z }, { expired: true });
               const member = guild.members.cache.get(wc.punished);
-              try{
-              member
-                .send({
+              try {
+                member.send({
                   embeds: [
                     new MessageEmbed()
                       .setAuthor({ name: "Case Expired" })
@@ -96,10 +95,10 @@ module.exports = {
                       )
                       .setColor("DARK_GOLD"),
                   ],
-                })
-              }catch((e) => {
-                  //ignored
                 });
+              } catch (e) {
+                //ignored
+              }
               const UMM = require("../../Structures/Schema/UserModeration");
               const rm = await UMM.findOne({ user: wc.punished });
               const nw = rm.warns - 1;
