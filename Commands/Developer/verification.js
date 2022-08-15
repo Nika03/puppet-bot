@@ -18,7 +18,7 @@ module.exports = {
             .setAuthor({ name: "Verification" })
             .setDescription("Verification has been **disabled**.")
             .setColor("WHITE")
-            .setFields({ text: `Requested by ${interaction.user.tag}` })
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
       });
@@ -31,7 +31,7 @@ module.exports = {
             .setAuthor({ name: "Verification" })
             .setDescription("Verification has been **enabled**.")
             .setColor("WHITE")
-            .setFields({ text: `Requested by ${interaction.user.tag}` })
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
       });
@@ -44,7 +44,7 @@ module.exports = {
             .setAuthor({ name: "Verification" })
             .setDescription("Verification has been **enabled.**")
             .setColor("WHITE")
-            .setFields({ text: `Requested by ${interaction.user.tag}` })
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
       });
