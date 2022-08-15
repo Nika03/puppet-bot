@@ -119,8 +119,8 @@ module.exports = {
       if (rc === 3) client.color = "🟫";
       if (rc === 4) client.color = "🟧";
       if (rc === 5) client.color = "🟪";
-      const channel = guild.channels.cache.get("986357448925401171");
-      channel.messages.fetch("1008829742272749628").then((m) => {
+      const channel = guild.channels.cache.get("946528426687336559");
+      channel.messages.fetch("1008858316509806644").then((m) => {
         m.edit({
           embeds: [
             new MessageEmbed()
