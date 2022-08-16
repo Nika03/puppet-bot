@@ -45,10 +45,9 @@ module.exports = {
     // Ban Checker
     setInterval(async () => {
       x = 1;
-      const a = await CasesModel.find();
       do {
         const c = await CasesModel.findOne({ case: x });
-        if ((x = a.length)) client.stop = true;
+        if (!c) client.stop = true;
         if (c.type === "ban") {
           if (c.expired === false) {
             if (c.time) {
@@ -72,10 +71,9 @@ module.exports = {
     // Warn Checker
     setInterval(async () => {
       z = 1;
-      const awc = await CasesModel.find();
-      if ((z = awc.length)) client.stop2 = true;
       do {
         const wc = await CasesModel.findOne({ case: z });
+        if (!wc) client.stop2 = true;
         if (wc.type === "warn") {
           if (wc.expired === false) {
             if (wc.time < Date.now() / 1000) {
@@ -112,7 +110,7 @@ module.exports = {
     }, 5000);
     setInterval(async () => {
       const verification = await RestartsModel.findOne();
-      if (verification === false) return;
+      if (verification.verification === false) return;
       const rc = await Math.floor(Math.random() * 5);
       if (rc === 0) client.color = "🟥";
       if (rc === 1) client.color = "🟩";
