@@ -53,8 +53,8 @@ module.exports = {
 
     const guild = client.guilds.cache.get(g);
 
-    const fetch = guild.bans.fetch();
-    console.log(fetch.toString(), fetch);
+    const fetch = await guild.bans.fetch();
+    console.log(fetch.toString(), fetch.users);
     if (fetch.includes(user.id)) console.log("kekw");
     try {
       client.u = guild.members.cache.get(user.id);
