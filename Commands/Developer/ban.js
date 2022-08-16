@@ -53,7 +53,7 @@ module.exports = {
 
     const guild = client.guilds.cache.get(g);
 
-    if (guild.fetchBan(user.id)) console.log("kekw");
+    if (guild.members.fetchBan(user.id)) console.log("kekw");
     try {
       client.u = guild.members.cache.get(user.id);
     } catch (e) {
