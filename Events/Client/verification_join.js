@@ -18,9 +18,9 @@ module.exports = {
 
       const guild = client.guilds.cache.get(g);
 
-      const member = await guild.members.fetch(member.id);
+      const user = await guild.members.fetch(member.id);
       try {
-        member.roles.add(verified);
+        user.roles.add(verified);
       } catch (e) {
         console.log(e);
       }
