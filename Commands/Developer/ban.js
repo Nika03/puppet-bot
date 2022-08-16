@@ -94,7 +94,7 @@ module.exports = {
 
     if (time) {
       const num = time.replace(/\D/g, "");
-      if ((num = "")) {
+      if ((num === "")) {
         return interaction.reply({
           content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
           ephemeral: true,
