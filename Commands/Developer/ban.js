@@ -94,7 +94,8 @@ module.exports = {
 
     if (time) {
       const num = time.replace(/\D/g, "");
-      if ((num === "")) {
+      client.num = num;
+      if (num === "") {
         return interaction.reply({
           content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
           ephemeral: true,
@@ -141,7 +142,7 @@ module.exports = {
     } else {
       client.reason = `reason: \`${reason}\``;
     }
-    if (time) client.time = `for \`${num} ${client.l}\``;
+    if (time) client.time = `for \`${client.num} ${client.l}\``;
     else client.time = "**permanently**";
     guild.members.ban(uid).catch((e) => {
       console.log(e);
