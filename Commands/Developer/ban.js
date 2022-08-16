@@ -172,12 +172,10 @@ module.exports = {
     } catch (e) {
       console.log(e);
     }
-    try {
-      setTimeout(() => {
-        guild.members.ban(member);
-      }, 1000);
-    } catch (e) {
-      console.log(e);
-    }
+    setTimeout(() => {
+      guild.members.ban(member).catch((e) => {
+        console.log(e);
+      });
+    }, 1000);
   },
 };
