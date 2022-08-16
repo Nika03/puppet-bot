@@ -52,8 +52,13 @@ module.exports = {
     }
 
     const guild = client.guilds.cache.get(g);
-    const fetch = await guild.bans.fetch(user.id);
-    if (fetch)
+    try {
+      await guild.bans.fetch(user.id);
+    } catch (e) {
+      console.log(e);
+      client.fbe = true;
+    }
+    if (!client.fbe)
       return interaction.reply({
         content: "That user is already banned.",
         ephemeral: true,
