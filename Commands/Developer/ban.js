@@ -59,6 +59,7 @@ module.exports = {
     }
 
     const member = client.u;
+    const uid = user.id;
     if (!client.mer) {
       if (member) {
         if (member.roles.cache.has(staff)) {
@@ -131,7 +132,7 @@ module.exports = {
     if (time) client.time = `for \`${num} ${client.l}\``;
     else client.time = "**permanently**";
     guild.members
-      .ban(member)
+      .ban(uid)
       .catch((e) => {
         console.log(e);
       })
