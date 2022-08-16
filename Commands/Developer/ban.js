@@ -50,148 +50,130 @@ module.exports = {
     }
 
     const guild = client.guilds.cache.get(g);
-    const member = guild.members.cache.get(user.id);
-
-    if (member) {
-      if (member.roles.cache.has(staff)) {
-        return interaction.reply({
-          content: `You cannot ban someone that is a staff member!`,
-          ephemeral: true,
-        });
-      }
-
-      if (member.roles.cache.has(trainee)) {
-        return interaction.reply({
-          content: `You cannot ban someone that is a staff member!`,
-          ephemeral: true,
-        });
-      }
+    try {
+      client.u = guild.members.cache.get(user.id);
+      client.id = user.id;
+    } catch (e) {
+      console.log(e);
+      client.mer = true;
+    } finally {
+      if (client.mer) (client.u = user), (client.id = user);
     }
 
-    const CasesModel = require(`../../Structures/Schema/Cases`);
-    const e1 = user.toString().replace("<@!", "");
-    const e2 = e1.replace(">", "");
-    const is_banned = await CasesModel.findOne({
-      punished: e2,
-      type: "ban",
-      expired: "false",
-    });
-    if (is_banned) {
+    const member = client.u;
+    if (!client.mer) {
+      if (member) {
+        if (member.roles.cache.has(staff)) {
+          return interaction.reply({
+            content: `You cannot ban someone that is a staff member!`,
+            ephemeral: true,
+          });
+        }
+
+        if (member.roles.cache.has(trainee)) {
+          return interaction.reply({
+            content: `You cannot ban someone that is a staff member!`,
+            ephemeral: true,
+          });
+        }
+      }
+    }
+    const restart = await RestartsModel.findOne();
+    const cases = restart.cases;
+
+    const num = time.replace(/\D/g, "");
+    if ((num = "")) {
       return interaction.reply({
-        content: `This user is already banned!`,
+        content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
         ephemeral: true,
       });
     }
-    const RestartsModel = require(`../../Structures/Schema/Restarts`);
-    const find_cases = await RestartsModel.findOne();
-    if (!find_cases.cases) {
-      await RestartsModel.updateOne({}, { cases: 1 });
-    }
-    const restart = await RestartsModel.findOne();
 
-    if (reason === null) {
-      global.reason = `**no reason**`;
+    const letter = time.replace(/[^a-zA-Z]+/g, "");
+    if (letter === "") {
+      return interaction.reply({
+        content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
+        ephemeral: true,
+      });
+    } else if (letter.length !== 1) {
+      return interaction.reply({
+        content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
+        ephemeral: true,
+      });
+    }
+    if (!reason) {
+      client.reason = `**no reason**`;
     } else {
-      global.reason = `reason: \`${reason}\``;
+      client.reason = `reason: \`${reason}\``;
     }
-    if (time !== null) {
-      const num = time.replace(/\D/g, "");
-      if (num === "") {
-        return interaction.reply({
-          content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
-          ephemeral: true,
-        });
+    if (letter === "d") {
+      if (num === `1`) {
+        client.l = "day";
+      } else {
+        client.l = "days";
       }
-
-      const letter = time.replace(/[^a-zA-Z]+/g, "");
-
-      if (letter === "") {
-        return interaction.reply({
-          content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
-          ephemeral: true,
-        });
-      } else if (letter.length !== 1) {
-        return interaction.reply({
-          content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
-          ephemeral: true,
-        });
+      client.ts = Math.floor(60 * 60 * 24 * num + Date.now() / 1000);
+    } else if (letter === "m") {
+      if (num === `1`) {
+        client.l = "minute";
+      } else {
+        client.l = "minutes";
       }
-
-      if (letter === "d") {
-        if (num === `1`) {
-          global.letter = "day";
-        } else {
-          global.letter = "days";
-        }
-        global.tstime = Math.floor(60 * 60 * 24 * num + Date.now() / 1000);
-      } else if (letter === "m") {
-        if (num === `1`) {
-          global.letter = "minute";
-        } else {
-          global.letter = "minutes";
-        }
-        global.tstime = Math.floor(60 * num + Date.now() / 1000);
-      } else if (letter === "h") {
-        if (num === `1`) {
-          global.letter = "hour";
-        } else {
-          global.letter = "hours";
-        }
-        global.tstime = Math.floor(60 * 60 * num + Date.now() / 1000);
+      client.ts = Math.floor(60 * num + Date.now() / 1000);
+    } else if (letter === "h") {
+      if (num === `1`) {
+        client.l = "hour";
+      } else {
+        client.l = "hours";
       }
-      global.time = `for \`${num} ${global.letter}\``;
-    } else {
-      global.time = `**permanently**`;
+      client.ts = Math.floor(60 * 60 * num + Date.now() / 1000);
     }
-    const nc = restart.cases;
+    if (time) client.time = `for \`${num} ${client.l}\``;
+    else client.time = "**permanently**";
+
     await interaction.reply({
       embeds: [
         new MessageEmbed()
-          .setAuthor({ name: `Case ${nc}` })
+          .setAuthor({ name: `Case ${cases}` })
           .setColor("DARK_GOLD")
           .setDescription(
-            `${user} has been banned ${global.time} with ${global.reason}.`
+            `<@!${client.id}> (${client.id}) has been banned ${client.time} with ${client.reason}.`
           )
           .setFooter({
-            text: `You can change this with /case [case]! | Requested by ${interaction.user.tag}`,
-          }),
+            text: `Requested by ${interaction.user.tag}`,
+          })
+          .setTimestamp(),
       ],
     });
-    if (reason === null) {
-      global.reason = "reason not given";
-    } else {
-      global.reason = reason;
-    }
-    const edited1 = user.toString().replace("<@", "");
-    const edited2 = edited1.replace(">", "");
-    global.user = edited2;
-    await CasesModel.create({
-      punisher: `${interaction.user.id}`,
-      punished: `${global.user}`,
-      type: "ban",
-      reason: global.reason,
-      time: global.tstime,
-      expired: false,
-      case: nc,
-    });
-    restart.cases++;
-    await restart.save();
-    member
-      .send({
+    //await CasesModel.create({
+    //  punisher: `${interaction.user.id}`,
+    //  punished: `${client.id}`,
+    //  type: "ban",
+    //  reason: reason,
+    //  time: client.ts,
+    //  expired: false,
+    //  case: cases,
+    //});
+    //restart.cases++;
+    //await restart.save();
+
+    try {
+      member.send({
         embeds: [
           new MessageEmbed().setDescription(
-            `You have been banned for: \`${global.reason}\` in \`Puppet's Neco Cult\`. If you wish to appeal your ban, head over to https://forms.gle/CXawHH1m3tjJGDvs6 and fill up the form.`
+            `You have been banned for: \`${client.reason}\` in \`Puppet's Neco Cult\`. If you wish to appeal your ban, head over to https://forms.gle/CXawHH1m3tjJGDvs6 and fill up the form.`
           ),
         ],
-      })
-      .catch(() => {
-        interaction.followUp({
-          content: `I could not DM the user!`,
-          ephemeral: true,
-        });
       });
+    } catch (e) {
+      console.log(e);
+    }
     setTimeout(() => {
-      guild.members.ban(member);
+      try {
+        guild.members.ban(member);
+      } catch (e) {
+        console.log(e);
+      }
     }, 1000);
   },
 };
