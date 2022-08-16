@@ -48,7 +48,7 @@ module.exports = {
       do {
         const c = await CasesModel.findOne({ case: x });
         if (!c) client.stop = true;
-        if (c.type === "ban") {
+        else if (c.type === "ban") {
           if (c.expired === false) {
             if (c.time) {
               if (c.time < Date.now() / 1000) {
@@ -74,7 +74,7 @@ module.exports = {
       do {
         const wc = await CasesModel.findOne({ case: z });
         if (!wc) client.stop2 = true;
-        if (wc.type === "warn") {
+        else if (wc.type === "warn") {
           if (wc.expired === false) {
             if (wc.time < Date.now() / 1000) {
               await CasesModel.findOneAndUpdate({ case: z }, { expired: true });
