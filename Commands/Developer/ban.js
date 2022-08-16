@@ -52,8 +52,8 @@ module.exports = {
     }
 
     const guild = client.guilds.cache.get(g);
-
-    if (guild.bans.fetch(user.id))
+    const fetch = await guild.bans.fetch(user.id);
+    if (fetch)
       return interaction.reply({
         content: "That user is already banned.",
         ephemeral: true,
@@ -170,16 +170,16 @@ module.exports = {
           .setTimestamp(),
       ],
     });
-    await CasesModel.create({
-      punisher: `${interaction.user.id}`,
-      punished: `${client.id}`,
-      type: "ban",
-      reason: reason,
-      time: client.ts,
-      expired: false,
-      case: cases,
-    });
-    restart.cases++;
-    await restart.save();
+    //await CasesModel.create({
+    //  punisher: `${interaction.user.id}`,
+    //  punished: `${client.id}`,
+    //  type: "ban",
+    //  reason: reason,
+    //  time: client.ts,
+    //  expired: false,
+    //  case: cases,
+    //});
+    //restart.cases++;
+    //await restart.save();
   },
 };
