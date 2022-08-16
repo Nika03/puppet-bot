@@ -143,24 +143,9 @@ module.exports = {
     }
     if (time) client.time = `for \`${num} ${client.l}\``;
     else client.time = "**permanently**";
-    guild.members
-      .ban(uid)
-      .catch((e) => {
-        console.log(e);
-      })
-      .then(() => {
-        try {
-          member.send({
-            embeds: [
-              new MessageEmbed().setDescription(
-                `You have been banned for: \`${client.reason}\` in \`Puppet's Neco Cult\`. If you wish to appeal your ban, head over to https://forms.gle/CXawHH1m3tjJGDvs6 and fill up the form.`
-              ),
-            ],
-          });
-        } catch (e) {
-          console.log(e);
-        }
-      });
+    guild.members.ban(uid).catch((e) => {
+      console.log(e);
+    });
     await interaction.reply({
       embeds: [
         new MessageEmbed()
