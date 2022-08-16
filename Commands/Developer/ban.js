@@ -54,15 +54,9 @@ module.exports = {
     const guild = client.guilds.cache.get(g);
     try {
       client.u = guild.members.cache.get(user.id);
-      client.id = user.id;
     } catch (e) {
       console.log(e);
-      client.mer = true;
-    } finally {
-      if (client.mer) client.u = user.id;
     }
-
-    console.log(user);
 
     const member = client.u;
     if (!client.mer) {
@@ -160,7 +154,7 @@ module.exports = {
           .setAuthor({ name: `Case ${cases}` })
           .setColor("DARK_GOLD")
           .setDescription(
-            `<@!${client.id}> (${client.id}) has been banned ${client.time} with ${client.reason}.`
+            `${user} (${user.id}) has been banned ${client.time} with ${client.reason}.`
           )
           .setFooter({
             text: `Requested by ${interaction.user.tag}`,
