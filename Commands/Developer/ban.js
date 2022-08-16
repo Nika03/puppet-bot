@@ -83,25 +83,27 @@ module.exports = {
     const restart = await RestartsModel.findOne();
     const cases = restart.cases;
 
-    const num = time.replace(/\D/g, "");
-    if ((num = "")) {
-      return interaction.reply({
-        content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
-        ephemeral: true,
-      });
-    }
+    if (time) {
+      const num = time.replace(/\D/g, "");
+      if ((num = "")) {
+        return interaction.reply({
+          content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
+          ephemeral: true,
+        });
+      }
 
-    const letter = time.replace(/[^a-zA-Z]+/g, "");
-    if (letter === "") {
-      return interaction.reply({
-        content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
-        ephemeral: true,
-      });
-    } else if (letter.length !== 1) {
-      return interaction.reply({
-        content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
-        ephemeral: true,
-      });
+      const letter = time.replace(/[^a-zA-Z]+/g, "");
+      if (letter === "") {
+        return interaction.reply({
+          content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
+          ephemeral: true,
+        });
+      } else if (letter.length !== 1) {
+        return interaction.reply({
+          content: "You need to input a valid time! (ex: 1d, 7h, 5m)",
+          ephemeral: true,
+        });
+      }
     }
     if (!reason) {
       client.reason = `**no reason**`;
