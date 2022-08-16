@@ -59,8 +59,10 @@ module.exports = {
       console.log(e);
       client.mer = true;
     } finally {
-      if (client.mer) client.u = guild.members.cache.get(user);
+      if (client.mer) client.u = user.id;
     }
+
+    console.log(user);
 
     const member = client.u;
     if (!client.mer) {
