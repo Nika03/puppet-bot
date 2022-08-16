@@ -27,7 +27,7 @@ module.exports = {
 
     const botupt = Date.now() / 1000 - client.botuptime;
     if (botupt < 60) {
-      client.but = `${botupt} seconds`;
+      client.but = `${botupt.toFixed(1)} seconds`;
     } else if (botupt < 3600) {
       client.but = `${parseFloat(botupt / 60).toFixed(1)} minutes`;
     } else if (botupt < 86400) {
@@ -44,7 +44,7 @@ module.exports = {
       embeds: [
         new MessageEmbed().setDescription(`
 Bot Uptime: \`${client.but}\`
-Last Bot Restart: <t:${client.botuptime}>
+Last Bot Restart: <t:${Math.floor(client.botuptime)}>
 Host Machine Uptime: \`${client.ut}\`
 ${parseFloat(os.freemem() / 1000000000).toFixed(1)} / ${parseFloat(
           os.totalmem() / 1000000000
