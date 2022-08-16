@@ -14,7 +14,7 @@ module.exports = {
       //const g = "986357448925401168"; //Test server id
       const g = "946518364216520774"; //Puppet server id
       //const verified = "993169053906636890"; //Test server id
-      const verified = "993169053906636890"; //Puppet server id
+      const verified = "946524059724820500"; //Puppet server id
 
       const guild = client.guilds.cache.get(g);
 
