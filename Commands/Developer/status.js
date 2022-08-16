@@ -24,10 +24,28 @@ module.exports = {
     } else {
       client.ut = `${parseFloat(uptime / 31536000).toFixed(1)} years`;
     }
+
+    const botupt = Date.now() / 1000 - client.botuptime;
+    if (botupt < 60) {
+      client.but = `${botupt} seconds`;
+    } else if (botupt < 3600) {
+      client.but = `${parseFloat(botupt / 60).toFixed(1)} minutes`;
+    } else if (botupt < 86400) {
+      client.but = `${parseFloat(botupt / 3600).toFixed(1)} hours`;
+    } else if (botupt < 2592000) {
+      client.but = `${parseFloat(botupt / 86400).toFixed(1)} days`;
+    } else if (botupt < 31536000) {
+      client.but = `${parseFloat(botupt / 2592000).toFixed(1)} months`;
+    } else {
+      client.but = `${parseFloat(botupt / 31536000).toFixed(1)} months`;
+    }
+
     interaction.reply({
       embeds: [
         new MessageEmbed().setDescription(`
-Uptime: \`${client.ut}\`
+Bot Uptime: \`${client.but}\`
+Last Bot Restart: <t:${client.botuptime}>
+Host Machine Uptime: \`${client.ut}\`
 ${parseFloat(os.freemem() / 1000000000).toFixed(1)} / ${parseFloat(
           os.totalmem() / 1000000000
         ).toFixed(1)} used memory (GB)

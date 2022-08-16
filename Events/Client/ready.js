@@ -42,6 +42,8 @@ module.exports = {
 
     const guild = client.guilds.cache.get(g);
 
+    client.botuptime = Date.now() / 1000;
+
     // Ban Checker
     setInterval(async () => {
       x = 1;
