@@ -28,7 +28,7 @@ module.exports = {
         try {
           member.roles.add(verified);
         } catch (e) {
-          //ignored
+          console.log(e);
         }
       } else {
         try {

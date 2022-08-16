@@ -44,11 +44,11 @@ module.exports = {
 
     // Ban Checker
     setInterval(async () => {
-      x = 0;
+      x = 1;
       const a = await CasesModel.find();
       do {
         const c = await CasesModel.findOne({ case: x });
-        if (x > a.length) client.stop = true;
+        if ((x = a.length)) client.stop = true;
         if (c.type === "ban") {
           if (c.expired === false) {
             if (c.time) {
@@ -71,10 +71,11 @@ module.exports = {
     }, 5000);
     // Warn Checker
     setInterval(async () => {
-      z = 0;
+      z = 1;
       const awc = await CasesModel.find();
-      const wc = await CasesModel.findOne({ case: x });
+      if ((z = awc.length)) client.stop2 = true;
       do {
+        const wc = await CasesModel.findOne({ case: z });
         if (wc.type === "warn") {
           if (wc.expired === false) {
             if (wc.time < Date.now() / 1000) {
@@ -86,18 +87,18 @@ module.exports = {
                     new MessageEmbed()
                       .setAuthor({ name: "Case Expired" })
                       .setDescription(
-                        `**Case ${wc[x].case}** has been expired. Be more careful next time and read the rules!
-> Reason of the punishment: \`${wc[x].reason}\`
-> Punisher: <@!${wc[x].punisher}> (${wc[x].punisher})
+                        `**Case ${wc.case}** has been expired. Be more careful next time and read the rules!
+> Reason of the punishment: \`${wc.reason}\`
+> Punisher: <@!${wc.punisher}> (${wc.punisher})
 
-> Reason for expire: \`14 days have passed since case ${wc[x].case} was made\`.
+> Reason for expire: \`14 days have passed since case ${wc.case} was made\`.
                 `
                       )
                       .setColor("DARK_GOLD"),
                   ],
                 });
               } catch (e) {
-                //ignored
+                console.log(e);
               }
               const UMM = require("../../Structures/Schema/UserModeration");
               const rm = await UMM.findOne({ user: wc.punished });
