@@ -104,33 +104,33 @@ module.exports = {
           ephemeral: true,
         });
       }
+      if (letter === "d") {
+        if (num === `1`) {
+          client.l = "day";
+        } else {
+          client.l = "days";
+        }
+        client.ts = Math.floor(60 * 60 * 24 * num + Date.now() / 1000);
+      } else if (letter === "m") {
+        if (num === `1`) {
+          client.l = "minute";
+        } else {
+          client.l = "minutes";
+        }
+        client.ts = Math.floor(60 * num + Date.now() / 1000);
+      } else if (letter === "h") {
+        if (num === `1`) {
+          client.l = "hour";
+        } else {
+          client.l = "hours";
+        }
+        client.ts = Math.floor(60 * 60 * num + Date.now() / 1000);
+      }
     }
     if (!reason) {
       client.reason = `**no reason**`;
     } else {
       client.reason = `reason: \`${reason}\``;
-    }
-    if (letter === "d") {
-      if (num === `1`) {
-        client.l = "day";
-      } else {
-        client.l = "days";
-      }
-      client.ts = Math.floor(60 * 60 * 24 * num + Date.now() / 1000);
-    } else if (letter === "m") {
-      if (num === `1`) {
-        client.l = "minute";
-      } else {
-        client.l = "minutes";
-      }
-      client.ts = Math.floor(60 * num + Date.now() / 1000);
-    } else if (letter === "h") {
-      if (num === `1`) {
-        client.l = "hour";
-      } else {
-        client.l = "hours";
-      }
-      client.ts = Math.floor(60 * 60 * num + Date.now() / 1000);
     }
     if (time) client.time = `for \`${num} ${client.l}\``;
     else client.time = "**permanently**";
