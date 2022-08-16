@@ -42,6 +42,8 @@ module.exports = {
     const reason = interaction.options.getString(`reason`);
     const time = interaction.options.getString(`time`);
 
+    const RestartsModel = require("../../Structures/Schema/Restarts");
+
     if (user === interaction.user.id) {
       return interaction.reply({
         content: "You cannot ban yourself!",
