@@ -53,11 +53,16 @@ module.exports = {
 
     const guild = client.guilds.cache.get(g);
 
-    if (guild.bans.fetch(user.id)) console.log("kekw");
+    if (guild.bans.fetch(user.id))
+      return interaction.reply({
+        content: "That user is already banned.",
+        ephemeral: true,
+      });
     try {
       client.u = guild.members.cache.get(user.id);
     } catch (e) {
       console.log(e);
+      client.mer = true;
     }
 
     const member = client.u;
@@ -165,16 +170,16 @@ module.exports = {
           .setTimestamp(),
       ],
     });
-    //await CasesModel.create({
-    //  punisher: `${interaction.user.id}`,
-    //  punished: `${client.id}`,
-    //  type: "ban",
-    //  reason: reason,
-    //  time: client.ts,
-    //  expired: false,
-    //  case: cases,
-    //});
-    //restart.cases++;
-    //await restart.save();
+    await CasesModel.create({
+      punisher: `${interaction.user.id}`,
+      punished: `${client.id}`,
+      type: "ban",
+      reason: reason,
+      time: client.ts,
+      expired: false,
+      case: cases,
+    });
+    restart.cases++;
+    await restart.save();
   },
 };
