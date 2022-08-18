@@ -170,7 +170,7 @@ module.exports = {
           .setAuthor({ name: `Case ${cases}` })
           .setColor("DARK_GOLD")
           .setDescription(
-            `${user} (${user.id}) has been banned ${client.time} with ${client.reason}. This was done by ${interaction.user}`
+            `${user} (${user.id}) has been banned ${client.time} with ${client.reason}. This was done by ${interaction.user}.`
           )
           .setFooter({
             text: `Ban done by ${interaction.user.tag}`,

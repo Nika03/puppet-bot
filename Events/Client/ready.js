@@ -60,6 +60,19 @@ module.exports = {
                 );
                 try {
                   guild.members.unban(c.punished);
+                  const c = "1009968902941442119";
+                  const logs = guild.channels.cache.get(c);
+                  logs.send({
+                    embeds: [
+                      new MessageEmbed()
+                        .setAuthor({ name: `Unban` })
+                        .setColor("DARK_GOLD")
+                        .setDescription(
+                          `${user} (${user.id}) has been unbanned. This user has been unbanned due to their ban time ending.`
+                        )
+                        .setTimestamp(),
+                    ],
+                  });
                 } catch (e) {
                   console.log(e);
                 }
