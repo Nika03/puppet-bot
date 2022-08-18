@@ -15,30 +15,34 @@ module.exports = {
         const channel = guild.channels.cache.get(c);
 
         const r = Math.floor(Math.random() * 7);
-        console.log(r);
-        if (r === "1") {
+        if (r === 1) {
           client.message = `${oldMember} is new here!`;
-        } else if (r === "2") {
+        } else if (r === 2) {
           client.message = `Oh look, ${oldMember} is finally here.`;
-        } else if (r === "3") {
+        } else if (r === 3) {
           client.message = `A very warm welcome to ${oldMember}`;
-        } else if (r === "4") {
+        } else if (r === 4) {
           client.message = `We have all gathered to see you, ${oldMember}.`;
-        } else if (r === "5") {
+        } else if (r === 5) {
           client.message = `${oldMember} came here very suddenly.`;
-        } else if (r === "6") {
+        } else if (r === 6) {
           client.message = `${oldMember} has traveled for a long time to find us.`;
-        } else if (r === "7") {
+        } else if (r === 7) {
           client.message = `${oldMember} has arrived at last.`;
         } else {
           client.message = `This is just the beginning for ${oldMember}.`;
         }
         channel.send({
+          content: `${oldMember}`,
           embeds: [
             new MessageEmbed()
               .setDescription(`${client.message}`)
               .setAuthor({ name: `Welcome ${oldMember.user.tag}` })
-              .setImage(oldMember.user.avatarURL()),
+              .setThumbnail(oldMember.user.avatarURL())
+              .setColor("DARK_RED")
+              .setFooter({
+                text: `${oldMember.user.tag} has joined the server. There are now ${guild.memberCount} members.`,
+              }),
           ],
         });
       }
