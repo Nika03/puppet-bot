@@ -50,6 +50,7 @@ module.exports = {
       x = 1;
       do {
         const c = await CasesModel.findOne({ case: x });
+        console.log(c);
         if (!c) client.stop = true;
         else if (c.type === "ban") {
           if (c.expired === false) {
