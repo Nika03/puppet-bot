@@ -180,7 +180,7 @@ module.exports = {
     });
     await CasesModel.create({
       punisher: `${interaction.user.id}`,
-      punished: `${client.id}`,
+      punished: `${user.id}`,
       type: "ban",
       reason: reason,
       time: client.ts,
