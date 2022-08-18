@@ -6,7 +6,7 @@ module.exports = {
    * @param {Client} client
    * @param {Guild} guild
    */
-  async execute(newMember, client) {
-    console.log(newMember._roles);
+  async execute(newMember, oldMember, client) {
+    console.log(newMember._roles, oldMember._roles);
   },
 };
