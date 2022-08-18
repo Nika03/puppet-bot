@@ -111,7 +111,6 @@ module.exports = {
       } while (client.stop2 !== true);
     }, 5000);
     setInterval(async () => {
-      const verification = await RestartsModel.findOne();
       const rc = await Math.floor(Math.random() * 5);
       if (rc === 0) client.color = "🟥";
       if (rc === 1) client.color = "🟩";
