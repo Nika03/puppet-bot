@@ -38,7 +38,7 @@ module.exports = {
             new MessageEmbed()
               .setDescription(`${client.message}`)
               .setAuthor({ name: `Welcome ${oldMember.user.tag}` })
-              .setImage(oldMember.user.displayAvatarURL()),
+              .setImage(oldMember.user.avatarURL()),
           ],
         });
       }
