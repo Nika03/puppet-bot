@@ -17,7 +17,6 @@ module.exports = {
 
     const RestartsModel = require("../../Structures/Schema/Restarts");
     const verification = await RestartsModel.findOne();
-    if (verification.verification === false) return;
     if (reaction.parcial) {
       await reaction.fetch();
     }
