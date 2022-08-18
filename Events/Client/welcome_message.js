@@ -7,8 +7,8 @@ module.exports = {
    * @param {Guild} guild
    */
   async execute(newMember, oldMember, client) {
-    if (!oldMember._roles.includes("970229987405877259")) {
-      if (newMember._roles.includes("970229987405877259")) {
+    if (oldMember._roles.includes("970229987405877259")) {
+      if (!newMember._roles.includes("970229987405877259")) {
         const c = "946520764297912343";
         const g = "946518364216520774";
 
