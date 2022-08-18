@@ -30,10 +30,15 @@ module.exports = {
         } else if (r === "7") {
           client.message = `${oldMember} has arrived at last.`;
         } else {
-          client.message = `This is just the beginning for ${oldMember}`;
+          client.message = `This is just the beginning for ${oldMember}.`;
         }
         channel.send({
-          embeds: [new MessageEmbed().setDescription(`${client.message}`)],
+          embeds: [
+            new MessageEmbed()
+              .setDescription(`${client.message}`)
+              .setAuthor({ name: `Welcome ${oldMember.user.tag}` })
+              .setImage(oldMember.user.displayAvatarURL),
+          ],
         });
       }
     }
