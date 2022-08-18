@@ -15,6 +15,7 @@ module.exports = {
         const channel = guild.channels.cache.get(c);
 
         const r = Math.floor(Math.random() * 7);
+        console.log(r);
         if (r === "1") {
           client.message = `${oldMember} is new here!`;
         } else if (r === "2") {
@@ -37,7 +38,7 @@ module.exports = {
             new MessageEmbed()
               .setDescription(`${client.message}`)
               .setAuthor({ name: `Welcome ${oldMember.user.tag}` })
-              .setImage(oldMember.user.displayAvatarURL),
+              .setImage(oldMember.user.displayAvatarURL()),
           ],
         });
       }
