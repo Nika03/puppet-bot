@@ -161,16 +161,32 @@ module.exports = {
           .setTimestamp(),
       ],
     });
-    //await CasesModel.create({
-    //  punisher: `${interaction.user.id}`,
-    //  punished: `${client.id}`,
-    //  type: "ban",
-    //  reason: reason,
-    //  time: client.ts,
-    //  expired: false,
-    //  case: cases,
-    //});
-    //restart.cases++;
-    //await restart.save();
+    const c = "1009968902941442119";
+    const logs = guild.channels.cache.get(c);
+    logs.send({
+      embeds: [
+        new MessageEmbed()
+          .setAuthor({ name: `Case ${cases}` })
+          .setColor("DARK_GOLD")
+          .setDescription(
+            `${user} (${user.id}) has been banned ${client.time} with ${client.reason}. This was done by ${interaction.user.id}`
+          )
+          .setFooter({
+            text: `Ban done by ${interaction.user.tag}`,
+          })
+          .setTimestamp(),
+      ],
+    });
+    await CasesModel.create({
+      punisher: `${interaction.user.id}`,
+      punished: `${client.id}`,
+      type: "ban",
+      reason: reason,
+      time: client.ts,
+      expired: false,
+      case: cases,
+    });
+    restart.cases++;
+    await restart.save();
   },
 };
