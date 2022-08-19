@@ -71,6 +71,19 @@ module.exports = {
             .setColor("DARK_GOLD"),
         ],
       });
+      const ch = "1009968902941442119";
+      const logs = guild.channels.cache.get(ch);
+      logs.send({
+        embeds: [
+          new MessageEmbed()
+            .setAuthor({ name: `Case Expire` })
+            .setColor("DARK_GOLD")
+            .setDescription(
+              `Case **${c.case}** has been expired by ${interaction.user}. The reason for the expire is: \`${reason}\`.`
+            )
+            .setTimestamp(),
+        ],
+      });
       await CaseModel.findOneAndUpdate(
         { case: cn },
         {
