@@ -65,8 +65,8 @@ module.exports = {
                 );
                 try {
                   guild.members.unban(c.punished);
-                  const c = "1009968902941442119";
-                  const logs = guild.channels.cache.get(c);
+                  const ch = "1009968902941442119";
+                  const logs = guild.channels.cache.get(ch);
                   logs.send({
                     embeds: [
                       new MessageEmbed()
