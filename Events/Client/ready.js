@@ -85,7 +85,7 @@ module.exports = {
             } else x++;
           } else x++;
         } else x++;
-      } while (client.stop !== true);
+      } while (!client.stop);
     }, 5000);
     // Warn Checker
     setInterval(async () => {
