@@ -49,6 +49,7 @@ module.exports = {
       client.stop = false;
       x = 1;
       do {
+        console.log(x);
         const c = await CasesModel.findOne({ case: x });
         if (!c) return (client.stop = true);
         if (c.type === "ban") {
@@ -78,7 +79,7 @@ module.exports = {
                   console.log(e);
                 }
                 client.stop = true;
-              } else x++, console.log(`i was here, ${(client.stop, x)}`);
+              } else x++;
             } else x++;
           } else x++;
         } else x++;
