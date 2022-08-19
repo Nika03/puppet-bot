@@ -78,7 +78,7 @@ module.exports = {
                   console.log(e);
                 }
                 client.stop = true;
-              } else x++, console.log(`i was here, ${client.stop}`);
+              } else x++, console.log(`i was here, ${(client.stop, x)}`);
             } else x++;
           } else x++;
         } else x++;
