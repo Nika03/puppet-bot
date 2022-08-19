@@ -54,7 +54,6 @@ module.exports = {
         if (c.type === "ban") {
           if (c.expired === false) {
             if (c.time) {
-              console.log(c.time, x, client.stop);
               if (c.time < Date.now() / 1000) {
                 await CasesModel.findOneAndUpdate(
                   { case: x },
@@ -79,7 +78,7 @@ module.exports = {
                   console.log(e);
                 }
                 client.stop = true;
-              } else x++;
+              } else x++, console.log(`i was here, ${client.stop}`);
             } else x++;
           } else x++;
         } else x++;
