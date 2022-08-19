@@ -147,6 +147,19 @@ module.exports = {
               .setTimestamp(),
           ],
         });
+        const ch = "1009968902941442119";
+        const logs = guild.channels.cache.get(ch);
+        logs.send({
+          embeds: [
+            new MessageEmbed()
+              .setAuthor({ name: `User Muted` })
+              .setColor("DARK_GOLD")
+              .setDescription(
+                `${user} has been muted for **${num} ${client.letter}** with reason: \`${reason}\`. This was done by ${interaction.user}.`
+              )
+              .setTimestamp(),
+          ],
+        });
         await CasesModel.create({
           punished: user.id,
           punisher: interaction.user.id,
