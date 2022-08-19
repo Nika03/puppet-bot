@@ -60,6 +60,19 @@ module.exports = {
               .setTimestamp(),
           ],
         });
+        const ch = "1009968902941442119";
+        const logs = guild.channels.cache.get(ch);
+        logs.send({
+          embeds: [
+            new MessageEmbed()
+              .setAuthor({ name: `User Unbanned` })
+              .setColor("DARK_GOLD")
+              .setDescription(
+                `<@!${user}> (${user}) has been unbanned by ${interaction.user}.`
+              )
+              .setTimestamp(),
+          ],
+        });
         const CasesModel = require("../../Structures/Schema/Cases");
         const RestartsModel = require("../../Structures/Schema/Restarts");
         const UMM = require("../../Structures/Schema/UserModeration");
