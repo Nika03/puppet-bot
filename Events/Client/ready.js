@@ -51,8 +51,9 @@ module.exports = {
       do {
         const c = await CasesModel.findOne({ case: x });
         console.log(c);
-        if (!c) client.stop = true;
-        if (c.type === "ban") {
+        if (!c) {
+          client.stop = true;
+        } else fixif (c.type === "ban") {
           if (c.expired === false) {
             if (c.time) {
               console.log(c.time, c.punished);
