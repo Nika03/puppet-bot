@@ -46,14 +46,12 @@ module.exports = {
 
     // Ban Checker
     setInterval(async () => {
-      console.log("Ban");
       x = 1;
       do {
         const c = await CasesModel.findOne({ case: x });
         console.log(c);
-        if (!c) {
-          client.stop = true;
-        } else if (c.type === "ban") {
+        if (!c) return (client.stop = true);
+        if (c.type === "ban") {
           if (c.expired === false) {
             if (c.time) {
               console.log(c.time, c.punished);
@@ -86,6 +84,7 @@ module.exports = {
             } else x++;
           } else x++;
         } else x++;
+        console.log("bruh");
       } while (!client.stop);
     }, 5000);
     // Warn Checker
