@@ -123,7 +123,7 @@ module.exports = {
                     .setAuthor({ name: `Warn ${wc.case} expired` })
                     .setColor("DARK_GOLD")
                     .setDescription(
-                      `${wc.case} has been expired. The user punished for this warn was <@!${wc.punished}>.`
+                      `Case **${wc.case}** has been expired. The user punished for this warn was <@!${wc.punished}>.`
                     )
                     .setTimestamp(),
                 ],

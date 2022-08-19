@@ -65,6 +65,19 @@ module.exports = {
           .setTimestamp(),
       ],
     });
+    const ch = "1009968902941442119";
+    const logs = guild.channels.cache.get(ch);
+    logs.send({
+      embeds: [
+        new MessageEmbed()
+          .setAuthor({ name: `User Warned` })
+          .setColor("DARK_GOLD")
+          .setDescription(
+            `${user} has been warned for: \`${reason}\`. This was done by ${interaction.user}.`
+          )
+          .setTimestamp(),
+      ],
+    });
 
     await CasesModel.create({
       punished: user.id,
