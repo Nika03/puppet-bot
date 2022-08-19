@@ -53,7 +53,7 @@ module.exports = {
         console.log(c);
         if (!c) {
           client.stop = true;
-        } else fixif (c.type === "ban") {
+        } else if (c.type === "ban") {
           if (c.expired === false) {
             if (c.time) {
               console.log(c.time, c.punished);
