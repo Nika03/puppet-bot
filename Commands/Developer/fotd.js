@@ -16,7 +16,7 @@ module.exports = {
    * @param {CommandInteraction} interaction
    * @param {Client} client
    */
-  async execute(interaction) {
+  async execute(interaction, client) {
     const SettingsModel = require("../../Structures/Schema/Settings.js");
     const is_blacklisted = await SettingsModel.findOne({
       channel: interaction.channel.id,
