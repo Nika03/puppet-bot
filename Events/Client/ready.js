@@ -115,6 +115,19 @@ module.exports = {
               } catch (e) {
                 console.log(e);
               }
+              const ch = "1009968902941442119";
+              const logs = guild.channels.cache.get(ch);
+              logs.send({
+                embeds: [
+                  new MessageEmbed()
+                    .setAuthor({ name: `Warn ${wc.case} expired` })
+                    .setColor("DARK_GOLD")
+                    .setDescription(
+                      `${wc.case} has been expired. The user punished for this warn was <@!${wc.punished}>.`
+                    )
+                    .setTimestamp(),
+                ],
+              });
               const UMM = require("../../Structures/Schema/UserModeration");
               const rm = await UMM.findOne({ user: wc.punished });
               const nw = rm.warns - 1;
