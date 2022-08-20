@@ -32,19 +32,23 @@ module.exports = {
         } else {
           client.message = `This is just the beginning for ${oldMember}.`;
         }
-        channel.send({
-          content: `${oldMember}`,
-          embeds: [
-            new MessageEmbed()
-              .setDescription(`${client.message}`)
-              .setAuthor({ name: `Welcome ${oldMember.user.tag}` })
-              .setThumbnail(oldMember.user.avatarURL())
-              .setColor("DARK_RED")
-              .setFooter({
-                text: `${oldMember.user.tag} has joined the server. There are now ${guild.memberCount} members.`,
-              }),
-          ],
-        });
+        channel
+          .send({
+            content: `${oldMember}`,
+            embeds: [
+              new MessageEmbed()
+                .setDescription(`${client.message}`)
+                .setAuthor({ name: `Welcome ${oldMember.user.tag}` })
+                .setThumbnail(oldMember.user.avatarURL())
+                .setColor("DARK_RED")
+                .setFooter({
+                  text: `${oldMember.user.tag} has joined the server. There are now ${guild.memberCount} members.`,
+                }),
+            ],
+          })
+          .then((m) => {
+            console.log(m);
+          });
       }
     }
   },
