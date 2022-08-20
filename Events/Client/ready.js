@@ -170,6 +170,7 @@ module.exports = {
             ],
           });
         });
+        console.log(`edited, ${client.color}`);
       } catch (e) {
         console.log(e);
       }
