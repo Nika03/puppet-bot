@@ -95,7 +95,7 @@ module.exports = {
             .setAuthor({ name: "Teto Trader" })
             .setDescription(
               `
-You have been warned in Puppet's Neco Cult
+You have been warned in Neco Puppeteers' Cult
 Punisher: ${interaction.user} *(${interaction.user.id})*
 Reason: ${reason}
 This warning will expire ${Math.floor(Date.now() / 1000) + 1209600}.

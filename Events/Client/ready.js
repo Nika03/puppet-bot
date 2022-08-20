@@ -155,7 +155,7 @@ module.exports = {
                 .setAuthor({ name: "Verification" })
                 .setDescription(
                   `
-  Hello! Welcome to **Puppet's Neco Cult.** 
+  Hello! Welcome to **Neco Puppeteers' Cult.** 
   
   > In order to verify, you need to press the ${client.color} reaction. Failing to do this will get you timed out for 5 minutes.
   
