@@ -47,7 +47,7 @@ module.exports = {
       client.trainees = list.roles.cache
         .get(`946525021545828422`)
         .members.map((m) => {
-          if (m.presence?.status === "offline") {
+          if (!m.presence || m.presence.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
@@ -66,7 +66,7 @@ module.exports = {
       client.mods = list.roles.cache
         .get(`946524686429347880`)
         .members.map((m) => {
-          if (m.presence?.status === "offline") {
+          if (!m.presence || m.presence.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
@@ -85,7 +85,7 @@ module.exports = {
       client.admins = list.roles.cache
         .get(`946524775994507264`)
         .members.map((m) => {
-          if (m.presence?.status === "offline") {
+          if (!m.presence || m.presence.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
@@ -104,7 +104,7 @@ module.exports = {
       client.owners = list.roles.cache
         .get(`946524960082493440`)
         .members.map((m) => {
-          if (m.presence?.status === "offline") {
+          if (!m.presence || m.presence.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
