@@ -47,8 +47,7 @@ module.exports = {
             ],
           })
           .then((m) => {
-            const message = channel.messages.fetch(m.id);
-            message.react("<a:NecoCheering1:1010398858897018961>");
+            m.react("<a:NecoCheering1:1010398858897018961>");
           });
       }
     }
