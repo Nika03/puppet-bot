@@ -42,12 +42,12 @@ module.exports = {
 
     //check for trainees
     if (list.roles.cache.get(`946525021545828422`).members.size === 0) {
-      global.trainees = `There is currently no staff member in the position of \`Trainee Moderator\`.`;
+      client.trainees = `There is currently no staff member in the position of \`Trainee Moderator\`.`;
     } else {
-      global.trainees = list.roles.cache
+      client.trainees = list.roles.cache
         .get(`946525021545828422`)
         .members.map((m) => {
-          if (!m.presence) {
+          if (m.presence?.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
@@ -61,12 +61,12 @@ module.exports = {
 
     //check for mods
     if (list.roles.cache.get(`946524686429347880`).members.size === 0) {
-      global.mods = `There is currently no staff member in the position of \`Moderator\`.`;
+      client.mods = `There is currently no staff member in the position of \`Moderator\`.`;
     } else {
-      global.mods = list.roles.cache
+      client.mods = list.roles.cache
         .get(`946524686429347880`)
         .members.map((m) => {
-          if (!m.presence) {
+          if (m.presence?.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
@@ -80,12 +80,12 @@ module.exports = {
 
     //check for admins
     if (list.roles.cache.get(`946524775994507264`).members.size === 0) {
-      global.admins = `There is currently no staff member in the position of \`Admin\`.`;
+      client.admins = `There is currently no staff member in the position of \`Admin\`.`;
     } else {
-      global.admins = list.roles.cache
+      client.admins = list.roles.cache
         .get(`946524775994507264`)
         .members.map((m) => {
-          if (!m.presence) {
+          if (m.presence?.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
@@ -99,12 +99,12 @@ module.exports = {
 
     //check for owners
     if (list.roles.cache.get(`946524960082493440`).members.size === 0) {
-      global.owners = `There is currently no staff member in the position of \`Owner\`.`;
+      client.owners = `There is currently no staff member in the position of \`Owner\`.`;
     } else {
-      global.owners = list.roles.cache
+      client.owners = list.roles.cache
         .get(`946524960082493440`)
         .members.map((m) => {
-          if (!m.presence) {
+          if (m.presence?.status === "offline") {
             return `<:offline:989591896521338971> \`${m.user.tag}\` `;
           } else if (m.presence.status === `online`) {
             return `<:online:989591925407481857> \`${m.user.tag}\` `;
@@ -123,16 +123,16 @@ module.exports = {
             `
 Here are the current staff members, their position, and their status:
 **Owners:**
-${owners.toString().replaceAll(`,`, ` `)}
+${client.owners.toString().replaceAll(`,`, ` `)}
 
 **Admins:**
-${admins.toString().replaceAll(`,`, ` `)}
+${client.admins.toString().replaceAll(`,`, ` `)}
 
 **Moderators:**
-${mods.toString().replaceAll(`,`, ` `)}
+${client.mods.toString().replaceAll(`,`, ` `)}
 
 **Trainee Moderators:**
-${trainees.toString().replaceAll(`,`, ` `)}
+${client.trainees.toString().replaceAll(`,`, ` `)}
             `
           )
           .setColor(`#ff3067`)
