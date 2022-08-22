@@ -29,7 +29,7 @@ module.exports = {
       }
     }
     if (message.author.bot) return;
-    if (message.toString().includes("/")) console.log(message.toString());
+    if (message.toString().includes("/")) return;
 
     const allowedchannels = [
       `946520764297912343`,
