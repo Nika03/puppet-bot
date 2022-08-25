@@ -147,8 +147,8 @@ module.exports = {
       if (rc === 4) client.color = "🟧";
       if (rc === 5) client.color = "🟪";
       const channel = guild.channels.cache.get("946528426687336559");
-      try {
         channel.messages.fetch("1008858316509806644").then((m) => {
+          try{
           m.edit({
             embeds: [
               new MessageEmbed()
@@ -169,10 +169,10 @@ module.exports = {
                 .setTimestamp(),
             ],
           });
+        } catch (e) {
+          console.log(e)
+        }
         });
-      } catch (e) {
-        console.log(e);
-      }
-    }, 15000);
+    }, 30000);
   },
 };
