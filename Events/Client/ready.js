@@ -139,8 +139,6 @@ module.exports = {
       } while (client.stop2 !== true);
     }, 5000);
     //Verification edit message
-    client.veronce = false
-    if(client.veronce = false){
       const rc = await Math.floor(Math.random() * 5);
       if (rc === 0) client.color = "🟥";
       if (rc === 1) client.color = "🟩";
@@ -171,12 +169,10 @@ module.exports = {
                 .setTimestamp(),
             ],
           });
-          console.log(rc)
         } catch (e) {
           console.log(e)
         }
         });
-    }
     setInterval(async () => {
       const rc = await Math.floor(Math.random() * 5);
       if (rc === 0) client.color = "🟥";
