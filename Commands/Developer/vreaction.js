@@ -9,6 +9,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
+    const guild = client.guilds.cache.get('946518364216520774');
     const rc = await Math.floor(Math.random() * 5);
       if (rc === 0) client.color = "🟥";
       if (rc === 1) client.color = "🟩";
