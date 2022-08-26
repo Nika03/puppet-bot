@@ -45,6 +45,14 @@ module.exports = {
             new MessageEmbed()
             .setAuthor({name: `${user.tag}'s avatar.`})
             .setImage(user.avatarURL())
+            .setColor('GREEN')
+        ]})
+    } else {
+        interaction.reply({embeds: [
+            new MessageEmbed()
+            .setAuthor({name: `${user.tag}'s avatar.`})
+            .setImage(user.avatarURL())
+            .setColor('GREEN')
         ]})
     }
   },
