@@ -43,7 +43,7 @@ module.exports = {
         const user = interaction.options.getUser('user')
         interaction.reply({embeds: [
             new MessageEmbed()
-            .setAvatar({name: `${user.tag}'s avatar.`})
+            .setAuthor({name: `${user.tag}'s avatar.`})
             .setImage(user.avatarURL())
         ]})
     }
