@@ -171,6 +171,7 @@ module.exports = {
                 .setTimestamp(),
             ],
           });
+          console.log(rc)
         } catch (e) {
           console.log(e)
         }
