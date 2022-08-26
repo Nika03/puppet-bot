@@ -90,6 +90,7 @@ module.exports = {
       "search",
       "leaderboard",
       "fotd",
+      "avatar",
     ];
 
     const member = await interaction.guild.members.fetch(interaction.user.id);
