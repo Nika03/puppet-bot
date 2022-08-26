@@ -50,8 +50,8 @@ module.exports = {
     } else {
         interaction.reply({embeds: [
             new MessageEmbed()
-            .setAuthor({name: `${user.tag}'s avatar.`})
-            .setImage(user.avatarURL())
+            .setAuthor({name: `${interaction.user.tag}'s avatar.`})
+            .setImage(interaction.user.avatarURL())
             .setColor('GREEN')
         ]})
     }
