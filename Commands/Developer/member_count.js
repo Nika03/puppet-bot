@@ -9,7 +9,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const guild = client.guilds.get("946518364216520774");
+    const guild = client.guilds.cache.get("946518364216520774");
     interaction.reply({
       embeds: [
         new MessageEmbed()
