@@ -55,7 +55,10 @@ module.exports = {
     const user = await EconomyChecker.findOne({ user: message.author.id });
 
     if (random_number1 === random_number2) {
-      const random_amount = Math.floor(Math.random() * 250);
+      client.random_amount = Math.floor(Math.random() * 250);
+      if (client.random_amount === 0) {
+        client.random_amount = 1;
+      }
       message.reply({
         embeds: [
           new MessageEmbed()
@@ -64,7 +67,7 @@ module.exports = {
               iconURL: `https://i.pinimg.com/originals/ca/7d/6a/ca7d6a4f6887b0a306273f7b2126ad2e.jpg`,
             })
             .setDescription(
-              `Nya! I've given you **${random_amount}** <:tedollar:987097348305997847> tedollars for talking in ${message.channel}!`
+              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> tedollars for talking in ${message.channel}!`
             )
             .setColor(`DARK_NAVY`)
             .setThumbnail(
@@ -73,7 +76,7 @@ module.exports = {
             .setTimestamp(),
         ],
       });
-      const new_balance = user.balance + random_amount;
+      const new_balance = user.balance + client.random_amount;
       await EconomyChecker.findOneAndUpdate(
         { user: message.author.id },
         { balance: new_balance }
