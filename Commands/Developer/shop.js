@@ -517,7 +517,7 @@ You do not have enough tedollars to buy **${item}**. You need **${Math.floor(
           new MessageEmbed()
             .setAuthor({ name: "Item Purchased" })
             .setDescription(
-              `You have successfully purchased ${item}. You now have **${nb}** tedollars.`
+              `You have successfully purchased **${item}**. You now have **${nb}** tedollars.`
             )
             .setColor("GREEN")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
