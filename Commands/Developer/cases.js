@@ -91,6 +91,9 @@ module.exports = {
 > __Type:__ **${type}**                         
 \`Member Unbanned:\` <@!${punished}> (${punished})
 \`Staff who unbanned:\` <@!${pardoner}> (${pardoner})
+\`Reason for unban:\` ${wc.reason_for_expire}
+
+This user has been unbanned since <t:${wc.time}>.
 `;
       } else {
         client.embed = `

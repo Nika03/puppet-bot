@@ -53,10 +53,12 @@ module.exports = {
       }
     } finally {
       if (!client.woopsie) {
+        const RestartsModel = require("../../Structures/Schema/Restarts");
+        const c = await RestartsModel.findOne();
         interaction.reply({
           embeds: [
             new MessageEmbed()
-              .setAuthor({ name: "User Unbanned" })
+              .setAuthor({ name: `Case ${c.cases}` })
               .setDescription(
                 `<@!${user}> (${user}) has been unbanned. They can now join the server.`
               )
@@ -76,10 +78,17 @@ module.exports = {
           { punished: user },
           {
             expired: true,
-            reason_for_expire: reason,
-            staff_who_expired: interaction.user.id,
           }
         );
+        await CasesModel.create({
+          type: "unban",
+          punished: user,
+          pardoner: interaction.user.id,
+          reason_for_expire: reason,
+          time: Math.floor(Date.now() / 1000),
+        });
+        cc.cases++;
+        await cc.save();
         await UMM.findOneAndUpdate({ user: user }, { warns: 0 });
       }
     }
