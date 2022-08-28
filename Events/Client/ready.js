@@ -65,7 +65,7 @@ module.exports = {
                 await CasesModel.create({
                   type: "unban",
                   punished: user,
-                  case: c.cases,
+                  case: current_restarts.cases,
                   pardoner: "Automaticly Unbanned",
                   reason_for_expire: "This user has been automaticly unbanned.",
                   time: Math.floor(Date.now() / 1000),
