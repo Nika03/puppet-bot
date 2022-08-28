@@ -73,10 +73,9 @@ module.exports = {
         type: "ban",
         expired: false,
       });
-      console.log(bancase);
       if (bancase) {
         await CasesModel.findOneAndUpdate(
-          { punished: user },
+          { punished: `${user}` },
           {
             expired: true,
           }
