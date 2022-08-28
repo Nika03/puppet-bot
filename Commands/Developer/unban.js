@@ -87,8 +87,8 @@ module.exports = {
           reason_for_expire: reason,
           time: Math.floor(Date.now() / 1000),
         });
-        cc.cases++;
-        await cc.save();
+        c.cases++;
+        await c.save();
         await UMM.findOneAndUpdate({ user: user }, { warns: 0 });
       }
     }
