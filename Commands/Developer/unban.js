@@ -23,20 +23,18 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    //Change this
-    //const g = `986357448925401168` //Test server
-    //const staff = `986600882810544138` //Test server staff role
-    const g = `946518364216520774`; //Neco server
-    const staff = `970229987405877259`; //Neco server staff role
-
     const user = interaction.options.getString("user");
     const reason = interaction.options.getString("reason");
-    const guild = client.guilds.cache.get(g);
+    const guild = client.guilds.cache.get(interaction.guild.id);
+
+    const CasesModel = require("../../Structures/Schema/Cases");
+    const UMM = require("../../Structures/Schema/UserModeration");
+
     try {
       await guild.members.unban(user);
     } catch (e) {
+      client.woopsie = true;
       const err = e.toString();
-      client.r = true;
       if (err === "DiscordAPIError: Unknown User") {
         return interaction.reply({
           content: "I could not unban that user since it does not exist.",
@@ -54,7 +52,7 @@ module.exports = {
         });
       }
     } finally {
-      if (!client.r) {
+      if (!client.woopsie) {
         interaction.reply({
           embeds: [
             new MessageEmbed()
@@ -67,42 +65,22 @@ module.exports = {
               .setTimestamp(),
           ],
         });
-        const ch = "1009968902941442119";
-        const logs = guild.channels.cache.get(ch);
-        logs.send({
-          embeds: [
-            new MessageEmbed()
-              .setAuthor({ name: `User Unbanned` })
-              .setColor("DARK_GOLD")
-              .setDescription(
-                `<@!${user}> (${user}) has been unbanned by ${interaction.user}.`
-              )
-              .setTimestamp(),
-          ],
-        });
-        const CasesModel = require("../../Structures/Schema/Cases");
-        const RestartsModel = require("../../Structures/Schema/Restarts");
-        const UMM = require("../../Structures/Schema/UserModeration");
-        const r = await RestartsModel.findOne({ owner: "Darkeew" });
-        const u = await CasesModel.findOne({ punished: user });
-        if (u) {
-          await CasesModel.findOneAndUpdate(
-            { punished: user },
-            { expired: true },
-            { reason_for_expire: reason },
-            { staff_who_expired: interaction.user.id }
-          );
-          await CasesModel.create({
-            punished: user,
-            type: "unban",
-            pardoner: interaction.user.id,
-            case: r.cases,
-            reason_for_expire: `${reason}`,
-          });
-          r.cases++;
-          await r.save();
-          await UMM.findOneAndUpdate({ user: user }, { warns: 0 });
-        }
+      }
+      const bancase = await CasesModel.findOne({
+        punished: user,
+        type: "ban",
+        expired: false,
+      });
+      if (bancase) {
+        await CasesModel.findOneAndUpdate(
+          { punished: user },
+          {
+            expired: true,
+            reason_for_expire: reason,
+            staff_who_expired: interaction.user.id,
+          }
+        );
+        await UMM.findOneAndUpdate({ user: user }, { warns: 0 });
       }
     }
   },
