@@ -60,7 +60,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Case ${c.cases}` })
               .setDescription(
-                `<@!${user}> (${user}) has been unbanned. They can now join the server.`
+                `<@!${user}> (${user}) has been unbanned with reason: \`${reason}\`. They can now join the server.`
               )
               .setColor("DARK_GREEN")
               .setFooter({ text: `Requested by ${interaction.user.tag}` })
