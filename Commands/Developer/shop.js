@@ -84,36 +84,37 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const SettingsModel = require("../../Structures/Schema/Settings.js");
-    //const is_blacklisted = await SettingsModel.findOne({
-    //  channel: interaction.channel.id,
-    //});
-    //if (is_blacklisted) {
-    //  if (!is_blacklisted.commands.includes(`shop`)) {
-    //    return interaction.reply({
-    //      embeds: [
-    //        new MessageEmbed().setDescription(
-    //          `This command has been disabled in this channel.`
-    //        ),
-    //      ],
-    //      ephemeral: true,
-    //    });
-    //  }
-    //} else {
-    //  if (!is_blacklisted) {
-    //  } else {
-    //    return interaction.reply({
-    //      embeds: [
-    //        new MessageEmbed().setDescription(
-    //          `This command has been disabled in this channel.`
-    //        ),
-    //      ],
-    //      ephemeral: true,
-    //    });
-    //  }
-    //}
     const ShopItems = require("../../Structures/Schema/Shop_Items");
     const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
+
+    const SettingsModel = require("../../Structures/Schema/Settings.js");
+    const is_blacklisted = await SettingsModel.findOne({
+      channel: interaction.channel.id,
+    });
+    if (is_blacklisted) {
+      if (!is_blacklisted.commands.includes(`shop`)) {
+        return interaction.reply({
+          embeds: [
+            new MessageEmbed().setDescription(
+              `This command has been disabled in this channel.`
+            ),
+          ],
+          ephemeral: true,
+        });
+      }
+    } else {
+      if (!is_blacklisted) {
+      } else {
+        return interaction.reply({
+          embeds: [
+            new MessageEmbed().setDescription(
+              `This command has been disabled in this channel.`
+            ),
+          ],
+          ephemeral: true,
+        });
+      }
+    }
 
     const name = interaction.options.getString("name");
     const description = interaction.options.getString("description");
@@ -517,7 +518,7 @@ You do not have enough tedollars to buy **${item}**. You need **${Math.floor(
           new MessageEmbed()
             .setAuthor({ name: "Item Purchased" })
             .setDescription(
-              `You have successfully purchased **${item}**. You now have **${nb}** tedollars.`
+              `You have successfully purchased ${item}. You now have **${nb}** tedollars.`
             )
             .setColor("GREEN")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
