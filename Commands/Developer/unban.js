@@ -88,15 +88,14 @@ module.exports = {
         if (u) {
           await CasesModel.findOneAndUpdate(
             { punished: user },
-            { expired: true },
-            { reason_for_expire: `${reason}` },
-            { staff_who_expired: `${interaction.user.id}` }
+            { expired: true }
           );
           await CasesModel.create({
             punished: user,
             type: "unban",
             pardoner: interaction.user.id,
             case: r.cases,
+            reason_for_expire: `${reason}`,
           });
           r.cases++;
           await r.save();
