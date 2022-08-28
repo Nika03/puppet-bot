@@ -83,6 +83,7 @@ module.exports = {
         await CasesModel.create({
           type: "unban",
           punished: user,
+          case: c.cases,
           pardoner: interaction.user.id,
           reason_for_expire: reason,
           time: Math.floor(Date.now() / 1000),
@@ -99,7 +100,7 @@ module.exports = {
             .setAuthor({ name: `User Unbanned` })
             .setColor("DARK_GOLD")
             .setDescription(
-              `${user} has been unbanned by ${interaction.user.id} with reason: ${reason}. The case for the user's ban is case ${bancase.case}.`
+              `<@!${user}> (${user}) has been unbanned by <@!${interaction.user.id}> with reason: ${reason}. The case for the user's ban is case ${bancase.case}.`
             )
             .setTimestamp(),
         ],
