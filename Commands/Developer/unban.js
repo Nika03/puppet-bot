@@ -28,7 +28,7 @@ module.exports = {
     try {
       await guild.members.unban(user);
     } catch (e) {
-      const err = error.toString();
+      const err = e.toString();
       client.r = true;
       if (err === "DiscordAPIError: Unknown User") {
         return interaction.reply({
