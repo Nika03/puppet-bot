@@ -62,6 +62,14 @@ module.exports = {
                     reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
                   }
                 );
+                await CasesModel.create({
+                  type: "unban",
+                  punished: user,
+                  case: c.cases,
+                  pardoner: "Automaticly Unbanned",
+                  reason_for_expire: "This user has been automaticly unbanned.",
+                  time: Math.floor(Date.now() / 1000),
+                });
                 try {
                   guild.members.unban(c.punished);
                   const ch = "1009968902941442119";
