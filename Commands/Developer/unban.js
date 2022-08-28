@@ -29,6 +29,7 @@ module.exports = {
 
     const CasesModel = require("../../Structures/Schema/Cases");
     const UMM = require("../../Structures/Schema/UserModeration");
+    const RestartsModel = require("../../Structures/Schema/Restarts");
     const c = await RestartsModel.findOne();
 
     try {
@@ -54,7 +55,6 @@ module.exports = {
       }
     } finally {
       if (!client.woopsie) {
-        const RestartsModel = require("../../Structures/Schema/Restarts");
         interaction.reply({
           embeds: [
             new MessageEmbed()
