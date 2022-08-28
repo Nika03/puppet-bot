@@ -78,6 +78,8 @@ module.exports = {
           { punished: user, type: "ban", expired: false },
           {
             expired: true,
+            staff_who_expired: interaction.user.id,
+            reason_for_expire: reason,
           }
         );
         await CasesModel.create({
