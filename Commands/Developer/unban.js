@@ -88,7 +88,9 @@ module.exports = {
         if (u) {
           await CasesModel.findOneAndUpdate(
             { punished: user },
-            { expired: true }
+            { expired: true },
+            { reason_for_expire: reason },
+            { staff_who_expired: interaction.user.id }
           );
           await CasesModel.create({
             punished: user,
