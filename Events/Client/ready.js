@@ -57,7 +57,10 @@ module.exports = {
               if (c.time < Date.now() / 1000) {
                 await CasesModel.findOneAndUpdate(
                   { case: x },
-                  { expired: true }
+                  { expired: true },
+                  {
+                    reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
+                  }
                 );
                 try {
                   guild.members.unban(c.punished);
@@ -139,22 +142,22 @@ module.exports = {
       } while (client.stop2 !== true);
     }, 5000);
     //Verification edit message
-      const rc = await Math.floor(Math.random() * 5);
-      if (rc === 0) client.color = "🟥";
-      if (rc === 1) client.color = "🟩";
-      if (rc === 2) client.color = "🟦";
-      if (rc === 3) client.color = "🟫";
-      if (rc === 4) client.color = "🟧";
-      if (rc === 5) client.color = "🟪";
-      const channel = guild.channels.cache.get("946528426687336559");
-        channel.messages.fetch("1008858316509806644").then((m) => {
-          try{
-          m.edit({
-            embeds: [
-              new MessageEmbed()
-                .setAuthor({ name: "Verification" })
-                .setDescription(
-                  `
+    const rc = await Math.floor(Math.random() * 5);
+    if (rc === 0) client.color = "🟥";
+    if (rc === 1) client.color = "🟩";
+    if (rc === 2) client.color = "🟦";
+    if (rc === 3) client.color = "🟫";
+    if (rc === 4) client.color = "🟧";
+    if (rc === 5) client.color = "🟪";
+    const channel = guild.channels.cache.get("946528426687336559");
+    channel.messages.fetch("1008858316509806644").then((m) => {
+      try {
+        m.edit({
+          embeds: [
+            new MessageEmbed()
+              .setAuthor({ name: "Verification" })
+              .setDescription(
+                `
   Hello! Welcome to **Neco Puppeteers' Cult.** 
   
   > In order to verify, you need to press the ${client.color} reaction. Failing to do this will get you timed out for 5 minutes.
@@ -164,15 +167,15 @@ module.exports = {
   
   Remember, have fun in the server!
             `
-                )
-                .setColor("DARK_RED")
-                .setTimestamp(),
-            ],
-          });
-        } catch (e) {
-          console.log(e)
-        }
+              )
+              .setColor("DARK_RED")
+              .setTimestamp(),
+          ],
         });
+      } catch (e) {
+        console.log(e);
+      }
+    });
     setInterval(async () => {
       const rc = await Math.floor(Math.random() * 5);
       if (rc === 0) client.color = "🟥";
@@ -182,8 +185,8 @@ module.exports = {
       if (rc === 4) client.color = "🟧";
       if (rc === 5) client.color = "🟪";
       const channel = guild.channels.cache.get("946528426687336559");
-        channel.messages.fetch("1008858316509806644").then((m) => {
-          try{
+      channel.messages.fetch("1008858316509806644").then((m) => {
+        try {
           m.edit({
             embeds: [
               new MessageEmbed()
@@ -205,9 +208,9 @@ module.exports = {
             ],
           });
         } catch (e) {
-          console.log(e)
+          console.log(e);
         }
-        });
+      });
     }, 1800000);
   },
 };

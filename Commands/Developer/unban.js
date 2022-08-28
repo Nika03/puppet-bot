@@ -11,6 +11,12 @@ module.exports = {
       type: `STRING`,
       required: true,
     },
+    {
+      name: `reason`,
+      description: `The reason for the unban.`,
+      type: `STRING`,
+      required: true,
+    },
   ],
   /**
    * @param {CommandInteraction} interaction
@@ -24,6 +30,7 @@ module.exports = {
     const staff = `970229987405877259`; //Neco server staff role
 
     const user = interaction.options.getString("user");
+    const reason = interaction.options.getString("reason");
     const guild = client.guilds.cache.get(g);
     try {
       await guild.members.unban(user);
@@ -81,7 +88,9 @@ module.exports = {
         if (u) {
           await CasesModel.findOneAndUpdate(
             { punished: user },
-            { expired: true }
+            { expired: true },
+            { reason_for_expire: `${reason}` },
+            { staff_who_expired: `${interaction.user.id}` }
           );
           await CasesModel.create({
             punished: user,
