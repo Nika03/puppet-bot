@@ -73,7 +73,7 @@ module.exports = {
         type: "ban",
         expired: false,
       });
-      if (bancase) {
+      try {
         await CasesModel.findOneAndUpdate(
           { punished: `${user}` },
           {
@@ -91,6 +91,8 @@ module.exports = {
         c.cases++;
         await c.save();
         await UMM.findOneAndUpdate({ user: user }, { warns: 0 });
+      } catch (e) {
+        console.log(e);
       }
       const ch = "1009968902941442119";
       const logs = guild.channels.cache.get(ch);
