@@ -29,6 +29,7 @@ module.exports = {
 
     const CasesModel = require("../../Structures/Schema/Cases");
     const UMM = require("../../Structures/Schema/UserModeration");
+    const c = await RestartsModel.findOne();
 
     try {
       await guild.members.unban(user);
@@ -54,7 +55,6 @@ module.exports = {
     } finally {
       if (!client.woopsie) {
         const RestartsModel = require("../../Structures/Schema/Restarts");
-        const c = await RestartsModel.findOne();
         interaction.reply({
           embeds: [
             new MessageEmbed()
