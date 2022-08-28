@@ -91,6 +91,19 @@ module.exports = {
         await c.save();
         await UMM.findOneAndUpdate({ user: user }, { warns: 0 });
       }
+      const ch = "1009968902941442119";
+      const logs = guild.channels.cache.get(ch);
+      logs.send({
+        embeds: [
+          new MessageEmbed()
+            .setAuthor({ name: `User Unbanned` })
+            .setColor("DARK_GOLD")
+            .setDescription(
+              `${user} has been unbanned by ${interaction.user.id} with reason: ${reason}. The case for the user's ban is case ${bancase.case}.`
+            )
+            .setTimestamp(),
+        ],
+      });
     }
   },
 };
