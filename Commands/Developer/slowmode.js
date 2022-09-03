@@ -32,6 +32,11 @@ module.exports = {
       channel.setRateLimitPerUser(seconds, [
         `${interaction.user.tag} changed the slowmode.`,
       ]);
+      if (seconds === 0) {
+        return interaction.reply(
+          `The slowmode in ${interaction.channel} has been removed.`
+        );
+      }
       interaction.reply(
         `The slowmode in ${interaction.channel} has been changed to **${seconds}** seconds.`
       );
