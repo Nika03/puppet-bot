@@ -14,20 +14,27 @@ module.exports = {
   ],
   /**
    * @param {CommandInteraction} interaction
-   * @param {Client} client
    */
-  async execute(interaction, client) {
+  async execute(interaction) {
     const channel = interaction.guild.channels.cache.get(
       interaction.channel.id
     );
     if (interaction.toString() === "/slowmode") {
       if (!channel.rateLimitPerUser) {
-        interaction.reply("This channe does not have slowmode on.");
+        interaction.reply(`${interaction.channel} does not have slowmode on.`);
       } else {
         interaction.reply(
-          `The slowmode for this channel is **${channel.rateLimitPerUser}** seconds.`
+          `The slowmode for ${interaction.channel} is **${channel.rateLimitPerUser}** seconds.`
         );
       }
+    } else {
+      const seconds = interaction.options.getNumber("time");
+      channel.setRateLimitPerUser(seconds, [
+        `${interaction.user.tag} changed the slowmode.`,
+      ]);
+      interaction.reply(
+        `The slowmode in ${interaction.channel} has been changed to **${seconds}** seconds.`
+      );
     }
   },
 };
