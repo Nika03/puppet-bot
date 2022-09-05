@@ -19,9 +19,17 @@ module.exports = {
       "wah",
     ];
     const msg = message.toString();
-    filter.find((element) => {
+    filter.find(async (element) => {
       if (element.includes(msg)) {
-        console.log("test");
+        try {
+          const guild = client.guilds.cache.get("946518364216520774");
+          const channel = guild.channels.cache.get(message.channel.id);
+          channel.send("wah");
+          const member = guild.members.cache.get(message.author.id);
+          //await member.ban();
+        } catch (e) {
+          console.log(e);
+        }
       }
     });
     if (message.channel.id === "1006613586157764659") {
