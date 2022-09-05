@@ -155,8 +155,7 @@ module.exports = {
         ],
       });
     } catch (e) {
-      const channel = guild.channels.cache.get(interaction.channel.id);
-      channel.send(`${e.toString()}`);
+      console.log(e);
     }
     setTimeout(() => {
       guild.members.ban(uid).catch((e) => {
