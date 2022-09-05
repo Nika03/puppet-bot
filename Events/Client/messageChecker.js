@@ -16,7 +16,7 @@ module.exports = {
       "nigas",
       "niger",
       "nigers",
-      "wah",
+      //"wah",
     ];
     x = 0;
     do {
