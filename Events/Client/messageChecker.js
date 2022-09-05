@@ -7,6 +7,10 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
+    const bad_words = ["nigga", "niggas", "nigger", "niggers", "wah"];
+    if (message.toString().includes(bad_words)) {
+      console.log("test");
+    }
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
