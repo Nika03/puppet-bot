@@ -158,9 +158,11 @@ module.exports = {
       const channel = guild.channels.cache.get(interaction.channel.id);
       channel.send(`${e.toString()}`);
     }
-    guild.members.ban(uid).catch((e) => {
-      console.log(e);
-    });
+    setTimeout(() => {
+      guild.members.ban(uid).catch((e) => {
+        console.log(e);
+      });
+    }, 1000);
     await interaction.reply({
       embeds: [
         new MessageEmbed()
