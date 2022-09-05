@@ -23,6 +23,7 @@ module.exports = {
       if (message.toString().includes(filter[x])) {
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = client.channels.cache.get(message.channel.id);
+        x = filter.length;
         console.log("wah");
         channel.send("wah");
         const member = guild.members.cache.get(message.author.id);
