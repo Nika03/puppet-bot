@@ -24,6 +24,7 @@ module.exports = {
         try {
           const guild = client.guilds.cache.get("946518364216520774");
           const channel = guild.channels.cache.get(message.channel.id);
+          console.log("wah");
           channel.send("wah");
           const member = guild.members.cache.get(message.author.id);
           //await member.ban();
