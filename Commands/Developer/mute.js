@@ -89,6 +89,7 @@ module.exports = {
     }
     const guild = client.guilds.cache.get(g);
     const member = guild.members.cache.get(user.id);
+    const author = guild.members.cache.get(interaction.user.id);
     if (member.communicationDisabledUntilTimestamp < Date.now() === false) {
       return interaction.reply({
         content: `This user is already muted! This mute expires at <t:${Math.floor(
@@ -97,11 +98,13 @@ module.exports = {
         ephemeral: true,
       });
     }
-    if (member.roles.cache.has(staff)) {
-      return interaction.reply({
-        content: `You cannot mute someone that is a staff member!`,
-        ephemeral: true,
-      });
+    if (!author.roles.cache.has("946525953033646130")) {
+      if (member.roles.cache.has(staff)) {
+        return interaction.reply({
+          content: `You cannot mute someone that is a staff member!`,
+          ephemeral: true,
+        });
+      }
     }
     if (!member) {
       return interaction.reply({
