@@ -28,6 +28,22 @@ module.exports = {
         }
       }
     }
+    if (message.channel.id === "1016338379836756058") {
+      if (message.author.bot) {
+        message.delete();
+      } else if (message.toString() !== "huh") {
+        setTimeout(() => {
+          message.delete();
+        }, 100);
+        try {
+          const guild = client.guilds.cache.get("946518364216520774");
+          const member = guild.members.cache.get(message.author.id);
+          await member.timeout(600000, "huh");
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
     if (message.author.bot) return;
     if (message.toString().includes("/")) return;
 
