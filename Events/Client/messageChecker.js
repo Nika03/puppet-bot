@@ -19,12 +19,13 @@ module.exports = {
       "wah",
     ];
     const msg = message.toString();
-    //if (filter.some(msg)) {
-    //  const guild = client.guilds.cache.get("946518364216520774");
-    //  const channel = guild.channels.cache.get(message.channel.id);
-    //  channel.send("wah");
-    //  const member = guild.members.cache.get(message.author.id);
-    //}
+    const checkmsg = filter.some((f) => msg.includes(f));
+    if (checkmsg) {
+      const guild = client.guilds.cache.get("946518364216520774");
+      const channel = guild.channels.cache.get(message.channel.id);
+      channel.send("wah");
+      const member = guild.members.cache.get(message.author.id);
+    }
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
