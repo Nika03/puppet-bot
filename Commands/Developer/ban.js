@@ -56,7 +56,6 @@ module.exports = {
     try {
       await guild.bans.fetch(user.id);
     } catch (e) {
-      console.log(e);
       client.fbe = true;
     }
     if (!client.fbe)
@@ -145,6 +144,20 @@ module.exports = {
     }
     if (time) client.time = `for \`${client.num} ${client.l}\``;
     else client.time = "**permanently**";
+    try {
+      member.send({
+        embeds: [
+          new MessageEmbed()
+            .setColor("DARK_NAVY")
+            .setDescription(
+              `You have been banned in **Neco Puppeteers' Cult for: **${client.reason}**. You have been banned ${client.time} and can appeal at https://forms.gle/CXawHH1m3tjJGDvs6.`
+            ),
+        ],
+      });
+    } catch (e) {
+      const channel = guild.channels.cache.get(interaction.channel.id);
+      channel.send(`${e.toString()}`);
+    }
     guild.members.ban(uid).catch((e) => {
       console.log(e);
     });
