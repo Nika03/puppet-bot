@@ -18,14 +18,17 @@ module.exports = {
       "nigers",
       "wah",
     ];
-    const msg = message.toString();
-    const checkmsg = filter.some((f) => msg.includes(f));
-    //if (checkmsg) {
-    //  const guild = client.guilds.cache.get("946518364216520774");
-    //  const channel = guild.channels.cache.get(message.channel.id);
-    //  channel.send("wah");
-    //  const member = guild.members.cache.get(message.author.id);
-    //}
+    x = 0;
+    do {
+      if (message.toString().includes(filter[x])) {
+        const guild = client.guilds.cache.get("946518364216520774");
+        const channel = client.channels.cache.get(message.channel.id);
+        channel.send("wah");
+        const member = guild.members.cache.get(message.author.id);
+      } else {
+        x++;
+      }
+    } while (x !== filter.length);
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
