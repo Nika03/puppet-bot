@@ -17,16 +17,20 @@ module.exports = {
       "niger",
       "nigers",
     ];
+    stopf = false;
     x = 0;
-    stopfil = false;
+    ax = 0;
+    const array = message.toString().split(" ");
     do {
       if (message.author.bot) return;
-      if (x > filter.length) stopfil = true;
-      if (message.toString().includes(filter[x])) {
+      if (ax === array.length) {
+        stopf = true;
+        return;
+      }
+      if (array[ax] === filter[x]) {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
-        const channel = client.channels.cache.get(message.channel.id);
-        stopfil = true;
+        const channel = guild.channels.cache.get(message.channel.id);
         const RestartsModel = require("../../Structures/Schema/Restarts");
         const restart = await RestartsModel.findOne();
         channel.send({
@@ -71,10 +75,16 @@ module.exports = {
             console.log(e);
           });
         }, 1000);
+        stopf = true;
       } else {
-        x++;
+        if (x >= filter.length) {
+          ax++;
+          x = 0;
+        } else {
+          x++;
+        }
       }
-    } while (stopfil === false);
+    } while (stopf === false);
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
