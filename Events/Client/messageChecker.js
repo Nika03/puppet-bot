@@ -8,7 +8,6 @@ module.exports = {
    */
   async execute(message, client) {
     if (message.channel.id === "1017141464574201968") {
-      console.log(message.toString());
       if (message.author.bot) {
         message.delete();
       } else if (
