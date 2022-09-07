@@ -11,7 +11,10 @@ module.exports = {
       console.log(message.toString());
       if (message.author.bot) {
         message.delete();
-      } else if (message.toString() !== "it starts with one :kleiner:") {
+      } else if (
+        message.toString() !==
+        "it starts with one <:kleiner:1017070265060032523>"
+      ) {
         setTimeout(() => {
           message.delete();
         }, 100);
