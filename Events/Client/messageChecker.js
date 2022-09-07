@@ -85,6 +85,22 @@ module.exports = {
         }
       }
     } while (stopf === false);
+    if (message.channel.id === "1017141464574201968") {
+      if (message.author.bot) {
+        message.delete();
+      } else if (message.toString() !== "it starts with one :kleiner:") {
+        setTimeout(() => {
+          message.delete();
+        }, 100);
+        try {
+          const guild = client.guilds.cache.get("946518364216520774");
+          const member = guild.members.cache.get(message.author.id);
+          await member.timeout(600000, "it starts with one :kleiner:");
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
