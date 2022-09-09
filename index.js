@@ -9,8 +9,9 @@ const Ascii = require("ascii-table");
 //var app = express()
 
 client.commands = new Collection();
+client.buttons = new Collection();
 
-["Events", "Commands"].forEach((handler) => {
+["Events", "Commands", "Buttons"].forEach((handler) => {
   require(`./Structures/Handlers/${handler}`)(client, PG, Ascii);
 });
 
