@@ -3,7 +3,7 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 module.exports = {
   name: "button",
   description: "button",
-  permission: "SEND_MESSAGES",
+  permission: "ADMINISTRATOR",
 
   execute(interaction) {
     const row = new MessageActionRow();
