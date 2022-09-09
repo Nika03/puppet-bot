@@ -8,7 +8,7 @@ const {
 module.exports = {
   name: "clickthebutton",
   description: "Force the button event in general.",
-  permission: "ADMINISTRATOR",
+  permission: "MANAGE_MESSAGES",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client
@@ -23,14 +23,14 @@ module.exports = {
           .setDescription("The event is simple, click the button. No rewards.")
           .setColor("DARK_NAVY"),
       ],
-      //components: [
-      //  new MessageActionRow().addComponents(
-      //    new MessageButton()
-      //      .setCustomId(`event_button`)
-      //      .setLabel(`button`)
-      //      .setStyle(`SUCCESS`)
-      //  ),
-      //],
+      components: [
+        new MessageActionRow().addComponents(
+          new MessageButton()
+            .setCustomId(`event_button`)
+            .setLabel(`button`)
+            .setStyle(`SUCCESS`)
+        ),
+      ],
     });
     setTimeout(() => {
       if (client.buttonclicked === false) {
