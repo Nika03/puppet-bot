@@ -17,6 +17,7 @@ module.exports = {
       client.buttonclicked = false;
       const guild = client.guilds.cache.get("946518364216520774");
       const general = guild.channels.cache.get("946520764297912343");
+      client.buttontimer = Date.now() / 1000;
       general
         .send({
           embeds: [
