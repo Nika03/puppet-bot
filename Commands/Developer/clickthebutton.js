@@ -26,14 +26,14 @@ module.exports = {
             )
             .setColor("DARK_NAVY"),
         ],
-        components: [
-          new MessageActionRow().addComponents(
-            new MessageButton()
-              .setCustomId(`event_button`)
-              .setLabel(`button`)
-              .setStyle(`SUCCESS`)
-          ),
-        ],
+        //components: [
+        //  new MessageActionRow().addComponents(
+        //    new MessageButton()
+        //      .setCustomId(`event_button`)
+        //      .setLabel(`button`)
+        //      .setStyle(`SUCCESS`)
+        //  ),
+        //],
       })
       .then((message) => {
         setTimeout(() => {
