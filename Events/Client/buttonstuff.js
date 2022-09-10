@@ -60,6 +60,6 @@ module.exports = {
             }
           }, 15000);
         });
-    }, Math.floor(Math.random() * (3600000 - 1800000) + 1800000));
+    }, Math.floor(Math.random() * (43200000 - 14400000) + 14400000));
   },
 };
