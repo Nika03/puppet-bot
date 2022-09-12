@@ -3,15 +3,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "trivia",
   description: "Send a trivia game to general.",
-  permission: "SEND_MESSAGES",
-  options: [
-    {
-      name: `user`,
-      description: `The user to hug!`,
-      required: true,
-      type: `USER`,
-    },
-  ],
+  permission: "ADMINISTRATOR",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client
