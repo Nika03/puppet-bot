@@ -118,7 +118,7 @@ Awnser the following question within 15 seconds:
 **${getquestion}**
         `
           )
-          .setFooter({ text: `Trivia Question ${q + 1}` }),
+          .setFooter({ text: `Trivia Question ${q}` }),
       ],
       components: [
         new MessageActionRow().addComponents(
