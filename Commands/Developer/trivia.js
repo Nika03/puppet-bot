@@ -108,51 +108,48 @@ module.exports = {
       slicedawnsers.push(str);
       x++;
     } while (x !== 3);
-    interaction
-      .reply({
+    interaction.reply({
+      embeds: [
+        new MessageEmbed()
+          .setAuthor({ name: "Trivia Event" })
+          .setDescription(
+            `
+Awnser the following question within 15 seconds:
+**${getquestion}**
+        `
+          )
+          .setFooter({ text: `Trivia Question ${q + 1}` }),
+      ],
+      components: [
+        new MessageActionRow().addComponents(
+          new MessageButton()
+            .setCustomId(`trivia1`)
+            .setLabel(`${slicedawnsers[0]}`)
+            .setStyle(`SUCCESS`),
+          new MessageButton()
+            .setCustomId(`trivia2`)
+            .setLabel(`${slicedawnsers[1]}`)
+            .setStyle(`SUCCESS`),
+          new MessageButton()
+            .setCustomId(`trivia3`)
+            .setLabel(`${slicedawnsers[2]}`)
+            .setStyle(`SUCCESS`)
+        ),
+      ],
+    });
+    setTimeout(() => {
+      console.log(`here i am ${client.donoteditthemessageagainpls}`);
+      if (client.donoteditthemessageagainpls === true) return;
+      interaction.editReply({
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: "Trivia Event" })
             .setDescription(
-              `
-Awnser the following question within 15 seconds:
-**${getquestion}**
-        `
-            )
-            .setFooter({ text: `Trivia Question ${q + 1}` }),
+              "Nobody awnsered the trivia event in time! Maybe next time."
+            ),
         ],
-        components: [
-          new MessageActionRow().addComponents(
-            new MessageButton()
-              .setCustomId(`trivia1`)
-              .setLabel(`${slicedawnsers[0]}`)
-              .setStyle(`SUCCESS`),
-            new MessageButton()
-              .setCustomId(`trivia2`)
-              .setLabel(`${slicedawnsers[1]}`)
-              .setStyle(`SUCCESS`),
-            new MessageButton()
-              .setCustomId(`trivia3`)
-              .setLabel(`${slicedawnsers[2]}`)
-              .setStyle(`SUCCESS`)
-          ),
-        ],
-      })
-      .then((message) => {
-        setTimeout(() => {
-          console.log(`here i am ${client.donoteditthemessageagainpls}`);
-          if (client.donoteditthemessageagainpls === true) return;
-          message.edit({
-            embeds: [
-              new MessageEmbed()
-                .setAuthor({ name: "Trivia Event" })
-                .setDescription(
-                  "Nobody awnsered the trivia event in time! Maybe next time."
-                ),
-            ],
-            components: [],
-          });
-        }, 15000);
+        components: [],
       });
+    }, 15000);
   },
 };
