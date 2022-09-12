@@ -19,18 +19,20 @@ module.exports = {
     client.correctawnser = "";
     const questions = [
       "placeholder",
-      //TRVA0
+      //TRVA1
       "What countries made up the original Axis powers in World War II?",
-      //TVRA1
+      //TVRA2
       "What geometric shape is generally used for stop signs?",
-      //TRVA2
-      'What is "cynophobia"?',
       //TRVA3
-      "What is the name of the largest ocean on earth?",
+      'What is "cynophobia"?',
       //TRVA4
-      "What is the active component of chili peppers that make them spicy?",
+      "What is the name of the largest ocean on earth?",
       //TRVA5
+      "What is the active component of chili peppers that make them spicy?",
+      //TRVA6
       "What is the largest company in the world based off of consolidated revenue?",
+      //TRVA7
+      "What was the fastest internet speed ever achieved?",
     ];
     const awnsers = [
       //TRVA1
@@ -57,6 +59,10 @@ module.exports = {
       "Apple6",
       "CorrectWalmart6",
       "Amazon6",
+      //TRVA7
+      "91 gigabits/second7",
+      "Correct319 terabits/second7",
+      "261 megabits/second7",
     ];
     x = 0;
     z = 0;
