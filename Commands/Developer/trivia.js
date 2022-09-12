@@ -33,30 +33,30 @@ module.exports = {
       "What is the largest company in the world based off of consolidated revenue?",
     ];
     const awnsers = [
-      //TRVA0
-      "CorrectGermany, Italy, and Japan0",
-      "Germany, France and Japan0",
-      "Italy and Germany0",
       //TRVA1
-      "Triangle1",
-      "Hexagon1",
-      "CorrectOctagon1",
+      "CorrectGermany, Italy, and Japan1",
+      "Germany, France and Japan1",
+      "Italy and Germany1",
       //TRVA2
-      "Fear of Cats2",
-      "CorrectFear of Dogs2",
-      "Fear of Ducks2",
+      "Triangle2",
+      "Hexagon2",
+      "CorrectOctagon2",
       //TRVA3
-      "CorrectPacific Ocean3",
-      "Atlantic Ocean3",
-      "Indian Ocean3",
+      "Fear of Cats3",
+      "CorrectFear of Dogs3",
+      "Fear of Ducks3",
       //TRVA4
-      "Piperine4",
-      "Aflatoxin B14",
-      "CorrectCapsaicin4",
+      "CorrectPacific Ocean4",
+      "Atlantic Ocean4",
+      "Indian Ocean4",
       //TRVA5
-      "Apple5",
-      "CorrectWalmart5",
-      "Amazon5",
+      "Piperine5",
+      "Aflatoxin B15",
+      "CorrectCapsaicin5",
+      //TRVA6
+      "Apple6",
+      "CorrectWalmart6",
+      "Amazon6",
     ];
     x = 0;
     z = 0;
