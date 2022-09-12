@@ -14,6 +14,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
+    client.donoteditthemessageagainpls = false;
     client.alreadyawnsered = [];
     client.correctawnser = "";
     const questions = [
