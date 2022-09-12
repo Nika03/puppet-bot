@@ -25,6 +25,10 @@ module.exports = {
       'What is "cynophobia"?',
       //TRVA3
       "What is the name of the largest ocean on earth?",
+      //TRVA4
+      "What is the active component of chili peppers that make them spicy?",
+      //TRVA5
+      "What is the largest company in the world based off of consolidated revenue?",
     ];
     const awnsers = [
       //TRVA0
@@ -43,6 +47,14 @@ module.exports = {
       "CorrectPacific Ocean3",
       "Atlantic Ocean3",
       "Indian Ocean3",
+      //TRVA4
+      "Piperine4",
+      "Aflatoxin B14",
+      "CorrectCapsaicin4",
+      //TRVA5
+      "Apple5",
+      "CorrectWalmart5",
+      "Amazon",
     ];
     x = 0;
     z = 0;
@@ -97,11 +109,15 @@ module.exports = {
     interaction
       .reply({
         embeds: [
-          new MessageEmbed().setAuthor({ name: "Trivia Event" })
-            .setDescription(`
+          new MessageEmbed()
+            .setAuthor({ name: "Trivia Event" })
+            .setDescription(
+              `
 Awnser the following question within 15 seconds:
 **${getquestion}**
-        `),
+        `
+            )
+            .setFooter({ text: `Trivia Question n${q + 1}` }),
         ],
         components: [
           new MessageActionRow().addComponents(
