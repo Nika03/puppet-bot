@@ -140,6 +140,7 @@ Awnser the following question within 15 seconds:
       })
       .then((message) => {
         setTimeout(() => {
+          console.log(`here i am ${client.donoteditthemessageagainpls}`);
           if (client.donoteditthemessageagainpls === true) return;
           message.edit({
             embeds: [
