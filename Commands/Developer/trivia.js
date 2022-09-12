@@ -55,7 +55,7 @@ module.exports = {
       //TRVA5
       "Apple5",
       "CorrectWalmart5",
-      "Amazon",
+      "Amazon5",
     ];
     x = 0;
     z = 0;
