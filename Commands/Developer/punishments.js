@@ -14,7 +14,7 @@ module.exports = {
       channel: interaction.channel.id,
     });
     if (is_blacklisted !== null) {
-      if (!is_blacklisteds.commands.includes(`punishments`)) {
+      if (!is_blacklisted.commands.includes(`punishments`)) {
         return interaction.reply({
           embeds: [
             new MessageEmbed().setDescription(
