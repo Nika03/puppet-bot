@@ -140,19 +140,17 @@ Awnser the following question within 15 seconds:
       })
       .then((message) => {
         setTimeout(() => {
-          if (client.triviatimeout === true) {
-            if (client.donoteditthemessageagainpls === true) return;
-            message.edit({
-              embeds: [
-                new MessageEmbed()
-                  .setAuthor({ name: "Trivia Event" })
-                  .setDescription(
-                    "Nobody awnsered the trivia event in time! Maybe next time."
-                  ),
-              ],
-              components: [],
-            });
-          }
+          if (client.donoteditthemessageagainpls === true) return;
+          message.edit({
+            embeds: [
+              new MessageEmbed()
+                .setAuthor({ name: "Trivia Event" })
+                .setDescription(
+                  "Nobody awnsered the trivia event in time! Maybe next time."
+                ),
+            ],
+            components: [],
+          });
         }, 15000);
       });
   },

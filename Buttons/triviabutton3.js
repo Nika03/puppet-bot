@@ -22,7 +22,7 @@ module.exports = {
         ],
         components: [],
       });
-      client.triviatimeout = false;
+      client.donoteditthemessageagainpls = true;
     } else {
       interaction.reply({
         content:
@@ -31,6 +31,5 @@ module.exports = {
       });
       client.alreadyawnsered.push(interaction.user.id);
     }
-    client.donoteditthemessageagainpls = true;
   },
 };
