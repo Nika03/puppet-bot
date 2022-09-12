@@ -14,9 +14,6 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const guild = client.guilds.cache.get("946518364216520774");
-    const channel = guild.channels.cache.get("946520764297912343");
-
     client.alreadyawnsered = [];
     client.correctawnser = "";
     const questions = [
@@ -97,8 +94,8 @@ module.exports = {
       slicedawnsers.push(str);
       x++;
     } while (x !== 3);
-    channel
-      .send({
+    interaction
+      .reply({
         embeds: [
           new MessageEmbed().setAuthor({ name: "Trivia Event" })
             .setDescription(`
@@ -125,7 +122,7 @@ Awnser the following question within 15 seconds:
       })
       .then((message) => {
         setTimeout(() => {
-          if (!client.triviatimeout) {
+          if (client.triviatimeout === true) {
             message.edit({
               embeds: [
                 new MessageEmbed()
