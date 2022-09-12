@@ -1,4 +1,9 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const {
+  CommandInteraction,
+  MessageEmbed,
+  MessageActionRow,
+  MessageButton,
+} = require("discord.js");
 
 module.exports = {
   name: "trivia",
