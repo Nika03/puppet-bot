@@ -18,6 +18,7 @@ module.exports = {
     client.alreadyawnsered = [];
     client.correctawnser = "";
     const questions = [
+      "placeholder",
       //TRVA0
       "What countries made up the original Axis powers in World War II?",
       //TVRA1
