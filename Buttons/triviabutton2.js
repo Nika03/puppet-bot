@@ -31,5 +31,6 @@ module.exports = {
       });
       client.alreadyawnsered.push(interaction.user.id);
     }
+    client.donoteditthemessageagainpls = true;
   },
 };
