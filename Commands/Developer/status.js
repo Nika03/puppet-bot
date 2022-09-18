@@ -51,6 +51,7 @@ ${parseFloat(os.freemem() / 1000000000).toFixed(1)} / ${parseFloat(
         ).toFixed(1)} used memory (GB)
 OS: ${os.version()} (${os.platform()})
 CPU: ${os.cpus()[0].model}
+CPU Speed: ${os.cpus()[0].speed} MHz
         `),
       ],
     });
