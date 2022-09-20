@@ -125,6 +125,7 @@ ${client.o}
         if (u.punished === user.id) {
           if (u.expired === true) expired = " • Expired: **true**";
           cases.push(`Case **${u.case}** • Type: **${u.type}** ${expired}\n`);
+          pt++;
         }
       });
       interaction.reply({
@@ -134,7 +135,7 @@ ${client.o}
             .setDescription(`${cases}`)
             .setColor("RED")
             .setFooter({
-              text: `${user.username} has been punished ${client.r} times. • Requested by ${interaction.user.tag}`,
+              text: `${user.username} has been punished ${pt} times. • Requested by ${interaction.user.tag}`,
             }),
         ],
       });
