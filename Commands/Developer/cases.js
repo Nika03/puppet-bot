@@ -121,11 +121,17 @@ ${client.o}
       const user = interaction.options.getUser("user");
       const u = await CasesModel.find().sort("-cases");
       cases = [];
+      pt = 0;
       u.forEach(async (u) => {
         if (u.punished === user.id) {
           if (u.expired === true) expired = " • Expired: **true**";
           cases.push(`Case **${u.case}** • Type: **${u.type}** ${expired}\n`);
           pt++;
+        }
+        if (pt === 0) {
+          embedDescription = `${user} has not been warned yet.`;
+        } else {
+          embedDescription = `${cases.replaceAll(",", "")}`;
         }
       });
       interaction.reply({
