@@ -46,107 +46,102 @@ module.exports = {
 
     // Ban Checker
     setInterval(async () => {
-      const fc = await CasesModel.find();
-      fc.forEach(async (c) => {
-        if (c.type === "ban") {
-          if (c.expired === false) {
-            if (c.time < Date.now() / 1000) {
-              const cn = c.case;
-              await CasesModel.findOneAndUpdate(
-                { case: cn },
-                {
-                  expired: true,
-                  reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
-                  staff_who_expired: "986354647688179742",
-                }
-              );
-              user = c.punished;
-              await CasesModel.create({
-                type: "unban",
-                punished: user,
-                case: current_restarts.cases,
-                pardoner: "Automaticly Unbanned",
-                reason_for_expire: "This user has been automaticly unbanned.",
-                time: Math.floor(Date.now() / 1000),
-              });
-              current_restarts.cases++;
-              await current_restarts.save();
-              try {
-                guild.members.unban(user);
-                const ch = "1009968902941442119";
-                const logs = guild.channels.cache.get(ch);
-                logs.send({
-                  embeds: [
-                    new MessageEmbed()
-                      .setAuthor({ name: `Unban` })
-                      .setColor("DARK_GOLD")
-                      .setDescription(
-                        `<@!${user}> (${user}) has been unbanned. This user has been unbanned due to their ban time ending.`
-                      )
-                      .setTimestamp(),
-                  ],
-                });
-              } catch (e) {
-                console.log(e);
-              }
+      const c = await CasesModel.find();
+      c.forEach(async () => {
+        if (
+          c.type === "ban" &&
+          c.expired === false &&
+          c.time < Date.now() / 1000
+        ) {
+          const cn = c.case;
+          await CasesModel.findOneAndUpdate(
+            { case: cn },
+            {
+              expired: true,
+              reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
+              staff_who_expired: "986354647688179742",
             }
+          );
+          user = c.punished;
+          await CasesModel.create({
+            type: "unban",
+            punished: user,
+            case: current_restarts.cases,
+            pardoner: "986354647688179742",
+            reason_for_expire: "This user has been automaticly unbanned.",
+            time: Math.floor(Date.now() / 1000),
+          });
+          try {
+            guild.members.unban(user);
+            const logs = guild.channels.cache.get("1009968902941442119");
+            logs.send({
+              embeds: [
+                new MessageEmbed()
+                  .setAuthor({ name: `Case ${current_restarts.cases}` })
+                  .setColor("DARK_GOLD")
+                  .setDescription(
+                    `<@!${user}> (${user}) has been unbanned. This user has been unbanned due to their ban time ending.`
+                  )
+                  .setTimestamp(),
+              ],
+            });
+            current_restarts.cases++;
+            await current_restarts.save();
+          } catch (e) {
+            console.log(e);
           }
         }
       });
     }, 5000);
     // Warn Checker
     setInterval(async () => {
-      client.stop2 = false;
-      z = 1;
-      do {
-        const wc = await CasesModel.findOne({ case: z });
-        if (!wc) client.stop2 = true;
-        else if (wc.type === "warn") {
-          if (wc.expired === false) {
-            if (wc.time < Date.now() / 1000) {
-              await CasesModel.findOneAndUpdate({ case: z }, { expired: true });
-              const member = guild.members.cache.get(wc.punished);
-              try {
-                member.send({
-                  embeds: [
-                    new MessageEmbed()
-                      .setAuthor({ name: "Case Expired" })
-                      .setDescription(
-                        `**Case ${wc.case}** has been expired. Be more careful next time and read the rules!
-> Reason of the punishment: \`${wc.reason}\`
-> Punisher: <@!${wc.punisher}> (${wc.punisher})
+      const c = await CasesModel.find();
+      c.forEach(async () => {
+        if (
+          c.type === "warn" &&
+          c.expired === false &&
+          c.time < Date.now() / 1000
+        ) {
+          const cn = c.case;
+          await CasesModel.findOneAndUpdate({ case: cn }, { expired: true });
+          const member = guild.members.cache.get(c.punished);
+          try {
+            member.send({
+              embeds: [
+                new MessageEmbed()
+                  .setAuthor({ name: "Case Expired" })
+                  .setDescription(
+                    `**Case ${c.case}** has been expired. Be more careful next time and read the rules!
+> Reason of the punishment: \`${c.reason}\`
+> Punisher: <@!${c.punisher}> (${c.punisher})
 
-> Reason for expire: \`14 days have passed since case ${wc.case} was made\`.
+> Reason for expire: \`14 days have passed since case ${c.case} was made\`.
                 `
-                      )
-                      .setColor("DARK_GOLD"),
-                  ],
-                });
-              } catch (e) {
-                console.log(e);
-              }
-              const ch = "1009968902941442119";
-              const logs = guild.channels.cache.get(ch);
-              logs.send({
-                embeds: [
-                  new MessageEmbed()
-                    .setAuthor({ name: `Warn ${wc.case} expired` })
-                    .setColor("DARK_GOLD")
-                    .setDescription(
-                      `Case **${wc.case}** has been expired. The user punished for this warn was <@!${wc.punished}>.`
-                    )
-                    .setTimestamp(),
-                ],
-              });
-              const UMM = require("../../Structures/Schema/UserModeration");
-              const rm = await UMM.findOne({ user: wc.punished });
-              const nw = rm.warns - 1;
-              await UMM.findOneAndUpdate({ user: wc.punished }, { warns: nw });
-              client.stop2 = true;
-            } else z++;
-          } else z++;
-        } else z++;
-      } while (client.stop2 !== true);
+                  )
+                  .setColor("DARK_GOLD"),
+              ],
+            });
+          } catch (e) {
+            console.log(e);
+          }
+          const logs = guild.channels.cache.get("1009968902941442119");
+          logs.send({
+            embeds: [
+              new MessageEmbed()
+                .setAuthor({ name: `Warn ${wc.case} expired` })
+                .setColor("DARK_GOLD")
+                .setDescription(
+                  `Case **${wc.case}** has been expired. The user punished for this warn was <@!${wc.punished}>.`
+                )
+                .setTimestamp(),
+            ],
+          });
+          const UMM = require("../../Structures/Schema/UserModeration");
+          const rm = await UMM.findOne({ user: c.punished });
+          const nw = rm.warns - 1;
+          await UMM.findOneAndUpdate({ user: c.punished }, { warns: nw });
+        }
+      });
     }, 5000);
     //Verification edit message
     const rc = await Math.floor(Math.random() * 5);
