@@ -1,4 +1,9 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const {
+  CommandInteraction,
+  MessageEmbed,
+  MessageActionRow,
+  MessageButton,
+} = require("discord.js");
 
 module.exports = {
   name: "cases",
@@ -130,8 +135,11 @@ ${client.o}
         }
       });
       page = 1;
-      total_pages = Math.floor(cases.length / 10);
-      console.log(total_pages, cases.length % 10);
+      if (cases.length % 10 === 0) {
+        total_pages = Math.floor(cases.length / 10);
+      } else if (cases.length > 10) {
+        total_pages = Math.floor(cases.length / 10) + 1;
+      }
       interaction.reply({
         embeds: [
           new MessageEmbed()
@@ -142,7 +150,22 @@ ${client.o}
               text: `${user.username} has been punished ${pt} times. • Requested by ${interaction.user.tag}`,
             }),
         ],
+        components: [
+          new MessageActionRow().addComponents(
+            new MessageButton()
+              .setCustomId("CASES_PREVIOUS_PAGE")
+              .setLabel(`Previous Page`)
+              .setStyle(`SUCCESS`),
+            new MessageButton()
+              .setCustomId("CASES_NEXT_PAGE")
+              .setLabel(`Next Page`)
+              .setStyle(`SUCCESS`)
+          ),
+        ],
       });
+      global.nextpage = function () {
+        console.log(`kekw, ${pt}`);
+      };
     }
   },
 };
