@@ -49,6 +49,7 @@ module.exports = {
       const c = await CasesModel.find();
       c.forEach(async () => {
         if (c.type === "ban") {
+          console.log(c);
           if (c.expired === false) {
             if (c.time < Date.now() / 1000) {
               const cn = c.case;
