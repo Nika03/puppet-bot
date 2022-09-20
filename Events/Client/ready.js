@@ -137,10 +137,10 @@ module.exports = {
           logs.send({
             embeds: [
               new MessageEmbed()
-                .setAuthor({ name: `Warn ${wc.case} expired` })
+                .setAuthor({ name: `Warn ${c.case} expired` })
                 .setColor("DARK_GOLD")
                 .setDescription(
-                  `Case **${wc.case}** has been expired. The user punished for this warn was <@!${wc.punished}>.`
+                  `Case **${c.case}** has been expired. The user punished for this warn was <@!${c.punished}>.`
                 )
                 .setTimestamp(),
             ],
