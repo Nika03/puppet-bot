@@ -97,12 +97,12 @@ module.exports = {
     setInterval(async () => {
       const c = await CasesModel.find();
       c.forEach(async () => {
-        console.log(c);
         if (
           c.type === "warn" &&
           c.expired === false &&
           c.time < Date.now() / 1000
         ) {
+          console.log(c);
           const cn = c.case;
           await CasesModel.findOneAndUpdate({ case: cn }, { expired: true });
           const member = guild.members.cache.get(c.punished);
