@@ -131,14 +131,14 @@ ${client.o}
         if (pt === 0) {
           embedDescription = `${user} has not been warned yet.`;
         } else {
-          embedDescription = `${cases.replaceAll(",", "")}`;
+          embedDescription = `${cases.toString().replaceAll(",", "")}`;
         }
       });
       interaction.reply({
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `${user.username}'s cases` })
-            .setDescription(`${cases}`)
+            .setDescription(`${embedDescription}`)
             .setColor("RED")
             .setFooter({
               text: `${user.username} has been punished ${pt} times. • Requested by ${interaction.user.tag}`,
