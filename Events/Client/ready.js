@@ -71,6 +71,8 @@ module.exports = {
                 reason_for_expire: "This user has been automaticly unbanned.",
                 time: Math.floor(Date.now() / 1000),
               });
+              current_restarts.cases++;
+              await current_restarts.save();
               try {
                 guild.members.unban(user);
                 const ch = "1009968902941442119";
@@ -81,7 +83,7 @@ module.exports = {
                       .setAuthor({ name: `Unban` })
                       .setColor("DARK_GOLD")
                       .setDescription(
-                        `${user} (${user.id}) has been unbanned. This user has been unbanned due to their ban time ending.`
+                        `<@!${user}> (${user}) has been unbanned. This user has been unbanned due to their ban time ending.`
                       )
                       .setTimestamp(),
                   ],
