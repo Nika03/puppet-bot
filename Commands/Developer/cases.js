@@ -128,12 +128,10 @@ ${client.o}
           cases.push(`Case **${u.case}** • Type: **${u.type}** ${expired}\n`);
           pt++;
         }
-        if (pt === 0) {
-          embedDescription = `${user} has not been warned yet.`;
-        } else {
-          embedDescription = `${cases.toString().replaceAll(",", "")}`;
-        }
       });
+      page = 1;
+      total_pages = Math.floor(cases.length / 9);
+      console.log(total_pages);
       interaction.reply({
         embeds: [
           new MessageEmbed()
