@@ -48,7 +48,6 @@ module.exports = {
     setInterval(async () => {
       const c = await CasesModel.find();
       c.forEach(async (c) => {
-        console.log(c);
         if (c.type === "ban") {
           if (c.expired === false) {
             if (c.time < Date.now() / 1000) {
@@ -60,6 +59,7 @@ module.exports = {
                   reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
                 }
               );
+              user = c.punished;
               await CasesModel.create({
                 type: "unban",
                 punished: user,
@@ -69,7 +69,7 @@ module.exports = {
                 time: Math.floor(Date.now() / 1000),
               });
               try {
-                guild.members.unban(c.punished);
+                guild.members.unban(user);
                 const ch = "1009968902941442119";
                 const logs = guild.channels.cache.get(ch);
                 logs.send({
