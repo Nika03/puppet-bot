@@ -120,29 +120,16 @@ ${client.o}
       const CasesModel = require("../../Structures/Schema/Cases");
       const user = interaction.options.getUser("user");
       const u = await CasesModel.find().sort("-cases");
-      client.r = 0;
-      const uc = u.map((c) => {
-        if (c.punished === user.id) {
-          if (c.type === `warn`) {
-            client.exp = `• Expired: **${c.expired}**`;
-          } else {
-            client.exp = ``;
-          }
-          client.r++;
-          return `Case **${c.case}** • Type: **${c.type}** ${client.exp}
-`;
-        }
+      u.forEach(async (u) => {
+        cases = [];
+        if (u.expired === true) expired = " • **true**";
+        cases.push(`Case **${u.case}** • Type: **${u.type}** ${expired}\n`);
       });
-      if (client.r === 0) {
-        client.desc = `${user.username} has not been punished yet.`;
-      } else {
-        client.desc = uc.reverse().toString().replaceAll(",", "");
-      }
       interaction.reply({
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `${user.username}'s cases` })
-            .setDescription(`${client.desc}`)
+            .setDescription(`${cases}`)
             .setColor("RED")
             .setFooter({
               text: `${user.username} has been punished ${client.r} times. • Requested by ${interaction.user.tag}`,

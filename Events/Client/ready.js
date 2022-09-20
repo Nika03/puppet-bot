@@ -97,14 +97,6 @@ module.exports = {
     setInterval(async () => {
       const c = await CasesModel.find();
       c.forEach(async (c) => {
-        console.log(
-          c.type === "warn" &&
-            c.expired === false &&
-            c.time < Date.now() / 1000,
-          c.type,
-          c.expired,
-          c.time
-        );
         if (
           c.type === "warn" &&
           c.expired === false &&
