@@ -120,8 +120,8 @@ ${client.o}
       const CasesModel = require("../../Structures/Schema/Cases");
       const user = interaction.options.getUser("user");
       const u = await CasesModel.find().sort("-cases");
+      cases = [];
       u.forEach(async (u) => {
-        cases = [];
         if (u.expired === true) expired = " • **true**";
         cases.push(`Case **${u.case}** • Type: **${u.type}** ${expired}\n`);
       });
