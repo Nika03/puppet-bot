@@ -131,7 +131,7 @@ ${client.o}
       });
       page = 1;
       total_pages = Math.floor(cases.length / 9);
-      console.log(total_pages);
+      console.log(total_pages, cases.length % 9, 90 % 9, 9 % 9);
       interaction.reply({
         embeds: [
           new MessageEmbed()
