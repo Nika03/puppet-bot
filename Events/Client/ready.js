@@ -46,54 +46,49 @@ module.exports = {
 
     // Ban Checker
     setInterval(async () => {
-      client.stop = false;
-      x = 1;
-      do {
-        const c = await CasesModel.findOne({ case: x });
-        if (!c) return (client.stop = true);
+      const c = await CasesModel.find();
+      c.forEach(async () => {
         if (c.type === "ban") {
           if (c.expired === false) {
-            if (c.time) {
-              if (c.time < Date.now() / 1000) {
-                await CasesModel.findOneAndUpdate(
-                  { case: x },
-                  { expired: true },
-                  {
-                    reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
-                  }
-                );
-                await CasesModel.create({
-                  type: "unban",
-                  punished: user,
-                  case: current_restarts.cases,
-                  pardoner: "Automaticly Unbanned",
-                  reason_for_expire: "This user has been automaticly unbanned.",
-                  time: Math.floor(Date.now() / 1000),
-                });
-                try {
-                  guild.members.unban(c.punished);
-                  const ch = "1009968902941442119";
-                  const logs = guild.channels.cache.get(ch);
-                  logs.send({
-                    embeds: [
-                      new MessageEmbed()
-                        .setAuthor({ name: `Unban` })
-                        .setColor("DARK_GOLD")
-                        .setDescription(
-                          `${user} (${user.id}) has been unbanned. This user has been unbanned due to their ban time ending.`
-                        )
-                        .setTimestamp(),
-                    ],
-                  });
-                } catch (e) {
-                  console.log(e);
+            if (c.time < Date.now() / 1000) {
+              const cn = c.case;
+              await CasesModel.findOneAndUpdate(
+                { case: cn },
+                { expired: true },
+                {
+                  reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
                 }
-                client.stop = true;
-              } else x++;
-            } else x++;
-          } else x++;
-        } else x++;
-      } while (client.stop !== true);
+              );
+              await CasesModel.create({
+                type: "unban",
+                punished: user,
+                case: current_restarts.cases,
+                pardoner: "Automaticly Unbanned",
+                reason_for_expire: "This user has been automaticly unbanned.",
+                time: Math.floor(Date.now() / 1000),
+              });
+              try {
+                guild.members.unban(c.punished);
+                const ch = "1009968902941442119";
+                const logs = guild.channels.cache.get(ch);
+                logs.send({
+                  embeds: [
+                    new MessageEmbed()
+                      .setAuthor({ name: `Unban` })
+                      .setColor("DARK_GOLD")
+                      .setDescription(
+                        `${user} (${user.id}) has been unbanned. This user has been unbanned due to their ban time ending.`
+                      )
+                      .setTimestamp(),
+                  ],
+                });
+              } catch (e) {
+                console.log(e);
+              }
+            }
+          }
+        }
+      });
     }, 5000);
     // Warn Checker
     setInterval(async () => {

@@ -1,44 +1,57 @@
-const { Perms } = require('../Validation/Permissions')
-const { Client } = require('discord.js')
+const { Perms } = require("../Validation/Permissions");
+const { Client } = require("discord.js");
 
 /**
  * @param {Client} client
  */
 module.exports = async (client, PG, Ascii) => {
-    const Table = new Ascii('💮 Commands:')
-    
-    CommandsArray = [];
+  const Table = new Ascii("💮 Commands:");
 
-    (await PG(`${process.cwd()}/Commands/**/*.js`)).map(async (file) => {
-        const command = require(file)
+  CommandsArray = [];
 
-        if(!command.name)
-        return Table.addRow(file.split('/')[7], 'FAILED', '❌ Failed to find a name.')
+  (await PG(`${process.cwd()}/Commands/**/*.js`)).map(async (file) => {
+    const command = require(file);
 
-        if(!command.contex && !command.description){
-        return Table.addRow(command.name, 'FAILED', '❌ Failed to find a description.')
-        }
+    if (!command.name)
+      return Table.addRow(
+        file.split("/")[7],
+        "FAILED",
+        "❌ Failed to find a name."
+      );
 
-        if(!command.permission) {
-            if(Perms.includes(command.permission))
-            command.defaultPermission = false;
-            else
-            return Table.addRow(command.name, 'FAILED', '❌ Bot doesnt have enough permissions.')
-        }
+    if (!command.contex && !command.description) {
+      return Table.addRow(
+        command.name,
+        "FAILED",
+        "❌ Failed to find a description."
+      );
+    }
 
-        client.commands.set(command.name, command)
-        CommandsArray.push(command)
-        
-        await Table.addRow(command.name, '✔ Command loaded successfully.')
-    })
+    if (!command.permission) {
+      if (Perms.includes(command.permission)) command.defaultPermission = false;
+      else
+        return Table.addRow(
+          command.name,
+          "FAILED",
+          "❌ Bot doesnt have enough permissions."
+        );
+    }
 
-    console.log(Table.toString())
+    client.commands.set(command.name, command);
+    CommandsArray.push(command);
 
-    // PERMISSIONS CHECK //
+    await Table.addRow(command.name, "✔ Command loaded successfully.");
+    client.commandList = [];
+    client.commandList.push(command.name);
+  });
 
-    client.on('ready', async () => {
-        client.guilds.cache.forEach((g) => {
-            g.commands.set(CommandsArray);
-        });
+  console.log(Table.toString());
+
+  // PERMISSIONS CHECK //
+
+  client.on("ready", async () => {
+    client.guilds.cache.forEach((g) => {
+      g.commands.set(CommandsArray);
     });
-}
+  });
+};
