@@ -122,7 +122,7 @@ ${client.o}
       const u = await CasesModel.find().sort("-cases");
       cases = [];
       u.forEach(async (u) => {
-        if (c.punished === user.id) {
+        if (u.punished === user.id) {
           if (u.expired === true) expired = " • Expired: **true**";
           cases.push(`Case **${u.case}** • Type: **${u.type}** ${expired}\n`);
         }
