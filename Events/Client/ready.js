@@ -47,7 +47,7 @@ module.exports = {
     // Ban Checker
     setInterval(async () => {
       const c = await CasesModel.find();
-      c.forEach(async () => {
+      c.forEach(async (c) => {
         if (
           c.type === "ban" &&
           c.expired === false &&
@@ -96,7 +96,7 @@ module.exports = {
     // Warn Checker
     setInterval(async () => {
       const c = await CasesModel.find();
-      c.forEach(async () => {
+      c.forEach(async (c) => {
         console.log(
           c.type === "warn" &&
             c.expired === false &&
