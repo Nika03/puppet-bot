@@ -56,9 +56,9 @@ module.exports = {
     try {
       await guild.bans.fetch(user.id);
     } catch (e) {
-      client.fbe = true;
+      user_banned = true;
     }
-    if (!client.fbe)
+    if (!user_banned)
       return interaction.reply({
         content: "That user is already banned.",
         ephemeral: true,
@@ -67,12 +67,12 @@ module.exports = {
       client.u = guild.members.cache.get(user.id);
     } catch (e) {
       console.log(e);
-      client.mer = true;
+      member_exists = true;
     }
 
     const member = client.u;
     const uid = user.id;
-    if (!client.mer) {
+    if (!member_exists) {
       if (member) {
         if (member.roles.cache.has(staff)) {
           return interaction.reply({
@@ -150,7 +150,7 @@ module.exports = {
           new MessageEmbed()
             .setColor("DARK_NAVY")
             .setDescription(
-              `You have been banned in **Neco Puppeteers' Cult for: ${client.reason}. You have been banned ${client.time} and can appeal at https://forms.gle/CXawHH1m3tjJGDvs6.`
+              `You have been banned in **Neco Puppeteers' Cult** for: ${client.reason}. You have been banned ${client.time} and can appeal at https://forms.gle/CXawHH1m3tjJGDvs6.`
             ),
         ],
       });

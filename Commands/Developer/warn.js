@@ -60,13 +60,12 @@ module.exports = {
         new MessageEmbed()
           .setAuthor({ name: `Case ${tc.cases}` })
           .setColor("DARK_GOLD")
-          .setDescription(`${user} has been warned for: \`${reason}\`.`)
-          .setFooter({ text: `You can check your warns with /punishments` })
+          .setDescription(`${user} has been warned for: \`${reason}\``)
+          .setFooter({ text: `You can check your warns with /punishments.` })
           .setTimestamp(),
       ],
     });
-    const ch = "1009968902941442119";
-    const logs = guild.channels.cache.get(ch);
+    const logs = guild.channels.cache.get("1009968902941442119");
     logs.send({
       embeds: [
         new MessageEmbed()
@@ -95,15 +94,15 @@ module.exports = {
             .setAuthor({ name: "Teto Trader" })
             .setDescription(
               `
-You have been warned in Neco Puppeteers' Cult
+You have been warned in **Neco Puppeteers' Cult**
 Punisher: ${interaction.user} *(${interaction.user.id})*
-Reason: ${reason}
-This warning will expire ${Math.floor(Date.now() / 1000) + 1209600}.
+Reason: \`${reason}\`
+This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
 `
             )
             .setColor("DARK_RED")
             .setFooter({
-              text: "You can check your active warnings with /punishments",
+              text: "You can check your active warnings with /punishments.",
             }),
         ],
       });
