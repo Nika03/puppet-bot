@@ -47,9 +47,9 @@ module.exports = {
     // Ban Checker
     setInterval(async () => {
       const c = await CasesModel.find();
-      c.forEach(async () => {
+      c.forEach(async (c) => {
+        console.log(c);
         if (c.type === "ban") {
-          console.log(c);
           if (c.expired === false) {
             if (c.time < Date.now() / 1000) {
               const cn = c.case;
