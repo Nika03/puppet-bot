@@ -54,11 +54,9 @@ module.exports = {
               const cn = c.case;
               await CasesModel.findOneAndUpdate(
                 { case: cn },
-                { expired: true },
                 {
+                  expired: true,
                   reason_for_expire: `This user has been unbanned since <t:${c.time}>`,
-                },
-                {
                   staff_who_expired: "986354647688179742",
                 }
               );
