@@ -136,7 +136,7 @@ ${client.o}
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `${user.username}'s cases` })
-            .setDescription(`${embedDescription}`)
+            .setDescription(`nothing for now`)
             .setColor("RED")
             .setFooter({
               text: `${user.username} has been punished ${pt} times. • Requested by ${interaction.user.tag}`,
