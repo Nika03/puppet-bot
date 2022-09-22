@@ -127,27 +127,80 @@ ${client.o}
       const u = await CasesModel.find().sort("-cases");
       cases = [];
       pt = 0;
+      casesX = 0;
       u.forEach(async (u) => {
         if (u.punished === user.id) {
-          if (u.expired === true) expired = " • Expired: **true**";
-          cases.push(`Case **${u.case}** • Type: **${u.type}** ${expired}\n`);
+          if (u.expired === true) {
+            isExpired = " • Expired: **true**";
+          } else isExpired = "";
+          client.casesArray = cases.push(
+            `Case **${u.case}** • Type: **${u.type}** ${isExpired}\n`
+          );
           pt++;
         }
       });
-      page = 1;
-      if (cases.length % 10 === 0) {
-        total_pages = Math.floor(cases.length / 10);
-      } else if (cases.length > 10) {
-        total_pages = Math.floor(cases.length / 10) + 1;
+      casesPage = 1;
+      if (cases.length > 10) {
+        max_pages = Math.floor(cases.length / 10) + 1;
+      } else {
+        max_pages = 1;
       }
+      checkCaseButtonsFunction = function () {
+        if (casesPage === 1) {
+          disabled1 = true;
+        } else disabled1 = false;
+        if (casesPage === max_pages) {
+          disabled2 = true;
+        } else disabled2 = false;
+      };
+      loopstop = false;
+      unfinishedArray = [];
+      do {
+        if (casesX === 10 * casesPage) loopstop = true;
+        if (!cases[casesX]) loopstop = true;
+        if (loopstop === false) {
+          unfinishedArray.push(`${cases[casesX]}`);
+          casesX++;
+        }
+      } while (loopstop === false);
+      nextPageFunction = function () {
+        loopstop = false;
+        unfinishedArray = [];
+        do {
+          if (casesX === 10 * casesPage) loopstop = true;
+          if (!cases[casesX]) loopstop = true;
+          if (loopstop === false) {
+            unfinishedArray.push(`${cases[casesX]}`);
+            casesX++;
+          }
+        } while (loopstop === false);
+      };
+      previousPageFunction = function () {
+        casesxcount = 0;
+        casesX = casesX - 10;
+        loopstop = false;
+        unfinishedArray = [];
+        do {
+          console.log(casesX, casesxcount);
+          if (casesxcount === 10) loopstop = true;
+          if (!cases[casesX]) loopstop = true;
+          if (loopstop === false) {
+            casesX--;
+            unfinishedArray.push(`${cases[casesX]}`);
+            casesxcount++;
+          }
+        } while (loopstop === false);
+      };
+      casesArray = unfinishedArray.toString().replaceAll(",", "");
+      checkCaseButtonsFunction();
       interaction.reply({
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `${user.username}'s cases` })
-            .setDescription(`nothing for now`)
+            .setDescription(`${casesArray}`)
             .setColor("RED")
             .setFooter({
-              text: `${user.username} has been punished ${pt} times. • Requested by ${interaction.user.tag}`,
+              text: `${user.username} has been punished ${pt} times. • Requested by ${interaction.user.tag} • Page ${casesPage}/${max_pages}`,
             }),
         ],
         components: [
@@ -155,16 +208,18 @@ ${client.o}
             new MessageButton()
               .setCustomId("CASES_PREVIOUS_PAGE")
               .setLabel(`Previous Page`)
-              .setStyle(`SUCCESS`),
+              .setStyle("SUCCESS")
+              .setDisabled(disabled1),
             new MessageButton()
               .setCustomId("CASES_NEXT_PAGE")
               .setLabel(`Next Page`)
-              .setStyle(`SUCCESS`)
+              .setStyle("SUCCESS")
+              .setDisabled(disabled2)
           ),
         ],
       });
-      global.nextpage = function () {
-        console.log(`kekw, ${pt}`);
+      caseVariables = function () {
+        username = user.username;
       };
     }
   },

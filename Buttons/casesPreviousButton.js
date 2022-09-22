@@ -1,6 +1,6 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 module.exports = {
-  id: "CASES_NEXT_PAGE",
+  id: "CASES_PREVIOUS_PAGE",
   permission: "MANAGE_MESSAGES",
 
   async execute(interaction, client) {
@@ -21,12 +21,13 @@ module.exports = {
         });
     }
     interaction.deferUpdate();
-    casesPage++;
-    nextPageFunction();
+    casesPage--;
+    previousPageFunction();
+    casesX = casesX + 10;
     checkCaseButtonsFunction();
     caseVariables();
-    console.log(unfinishedArray);
-    casesArray = unfinishedArray.toString().replaceAll(",", "");
+    const reversedArray = unfinishedArray.reverse();
+    casesArray = reversedArray.toString().replaceAll(",", "");
     interaction.message.edit({
       embeds: [
         new MessageEmbed()

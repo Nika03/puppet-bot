@@ -18,7 +18,7 @@ module.exports = {
       "nigers",
     ];
     stopf = false;
-    x = 0;
+    filterX = 0;
     ax = 0;
     const array = message.toString().split(" ");
     do {
@@ -27,7 +27,7 @@ module.exports = {
         stopf = true;
         return;
       }
-      if (array[ax] === filter[x]) {
+      if (array[ax] === filter[filterX]) {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = guild.channels.cache.get(message.channel.id);
@@ -77,11 +77,11 @@ module.exports = {
         }, 1000);
         stopf = true;
       } else {
-        if (x >= filter.length) {
+        if (filterX >= filter.length) {
           ax++;
-          x = 0;
+          filterX = 0;
         } else {
-          x++;
+          filterX++;
         }
       }
     } while (stopf === false);

@@ -44,6 +44,8 @@ module.exports = {
 
     const RestartsModel = require("../../Structures/Schema/Restarts");
     const CasesModel = require("../../Structures/Schema/Cases");
+    ban_found = true;
+    member_exists = true;
 
     if (user === interaction.user.id) {
       return interaction.reply({
@@ -56,9 +58,9 @@ module.exports = {
     try {
       await guild.bans.fetch(user.id);
     } catch (e) {
-      user_banned = true;
+      ban_found = false;
     }
-    if (!user_banned)
+    if (!ban_found)
       return interaction.reply({
         content: "That user is already banned.",
         ephemeral: true,
@@ -67,12 +69,12 @@ module.exports = {
       client.u = guild.members.cache.get(user.id);
     } catch (e) {
       console.log(e);
-      member_exists = true;
+      member_exists = false;
     }
 
     const member = client.u;
     const uid = user.id;
-    if (!member_exists) {
+    if ((member_exists = true)) {
       if (member) {
         if (member.roles.cache.has(staff)) {
           return interaction.reply({
