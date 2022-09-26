@@ -26,6 +26,14 @@ module.exports = {
     //    }
     //  }
     //}
+    const rng1 = Math.floor(Math.random() * 15000);
+    const rng2 = Math.floor(Math.random() * 15000);
+    if (rng1 === rng2) {
+      message.reply(
+        "<@&970229987405877259> Look at this fool!!! LMAO!!! Come watch this twink dance!"
+      );
+    }
+
     if (message.toString().toLowerCase().includes("koha")) {
       const rng1 = Math.floor(Math.random() * 250);
       const rng2 = Math.floor(Math.random() * 250);
