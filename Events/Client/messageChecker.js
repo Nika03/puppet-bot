@@ -26,6 +26,12 @@ module.exports = {
     //    }
     //  }
     //}
+    if (message.toString().includes("koha")) {
+      if (message.author.bot) return;
+      message.reply(
+        "Your message has been flag as harmful for the server. Keep this behaviour and your execution will come soon."
+      );
+    }
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
