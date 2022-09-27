@@ -60,7 +60,7 @@ module.exports = {
     } catch (e) {
       ban_found = false;
     }
-    if (!ban_found)
+    if (ban_found === true)
       return interaction.reply({
         content: "That user is already banned.",
         ephemeral: true,
