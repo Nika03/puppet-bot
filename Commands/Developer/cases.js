@@ -181,7 +181,6 @@ ${client.o}
         loopstop = false;
         unfinishedArray = [];
         do {
-          console.log(casesX, casesxcount);
           if (casesxcount === 10) loopstop = true;
           if (!cases[casesX]) loopstop = true;
           if (loopstop === false) {

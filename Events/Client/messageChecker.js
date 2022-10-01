@@ -37,7 +37,6 @@ module.exports = {
     if (message.toString().toLowerCase().includes("koha")) {
       const rng1 = Math.floor(Math.random() * 250);
       const rng2 = Math.floor(Math.random() * 250);
-      console.log(rng1, rng2);
       if (rng1 === rng2) {
         message.reply("<:Kohasmug:1023784205592821861>");
       }

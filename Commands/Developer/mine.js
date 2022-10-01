@@ -12,6 +12,5 @@ module.exports = {
     interaction.reply(
       "I am not adding this command anytime soon. - <@!452436342841016341> at <t:1662403856>"
     );
-    console.log(Date.now() / 1000);
   },
 };

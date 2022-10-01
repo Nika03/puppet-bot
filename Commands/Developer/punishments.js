@@ -54,7 +54,6 @@ module.exports = {
         x++;
       }
     } while (x < f.length);
-    console.log(global.array);
     if (global.array.length === 4) {
       return interaction.reply({
         embeds: [

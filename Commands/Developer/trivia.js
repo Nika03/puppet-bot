@@ -144,7 +144,6 @@ Awnser the following question within 15 seconds:
       ],
     });
     setTimeout(() => {
-      console.log(`here i am ${client.donoteditthemessageagainpls}`);
       if (client.donoteditthemessageagainpls === true) return;
       interaction.editReply({
         embeds: [

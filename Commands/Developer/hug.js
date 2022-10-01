@@ -72,7 +72,6 @@ module.exports = {
     } else {
       global.floppa = `https://m.media-amazon.com/images/I/61aK3rgtYxL._AC_SX679_.jpg`;
     }
-    console.log(random_floppa);
     const user = interaction.options.getUser(`user`);
     if (user.bot) {
       return interaction.reply({

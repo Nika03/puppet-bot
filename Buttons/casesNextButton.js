@@ -25,7 +25,6 @@ module.exports = {
     nextPageFunction();
     checkCaseButtonsFunction();
     caseVariables();
-    console.log(unfinishedArray);
     casesArray = unfinishedArray.toString().replaceAll(",", "");
     interaction.message.edit({
       embeds: [
