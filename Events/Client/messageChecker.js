@@ -93,8 +93,8 @@ module.exports = {
 
     if (!allowedchannels.includes(message.channel.id)) return;
 
-    const random_number1 = Math.floor(Math.random() * 1);
-    const random_number2 = Math.floor(Math.random() * 1);
+    const random_number1 = Math.floor(Math.random() * 100);
+    const random_number2 = Math.floor(Math.random() * 100);
 
     const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
     const exists = await EconomyChecker.findOne({ user: message.author.id });
