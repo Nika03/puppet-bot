@@ -113,15 +113,16 @@ module.exports = {
         embeds: [
           new MessageEmbed()
             .setAuthor({
-              name: `Neco Arc`,
-              iconURL: `https://i.pinimg.com/originals/ca/7d/6a/ca7d6a4f6887b0a306273f7b2126ad2e.jpg`,
+              name: `Teto Trader`,
+              iconURL: `https://static.wikia.nocookie.net/mikumikudance/images/c/c2/Teto_Halloween_by_Uri.png/revision/latest?cb=20131018161253`,
             })
             .setDescription(
-              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> tedollars for talking in ${message.channel}!`
+              `Spooky! I've given you **${client.random_amount}** <:tedollar:987097348305997847> tedollars for chatting in ${message.channel}!`
             )
-            .setColor(`DARK_NAVY`)
+            .setFooter({ text: "Happy October" })
+            .setColor(`FE9B13`)
             .setThumbnail(
-              `https://ih1.redbubble.net/image.3066177313.1669/gbra,6x6,900x900.jpg`
+              `https://i.pinimg.com/originals/80/8a/02/808a02b37a9cd2e134fad2ac1f5cb937.jpg`
             )
             .setTimestamp(),
         ],
