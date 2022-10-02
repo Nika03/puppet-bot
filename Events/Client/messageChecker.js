@@ -29,6 +29,7 @@ module.exports = {
     const rng1 = Math.floor(Math.random() * 15000);
     const rng2 = Math.floor(Math.random() * 15000);
     if (rng1 === rng2) {
+      if (message.author.bot) return;
       message.reply(
         "<@&970229987405877259> Look at this fool!!! LMAO!!! Come watch this twink dance!"
       );
