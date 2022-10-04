@@ -7,41 +7,6 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
-    //if (message.channel.id === "1017141464574201968") {
-    //  if (message.author.bot) {
-    //    message.delete();
-    //  } else if (
-    //    message.toString() !==
-    //    "it starts with one <:kleiner:1017070265060032523>"
-    //  ) {
-    //    setTimeout(() => {
-    //      message.delete();
-    //    }, 100);
-    //    try {
-    //      const guild = client.guilds.cache.get("946518364216520774");
-    //      const member = guild.members.cache.get(message.author.id);
-    //      await member.timeout(600000, "it starts with one :kleiner:");
-    //    } catch (e) {
-    //      console.log(e);
-    //    }
-    //  }
-    //}
-    const rng1 = Math.floor(Math.random() * 15000);
-    const rng2 = Math.floor(Math.random() * 15000);
-    if (rng1 === rng2) {
-      if (message.author.bot) return;
-      message.reply(
-        "<@&970229987405877259> Look at this fool!!! LMAO!!! Come watch this twink dance!"
-      );
-    }
-
-    if (message.toString().toLowerCase().includes("koha")) {
-      const rng1 = Math.floor(Math.random() * 250);
-      const rng2 = Math.floor(Math.random() * 250);
-      if (rng1 === rng2) {
-        message.reply("<:Kohasmug:1023784205592821861>");
-      }
-    }
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
