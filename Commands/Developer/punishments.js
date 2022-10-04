@@ -34,6 +34,7 @@ module.exports = {
           .setColor("DARK_NAVY")
           .setDescription(`${str}`),
       ],
+      ephemeral: true,
     });
   },
 };
