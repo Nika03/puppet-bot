@@ -11,10 +11,9 @@ module.exports = {
    */
   async execute(interaction, client) {
     rng = Date.now() * os.freemem();
-    console.log(rng);
     do {
       rng = rng / 2;
-    } while (rng < 100);
+    } while (rng > 100);
     interaction.reply({ content: `${rng}` });
   },
 };
