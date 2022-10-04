@@ -22,7 +22,7 @@ module.exports = {
     arr.forEach((n) => {
       arrNumbers = arrNumbers + n;
     });
-    x = Math.floor(Date.now() + arrNumbers);
+    x = parseFloat(Math.floor(Date.now() + arrNumbers)).toFixed();
     //rng = arr[x];
     interaction.reply({ content: `${x}` });
   },
