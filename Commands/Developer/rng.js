@@ -10,10 +10,20 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
+    arr = [];
     rng = Date.now() * os.freemem();
     do {
       rng = rng / 2;
-    } while (rng > 100);
-    interaction.reply({ content: `${rng}` });
+      if (rng > 100) {
+        arr.push(rng);
+      }
+    } while (rng > 1);
+    arrNumbers = 0;
+    arr.forEach((n) => {
+      arrNumbers = arrNumbers + n;
+    });
+    x = Math.floor(Date.now() + arrNumbers);
+    //rng = arr[x];
+    interaction.reply({ content: `${x}` });
   },
 };
