@@ -23,6 +23,7 @@ module.exports = {
         ephemeral: true,
       });
     }
+    const str = arr.toString().replaceAll(",", "");
     interaction.reply({
       embeds: [
         new MessageEmbed()
@@ -31,7 +32,7 @@ module.exports = {
             iconURL: `${interaction.member.user.avatarURL()}`,
           })
           .setColor("DARK_NAVY")
-          .setDescription(`${arr.toString()}`),
+          .setDescription(`${str}`),
       ],
     });
   },
