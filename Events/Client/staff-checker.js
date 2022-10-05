@@ -134,6 +134,7 @@ ${modsArr}
 ${traineesArr}
 
 > If you have any questions about the server, make a ticket in <#946523109924696074>, and if you have any questions about <@986354647688179742> feel free to DM <@452436342841016341>.
+Last updated at <t:${Date.now() / 1000}>
           `,
           });
         } catch (e) {
