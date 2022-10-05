@@ -7,7 +7,7 @@ module.exports = {
    * @param {Guild} guild
    */
   async execute(client) {
-    setTimeout(async () => {
+    setInterval(async () => {
       const guild = client.guilds.cache.get("946518364216520774");
       await guild.members.fetch();
       const trainees = guild.roles.cache.get("946525021545828422");
@@ -140,6 +140,6 @@ ${traineesArr}
           console.log(e);
         }
       });
-    }, 45000);
+    }, 15000);
   },
 };
