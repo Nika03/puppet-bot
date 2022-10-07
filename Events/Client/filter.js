@@ -21,6 +21,7 @@ module.exports = {
     filterX = 0;
     ax = 0;
     const array = message.toString().split(" ");
+    if (message.author.id !== "452436342841016341") return;
     do {
       if (message.author.bot) return;
       if (ax === array.length) {
@@ -34,11 +35,12 @@ module.exports = {
         const RestartsModel = require("../../Structures/Schema/Restarts");
         const restart = await RestartsModel.findOne();
         channel.send({
+          content: "<@&970229987405877259>",
           embeds: [
             new MessageEmbed()
               .setAuthor({ name: `Case ${restart.cases}` })
               .setDescription(
-                `${message.author} (${message.author.id}) has been banned for triggering the filter.`
+                `\`${message.author.tag}\` (${message.author.id}) has been banned for triggering the filter.`
               )
               .setColor("DARK_NAVY")
               .setTimestamp(),
