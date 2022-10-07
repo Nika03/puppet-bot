@@ -26,6 +26,11 @@ module.exports = {
       if (reaction.emoji.name === client.color) {
         try {
           member.roles.add(verified);
+          const guild = client.guilds.cache.get("946518364216520774");
+          const channel = guild.channels.cache.get("1009968902941442119");
+          channel.send(
+            `<@!452436342841016341>, ${user} has passed verification.`
+          );
         } catch (e) {
           console.log(e);
         }
