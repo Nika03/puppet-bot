@@ -181,6 +181,7 @@ module.exports = {
     const c = "1009968902941442119";
     const logs = guild.channels.cache.get(c);
     logs.send({
+      content: `${user.id}`,
       embeds: [
         new MessageEmbed()
           .setAuthor({ name: `Case ${cases}` })

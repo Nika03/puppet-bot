@@ -67,12 +67,13 @@ module.exports = {
     });
     const logs = guild.channels.cache.get("1009968902941442119");
     logs.send({
+      content: `${user.id}`,
       embeds: [
         new MessageEmbed()
           .setAuthor({ name: `User Warned` })
           .setColor("DARK_GOLD")
           .setDescription(
-            `${user} has been warned for: \`${reason}\`. This was done by ${interaction.user}.`
+            `\`${user.tag}\` has been warned for: \`${reason}\`. This was done by ${interaction.user}.`
           )
           .setTimestamp(),
       ],
