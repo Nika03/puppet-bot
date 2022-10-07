@@ -21,7 +21,6 @@ module.exports = {
     filterX = 0;
     ax = 0;
     const array = message.toString().split(" ");
-    if (message.author.id !== "452436342841016341") return;
     do {
       if (message.author.bot) return;
       if (ax === array.length) {
