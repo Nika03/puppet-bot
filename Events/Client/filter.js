@@ -7,6 +7,19 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
+    if (message.toString().includes("pornhub.com")) {
+      message.delete();
+      const guild = client.guilds.cache.get("946518364216520774");
+      return guild.members.ban(message.author.id).catch((e) => {
+        console.log(e);
+      });
+    } else if (message.toString().includes("xvideos.com")) {
+      message.delete();
+      const guild = client.guilds.cache.get("946518364216520774");
+      return guild.members.ban(message.author.id).catch((e) => {
+        console.log(e);
+      });
+    }
     const filter = [
       "nigga",
       "niggas",
