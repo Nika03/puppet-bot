@@ -71,6 +71,7 @@ Matching Percentage: \`${match.Rank * 10} / 100\`
               .setTimestamp()
               .setColor("BLURPLE"),
           ],
+          ephemeral: true,
         });
       })
       .catch(function (error) {
