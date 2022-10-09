@@ -20,7 +20,7 @@ module.exports = {
    */
   async execute(interaction, client) {
     const url = interaction.options.getString("url");
-    interaction.deferReply();
+    interaction.deferReply({ ephemeral: true });
     function isValidURL(url) {
       try {
         return Boolean(new URL(url));
@@ -71,7 +71,6 @@ Matching Percentage: \`${match.Rank * 10} / 100\`
               .setTimestamp()
               .setColor("BLURPLE"),
           ],
-          ephemeral: true,
         });
       })
       .catch(function (error) {
