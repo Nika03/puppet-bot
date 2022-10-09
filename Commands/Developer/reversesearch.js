@@ -5,7 +5,7 @@ const { reverseimageapikey } = require("../../Structures/config.json");
 module.exports = {
   name: "reverse-search",
   description: "Reverse search an image.",
-  permission: "ADMINISTRATOR",
+  permission: "SEND_MESSAGES",
   options: [
     {
       name: "url",
@@ -48,10 +48,10 @@ module.exports = {
     axios
       .request(options)
       .then(function (response) {
-        const match = response.data.Pages[1];
+        const match = response.data.Pages[0];
         if (!match)
           return interaction.editReply({ content: "No matches found." });
-        const image = match.MatchingImages[1];
+        const image = match.MatchingImages[0];
         interaction.editReply({
           embeds: [
             new MessageEmbed()
