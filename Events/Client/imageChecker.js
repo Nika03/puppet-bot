@@ -9,51 +9,99 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
-    if (message.attachments.size < 1) return;
     const guild = client.guilds.cache.get(message.guild.id);
-    message.attachments.forEach(async (m) => {
-      if (m.url.endsWith(".mov")) return;
-      if (m.url.endsWith(".mp4")) return;
-      axios
-        .get("https://api.moderatecontent.com/moderate/", {
-          params: {
-            key: moderatecontentkey,
-            url: m.url,
-          },
-        })
-        .then((response) => {
-          if (response.data.predictions.adult > 75) {
-            const channel = guild.channels.cache.get(message.channel.id);
-            message.delete();
-            channel.send({
-              content: `${message.author}`,
+    if (message.toString().startsWith("https")) {
+      try {
+        axios
+          .get("https://api.moderatecontent.com/moderate/", {
+            params: {
+              key: moderatecontentkey,
+              url: message.toString(),
+            },
+          })
+          .then((response) => {
+            if (response.data.predictions.adult > 75) {
+              const channel = guild.channels.cache.get(message.channel.id);
+              message.delete();
+              channel.send({
+                content: `${message.author}`,
+                embeds: [
+                  new MessageEmbed()
+                    .setDescription(
+                      "Your message has been deleted due to containing sensitive content."
+                    )
+                    .setColor("BLURPLE"),
+                ],
+              });
+            }
+            const logs = guild.channels.cache.get("1028748150149763092");
+            logs.send({
               embeds: [
                 new MessageEmbed()
                   .setDescription(
-                    "Your message has been deleted due to containing sensitive content."
-                  )
-                  .setColor("BLURPLE"),
-              ],
-            });
-          }
-          const logs = guild.channels.cache.get("1028748150149763092");
-          logs.send({
-            embeds: [
-              new MessageEmbed()
-                .setDescription(
-                  `
+                    `
 ${message.author} (${message.author.id}) sent an image in ${message.channel}.
 
 Adult rating: \`${response.data.predictions.adult}\`
 Everyone rating: \`${response.data.predictions.everyone}\`
 Teen rating: \`${response.data.predictions.teen}\`
             `
-                )
-                .setColor("BLURPLE")
-                .setImage(`${m.url}`),
-            ],
+                  )
+                  .setColor("BLURPLE")
+                  .setImage(`${message.toString()}`),
+              ],
+            });
           });
-        });
-    });
+      } catch (e) {
+        console.log(e);
+      }
+    } else if (message.attachments.size < 1) {
+      return;
+    } else {
+      message.attachments.forEach(async (m) => {
+        if (m.url.endsWith(".mov")) return;
+        if (m.url.endsWith(".mp4")) return;
+        axios
+          .get("https://api.moderatecontent.com/moderate/", {
+            params: {
+              key: moderatecontentkey,
+              url: m.url,
+            },
+          })
+          .then((response) => {
+            if (response.data.predictions.adult > 75) {
+              const channel = guild.channels.cache.get(message.channel.id);
+              message.delete();
+              channel.send({
+                content: `${message.author}`,
+                embeds: [
+                  new MessageEmbed()
+                    .setDescription(
+                      "Your message has been deleted due to containing sensitive content."
+                    )
+                    .setColor("BLURPLE"),
+                ],
+              });
+            }
+            const logs = guild.channels.cache.get("1028748150149763092");
+            logs.send({
+              embeds: [
+                new MessageEmbed()
+                  .setDescription(
+                    `
+  ${message.author} (${message.author.id}) sent an image in ${message.channel}.
+  
+  Adult rating: \`${response.data.predictions.adult}\`
+  Everyone rating: \`${response.data.predictions.everyone}\`
+  Teen rating: \`${response.data.predictions.teen}\`
+              `
+                  )
+                  .setColor("BLURPLE")
+                  .setImage(`${m.url}`),
+              ],
+            });
+          });
+      });
+    }
   },
 };
