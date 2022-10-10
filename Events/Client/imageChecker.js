@@ -1,5 +1,6 @@
 const { Message, MessageEmbed, Client } = require("discord.js");
 const axios = require("axios");
+const { moderatecontentkey } = require("../../Structures/config.json");
 
 module.exports = {
   name: "messageCreate",
@@ -9,87 +10,49 @@ module.exports = {
    */
   async execute(message, client) {
     if (message.attachments.size < 1) return;
-    const imgC = require("../../Structures/Schema/Images");
-    const imgCF = await imgC.find();
-    if (!imgCF) await imgCF.create({ images: [] });
-    imgarr = await imgC.find();
-    var msgAtt = message.attachments;
-    msgAtt.forEach(async (m) => {
-      if (!imgarr.includes(m.url)) {
-        imgarr.push(m.url);
-      } else if (imgarr.includes(m.url)) {
-        const guild = client.guilds.cache.get("946518364216520774");
-        const logs = guild.channels.cache.get("1028748150149763092");
-        logs.send({
-          embeds: [
-            new MessageEmbed().setAuthor({ name: `${message.author.tag}` })
-              .setDescription(`
-${message.author} (${message.author.id}) sent an image in ${message.channel}.
-                `),
-          ],
-        });
-        return;
-      }
-      await imgC.findOneAndUpdate({}, { images: imgarr });
-      const options = {
-        method: "POST",
-        url: "https://nsfw-image-classification3.p.rapidapi.com/nsfwjs/check",
-        headers: {
-          "content-type": "application/json",
-          "Content-Type": "application/json",
-          "X-RapidAPI-Key":
-            "a11b464787msh6ba6cd7b7a343aep170f9bjsn1b7482c0b935",
-          "X-RapidAPI-Host": "nsfw-image-classification3.p.rapidapi.com",
-        },
-        data: `{"link":"${m.url}"}`,
-      };
-
+    const guild = client.guilds.cache.get(message.guild.id);
+    message.attachments.forEach(async (m) => {
+      if (m.url.endsWith(".mov")) return;
+      if (m.url.endsWith(".mp4")) return;
       axios
-        .request(options)
-        .then(function (response) {
-          const guild = client.guilds.cache.get("946518364216520774");
-          fileAttArr = [];
-          response.data.forEach((f) => {
-            fileAttArr.push(
-              `Name: \`${f.className}\` Probability: \`${f.probability}\`\n`
-            );
-            if (f.className === "Hentai" || f.className === "Porn") {
-              if (f.probability > 0.5) {
-                message.delete();
-                const channel = guild.channels.cache.get(message.channel.id);
-                channel.send({
-                  content: `${message.author}`,
-                  embeds: [
-                    new MessageEmbed()
-                      .setDescription(
-                        `
-Your message was deleted due to containing sensitive content.
-                    `
-                      )
-                      .setColor("BLURPLE"),
-                  ],
-                });
-              }
-            }
-          });
+        .get("https://api.moderatecontent.com/moderate/", {
+          params: {
+            key: moderatecontentkey,
+            url: m.url,
+          },
+        })
+        .then((response) => {
+          if (response.data.predictions.adult > 75) {
+            const channel = guild.channels.cache.get(message.channel.id);
+            message.delete();
+            channel.send({
+              content: `${message.author}`,
+              embeds: [
+                new MessageEmbed()
+                  .setDescription(
+                    "Your message has been deleted due to containing sensitive content."
+                  )
+                  .setColor("BLURPLE"),
+              ],
+            });
+          }
           const logs = guild.channels.cache.get("1028748150149763092");
           logs.send({
             embeds: [
               new MessageEmbed()
-                .setAuthor({ name: `${message.author.tag}` })
                 .setDescription(
                   `
 ${message.author} (${message.author.id}) sent an image in ${message.channel}.
-${fileAttArr.toString().replaceAll(",", "")}
-                `
+
+Adult rating: \`${response.data.predictions.adult}\`
+Everyone rating: \`${response.data.predictions.everyone}\`
+Teen rating: \`${response.data.predictions.teen}\`
+            `
                 )
-                .setImage(m.url)
-                .setColor("BLURPLE"),
+                .setColor("BLURPLE")
+                .setImage(`${m.url}`),
             ],
           });
-        })
-        .catch(function (error) {
-          console.error(error);
         });
     });
   },
