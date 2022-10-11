@@ -31,7 +31,7 @@ module.exports = {
 
     //Change this
     const member = await interaction.guild.members.fetch(interaction.user.id);
-    if (member.roles.cache.has("869321121449779270")) {
+    if (member.roles.cache.has("946525021545828422")) {
       return interaction.reply({
         embeds: [
           new MessageEmbed()
