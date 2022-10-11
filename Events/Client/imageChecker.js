@@ -9,6 +9,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
+    if (message.channel.id === "1029474001648623726") return;
     const guild = client.guilds.cache.get("946518364216520774");
     if (message.toString().startsWith("https")) {
       axios
