@@ -3,7 +3,7 @@ const { CommandInteraction, MessageEmbed, Message } = require("discord.js");
 module.exports = {
   name: "say",
   description: "Say something. Staff only.",
-  permission: "SEND_MESSAGES",
+  permission: "MANAGE_MESSAGES",
   options: [
     {
       name: `message`,
@@ -25,15 +25,13 @@ module.exports = {
    */
   async execute(interaction, client) {
     //Change this
-
-    const staff_role = `970229987405877259`; // Neco Arc Server
-    //const staff_role = `986600882810544138` // Test server
+    s;
     const role_to_ping = `963473020108824647`; // Neco Arc Server
     //const role_to_ping = `993169053906636890` // Test server
 
     //Change this
     const member = await interaction.guild.members.fetch(interaction.user.id);
-    if (!member.roles.cache.has(staff_role)) {
+    if (member.roles.cache.has("869321121449779270")) {
       return interaction.reply({
         embeds: [
           new MessageEmbed()
