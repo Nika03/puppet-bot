@@ -25,7 +25,7 @@ module.exports = {
    */
   async execute(interaction, client) {
     //Change this
-    s;
+
     const role_to_ping = `963473020108824647`; // Neco Arc Server
     //const role_to_ping = `993169053906636890` // Test server
 
