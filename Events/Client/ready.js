@@ -35,13 +35,13 @@ module.exports = {
       await current_restarts.save();
     }
     const CasesModel = require("../../Structures/Schema/Cases");
-
+    client.guilds.cache.map((guild) => console.log(guild.name));
     //Change this
     //const g = '986357448925401168' //Test server id
     const g = "946518364216520774"; //Puppet server id
 
     const guild = client.guilds.cache.get(g);
-
+    lastwarn = 0;
     client.botuptime = Date.now() / 1000;
 
     // Ban Checker

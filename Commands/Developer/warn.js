@@ -54,6 +54,13 @@ module.exports = {
       await RestartsModel.updateOne({}, { cases: 1 });
     }
     const tc = await RestartsModel.findOne();
+    currentwarn = Date.now() / 1000;
+    if (lastwarn + 5 > currentwarn) {
+      return interaction.reply({
+        content: "Double warning prevented.",
+        ephemeral: true,
+      });
+    }
 
     interaction.reply({
       embeds: [
@@ -78,7 +85,7 @@ module.exports = {
           .setTimestamp(),
       ],
     });
-
+    lastwarn = Date.now() / 1000;
     await CasesModel.create({
       punished: user.id,
       punisher: interaction.user.id,
