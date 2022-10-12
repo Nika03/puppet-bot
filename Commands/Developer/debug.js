@@ -28,7 +28,9 @@ module.exports = {
     const string = interaction.options.getString("option");
     if (string === "restart") {
       interaction.reply({ content: "Restarting...", ephemeral: true });
-      exec("pm2 restart index", { encoding: "utf-8" });
+      exec("pm2 restart index", { encoding: "utf-8" }).then(() => {
+        interaction.channel.send("Restarted.");
+      });
     }
   },
 };
