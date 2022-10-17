@@ -157,7 +157,7 @@ module.exports = {
         ],
       });
     } catch (e) {
-      console.log(e);
+      console.log(e.toString());
     }
     setTimeout(() => {
       guild.members.ban(uid).catch((e) => {

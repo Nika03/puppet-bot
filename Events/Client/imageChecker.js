@@ -36,7 +36,9 @@ module.exports = {
                   ],
                 });
               } catch (e) {
-                console.log(e.toString());
+                channel.send(
+                  `<@!452436342841016341> something went wrong, ${e.toString()}`
+                );
               }
             }
             const logs = guild.channels.cache.get("1028748150149763092");
@@ -80,50 +82,74 @@ Teen rating: \`${response.data.predictions.teen}\`
             },
           })
           .then((response) => {
-            if (response.data.predictions.adult > 75) {
-              const channel = guild.channels.cache.get(message.channel.id);
-              if (message.attachments.size > 1) {
-                message.delete();
-                channel.send({
-                  content: `${message.author}`,
-                  embeds: [
-                    new MessageEmbed()
-                      .setDescription(
-                        "Your message has been deleted due to containing sensitive content."
-                      )
-                      .setColor("BLURPLE"),
-                  ],
-                });
-                const logs = guild.channels.cache.get("1028748150149763092");
-                logs.send({
-                  embeds: [
-                    new MessageEmbed()
-                      .setDescription(
-                        `
+            try {
+              if (response.data.predictions.adult > 75) {
+                const channel = guild.channels.cache.get(message.channel.id);
+                if (message.attachments.size > 1) {
+                  try {
+                    message.delete();
+                    channel.send({
+                      content: `${message.author}`,
+                      embeds: [
+                        new MessageEmbed()
+                          .setDescription(
+                            "Your message has been deleted due to containing sensitive content."
+                          )
+                          .setColor("BLURPLE"),
+                      ],
+                    });
+                    const logs = guild.channels.cache.get(
+                      "1028748150149763092"
+                    );
+                    logs.send({
+                      embeds: [
+                        new MessageEmbed()
+                          .setDescription(
+                            `
   ${message.author} (${message.author.id}) sent an image in ${message.channel}.
   
   Adult rating: \`${response.data.predictions.adult}\`
   Everyone rating: \`${response.data.predictions.everyone}\`
   Teen rating: \`${response.data.predictions.teen}\`
               `
-                      )
-                      .setColor("BLURPLE")
-                      .setImage(`${m.url}`),
-                  ],
-                });
-                return;
+                          )
+                          .setColor("BLURPLE")
+                          .setImage(`${m.url}`),
+                      ],
+                    });
+                    return;
+                  } catch (e) {
+                    channel.send(
+                      `<@!452436342841016341> something went wrong, ${e.toString()}`
+                    );
+                  }
+                }
+                try {
+                  message.delete();
+                  channel.send({
+                    content: `${message.author}`,
+                    embeds: [
+                      new MessageEmbed()
+                        .setDescription(
+                          "Your message has been deleted due to containing sensitive content."
+                        )
+                        .setColor("BLURPLE"),
+                    ],
+                  });
+                } catch (e) {
+                  channel.send(
+                    `<@!452436342841016341> something went wrong, ${e.toString()}`
+                  );
+                }
               }
-              message.delete();
-              channel.send({
-                content: `${message.author}`,
-                embeds: [
-                  new MessageEmbed()
-                    .setDescription(
-                      "Your message has been deleted due to containing sensitive content."
-                    )
-                    .setColor("BLURPLE"),
-                ],
-              });
+            } catch (e) {
+              if (
+                !e.toString(
+                  "TypeError: Cannot read properties of undefined (reading 'adult')"
+                )
+              ) {
+                console.log(e);
+              }
             }
             const logs = guild.channels.cache.get("1028748150149763092");
             logs.send({
