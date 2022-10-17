@@ -1,7 +1,7 @@
 .header {
-  padding: 80px;
+  padding: 40px;
   text-align: center;
-  background: #1abc9c;
+  background: #1e4b4b;
   color: white;
 }
 
@@ -22,12 +22,8 @@
   text-decoration: none;
 }
 
-.navbar a.right {
-  float: right;
-}
-
 .navbar a:hover {
-  background-color: #ddd;
+  background-color: rgb(235, 128, 128);
   color: black;
 }
 
@@ -62,9 +58,4 @@
     float: none;
     width: 100%;
   }
-}
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
 }
