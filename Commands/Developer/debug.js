@@ -35,9 +35,5 @@ module.exports = {
       interaction.reply({ content: "Pulling new content...", ephemeral: true });
       exec("git pull origin main", { encoding: "utf-8" });
     }
-    if (string === "pm2 update") {
-      interaction.reply({ content: "Updating PM2...", ephemeral: true });
-      exec("pm2 update", { encoding: "utf-8" });
-    }
   },
 };
