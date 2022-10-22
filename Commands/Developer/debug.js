@@ -26,12 +26,10 @@ module.exports = {
     if (string === "restart") {
       interaction.reply({ content: "Restarting...", ephemeral: true });
       exec("pm2 restart index", { encoding: "utf-8" });
-    }
-    if (string === "stop") {
+    } else if (string === "stop") {
       interaction.reply({ content: "Stopping...", ephemeral: true });
       exec("pm2 stop index", { encoding: "utf-8" });
-    }
-    if (string === "pull") {
+    } else if (string === "pull") {
       interaction.reply({ content: "Pulling new content...", ephemeral: true });
       exec("git pull origin main", { encoding: "utf-8" });
     }
