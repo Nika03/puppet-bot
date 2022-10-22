@@ -30,5 +30,9 @@ module.exports = {
       interaction.reply({ content: "Restarting...", ephemeral: true });
       exec("pm2 restart index", { encoding: "utf-8" });
     }
+    if (string === "stop") {
+      interaction.reply({ content: "Stopping...", ephemeral: true });
+      exec("pm2 stop index", { encoding: "utf-8" });
+    }
   },
 };
