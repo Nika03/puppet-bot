@@ -8,8 +8,8 @@ module.exports = {
    */
   async execute(message, client) {
     if (message.channel.id === "946520764297912343") {
-      const random_number1 = Math.floor(Math.random() * 100);
-      const random_number2 = Math.floor(Math.random() * 100);
+      const random_number1 = Math.floor(Math.random() * 250);
+      const random_number2 = Math.floor(Math.random() * 250);
       if (random_number1 === random_number2) {
         message.reply("https://tenor.com/view/whygena-reggie-gif-20262381");
       }
