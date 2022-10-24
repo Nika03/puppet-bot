@@ -13,6 +13,7 @@ module.exports = {
     ) {
       try {
         await member.timeout(60000, "Stop.");
+        return;
       } catch (e) {
         console.log(e);
       }
