@@ -7,17 +7,6 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
-    if (
-      message.toString() ===
-      "https://media.discordapp.net/attachments/946520764297912343/1034043730098917426/fed0e5ba285c845cd3e661792703b24e.jpg?width=614&height=702"
-    ) {
-      try {
-        await member.timeout(60000, "Stop.");
-        return;
-      } catch (e) {
-        console.log(e);
-      }
-    }
     if (message.channel.id === "946520764297912343") {
       const random_number1 = Math.floor(Math.random() * 250);
       const random_number2 = Math.floor(Math.random() * 250);

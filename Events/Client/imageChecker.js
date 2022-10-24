@@ -88,16 +88,6 @@ Teen rating: \`${response.data.predictions.teen}\`
                 if (message.attachments.size > 1) {
                   try {
                     message.delete();
-                    channel.send({
-                      content: `${message.author}`,
-                      embeds: [
-                        new MessageEmbed()
-                          .setDescription(
-                            "Your message has been deleted due to containing sensitive content."
-                          )
-                          .setColor("BLURPLE"),
-                      ],
-                    });
                     const logs = guild.channels.cache.get(
                       "1028748150149763092"
                     );
@@ -126,16 +116,6 @@ Teen rating: \`${response.data.predictions.teen}\`
                 }
                 try {
                   message.delete();
-                  channel.send({
-                    content: `${message.author}`,
-                    embeds: [
-                      new MessageEmbed()
-                        .setDescription(
-                          "Your message has been deleted due to containing sensitive content."
-                        )
-                        .setColor("BLURPLE"),
-                    ],
-                  });
                 } catch (e) {
                   channel.send(
                     `<@!452436342841016341> something went wrong, ${e.toString()}`
