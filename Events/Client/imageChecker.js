@@ -21,7 +21,7 @@ module.exports = {
         })
         .then((response) => {
           try {
-            if (response.data.predictions.adult > 75) {
+            if (response.data.predictions.adult > 93) {
               const channel = guild.channels.cache.get(message.channel.id);
               try {
                 message.delete();
@@ -83,7 +83,7 @@ Teen rating: \`${response.data.predictions.teen}\`
           })
           .then((response) => {
             try {
-              if (response.data.predictions.adult > 75) {
+              if (response.data.predictions.adult > 93) {
                 const channel = guild.channels.cache.get(message.channel.id);
                 if (message.attachments.size > 1) {
                   try {
