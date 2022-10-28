@@ -57,6 +57,7 @@ module.exports = {
         ],
       });
       setting.imageFilter = boolean;
+      await setting.save();
     }
   },
 };
