@@ -23,6 +23,8 @@ module.exports = {
       utilityArray = [];
       funArray = [];
       moderationArray = [];
+      economyArray = [];
+      otherArray = [];
       client.commands.map(async (c) => {
         if (c.type === "Utility") {
           utilityArray.push(`\`${c.name}\``);
@@ -30,6 +32,10 @@ module.exports = {
           funArray.push(`\`${c.name}\``);
         } else if (c.type === "Moderation") {
           moderationArray.push(`\`${c.name}\``);
+        } else if (c.type === "Economy") {
+          economyArray.push(`\`${c.name}\``);
+        } else if (c.type === "Other") {
+          otherArray.push(`\`${c.name}\``);
         }
       });
       interaction.reply({
@@ -46,6 +52,12 @@ ${funArray.toString().replaceAll(",", ", ")}
 
 Moderation Commands:
 ${moderationArray.toString().replaceAll(",", ", ")}
+
+Economy Commands:
+${economyArray.toString().replaceAll(",", ", ")}
+
+Other Commands:
+${otherArray.toString().replaceAll(",", ", ")}
 `
             )
             .setColor("DARK_NAVY")
