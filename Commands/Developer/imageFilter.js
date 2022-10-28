@@ -1,6 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const RestartsModel = require("../../Structures/Schema/Restarts");
-const setting = await RestartsModel.findOne();
 
 module.exports = {
   name: "imgfilter",
@@ -21,6 +20,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
+    const setting = await RestartsModel.findOne();
     if (interaction.toString() === "/imgfilter") {
       if (!setting.imageFilter) {
         imgfilter_boolean = "off";
