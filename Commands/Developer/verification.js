@@ -4,6 +4,8 @@ module.exports = {
   name: "verification",
   description: "Disable or enable verification.",
   permission: "ADMINISTRATOR",
+  type: "Other",
+  usage: "`/verification`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

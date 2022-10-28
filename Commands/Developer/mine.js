@@ -4,6 +4,8 @@ module.exports = {
   name: "mine",
   description: "Mine some items.",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage: "`/mine`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

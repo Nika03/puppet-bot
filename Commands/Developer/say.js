@@ -4,6 +4,8 @@ module.exports = {
   name: "say",
   description: "Say something. Staff only.",
   permission: "MANAGE_MESSAGES",
+  type: "Fun",
+  usage: "`/say [message] [channel]`",
   options: [
     {
       name: `message`,

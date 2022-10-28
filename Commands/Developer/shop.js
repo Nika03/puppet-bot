@@ -9,6 +9,9 @@ module.exports = {
   name: "shop",
   description: "Shows commands related to the shop.",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage:
+    "`/shop view, /shop buy [item], /shop add-item [name] [description] [price] [role], /shop add-item [name] [description] [price] [role] [stock], /shop remove-item [name]`",
   options: [
     {
       name: `view`,

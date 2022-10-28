@@ -5,6 +5,8 @@ module.exports = {
   name: "status",
   description: "Gives you the bot's status.",
   permission: "ADMINISTRATOR",
+  type: "Utility",
+  usage: "`/status`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

@@ -4,6 +4,8 @@ module.exports = {
   name: "hug",
   description: "Hug someone! (Command requested by: Noctis Clock Ticks#0082)",
   permission: "SEND_MESSAGES",
+  type: "Fun",
+  usage: "/hug [user]",
   options: [
     {
       name: `user`,

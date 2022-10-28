@@ -4,6 +4,8 @@ module.exports = {
   name: "setstatus",
   description: "Change the bot's status.",
   permission: "ADMINISTRATOR",
+  type: "Other",
+  usage: "`/setstatus [type] [status]`",
   options: [
     {
       name: `type`,

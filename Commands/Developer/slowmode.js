@@ -4,6 +4,8 @@ module.exports = {
   name: "slowmode",
   description: "View and change the slowmode of the channel.",
   permission: "MANAGE_MESSAGES",
+  type: "Utility",
+  usage: "`/slowmode, /slowmode [time]`",
   options: [
     {
       name: "time",

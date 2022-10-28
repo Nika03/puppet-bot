@@ -4,6 +4,9 @@ module.exports = {
   name: "settings",
   description: "Change the settings you want.",
   permission: "SEND_MESSAGES",
+  type: "Utility",
+  usage:
+    "`/settings allowed-channels [add-channel], /settings allowed-channels [remove-channel], /settings view-allowed-channels, /settings view-allowed-commands [channel], /settings allowed-commands [channel] [add-command], /settings allowed-commands [channel] [remove-command] `",
   options: [
     {
       name: `allowed-channels`,

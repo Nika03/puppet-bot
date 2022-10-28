@@ -6,6 +6,8 @@ module.exports = {
   name: "reverse-search",
   description: "Reverse search an image.",
   permission: "SEND_MESSAGES",
+  type: "Utility",
+  usage: "`/reverse-search [url]`",
   options: [
     {
       name: "url",

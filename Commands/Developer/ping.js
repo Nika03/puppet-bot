@@ -4,6 +4,8 @@ module.exports = {
   name: "ping",
   description: "Gives the current latency of the bot.",
   permission: "SEND_MESSAGES",
+  type: "Utility",
+  usage: "`/ping`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

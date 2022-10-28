@@ -4,6 +4,8 @@ module.exports = {
   name: "warn",
   description: "Warn an user that has behaved badly.",
   permission: "MANAGE_MESSAGES",
+  type: "Moderation",
+  usage: "`/warn [user] [reason]`",
   options: [
     {
       name: `user`,

@@ -4,6 +4,8 @@ module.exports = {
   name: "unban",
   description: "Unban an user that has been banned before.",
   permission: "BAN_MEMBERS",
+  type: "Moderation",
+  usage: "`/unban [user] [reason]`",
   options: [
     {
       name: `user`,

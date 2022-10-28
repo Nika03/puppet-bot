@@ -9,6 +9,8 @@ module.exports = {
   name: "trivia",
   description: "Send a trivia game to general.",
   permission: "ADMINISTRATOR",
+  type: "Fun",
+  usage: "`/trivia`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

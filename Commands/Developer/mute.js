@@ -4,6 +4,8 @@ module.exports = {
   name: "mute",
   description: "Mute an user that has been behaving badly.",
   permission: "MANAGE_MESSAGES",
+  type: "Moderation",
+  usage: "`/mute [user] [time] [reason]`",
   options: [
     {
       name: "user",

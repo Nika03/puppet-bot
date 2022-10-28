@@ -4,6 +4,8 @@ module.exports = {
   name: "punishments",
   description: "Check your own punishments.",
   permission: "SEND_MESSAGES",
+  type: "Utility",
+  usage: "`/punishments`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

@@ -4,6 +4,8 @@ module.exports = {
   name: "staff-list",
   description: "Shows the current staff and their positions as a staff.",
   permission: "SEND_MESSAGES",
+  type: "Utility",
+  usage: "`/staff-list`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

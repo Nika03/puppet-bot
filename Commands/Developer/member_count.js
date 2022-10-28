@@ -4,6 +4,8 @@ module.exports = {
   name: "membercount",
   description: "Check the server's member count.",
   permission: "SEND_MESSAGES",
+  type: "Utility",
+  usage: "`/membercount`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

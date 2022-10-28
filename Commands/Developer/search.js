@@ -4,6 +4,8 @@ module.exports = {
   name: "search",
   description: "Search for coins like a weirdo.",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage: "`/search`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

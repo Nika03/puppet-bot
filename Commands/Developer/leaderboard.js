@@ -9,6 +9,8 @@ module.exports = {
   name: "leaderboard",
   description: "Check the currency leaderboard.",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage: "`/leaderboard`",
   /**
    * @param {CommandInteraction} interaction
    */
