@@ -4,6 +4,9 @@ module.exports = {
   name: "balance",
   description: "Shows commands related to balance.",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage:
+    "`/balance view, /balance view [user], /balance give-coins [user] [amount], /balance remove-coins [user] [amount]`",
   options: [
     {
       name: `view`,

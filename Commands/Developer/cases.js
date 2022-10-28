@@ -9,6 +9,8 @@ module.exports = {
   name: "cases",
   description: "Check a certain case or view the cases of an user.",
   permission: "SEND_MESSAGES",
+  type: "Moderation",
+  usage: "`/cases view [case], /cases view [user]`",
   options: [
     {
       name: "view",

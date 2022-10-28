@@ -4,10 +4,12 @@ module.exports = {
   name: "fotd",
   description: "Suggest a fact of the day to be sent.",
   permission: "SEND_MESSAGES",
+  type: "Other",
+  usage: "`/fotd [suggestion]`",
   options: [
     {
-      name: "suggest",
-      description: "Your suggestion",
+      name: "suggestion",
+      description: "The suggestion to be sent to the staff team.",
       type: "STRING",
       required: true,
     },
@@ -42,7 +44,7 @@ module.exports = {
         ephemeral: true,
       });
     }
-    const suggestion = interaction.options.getString("suggest");
+    const suggestion = interaction.options.getString("suggestion");
     const guild = client.guilds.cache.get("946518364216520774");
     const channel = guild.channels.cache.get("1010273015658983524");
     interaction.reply({

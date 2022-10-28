@@ -3,12 +3,16 @@ module.exports = {
   name: "avatar",
   description: "Check someone's avatar.",
   permission: "SEND_MESSAGES",
-  options: [{
-    name: 'user',
-    description: 'The user to check.',
-    type: 'USER',
-    required: false
-  }],
+  type: "Utility",
+  usage: "`/avatar, /avatar [user]`",
+  options: [
+    {
+      name: "user",
+      description: "The user to check.",
+      type: "USER",
+      required: false,
+    },
+  ],
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client
@@ -19,7 +23,7 @@ module.exports = {
       channel: interaction.channel.id,
     });
     if (is_blacklisted !== null) {
-      if (!is_blacklisted.commands.includes('avatar')) {
+      if (!is_blacklisted.commands.includes("avatar")) {
         return interaction.reply({
           embeds: [
             new MessageEmbed().setDescription(
@@ -39,21 +43,25 @@ module.exports = {
         ephemeral: true,
       });
     }
-    if(interaction.toString().includes('/avatar user:')){
-        const user = interaction.options.getUser('user')
-        interaction.reply({embeds: [
-            new MessageEmbed()
-            .setAuthor({name: `${user.tag}'s avatar.`})
+    if (interaction.toString().includes("/avatar user:")) {
+      const user = interaction.options.getUser("user");
+      interaction.reply({
+        embeds: [
+          new MessageEmbed()
+            .setAuthor({ name: `${user.tag}'s avatar.` })
             .setImage(user.avatarURL())
-            .setColor('GREEN')
-        ]})
+            .setColor("GREEN"),
+        ],
+      });
     } else {
-        interaction.reply({embeds: [
-            new MessageEmbed()
-            .setAuthor({name: `${interaction.user.tag}'s avatar.`})
+      interaction.reply({
+        embeds: [
+          new MessageEmbed()
+            .setAuthor({ name: `${interaction.user.tag}'s avatar.` })
             .setImage(interaction.user.avatarURL())
-            .setColor('GREEN')
-        ]})
+            .setColor("GREEN"),
+        ],
+      });
     }
   },
 };

@@ -9,6 +9,8 @@ module.exports = {
   name: "clickthebutton",
   description: "Force the button event in general.",
   permission: "MANAGE_MESSAGES",
+  type: "Fun",
+  usage: "`/clickthebutton, /clickthebutton no-time`",
   options: [
     {
       name: "no-time",

@@ -4,6 +4,8 @@ module.exports = {
   name: "claim-reward",
   description: "Claim rewards given to you!",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage: "`/claim-reward level [level]`",
   options: [
     {
       name: `level`,

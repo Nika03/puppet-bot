@@ -6,6 +6,8 @@ module.exports = {
   name: "debug",
   description: "Do some debug stuff.",
   permission: "SEND_MESSAGES",
+  type: "Forbidden",
+  usage: "`Forbidden`",
   options: [
     {
       name: "option",
@@ -20,18 +22,17 @@ module.exports = {
    */
   async execute(interaction, client) {
     if (interaction.user.id !== "452436342841016341") {
-      return;
+      return interaction.reply({
+        content: "You cannot run this command.",
+        ephemeral: true,
+      });
     }
     const string = interaction.options.getString("option");
     if (string === "restart") {
       interaction.reply({ content: "Restarting...", ephemeral: true });
-      exec("pm2 restart index", { encoding: "utf-8" });
-    } else if (string === "stop") {
-      interaction.reply({ content: "Stopping...", ephemeral: true });
-      exec("pm2 kill", { encoding: "utf-8" });
-    } else if (string === "pull") {
-      interaction.reply({ content: "Pulling new content...", ephemeral: true });
-      exec("git pull origin main", { encoding: "utf-8" });
+      exec("pm2 restart index", { encoding: "utf-8" }).then(() => {
+        interaction.channel.send("Restarted.");
+      });
     }
   },
 };

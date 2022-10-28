@@ -2,28 +2,16 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "help",
-  description: "Shows all the commands and their use.",
+  description: "Shows the list of commands and how to use them.",
   permission: "SEND_MESSAGES",
+  usage: "`/help, /help [command]`",
+  type: "Utility",
   options: [
     {
-      name: `shop`,
-      description: "Shows commands related to the shop command.",
-      type: `SUB_COMMAND`,
-    },
-    {
-      name: `balance`,
-      description: "Shows commands related to the balance command.",
-      type: `SUB_COMMAND`,
-    },
-    {
-      name: `economy`,
-      description: `Shows the commands related to economy.`,
-      type: `SUB_COMMAND`,
-    },
-    {
-      name: `others`,
-      description: `Shows commands related to other things.`,
-      type: `SUB_COMMAND`,
+      name: "command",
+      description: "View information on a certain command.",
+      type: "STRING",
+      required: false,
     },
   ],
   /**
@@ -31,132 +19,71 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const SettingsModel = require("../../Structures/Schema/Settings.js");
-    const is_blacklisted = await SettingsModel.findOne({
-      channel: interaction.channel.id,
-    });
-    if (is_blacklisted) {
-      if (!is_blacklisted.commands.includes(`help`)) {
-        return interaction.reply({
-          embeds: [
-            new MessageEmbed().setDescription(
-              `This command has been disabled in this channel.`
-            ),
-          ],
-          ephemeral: true,
-        });
-      }
+    if (interaction.toString() === "/help") {
+      utilityArray = [];
+      funArray = [];
+      moderationArray = [];
+      client.commands.map(async (c) => {
+        if (c.type === "Utility") {
+          utilityArray.push(`\`${c.name}\``);
+        } else if (c.type === "Fun") {
+          funArray.push(`\`${c.name}\``);
+        } else if (c.type === "Moderation") {
+          moderationArray.push(`\`${c.name}\``);
+        }
+      });
+      interaction.reply({
+        embeds: [
+          new MessageEmbed()
+            .setDescription(
+              `**Welcome to the help command. You can view more information on the commands with /help [command].**
+
+Utility Commands:
+${utilityArray.toString().replaceAll(",", ", ")}
+
+Fun Commands:
+${funArray.toString().replaceAll(",", ", ")}
+
+Moderation Commands:
+${moderationArray.toString().replaceAll(",", ", ")}
+`
+            )
+            .setColor("DARK_NAVY")
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
+            .setTimestamp(),
+        ],
+      });
     } else {
-      if (!is_blacklisted) {
+      embedMessage = false;
+      const option = interaction.options.getString("command");
+      client.commands.map(async (c) => {
+        if (c.name === option) {
+          embedMessage = `
+Information on the command \`${option}\`:
+
+Name: **${c.name}**
+Type: ${c.type}
+Description: \`${c.description}\` 
+Usage: ${c.usage}
+Permissions: ${c.permission}
+`;
+        }
+      });
+      if (!embedMessage) {
+        return interaction.reply({
+          content: `There is no command with the name \`${option}\``,
+        });
       } else {
-        return interaction.reply({
+        interaction.reply({
           embeds: [
-            new MessageEmbed().setDescription(
-              `This command has been disabled in this channel.`
-            ),
+            new MessageEmbed()
+              .setDescription(`${embedMessage.toString()}`)
+              .setColor("DARK_NAVY")
+              .setFooter({ text: `Requested by ${interaction.user.tag}` })
+              .setTimestamp(),
           ],
-          ephemeral: true,
         });
       }
-    }
-    if (interaction.toString() === `/help shop`) {
-      interaction.reply({
-        embeds: [
-          new MessageEmbed()
-            .setColor(`DARK_GOLD`)
-            .setAuthor({
-              name: `${interaction.member.user.tag}`,
-              iconURL: `${interaction.member.user.avatarURL()}`,
-            })
-            .setDescription(
-              `
-Welcome to the help command! Here you can see the shop commands and their use.
-
-**/shop view** 
- >> View what is in the shop and its price and description.
-**/shop buy \`[item]\`**
- >> Buy an item from the shop.
-**/shop add-item \`[name] [description] [price] [role]\`**
- >> Adds an item to the shop with the provided values. **(Admin Only)**
-**/shop remove-item \`[item]\`**
- >> Removes the specified item from the shop. **(Admin Only)**
-            `
-            )
-            .setTimestamp(),
-        ],
-      });
-    } else if (interaction.toString() === `/help balance`) {
-      interaction.reply({
-        embeds: [
-          new MessageEmbed()
-            .setColor(`DARK_GOLD`)
-            .setAuthor({
-              name: `${interaction.member.user.tag}`,
-              iconURL: `${interaction.member.user.avatarURL()}`,
-            })
-            .setDescription(
-              `
-Welcome to the help command! Here you can see the balance commands and their use.
-
-**/balance view**
- >> View your current balance, and others people balance. Maybe checking their balance will hide your pain from being poor. 
-**/balance give-coins \`[user] [amount]\`**
- >> Give the provided coins to the provided user. **(Staff Only)**
-**/balance remove-coins \`[user] [amount]\`**
-  >> Remove the provided coins from the provided user. **(Staff Only)**
-                `
-            )
-            .setTimestamp(),
-        ],
-      });
-    } else if (interaction.toString() === `/help economy`) {
-      interaction.reply({
-        embeds: [
-          new MessageEmbed()
-            .setColor(`DARK_GOLD`)
-            .setAuthor({
-              name: `${interaction.member.user.tag}`,
-              iconURL: `${interaction.member.user.avatarURL()}`,
-            })
-            .setDescription(
-              `
-Welcome to the help command! Here you can see the economy commands and their use.
-
-**/daily**
- >> Claim your daily, it gives **50** tedollars and a bonus based on your streak. (10 tedollars per day)
-**/ask** 
- >> Ask the damned cat for forgiveness and tedollars, and hope for a response. Good luck to not be caught by the rat.
-**/claim-reward \`[level]\`**
- >> Claim a reward for leveling up. The following levels award you with coins: Level 5, Level 10, Level 20, Level 30, Level 40, Level 50, Level 75 and Level 100.
-                `
-            )
-            .setTimestamp(),
-        ],
-      });
-    } else {
-      interaction.reply({
-        embeds: [
-          new MessageEmbed()
-            .setColor(`DARK_GOLD`)
-            .setAuthor({
-              name: `${interaction.member.user.tag}`,
-              iconURL: `${interaction.member.user.avatarURL()}`,
-            })
-            .setDescription(
-              `
-Welcome to the help command! Here you can see other commands and their use.
-
-**/help [command]**
- >> Shows all the commands available on the module and their use.
-**/ping** 
- >> Shows the current latency of the bot.
-**/staff-list**
- >> Shows all staff members and their position. It also shows if they are online, occupied, offline or idle.
-                `
-            )
-            .setTimestamp(),
-        ],
-      });
     }
   },
 };

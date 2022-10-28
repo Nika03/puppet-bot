@@ -3,6 +3,8 @@ module.exports = {
   name: "ask",
   description: "Ask neco arc for money, maybe the cat likes you, or not.",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage: "`/ask`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

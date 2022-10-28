@@ -4,6 +4,8 @@ module.exports = {
   name: "button",
   description: "button",
   permission: "ADMINISTRATOR",
+  type: "Other",
+  usage: "`/button`",
 
   execute(interaction) {
     const row = new MessageActionRow();

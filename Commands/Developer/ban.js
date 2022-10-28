@@ -4,6 +4,9 @@ module.exports = {
   name: "ban",
   description: "Ban an user.",
   permission: "BAN_MEMBERS",
+  type: "Moderation",
+  usage:
+    "`/ban [user], /ban [user] [reason], /ban [user] [time], /ban [user] [reason] [time]`",
   options: [
     {
       name: `user`,
@@ -157,7 +160,7 @@ module.exports = {
         ],
       });
     } catch (e) {
-      console.log(e.toString());
+      console.log(e);
     }
     setTimeout(() => {
       guild.members.ban(uid).catch((e) => {

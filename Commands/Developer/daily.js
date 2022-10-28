@@ -4,6 +4,8 @@ module.exports = {
   name: "daily",
   description: "Claim your daily coins!",
   permission: "SEND_MESSAGES",
+  type: "Economy",
+  usage: "`/daily`",
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client

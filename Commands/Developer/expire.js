@@ -4,6 +4,8 @@ module.exports = {
   name: "expire",
   description: "Expire a warning.",
   permission: "MANAGE_MESSAGES",
+  type: "Moderation",
+  usage: "`/expire [case] [reason]`",
   options: [
     {
       name: "case",
