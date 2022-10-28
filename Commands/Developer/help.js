@@ -84,6 +84,7 @@ Permissions: ${c.permission}
       if (!embedMessage) {
         return interaction.reply({
           content: `There is no command with the name \`${option}\``,
+          ephemeral: true,
         });
       } else {
         interaction.reply({
