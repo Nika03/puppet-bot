@@ -30,7 +30,9 @@ module.exports = {
       return interaction.reply({
         embeds: [
           new MessageEmbed()
-            .setDescription(`The image filter is currently **${boolean}**.`)
+            .setDescription(
+              `The image filter is currently **${imgfilter_boolean}**.`
+            )
             .setColor("YELLOW")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
