@@ -30,9 +30,13 @@ module.exports = {
     const string = interaction.options.getString("option");
     if (string === "restart") {
       interaction.reply({ content: "Restarting...", ephemeral: true });
-      exec("pm2 restart index", { encoding: "utf-8" }).then(() => {
-        interaction.channel.send("Restarted.");
-      });
+      exec("pm2 restart index", { encoding: "utf-8" });
+    } else if (string === "stop") {
+      interaction.reply({ content: "Stopping...", ephemeral: true });
+      exec("pm2 stop index", { encoding: "utf-8" });
+    } else if (string === "pull") {
+      interaction.reply({ content: "Pulling new content...", ephemeral: true });
+      exec("git pull origin main", { encoding: "utf-8" });
     }
   },
 };
