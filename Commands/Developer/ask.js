@@ -56,6 +56,7 @@ module.exports = {
             )
             .setColor(`#ff3067`),
         ],
+        ephemeral: true,
       });
     }
     if (coins < 5) {
