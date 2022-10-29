@@ -63,7 +63,6 @@ module.exports = {
       interaction.reply({
         embeds: [
           new MessageEmbed()
-            .setAuthor({ name: `No coins earned` })
             .setDescription("Honestly, its a skill issue. And a you problem.")
             .setColor(`#ff3067`)
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
@@ -77,8 +76,9 @@ module.exports = {
       interaction.reply({
         embeds: [
           new MessageEmbed()
+            .setAuthor({ name: `${coins} coins earned` })
             .setDescription(
-              `You dig up an old time capsule someone buried in their front yard a few years ago, you find ${coins} inside, neato!`
+              "You managed to get a couple coins by faking a disease. Trash human."
             )
             .setColor(`#ff3067`)
             .setFooter({ text: `Requested by ${interaction.user.tag}` })

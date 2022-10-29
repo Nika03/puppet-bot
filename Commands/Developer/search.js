@@ -90,9 +90,8 @@ module.exports = {
       interaction.reply({
         embeds: [
           new MessageEmbed()
-            .setAuthor({ name: `${coins} coins found` })
             .setDescription(
-              "You found some coins on the floor. You ignored a poor old lady trying to find it. Are you ashamed of yourself?"
+              `You dig up an old time capsule someone buried in their front yard a few years ago, you find ${coins} inside, neato!`
             )
             .setColor(`#ff3067`)
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
