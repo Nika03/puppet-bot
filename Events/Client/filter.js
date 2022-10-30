@@ -33,7 +33,7 @@ module.exports = {
     stopf = false;
     filterX = 0;
     ax = 0;
-    const array = message.toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').split(" ");
+    const array = message.toString().replace(/[&\/\\#,+-()$~%.'":*?<>{}]/g, '').split(" ");
     do {
       if (message.author.bot) return;
       if (ax === array.length) {
@@ -77,7 +77,7 @@ module.exports = {
               new MessageEmbed()
                 .setColor("DARK_NAVY")
                 .setDescription(
-                  `You have been banned in **Neco Puppeteers' Cult for: \`Triggering the filter\`. You have been banned for **1 day** and this ban cannot be appealed. discord.gg/puppet`
+                  `You have been banned in **Neco Puppeteers' Cult** for: \`Triggering the filter\`. You have been banned for **1 day** and this ban cannot be appealed. discord.gg/puppet`
                 ),
             ],
           });
