@@ -33,14 +33,15 @@ module.exports = {
     stopf = false;
     filterX = 0;
     ax = 0;
-    const array = message.toString().replace(/[&\/\\#,+-()$~%.'":*?<>{}]/g, '').split(" ");
+    const array = message.toString().split(" ");
     do {
       if (message.author.bot) return;
       if (ax === array.length) {
         stopf = true;
         return;
       }
-      if (array[ax] === filter[filterX]) {
+      checkWordFilter = array[ax].toString().replace(/[&\/\\#,+-()$~%.'":*?<>{}]/g, '')
+      if (checkWordFilter === filter[filterX]) {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = guild.channels.cache.get(message.channel.id);
