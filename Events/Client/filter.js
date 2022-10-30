@@ -40,8 +40,7 @@ module.exports = {
         stopf = true;
         return;
       }
-      checkWordFilter = array[ax].toString().replace(/[&\/\\#,+-()$~%.'":*?<>{}]/g, '')
-      if (checkWordFilter === filter[filterX]) {
+      if (array[ax] === filter[filterX]) {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = guild.channels.cache.get(message.channel.id);
