@@ -33,7 +33,7 @@ module.exports = {
     stopf = false;
     filterX = 0;
     ax = 0;
-    const array = message.toString().split(" ");
+    const array = message.toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');.split(" ");
     do {
       if (message.author.bot) return;
       if (ax === array.length) {
