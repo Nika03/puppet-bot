@@ -20,7 +20,6 @@ module.exports = {
         console.log(e);
       });
     }
-    if (message.author.id !== "452436342841016341") return;
     const filter = [
       "nigga",
       "niggas",
@@ -63,18 +62,18 @@ module.exports = {
               .setTimestamp(),
           ],
         });
-        //const CasesModel = require("../../Structures/Schema/Cases");
-        //await CasesModel.create({
-        //  punisher: `986354647688179742`,
-        //  punished: `${message.author.id}`,
-        //  type: "ban",
-        //  reason: "Automaticly banned for triggering the filter.",
-        //  time: Math.floor(Date.now() / 1000 + 86400),
-        //  expired: false,
-        //  case: restart.cases,
-        //});
-        //restart.cases++;
-        //await restart.save();
+        const CasesModel = require("../../Structures/Schema/Cases");
+        await CasesModel.create({
+          punisher: `986354647688179742`,
+          punished: `${message.author.id}`,
+          type: "ban",
+          reason: "Automaticly banned for triggering the filter.",
+          time: Math.floor(Date.now() / 1000 + 86400),
+          expired: false,
+          case: restart.cases,
+        });
+        restart.cases++;
+        await restart.save();
         const member = guild.members.cache.get(message.author.id);
         try {
           member.send({
@@ -89,11 +88,11 @@ module.exports = {
         } catch (e) {
           console.log(e);
         }
-        //setTimeout(() => {
-        //  guild.members.ban(message.author.id).catch((e) => {
-        //    console.log(e);
-        //  });
-        //}, 1000);
+        setTimeout(() => {
+          guild.members.ban(message.author.id).catch((e) => {
+            console.log(e);
+          });
+        }, 1000);
         stopf = true;
       } else {
         if (filterX >= filter.length) {
