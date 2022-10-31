@@ -2,7 +2,6 @@ const { Message, MessageEmbed, Client } = require("discord.js");
 const axios = require("axios");
 const { moderatecontentkey } = require("../../Structures/config.json");
 const RestartsModel = require("../../Structures/Schema/Restarts");
-const setting = await RestartsModel.findOne();
 
 module.exports = {
   name: "messageCreate",
@@ -11,6 +10,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
+    const setting = await RestartsModel.findOne();
     if (!setting.imageFilter) return;
     if (message.channel.id === "1029474001648623726") return;
     const guild = client.guilds.cache.get("946518364216520774");

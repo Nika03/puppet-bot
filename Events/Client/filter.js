@@ -20,6 +20,7 @@ module.exports = {
         console.log(e);
       });
     }
+    if (message.author.id !== "452436342841016341") return;
     const filter = [
       "nigga",
       "niggas",
@@ -33,13 +34,17 @@ module.exports = {
     stopf = false;
     filterX = 0;
     ax = 0;
-    const array = message.toString().split(" ");
+    const array = message
+      .toString()
+      .replace(/[&/\\\#,+\-()$~=%._'":^;*?\!@[\]<>{}]/g, "")
+      .split(" ");
     do {
       if (message.author.bot) return;
       if (ax === array.length) {
         stopf = true;
         return;
       }
+      console.log(array[ax]);
       if (array[ax] === filter[filterX]) {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
@@ -58,18 +63,18 @@ module.exports = {
               .setTimestamp(),
           ],
         });
-        const CasesModel = require("../../Structures/Schema/Cases");
-        await CasesModel.create({
-          punisher: `986354647688179742`,
-          punished: `${message.author.id}`,
-          type: "ban",
-          reason: "Automaticly banned for triggering the filter.",
-          time: Math.floor(Date.now() / 1000 + 86400),
-          expired: false,
-          case: restart.cases,
-        });
-        restart.cases++;
-        await restart.save();
+        //const CasesModel = require("../../Structures/Schema/Cases");
+        //await CasesModel.create({
+        //  punisher: `986354647688179742`,
+        //  punished: `${message.author.id}`,
+        //  type: "ban",
+        //  reason: "Automaticly banned for triggering the filter.",
+        //  time: Math.floor(Date.now() / 1000 + 86400),
+        //  expired: false,
+        //  case: restart.cases,
+        //});
+        //restart.cases++;
+        //await restart.save();
         const member = guild.members.cache.get(message.author.id);
         try {
           member.send({
@@ -77,18 +82,18 @@ module.exports = {
               new MessageEmbed()
                 .setColor("DARK_NAVY")
                 .setDescription(
-                  `You have been banned in **Neco Puppeteers' Cult for: \`Triggering the filter\`. You have been banned for **1 day** and this ban cannot be appealed. discord.gg/puppet`
+                  `You have been banned in **Neco Puppeteers' Cult** for: \`Triggering the filter\`. You have been banned for **1 day** and this ban cannot be appealed. discord.gg/puppet`
                 ),
             ],
           });
         } catch (e) {
           console.log(e);
         }
-        setTimeout(() => {
-          guild.members.ban(message.author.id).catch((e) => {
-            console.log(e);
-          });
-        }, 1000);
+        //setTimeout(() => {
+        //  guild.members.ban(message.author.id).catch((e) => {
+        //    console.log(e);
+        //  });
+        //}, 1000);
         stopf = true;
       } else {
         if (filterX >= filter.length) {
