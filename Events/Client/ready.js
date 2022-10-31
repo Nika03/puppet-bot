@@ -11,10 +11,7 @@ module.exports = {
    */
   async execute(client) {
     console.log("Puppet bot is online!");
-    client.user.setActivity(
-      "you gamble your life savings away for anime girls.",
-      { type: "WATCHING" }
-    );
+    client.user.setActivity("you from the closet.", { type: "WATCHING" });
 
     const URI = db_credentials;
     const URIParams = {
