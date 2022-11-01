@@ -43,7 +43,6 @@ module.exports = {
         stopf = true;
         return;
       }
-      console.log(array[ax]);
       if (array[ax] === filter[filterX]) {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
