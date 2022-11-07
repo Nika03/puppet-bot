@@ -11,7 +11,7 @@ module.exports = {
    */
   async execute(client) {
     console.log("Puppet bot is online!");
-    client.user.setActivity("neco arc stumble to death.", { type: "WATCHING" });
+    client.user.setActivity("you from the closet.", { type: "WATCHING" });
 
     const URI = db_credentials;
     const URIParams = {
@@ -46,6 +46,7 @@ module.exports = {
 
     // Ban Checker
     setInterval(async () => {
+      const usrcases = await RestartsModel.findOne()
       const c = await CasesModel.find();
       c.forEach(async (c) => {
         if (
@@ -66,7 +67,7 @@ module.exports = {
           await CasesModel.create({
             type: "unban",
             punished: user,
-            case: current_restarts.cases,
+            case: usrcases.cases,
             pardoner: "986354647688179742",
             reason_for_expire: "This user has been automaticly unbanned.",
             time: Math.floor(Date.now() / 1000),
@@ -85,8 +86,8 @@ module.exports = {
                   .setTimestamp(),
               ],
             });
-            current_restarts.cases++;
-            await current_restarts.save();
+            usrcases.cases++;
+            await usrcases.save();
           } catch (e) {
             console.log(e);
           }

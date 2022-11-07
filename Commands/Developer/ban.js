@@ -155,7 +155,7 @@ module.exports = {
           new MessageEmbed()
             .setColor("DARK_NAVY")
             .setDescription(
-              `You have been banned in **Neco Puppeteers' Cult** for: ${client.reason}. You have been banned ${client.time} and can appeal at https://forms.gle/CXawHH1m3tjJGDvs6.`
+              `You have been banned in **Neco Puppeteers' Cult** for: ${client.reason}. You have been banned ${client.time} and can appeal at https://forms.gle/CXawHH1m3tjJGDvs6. discord.gg/neco-arc`
             ),
         ],
       });

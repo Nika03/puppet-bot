@@ -7,6 +7,7 @@ const AllRestarts = new mongoose.Schema({
   id: `Number`,
   cases: `Number`,
   verification: "Boolean",
+  imageFilter: "Boolean",
 });
 
 const RestartsModel = mongoose.model("AllRestarts", AllRestarts);
