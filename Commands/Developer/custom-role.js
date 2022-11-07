@@ -143,6 +143,7 @@ module.exports = {
       }
     }
     function create_role(name, icon, color) {
+      if (!color) color = "#000000";
       if (!icon) {
         icon = null;
       } else icon = icon.url;
@@ -172,14 +173,7 @@ module.exports = {
       if (!name) {
         return interaction.reply({
           content:
-            "Cannot create custom role without a name and color. Please try again.",
-          ephemeral: true,
-        });
-      }
-      if (!color) {
-        return interaction.reply({
-          content:
-            "Cannot create custom role without a name and color. Please try again.",
+            "Cannot create custom role without a name. Please try again.",
           ephemeral: true,
         });
       }
