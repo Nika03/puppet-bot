@@ -130,7 +130,7 @@ module.exports = {
       if (!name) name = role_to_modify.name;
       if (!color) color = role_to_modify.color;
       if (!icon) {
-        icon = role_to_modify.icon;
+        icon = role_to_modify.url;
       } else icon = icon.url;
       try {
         role_to_modify.edit({
