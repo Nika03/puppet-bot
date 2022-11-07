@@ -46,12 +46,30 @@ module.exports = {
       });
     }
     const roles = member.roles.cache;
-    if (!roles.has("998713449783771156"))
+    if (!roles.has("998713449783771156") && !roles.has("946524586080628856")) {
       return interaction.reply({
         content:
           "You cannot use this command without <@&998713449783771156> or <@&946524586080628856>.",
         ephemeral: true,
       });
+    }
+    if (!roles.has("998713449783771156")) {
+      role_create_ding = 1;
+    } else {
+      role_create_ding = 0;
+    }
+    if (!roles.has("946524586080628856")) {
+      role_create_dong = 1;
+    } else {
+      role_create_dong = 0;
+    }
+    if (role_create_ding + role_create_dong === 2) {
+      return interaction.reply({
+        content:
+          "You cannot use this command without <@&998713449783771156> or <@&946524586080628856>.",
+        ephemeral: true,
+      });
+    }
     role_exists = false;
     roles.forEach((r) => {
       if (r.name.includes("(Custom)")) {
