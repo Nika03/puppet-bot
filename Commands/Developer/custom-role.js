@@ -183,7 +183,7 @@ module.exports = {
           ephemeral: true,
         });
       }
-      create_role(name_for_role, color, icon);
+      create_role(name_for_role, icon, color);
       return interaction.reply({
         content: "I have created your custom role!",
         ephemeral: true,
