@@ -122,7 +122,7 @@ This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
     userCurrentWarns = 0;
     const allCases = await CasesModel.find();
     allCases.forEach((c) => {
-      if (c.type == "warn" && c.expired == true && c.punished == user.id) {
+      if (c.type == "warn" && c.expired == false && c.punished == user.id) {
         userCurrentWarns++;
       }
     });
