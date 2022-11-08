@@ -56,7 +56,7 @@ module.exports = {
     const UserModeration = require("../../Structures/Schema/UserModeration");
     userWarns = await UserModeration.findOne({ user: user.id });
     if (!userWarns) {
-      await userWarns.create({ user: user.id, warns: 0 });
+      await UserModeration.create({ user: user.id, warns: 0 });
     }
     userWarns = await UserModeration.findOne({ user: user.id });
 
