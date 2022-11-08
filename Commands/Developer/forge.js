@@ -1,4 +1,9 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const {
+  CommandInteraction,
+  MessageEmbed,
+  MessageActionRow,
+  MessageButton,
+} = require("discord.js");
 
 module.exports = {
   name: "forge",
@@ -99,6 +104,14 @@ __Wooden Pickaxe:__
 > Durability: *50*
 > Drop Rarity: *0.5x*
             `),
+        ],
+        components: [
+          new MessageActionRow().addComponents(
+            new MessageButton()
+              .setCustomId("wooden_pickaxe")
+              .setLabel("Wooden Pickaxe")
+              .setStyle("SUCCESS")
+          ),
         ],
       });
     }
