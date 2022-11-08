@@ -52,6 +52,7 @@ module.exports = {
     if (!find_cases.cases) {
       await RestartsModel.updateOne({}, { cases: 1 });
     }
+    const tc = await RestartsModel.findOne();
 
     const UserModeration = require("../../Structures/Schema/UserModeration");
     userWarns = await UserModeration.findOne({ user: user.id });
