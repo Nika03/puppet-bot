@@ -98,7 +98,9 @@ module.exports = {
             .setAuthor({ name: "The Forge" })
             .setTitle(
               "Here are the pickaxes you can craft. Click the respective button to begin crafting them."
-            ).setDescription(`
+            )
+            .setDescription(
+              `
 __Wooden Pickaxe:__
 > Cost: **FREE**
 > Durability: *50*
@@ -111,7 +113,11 @@ __Iron Pickaxe:__
 > Cost: **1200 tedollars, 35 stone, 15 iron, 7 leather**
 > Durability: *350*
 > Drop Rarity: *1x*
-            `),
+            `
+            )
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
+            .setTimestamp()
+            .setColor("ff3067"),
         ],
         components: [
           new MessageActionRow().addComponents(
