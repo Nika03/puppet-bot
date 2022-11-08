@@ -1,8 +1,8 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-  name: "mine",
-  description: "Mine some items.",
+  name: "hunt",
+  description: "Hunt some animals.",
   permission: "SEND_MESSAGES",
   type: "Economy",
   usage: "`Under Development`",
