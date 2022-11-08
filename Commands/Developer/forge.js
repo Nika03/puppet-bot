@@ -103,14 +103,38 @@ __Wooden Pickaxe:__
 > Cost: **FREE**
 > Durability: *50*
 > Drop Rarity: *0.5x*
+__Stone Pickaxe:__
+> Cost: **450 tedollars, 25 stone**
+> Durability: *125*
+> Drop Rarity: *0.7x*
+__Iron Pickaxe:__
+> Cost: **1200 tedollars, 35 stone, 15 iron, 7 leather**
+> Durability: *350*
+> Drop Rarity: *1x*
             `),
         ],
         components: [
           new MessageActionRow().addComponents(
             new MessageButton()
+              .setCustomId("forge_previous_page")
+              .setLabel("Previous Page")
+              .setStyle("PRIMARY"),
+            new MessageButton()
               .setCustomId("wooden_pickaxe")
               .setLabel("Wooden Pickaxe")
-              .setStyle("SUCCESS")
+              .setStyle("SUCCESS"),
+            new MessageButton()
+              .setCustomId("stone_pickae")
+              .setLabel("Stone Pickaxe")
+              .setStyle("SUCCESS"),
+            new MessageButton()
+              .setCustomId("iron_pickaxe")
+              .setLabel("Iron Pickaxe")
+              .setStyle("SUCCESS"),
+            new MessageButton()
+              .setCustomId("forge_next_page")
+              .setLabel("Next Page")
+              .setStyle("PRIMARY")
           ),
         ],
       });
