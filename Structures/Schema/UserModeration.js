@@ -1,10 +1,10 @@
 const { mongoose } = require("mongoose");
 
-const UserModeration = new mongoose.Schema({
+const UserMod = new mongoose.Schema({
   user: "String",
   warns: "Number",
 });
 
-const UMM = mongoose.model("UserModeration", UserModeration);
+const UserModeration = mongoose.model("UserMod", UserMod);
 
-module.exports = UMM;
+module.exports = UserModeration;

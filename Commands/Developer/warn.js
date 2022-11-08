@@ -28,10 +28,7 @@ module.exports = {
     const user = interaction.options.getUser("user");
     const reason = interaction.options.getString("reason");
 
-    //const g = `986357448925401168` //Test server
-    const g = `946518364216520774`; //Neco server
-
-    const guild = client.guilds.cache.get(g);
+    const guild = client.guilds.cache.get("946518364216520774");
     const member = guild.members.cache.get(user.id);
     const channel = guild.channels.cache.get(interaction.channel.id);
     if (!member) {
@@ -55,14 +52,13 @@ module.exports = {
     if (!find_cases.cases) {
       await RestartsModel.updateOne({}, { cases: 1 });
     }
-    const tc = await RestartsModel.findOne();
-    currentwarn = Date.now() / 1000;
-    if (lastwarn + 5 > currentwarn) {
-      return interaction.reply({
-        content: "Double warning prevented.",
-        ephemeral: true,
-      });
+
+    const UserModeration = require("../../Structures/Schema/UserModeration");
+    userWarns = await UserModeration.findOne({ user: user.id });
+    if (!userWarns) {
+      await userWarns.create({ user: user.id, warns: 0 });
     }
+    userWarns = await UserModeration.findOne({ user: user.id });
 
     interaction.reply({
       embeds: [
@@ -70,7 +66,9 @@ module.exports = {
           .setAuthor({ name: `Case ${tc.cases}` })
           .setColor("DARK_GOLD")
           .setDescription(`${user} has been warned for: \`${reason}\``)
-          .setFooter({ text: `You can check your warns with /punishments.` })
+          .setFooter({
+            text: `They now have ${userWarns.warns} active warnings.`,
+          })
           .setTimestamp(),
       ],
     });
@@ -79,7 +77,7 @@ module.exports = {
       content: `${user.id}`,
       embeds: [
         new MessageEmbed()
-          .setAuthor({ name: `User Warned` })
+          .setAuthor({ name: `Case ${tc.cases}` })
           .setColor("DARK_GOLD")
           .setDescription(
             `\`${user.tag}\` has been warned for: \`${reason}\`. This was done by ${interaction.user}.`
@@ -87,7 +85,6 @@ module.exports = {
           .setTimestamp(),
       ],
     });
-    lastwarn = Date.now() / 1000;
     await CasesModel.create({
       punished: user.id,
       punisher: interaction.user.id,
@@ -121,75 +118,60 @@ This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
     }
     tc.cases++;
     await tc.save();
-    const UMM = require("../../Structures/Schema/UserModeration");
-    const ummc = await UMM.findOne({ user: user.id });
-    if (!ummc) {
-      await UMM.create({ user: user.id });
-    }
-    const uwc = await UMM.findOne({ user: user.id });
-    if (!uwc.warns) {
-      await UMM.findOneAndUpdate({ user: user.id }, { warns: 1 });
-    } else {
-      const nw = uwc.warns + 1;
-      await UMM.findOneAndUpdate({ user: user.id }, { warns: nw });
-    }
-    const cfw = await UMM.findOne({ user: user.id });
-    if (cfw.warns === 2) {
+    userCurrentWarns = 0;
+    await CasesModel.find().forEach((c) => {
+      if (c.type == "warn" && c.expired == true && c.punished == user.id) {
+        userCurrentWarns++;
+      }
+    });
+    await UserModeration.findOneAndUpdate(
+      { user: user.id },
+      { warns: userCurrentWarns }
+    );
+    if (userCurrentWarns === 2) {
       try {
         await member.timeout(900 * 1000, "Timed out for reaching 2 warns");
+        channel.send({
+          embeds: [
+            new MessageEmbed()
+              .setDescription(
+                `${user} has been muted for **15 minutes.** Reason:\`reaching 2 warns\`.`
+              )
+              .setColor("DARK_GOLD"),
+          ],
+        });
       } catch (e) {
-        client.r = true;
         return channel.send(`${e.toString()}`);
-      } finally {
-        if (!client.r) {
-          channel.send({
-            embeds: [
-              new MessageEmbed()
-                .setDescription(
-                  `${user} has been muted for **15 minutes.** Reason:\`reaching 2 warns\`.`
-                )
-                .setColor("DARK_GOLD"),
-            ],
-          });
-        }
       }
-    } else if (cfw.warns === 3) {
+    } else if (userCurrentWarns === 3) {
       try {
         await member.timeout(3600 * 1000, "Timed out for reaching 3 warns");
+        channel.send({
+          embeds: [
+            new MessageEmbed()
+              .setDescription(
+                `${user} has been muted for **1 hour.** Reason:\`reaching 3 warns\`.`
+              )
+              .setColor("DARK_GOLD"),
+          ],
+        });
       } catch (e) {
-        client.r = true;
         return channel.send(`${e.toString()}`);
-      } finally {
-        if (!client.r) {
-          channel.send({
-            embeds: [
-              new MessageEmbed()
-                .setDescription(
-                  `${user} has been muted for **1 hour.** Reason:\`reaching 3 warns\`.`
-                )
-                .setColor("DARK_GOLD"),
-            ],
-          });
-        }
       }
-    } else if (cfw.warns === 4) {
+    } else if (userCurrentWarns === 4) {
       try {
         await member.timeout(43200 * 1000, "Timed out for reaching 4 warns");
+        channel.send({
+          embeds: [
+            new MessageEmbed()
+              .setDescription(
+                `${user} has been muted for **12 hours.** Reason:\`reaching 4 warns\`.`
+              )
+              .setColor("DARK_GOLD"),
+          ],
+        });
       } catch (e) {
-        client.r = true;
         return channel.send(`${e.toString()}`);
-      } finally {
-        if (!client.r) {
-          channel.send({
-            embeds: [
-              new MessageEmbed()
-                .setDescription(
-                  `${user} has been muted for **12 hours.** Reason:\`reaching 4 warns\`.`
-                )
-                .setColor("DARK_GOLD"),
-            ],
-          });
-        }
       }
     }
   },

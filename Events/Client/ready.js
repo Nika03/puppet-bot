@@ -46,7 +46,7 @@ module.exports = {
 
     // Ban Checker
     setInterval(async () => {
-      const usrcases = await RestartsModel.findOne()
+      const usrcases = await RestartsModel.findOne();
       const c = await CasesModel.find();
       c.forEach(async (c) => {
         if (
@@ -74,6 +74,12 @@ module.exports = {
           });
           try {
             guild.members.unban(user);
+            const UserModeration = require("../../Structures/Schema/UserModeration");
+            if (!(await UserModeration.findOne({ user: user }))) {
+              await UserModeration.create({ user: user, warns: 0 });
+            } else {
+              await UserModeration.findOneAndUpdate({ user: user, warns: 0 });
+            }
             const logs = guild.channels.cache.get("1009968902941442119");
             logs.send({
               embeds: [
@@ -106,6 +112,7 @@ module.exports = {
           const cn = c.case;
           await CasesModel.findOneAndUpdate({ case: cn }, { expired: true });
           const member = guild.members.cache.get(c.punished);
+          const id = c.punished;
           try {
             member.send({
               embeds: [
@@ -137,10 +144,20 @@ module.exports = {
                 .setTimestamp(),
             ],
           });
-          const UMM = require("../../Structures/Schema/UserModeration");
-          const rm = await UMM.findOne({ user: c.punished });
-          const nw = rm.warns - 1;
-          await UMM.findOneAndUpdate({ user: c.punished }, { warns: nw });
+          const UserModeration = require("../../Structures/Schema/UserModeration");
+          if (!(await UserModeration.findOne({ user: id }))) {
+            await UserModeration.create({ user: id, warns: 0 });
+          }
+          userNewWarns = 0;
+          await CasesModel.find().forEach((c) => {
+            if (c.type == "warn" && c.expired == true && c.punished == id) {
+              userNewWarns++;
+            }
+          });
+          await UserModeration.findOneAndUpdate(
+            { user: id },
+            { warns: userNewWarns }
+          );
         }
       });
     }, 5000);

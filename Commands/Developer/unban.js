@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed, Guild } = require("discord.js");
+const { CommandInteraction, MessageEmbed, Guild, User } = require("discord.js");
 
 module.exports = {
   name: "unban",
@@ -30,7 +30,7 @@ module.exports = {
     const guild = client.guilds.cache.get(interaction.guild.id);
 
     const CasesModel = require("../../Structures/Schema/Cases");
-    const UMM = require("../../Structures/Schema/UserModeration");
+    const UserModeration = require("../../Structures/Schema/UserModeration");
     const RestartsModel = require("../../Structures/Schema/Restarts");
     const c = await RestartsModel.findOne();
 
@@ -94,7 +94,11 @@ module.exports = {
         });
         c.cases++;
         await c.save();
-        await UMM.findOneAndUpdate({ user: user }, { warns: 0 });
+        if (!(await UserModeration.findOne({ user: user }))) {
+          await UserModeration.create({ user: user, warns: 0 });
+        } else {
+          await UserModeration.findOneAndUpdate({ user: user, warns: 0 });
+        }
       } catch (e) {
         console.log(e);
       }
