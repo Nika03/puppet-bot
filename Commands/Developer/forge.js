@@ -67,23 +67,25 @@ module.exports = {
         ephemeral: true,
       });
     }
-    interaction.reply({
-      embeds: [
-        new MessageEmbed()
-          .setTitle(
-            "Welcome to the forge! Here you can craft and upgrade your tools."
-          )
-          .setAuthor({
-            name: "The Forge",
-          })
-          .setDescription(
-            `Here you will see tools that are being crafted/upgraded and when they finish.`
-          )
-          .setFooter({
-            text: '"You can either craft with `/forge craft [tool]` or upgrade your tool with `/forge upgrade [tool]`"',
-          }),
-      ],
-    });
+    if (!craft && !pull) {
+      interaction.reply({
+        embeds: [
+          new MessageEmbed()
+            .setTitle(
+              "Welcome to the forge! Here you can craft and upgrade your tools."
+            )
+            .setAuthor({
+              name: "The Forge",
+            })
+            .setDescription(
+              `Here you will see tools that are being crafted/upgraded and when they finish.`
+            )
+            .setFooter({
+              text: '"You can either craft with `/forge craft [tool]` or upgrade your tool with `/forge upgrade [tool]`"',
+            }),
+        ],
+      });
+    }
     if (craft == "pickaxe") {
       interaction.reply({
         embeds: [
