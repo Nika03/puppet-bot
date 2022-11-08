@@ -72,7 +72,7 @@ module.exports = {
         ephemeral: true,
       });
     }
-    if (!craft && !pull) {
+    if (!craft && !upgrade) {
       interaction.reply({
         embeds: [
           new MessageEmbed()
