@@ -68,7 +68,7 @@ module.exports = {
           .setColor("DARK_GOLD")
           .setDescription(`${user} has been warned for: \`${reason}\``)
           .setFooter({
-            text: `They now have ${userWarns.warns} active warnings.`,
+            text: `They now have ${userWarns.warns + 1} active warnings.`,
           })
           .setTimestamp(),
       ],
@@ -120,7 +120,8 @@ This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
     tc.cases++;
     await tc.save();
     userCurrentWarns = 0;
-    await CasesModel.find().forEach((c) => {
+    const allCases = await CasesModel.find();
+    allCases.forEach((c) => {
       if (c.type == "warn" && c.expired == true && c.punished == user.id) {
         userCurrentWarns++;
       }
