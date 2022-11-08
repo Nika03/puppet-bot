@@ -84,7 +84,7 @@ module.exports = {
           }),
       ],
     });
-    if (craft && craft == "pickaxe") {
+    if (craft == "pickaxe") {
       interaction.reply({
         embeds: [
           new MessageEmbed()
