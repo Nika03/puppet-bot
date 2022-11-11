@@ -126,7 +126,7 @@ __Iron Pickaxe:__
               .setLabel("Previous Page")
               .setStyle("PRIMARY"),
             new MessageButton()
-              .setCustomId("wooden_pickaxe")
+              .setCustomId("wooden_pickaxe_button")
               .setLabel("Wooden Pickaxe")
               .setStyle("SUCCESS"),
             new MessageButton()
