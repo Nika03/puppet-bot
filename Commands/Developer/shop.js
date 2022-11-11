@@ -8,7 +8,7 @@ const {
 module.exports = {
   name: "shop",
   description: "Shows commands related to the shop.",
-  permission: "ADMINISTRATOR",
+  permission: "SEND_MESSAGES",
   type: "Economy",
   usage:
     "`/shop view, /shop buy [item], /shop add-item [name] [description] [price] [role], /shop add-item [name] [description] [price] [role] [stock], /shop remove-item [name]`",
@@ -131,6 +131,14 @@ module.exports = {
           `/shop add-item name:${name} description:${description} price:${price}`
         )
     ) {
+      const guild = client.guilds.cache.get("946518364216520774");
+      const member = guild.members.cache.get(interaction.user.id);
+      if (!member.roles.cache.has("946525953033646130")) {
+        return interaction.reply({
+          content: "You cannot run this command.",
+          ephemeral: true,
+        });
+      }
       const stock = interaction.options.getNumber("stock");
       const role = interaction.options.getRole("role");
       const fi = await ShopItems.findOne({ name: name });
@@ -224,6 +232,14 @@ module.exports = {
         });
       }
     } else if (interaction.toString() === `/shop remove-item name:${name}`) {
+      const guild = client.guilds.cache.get("946518364216520774");
+      const member = guild.members.cache.get(interaction.user.id);
+      if (!member.roles.cache.has("946525953033646130")) {
+        return interaction.reply({
+          content: "You cannot run this command.",
+          ephemeral: true,
+        });
+      }
       const fi = await ShopItems.findOne({ name: name });
       if (!fi) {
         return interaction.reply({
