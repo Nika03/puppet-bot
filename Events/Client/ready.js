@@ -149,7 +149,8 @@ module.exports = {
             await UserModeration.create({ user: id, warns: 0 });
           }
           userNewWarns = 0;
-          await CasesModel.find().forEach((c) => {
+          const cases = await CasesModel.find();
+          cases.forEach((c) => {
             if (c.type == "warn" && c.expired == true && c.punished == id) {
               userNewWarns++;
             }
