@@ -23,7 +23,7 @@ module.exports = {
       else console.log(`🔘 Successfully connected to Puppet Database.`);
     });
     const RestartsModel = require("../../Structures/Schema/Restarts.js");
-    const current_restarts = await RestartsModel.findOne({ owner: "Darkeew" });
+    const current_restarts = await RestartsModel.findOne();
     if (!current_restarts) {
       await RestartsModel.create({
         restarts: "1",
@@ -149,7 +149,8 @@ module.exports = {
             await UserModeration.create({ user: id, warns: 0 });
           }
           userNewWarns = 0;
-          await CasesModel.find().forEach((c) => {
+          const cases = await CasesModel;
+          cases.find().forEach((c) => {
             if (c.type == "warn" && c.expired == true && c.punished == id) {
               userNewWarns++;
             }
@@ -232,5 +233,9 @@ module.exports = {
         }
       });
     }, 1800000);
+    confirm_button = function (type, itemId) {
+      if (type === "pickaxe") {
+      }
+    };
   },
 };
