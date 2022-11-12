@@ -80,15 +80,15 @@ module.exports = {
           new MessageEmbed()
             .setAuthor({
               name: `Teto Trader`,
-              iconURL: `https://static.wikia.nocookie.net/mikumikudance/images/c/c2/Teto_Halloween_by_Uri.png/revision/latest?cb=20131018161253`,
+              iconURL: `https://cdn.discordapp.com/attachments/703686629633687683/986354411037143040/teto.png`,
             })
             .setDescription(
-              `Spooky! I've given you **${client.random_amount}** <:tedollar:987097348305997847> tedollars for chatting in ${message.channel}!`
+              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> tedollars for chatting in ${message.channel}!`
             )
-            .setFooter({ text: "Happy October" })
-            .setColor(`FE9B13`)
+            .setFooter({ text: "Teto Trade" })
+            .setColor(`ff3067`)
             .setThumbnail(
-              `https://i.pinimg.com/originals/80/8a/02/808a02b37a9cd2e134fad2ac1f5cb937.jpg`
+              `https://ih1.redbubble.net/image.3081807300.1669/throwpillow,small,1000x-bg,f8f8f8-c,0,200,1000,1000.jpg`
             )
             .setTimestamp(),
         ],
