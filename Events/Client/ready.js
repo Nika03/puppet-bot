@@ -1,5 +1,6 @@
 const { Client, Guild, MessageEmbed } = require("discord.js");
 const mongoose = require("mongoose");
+const axios = require("axios");
 const { db_credentials } = require("../../Structures/config.json");
 
 module.exports = {
