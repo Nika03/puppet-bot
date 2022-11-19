@@ -33,7 +33,7 @@ Current Main Goal: \`500'000 clicks\`
 Current Subgoal: \`10'000 clicks\`
 > Prize: \`Top 10 will get a custom role giveaway\`,
     
-Updates in: <t:${Math.floor(Date.now() / 1000) - 60}:R>
+Updates in: <t:${Math.floor(Date.now() / 1000) + 60}:R>
 *If the button isnt working, please DM <@!452436342841016341>. The counter will update each minute.*
           `
               )
