@@ -24,7 +24,6 @@ module.exports = {
     const arrayCount = [];
     var counter = 0;
     while (counter !== 10) {
-      console.log(counter);
       arrayUser.push(find[counter].user);
       arrayCount.push(find[counter].button_presses);
       counter++;

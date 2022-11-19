@@ -27,10 +27,10 @@ module.exports = {
     
           > __Counter:__ \`${counter} clicks\`
           
-          Current Main Goal: \`150'000 clicks\`
+          Current Main Goal: \`200'000 clicks\`
           > Prize: \`Nitro Regular\`
     
-          Current Subgoal: \`5'000 clicks\`
+          Current Subgoal: \`10'000 clicks\`
           > Prize: \`Top 10 will get a custom role giveaway.\`
     
           Last Updated: <t:${Math.floor(Date.now() / 1000)}:R>
