@@ -28,10 +28,10 @@ module.exports = {
           > __Counter:__ \`${counter} clicks\`
           
           Current Main Goal: \`250'000 clicks\`
-          > Prize: \`Nitro Regular\`
+          > Prize: \`Top 10 will get a change at getting Nitro Regular\`.
     
           Current Subgoal: \`10'000 clicks\`
-          > Prize: \`Top 10 will get a custom role giveaway.\`
+          > Prize: \`Top 10 will get a custom role giveaway\`,
     
           Last Updated: <t:${Math.floor(Date.now() / 1000)}:R>
           *If the button isnt working, please DM <@!452436342841016341>. The counter will update each minute.*
