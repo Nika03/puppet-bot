@@ -27,7 +27,7 @@ module.exports = {
     
           > __Counter:__ \`${counter} clicks\`
           
-          Current Main Goal: \`250'000 clicks\`
+          Current Main Goal: \`500'000 clicks\`
           > Prize: \`Top 10 will get a change at getting Nitro Regular\`.
     
           Current Subgoal: \`10'000 clicks\`
