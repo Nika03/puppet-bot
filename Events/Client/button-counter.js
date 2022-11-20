@@ -30,8 +30,8 @@ Its simple, press the button, and the counter will go up!
 Current Main Goal: \`500'000 clicks\`
 > Prize: \`Top 3 will get a chance at getting Nitro Regular\`.
     
-Current Subgoal: \`10'000 clicks\`
-> Prize: \`Top 10 will get a custom role giveaway\`,
+Current Subgoal: \`None\`
+> Prize: \`None\`.
     
 Updates in: <t:${Math.floor(Date.now() / 1000) + 60}:R>
 *If the button isnt working, please DM <@!452436342841016341>. The counter will update each minute.*
