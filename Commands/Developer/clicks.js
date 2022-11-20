@@ -1,6 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const User = require("../../Structures/Schema/User");
-const RestartsModel = require("../../Structures/Schema/Restarts");
 
 module.exports = {
   name: "clicks",
@@ -19,8 +18,12 @@ module.exports = {
       return interaction.reply({
         content:
           "You havent clicked on the button yet! Go to <#1043617304560279733> to start clicking!",
+        ephemeral: true,
       });
     }
-    interaction.reply({ content: `You have ${user.button_presses} clicks.` });
+    interaction.reply({
+      content: `You have ${user.button_presses} clicks.`,
+      ephemeral: true,
+    });
   },
 };
