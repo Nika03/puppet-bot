@@ -16,7 +16,7 @@ module.exports = {
         await RestartsModel.findOneAndUpdate({}, { button_presses: 0 });
       var find = await RestartsModel.findOne();
       var counter = find.button_presses;
-      channel.messages.fetch("1043625240556740721").then(async (m) => {
+      channel.messages.fetch("1043962093587664908").then(async (m) => {
         m.edit({
           embeds: [
             new MessageEmbed()

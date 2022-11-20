@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction } = require("discord.js");
 const User = require("../../Structures/Schema/User");
 
 module.exports = {
