@@ -1,8 +1,9 @@
 const { MessageEmbed, User } = require("discord.js");
 const UserInventory = require("../../Structures/Schema/UserInventory");
+const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
 
 module.exports = {
-  id: "iron_pickaxe_button",
+  id: "wooden_sword_button",
   permission: "SEND_MESSAGES",
   async execute(interaction, client) {
     if (interaction.message.interaction.user.id !== interaction.user.id)
@@ -12,50 +13,44 @@ module.exports = {
       await UserInventory.create({ user: interaction.user.id });
     }
     var findUser = await UserInventory.findOne({ user: interaction.user.id });
-    if (findUser.pickaxe.name === "iron_pickaxe") {
+    if (findUser.pickaxe.name === "wooden_sword") {
       return interaction.reply({
-        content: "You already have an iron pickaxe.",
+        content: "You already have a wooden sword.",
         ephemeral: true,
       });
     }
     if (findUser.queueSlot1.toString() !== "{}") {
-      console.log(findUser.queueSlot1.item);
-      if (findUser.queueSlot1.item === "iron_pickaxe") {
+      if (findUser.queueSlot1.item === "wooden_sword") {
         return interaction.reply({
-          content: "You are already crafting an `iron_pickaxe`.",
+          content: "You are already crafting a `wooden_sword`.",
           ephemeral: true,
         });
       }
     } else if (findUser.queueSlot2.toString() !== "{}") {
-      if (findUser.queueSlot2.item === "iron_pickaxe") {
+      if (findUser.queueSlot2.item === "wooden_sword") {
         return interaction.reply({
-          content: "You are already crafting an `iron_pickaxe`.",
+          content: "You are already crafting a `wooden_sword`.",
           ephemeral: true,
         });
       }
     } else if (findUser.queueSlot3.toString() !== "{}") {
-      if (findUser.queueSlot3.item === "iron_pickaxe") {
+      if (findUser.queueSlot3.item === "wooden_sword") {
         return interaction.reply({
-          content: "You are already crafting an `iron_pickaxe`.",
+          content: "You are already crafting a `wooden_sword`.",
           ephemeral: true,
         });
       }
     }
     var balance = await EconomyChecker.findOne({ user: interaction.user.id });
     var inventory = await UserInventory.findOne({ user: interaction.user.id });
-    if (
-      inventory.Maple_Wood >= 3 &&
-      inventory.Iron >= 15 &&
-      inventory.Leather >= 4 &&
-      balance.balance >= 1200
-    ) {
+    if (inventory.Oak_Wood >= 4 && balance.balance >= 125) {
       if (findUser.queueSlot1.toString() === "{}") {
         await UserInventory.findOneAndUpdate(
           { user: interaction.user.id },
           {
             queueSlot1: {
-              item: "iron_pickaxe",
-              queueTime: `${Math.floor(Date.now() / 1000) + 540}`,
+              item: "wooden_sword",
+              queueTime: `${Math.floor(Date.now() / 1000) + 60}`,
             },
           }
         );
@@ -64,8 +59,8 @@ module.exports = {
           { user: interaction.user.id },
           {
             queueSlot2: {
-              item: "iron_pickaxe",
-              queueTime: `${Math.floor(Date.now() / 1000) + 540}`,
+              item: "wooden_sword",
+              queueTime: `${Math.floor(Date.now() / 1000) + 60}`,
             },
           }
         );
@@ -74,24 +69,22 @@ module.exports = {
           { user: interaction.user.id },
           {
             queueSlot3: {
-              item: "iron_pickaxe",
-              queueTime: `${Math.floor(Date.now() / 1000) + 540}`,
+              item: "wooden_sword",
+              queueTime: `${Math.floor(Date.now() / 1000) + 60}`,
             },
           }
         );
       } else {
         return interaction.reply({
-          content: "You have no queue slots available to craft `iron_pickaxe`.",
+          content: "You have no queue slots available to craft `wooden_sword`.",
           ephemeral: true,
         });
       }
-      const newIron = inventory.Iron - 15;
-      const newWood = inventory.Maple_Wood - 3;
-      const newLeather = inventory.Leather - 4;
-      const newBalance = balance.balance - 1200;
+      const newWood = inventory.Oak_Wood - 4;
+      const newBalance = balance.balance - 125;
       await UserInventory.findOneAndUpdate(
         { user: interaction.user.id },
-        { Iron: newIron, Oak_Wood: Maple_Wood, Leather: newLeather }
+        { Oak_Wood: newWood }
       );
       await EconomyChecker.findOneAndUpdate(
         { user: interaction.user.id },
@@ -105,8 +98,8 @@ module.exports = {
     }
 
     interaction.reply({
-      content: `\`iron_pickaxe\` is now being crafted and will end at <t:${
-        Math.floor(Date.now() / 1000) + 540
+      content: `\`wooden_sword\` is now being crafted and will end at <t:${
+        Math.floor(Date.now() / 1000) + 60
       }>.`,
       ephemeral: true,
     });

@@ -27,6 +27,18 @@ module.exports = {
                 queueSlot1: {},
               }
             );
+          } else if (i.queueSlot1.toString().includes("sword")) {
+            const sword = i.queueSlot1.item.toString();
+            if (sword === "wooden_sword") newItemDurability = 35;
+            if (sword === "stone_sword") newItemDurability = 160;
+            if (sword === "iron_sword") newItemDurability = 350;
+            await UserInventory.findOneAndUpdate(
+              { user: i.user },
+              {
+                sword: { name: sword, durability: newItemDurability },
+                queueSlot1: {},
+              }
+            );
           }
         } else if (
           i.queueSlot2.toString() !== "{}" &&
@@ -44,6 +56,18 @@ module.exports = {
                 queueSlot2: {},
               }
             );
+          } else if (i.queueSlot2.toString().includes("sword")) {
+            const sword = i.queueSlot2.item.toString();
+            if (sword === "wooden_sword") newItemDurability = 35;
+            if (sword === "stone_sword") newItemDurability = 160;
+            if (sword === "iron_sword") newItemDurability = 350;
+            await UserInventory.findOneAndUpdate(
+              { user: i.user },
+              {
+                sword: { name: sword, durability: newItemDurability },
+                queueSlot2: {},
+              }
+            );
           }
         } else if (
           i.queueSlot3.toString() !== "{}" &&
@@ -58,6 +82,18 @@ module.exports = {
               { user: i.user },
               {
                 pickaxe: { name: pickaxe, durability: newItemDurability },
+                queueSlot3: {},
+              }
+            );
+          } else if (i.queueSlot3.toString().includes("sword")) {
+            const sword = i.queueSlot3.item.toString();
+            if (sword === "wooden_sword") newItemDurability = 35;
+            if (sword === "stone_sword") newItemDurability = 160;
+            if (sword === "iron_sword") newItemDurability = 350;
+            await UserInventory.findOneAndUpdate(
+              { user: i.user },
+              {
+                sword: { name: sword, durability: newItemDurability },
                 queueSlot3: {},
               }
             );

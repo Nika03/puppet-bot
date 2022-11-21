@@ -48,15 +48,53 @@ module.exports = {
     var balance = await EconomyChecker.findOne({ user: interaction.user.id });
     var inventory = await UserInventory.findOne({ user: interaction.user.id });
     if (
-      inventort.Wood >= 7 &&
+      inventory.Oak_Wood >= 7 &&
       inventory.Stone >= 25 &&
       balance.balance >= 450
     ) {
-      const newStone = inventory.Stone - 25;
+      if (findUser.queueSlot1.toString() === "{}") {
+        await UserInventory.findOneAndUpdate(
+          { user: interaction.user.id },
+          {
+            queueSlot1: {
+              item: "stone_pickaxe",
+              queueTime: `${Math.floor(Date.now() / 1000) + 270}`,
+            },
+          }
+        );
+      } else if (findUser.queueSlot2.toString() === "{}") {
+        await UserInventory.findOneAndUpdate(
+          { user: interaction.user.id },
+          {
+            queueSlot2: {
+              item: "stone_pickaxe",
+              queueTime: `${Math.floor(Date.now() / 1000) + 270}`,
+            },
+          }
+        );
+      } else if (findUser.queueSlot3.toString() === "{}") {
+        await UserInventory.findOneAndUpdate(
+          { user: interaction.user.id },
+          {
+            queueSlot3: {
+              item: "stone_pickaxe",
+              queueTime: `${Math.floor(Date.now() / 1000) + 270}`,
+            },
+          }
+        );
+      } else {
+        return interaction.reply({
+          content:
+            "You have no queue slots available to craft `stone_pickaxe`.",
+          ephemeral: true,
+        });
+      }
+      const newStone = inventory.Oak_Wood - 25;
+      const newWood = inventory.Wood - 7;
       const newBalance = balance.balance - 450;
       await UserInventory.findOneAndUpdate(
         { user: interaction.user.id },
-        { Stone: newStone }
+        { Oak_Wood: newStone, Wood: newWood }
       );
       await EconomyChecker.findOneAndUpdate(
         { user: interaction.user.id },
@@ -69,42 +107,6 @@ module.exports = {
       });
     }
 
-    if (findUser.queueSlot1.toString() === "{}") {
-      await UserInventory.findOneAndUpdate(
-        { user: interaction.user.id },
-        {
-          queueSlot1: {
-            item: "stone_pickaxe",
-            queueTime: `${Math.floor(Date.now() / 1000) + 270}`,
-          },
-        }
-      );
-    } else if (findUser.queueSlot2.toString() === "{}") {
-      await UserInventory.findOneAndUpdate(
-        { user: interaction.user.id },
-        {
-          queueSlot2: {
-            item: "stone_pickaxe",
-            queueTime: `${Math.floor(Date.now() / 1000) + 270}`,
-          },
-        }
-      );
-    } else if (findUser.queueSlot3.toString() === "{}") {
-      await UserInventory.findOneAndUpdate(
-        { user: interaction.user.id },
-        {
-          queueSlot3: {
-            item: "stone_pickaxe",
-            queueTime: `${Math.floor(Date.now() / 1000) + 270}`,
-          },
-        }
-      );
-    } else {
-      return interaction.reply({
-        content: "You have no queue slots available to craft `stone_pickaxe`.",
-        ephemeral: true,
-      });
-    }
     interaction.reply({
       content: `\`stone_pickaxe\` is now being crafted and will end at <t:${
         Math.floor(Date.now() / 1000) + 270

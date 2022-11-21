@@ -46,6 +46,10 @@ module.exports = {
           value: "sword",
         },
         {
+          name: "axe",
+          value: "axe",
+        },
+        {
           name: "fishing rod",
           value: "fishing rod",
         },
@@ -80,17 +84,17 @@ module.exports = {
       }
       var queue = await UserInventory.findOne({ user: interaction.user.id });
       if (queue.queueSlot1.toString() !== "{}") {
-        forgingSlot1 = `\`${queue.queueSlot1.item}\` is currently being crafted and stops forging at <t:${queue.queueSlot1.queueTime}>.`;
+        forgingSlot1 = `\`${queue.queueSlot1.item}\` is currently being crafted and stops forging in <t:${queue.queueSlot1.queueTime}:R>.`;
       } else {
         forgingSlot1 = "Not in use.";
       }
       if (queue.queueSlot2.toString() !== "{}") {
-        forgingSlot2 = `\`${queue.queueSlot2.item}\` is currently being crafted and stops forging at <t:${queue.queueSlot2.queueTime}>.`;
+        forgingSlot2 = `\`${queue.queueSlot2.item}\` is currently being crafted and stops forging in <t:${queue.queueSlot2.queueTime}:R>.`;
       } else {
         forgingSlot2 = "Not in use.";
       }
       if (queue.queueSlot3.toString() !== "{}") {
-        forgingSlot3 = `\`${queue.queueSlot3.item}\` is currently being crafted and stops forging at <t:${queue.queueSlot3.queueTime}>.`;
+        forgingSlot3 = `\`${queue.queueSlot3.item}\` is currently being crafted and stops forging in <t:${queue.queueSlot3.queueTime}:R>.`;
       } else {
         forgingSlot3 = "Not in use.";
       }
@@ -134,11 +138,11 @@ __Wooden Pickaxe:__
 > Durability: *50*
 > Drop Rarity: *0.5x*
 __Stone Pickaxe:__
-> Cost: **450 tedollars, 25 stone, 7 wood**
+> Cost: **450 tedollars, 25 stone, 7 oak wood**
 > Durability: *125*
 > Drop Rarity: *0.7x*
 __Iron Pickaxe:__
-> Cost: **1200 tedollars, 15 iron, 4 leather, 3 wood**
+> Cost: **1200 tedollars, 15 iron, 4 leather, 3 maple wood**
 > Durability: *350*
 > Drop Rarity: *1x*
             `
@@ -183,15 +187,15 @@ __Iron Pickaxe:__
             .setDescription(
               `
 __Wooden Sword:__
-> Cost: 125 tedollars, 4 wood
+> Cost: 125 tedollars, 4 oak wood
 > Durability: *35*
 > Drop Rarity: *0.3x*
 __Stone Sword:__
-> Cost: **750 tedollars, 16 stone, 7 wood**
+> Cost: **750 tedollars, 16 stone, 7 oak wood**
 > Durability: *160*
 > Drop Rarity: *0.5x*
 __Iron Sword:__
-> Cost: **1750 tedollars, 9 iron, 11 leather, 3 wood**
+> Cost: **1750 tedollars, 9 iron, 11 leather, 3 maple wood**
 > Durability: *350*
 > Drop Rarity: *1x*
             `
@@ -220,6 +224,59 @@ __Iron Sword:__
               .setStyle("SUCCESS"),
             new MessageButton()
               .setCustomId("sword_next_page")
+              .setLabel("Next Page")
+              .setStyle("PRIMARY")
+          ),
+        ],
+      });
+    } else if (craft === "axe") {
+      interaction.reply({
+        embeds: [
+          new MessageEmbed()
+            .setAuthor({ name: "The Forge" })
+            .setTitle(
+              "Here are the axes you can craft. Click the respective button to begin crafting them."
+            )
+            .setDescription(
+              `
+__Wooden Axe:__
+> Cost: **FREE**
+> Durability: *65*
+> Drop Rarity: *0.6x*
+__Stone Axe:__
+> Cost: **450 tedollars, 9 stone, 14 oak wood**
+> Durability: *320*
+> Drop Rarity: *1x*
+__Iron Axe:__
+> Cost: **1200 tedollars, 16 iron, 2 leather, 27 oak wood**
+> Durability: *700*
+> Drop Rarity: *1.4x*
+            `
+            )
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
+            .setTimestamp()
+            .setColor("ff3067"),
+        ],
+        components: [
+          new MessageActionRow().addComponents(
+            new MessageButton()
+              .setCustomId("axe_previous_page")
+              .setLabel("Previous Page")
+              .setStyle("PRIMARY"),
+            new MessageButton()
+              .setCustomId("wooden_axe_button")
+              .setLabel("Wooden Axe")
+              .setStyle("SUCCESS"),
+            new MessageButton()
+              .setCustomId("stone_axe_button")
+              .setLabel("Stone Axe")
+              .setStyle("SUCCESS"),
+            new MessageButton()
+              .setCustomId("iron_axe_button")
+              .setLabel("Iron Axe")
+              .setStyle("SUCCESS"),
+            new MessageButton()
+              .setCustomId("axe_next_page")
               .setLabel("Next Page")
               .setStyle("PRIMARY")
           ),

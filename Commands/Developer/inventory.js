@@ -24,11 +24,6 @@ module.exports = {
     }
     var inventory = await UserInventory.findOne({ user: interaction.user.id });
 
-    if (inventory.Wood) {
-      userWood = `Total Wood: \`${inventory.Wood}\`\n`;
-    } else {
-      userWood = "";
-    }
     if (inventory.Stone) {
       userStone = `Total Stone: \`${inventory.Stone}\`\n`;
     } else {
@@ -38,6 +33,11 @@ module.exports = {
       userIron = `Total Iron: \`${inventory.Iron}\``;
     } else {
       userIron = "";
+    }
+    if (inventory.Diamond) {
+      userDiamond = `Total Diamond: \`${inventory.Diamond}\``;
+    } else {
+      userDiamond = "";
     }
 
     if (inventory.pickaxe) {
@@ -52,11 +52,75 @@ module.exports = {
 Pickaxe: \`${inventory.pickaxe.name}\`
 > Durability: **${inventory.pickaxe.durability}**`;
     }
+
+    if (inventory.String) {
+      userString = `Total String: \`${inventory.String}\`\n`;
+    } else {
+      userString = "";
+    }
+    if (inventory.Leather) {
+      userLeather = `Total String: \`${inventory.Leather}\`\n`;
+    } else {
+      userLeather = "";
+    }
+    if (inventory.Wolf_Teeth) {
+      userWolf_Teeth = `Total Wolf Teeth: \`${inventory.Wolf_Teeth}\``;
+    } else {
+      userWolf_Teeth = "";
+    }
+
+    if (inventory.sword) {
+      userInventorySword = inventory.sword;
+    } else {
+      userInventorySword = "{}";
+    }
+    if (userInventorySword.toString() === "{}") {
+      userInventorySword = "";
+    } else {
+      userInventorySword = `
+Sword: \`${inventory.sword.name}\`
+> Durability: **${inventory.sword.durability}**`;
+    }
+    if (inventory.axe) {
+      userInventoryAxe = inventory.axe;
+    } else {
+      userInventoryAxe = "{}";
+    }
+    if (userInventoryAxe.toString() === "{}") {
+      userInventoryAxe = "";
+    } else {
+      userInventoryAxe = `
+Axe: \`${inventory.axe.name}\`
+> Durability: **${inventory.axe.durability}**`;
+    }
+    if (inventory.Oak_Wood) {
+      userOak_Wood = `Total Oak Wood: \`${inventory.Oak_Wood}\`\n`;
+    } else {
+      userOak_Wood = "";
+    }
+    if (inventory.Maple_Wood) {
+      userMaple_Wood = `Total Maple Wood: \`${inventory.Maple_Wood}\`\n`;
+    } else {
+      userMaple_Wood = "";
+    }
+    if (inventory.Tiger_Wood) {
+      userTiger_Wood = `Total Tiger Wood: \`${inventory.Tiger_Wood}\``;
+    } else {
+      userTiger_Wood = "";
+    }
     if (
-      userWood === "" &&
       userStone === "" &&
       userIron === "" &&
-      userInventoryPickaxe === ""
+      userDiamond === "" &&
+      userInventoryPickaxe === "" &&
+      userString === "" &&
+      userLeater === "" &&
+      userWolf_Teeth === "" &&
+      userInventorySword === "" &&
+      userOak_Wood === "" &&
+      userMaple_Wood === "" &&
+      userTiger_Wood === "" &&
+      userInventoryAxe === ""
     ) {
       return interaction.reply({
         embeds: [
@@ -78,7 +142,9 @@ Pickaxe: \`${inventory.pickaxe.name}\`
             name: `${interaction.user.tag}'s Inventory`,
           })
           .setDescription(
-            `${userWood}${userStone}${userIron} ${userInventoryPickaxe}`
+            `${userStone}${userIron}${userDiamond}${userInventoryPickaxe}
+${userString}${userLeather}${userWolf_Teeth}${userInventorySword}
+${userOak_Wood}${userMaple_Wood}${userTiger_Wood}${userInventoryAxe}`
           )
           .setColor("BLURPLE")
           .setFooter({ text: `Requested by ${interaction.user.tag}` })
