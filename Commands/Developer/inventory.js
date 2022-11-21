@@ -78,8 +78,7 @@ Pickaxe: \`${inventory.pickaxe.name}\`
             name: `${interaction.user.tag}'s Inventory`,
           })
           .setDescription(
-            `${userWood} ${userStone} ${userIron} ${userInventoryPickaxe}
-          `
+            `${userWood}${userStone}${userIron} ${userInventoryPickaxe}`
           )
           .setColor("BLURPLE")
           .setFooter({ text: `Requested by ${interaction.user.tag}` })

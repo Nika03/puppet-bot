@@ -2,7 +2,7 @@ const { MessageEmbed, User } = require("discord.js");
 const UserInventory = require("../../Structures/Schema/UserInventory");
 
 module.exports = {
-  id: "wooden_pickaxe_button",
+  id: "iron_pickaxe_button",
   permission: "SEND_MESSAGES",
   async execute(interaction, client) {
     if (interaction.message.interaction.user.id !== interaction.user.id)
@@ -12,30 +12,31 @@ module.exports = {
       await UserInventory.create({ user: interaction.user.id });
     }
     var findUser = await UserInventory.findOne({ user: interaction.user.id });
-    if (findUser.pickaxe.name === "wooden_pickaxe") {
+    if (findUser.pickaxe.name === "iron_pickaxe") {
       return interaction.reply({
-        content: "You already have a wooden pickaxe.",
+        content: "You already have an iron pickaxe.",
         ephemeral: true,
       });
     }
     if (findUser.queueSlot1.toString() !== "{}") {
-      if (findUser.queueSlot1.item === "wooden_pickaxe") {
+      console.log(findUser.queueSlot1.item);
+      if (findUser.queueSlot1.item === "iron_pickaxe") {
         return interaction.reply({
-          content: "You are already crafting a `wooden_pickaxe`.",
+          content: "You are already crafting an `iron_pickaxe`.",
           ephemeral: true,
         });
       }
     } else if (findUser.queueSlot2.toString() !== "{}") {
-      if (findUser.queueSlot2.item === "wooden_pickaxe") {
+      if (findUser.queueSlot2.item === "iron_pickaxe") {
         return interaction.reply({
-          content: "You are already crafting a `wooden_pickaxe`.",
+          content: "You are already crafting an `iron_pickaxe`.",
           ephemeral: true,
         });
       }
     } else if (findUser.queueSlot3.toString() !== "{}") {
-      if (findUser.queueSlot3.item === "wooden_pickaxe") {
+      if (findUser.queueSlot3.item === "iron_pickaxe") {
         return interaction.reply({
-          content: "You are already crafting a `wooden_pickaxe`.",
+          content: "You are already crafting an `iron_pickaxe`.",
           ephemeral: true,
         });
       }
@@ -45,8 +46,8 @@ module.exports = {
         { user: interaction.user.id },
         {
           queueSlot1: {
-            item: "wooden_pickaxe",
-            queueTime: `${Math.floor(Date.now() / 1000) + 30}`,
+            item: "iron_pickaxe",
+            queueTime: `${Math.floor(Date.now() / 1000) + 540}`,
           },
         }
       );
@@ -55,8 +56,8 @@ module.exports = {
         { user: interaction.user.id },
         {
           queueSlot2: {
-            item: "wooden_pickaxe",
-            queueTime: `${Math.floor(Date.now() / 1000) + 30}`,
+            item: "iron_pickaxe",
+            queueTime: `${Math.floor(Date.now() / 1000) + 540}`,
           },
         }
       );
@@ -65,20 +66,20 @@ module.exports = {
         { user: interaction.user.id },
         {
           queueSlot3: {
-            item: "wooden_pickaxe",
-            queueTime: `${Math.floor(Date.now() / 1000) + 30}`,
+            item: "iron_pickaxe",
+            queueTime: `${Math.floor(Date.now() / 1000) + 540}`,
           },
         }
       );
     } else {
       return interaction.reply({
-        content: "You have no queue slots available to craft `wooden_pickaxe`.",
+        content: "You have no queue slots available to craft `iron_pickaxe`.",
         ephemeral: true,
       });
     }
     interaction.reply({
-      content: `\`wooden_pickaxe\` is now being crafted and will end at <t:${
-        Math.floor(Date.now() / 1000) + 30
+      content: `\`iron_pickaxe\` is now being crafted and will end at <t:${
+        Math.floor(Date.now() / 1000) + 270
       }>.`,
       ephemeral: true,
     });

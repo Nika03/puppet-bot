@@ -41,9 +41,16 @@ module.exports = {
     const validItems = [
       "wooden_pickaxe",
       "stone_pickaxe",
+      "iron_pickaxe",
       "wood",
       "stone",
       "iron",
+      "wooden_sword",
+      "stone_sword",
+      "iron_pickaxe",
+      "string",
+      "leather",
+      "wolf teeth",
     ];
     const item = interaction.options.getString("item");
     const user = interaction.options.getUser("user");
@@ -82,6 +89,8 @@ module.exports = {
       itemDurability = "50";
     } else if (item === "stone_pickaxe") {
       itemDurability = "125";
+    } else if (item === "iron_pickaxe") {
+      itemDurability = "350";
     }
 
     if (user === interaction.user) {
