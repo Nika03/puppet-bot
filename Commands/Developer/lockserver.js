@@ -22,7 +22,7 @@ module.exports = {
       "963502912116490290",
       "984940251883651112",
     ];
-    interaction.reply("Locking the server... This may take a while");
+    interaction.reply("Locking the server... This may take a while...");
     lockableChannels = 0;
     channels.forEach((c) => {
       if (c.type === "GUILD_VOICE") return;
@@ -48,6 +48,9 @@ module.exports = {
           c.permissionOverwrites.edit("946524059724820500", {
             SEND_MESSAGES: false,
           });
+          c.permissionOverwrites.edit("946525021545828422", {
+            SEND_MESSAGES: false,
+          });
           c.send({
             embeds: [
               new MessageEmbed()
@@ -60,7 +63,11 @@ module.exports = {
             ],
           });
           if (totalChannelsLocked === lockableChannels) {
-            interaction.channel.send("Server has been locked down.");
+            interaction.channel.send(
+              `Server has been locked down. (Took ${
+                (totalChannelsLocked * 250) / 1000
+              } seconds)`
+            );
             return;
           }
         } catch (e) {

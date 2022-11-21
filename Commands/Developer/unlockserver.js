@@ -13,7 +13,7 @@ module.exports = {
   async execute(interaction, client) {
     const guild = client.guilds.cache.get(interaction.guild.id);
     const channels = guild.channels.cache;
-    interaction.reply("Unlocking the server... This may take a while");
+    interaction.reply("Unlocking the server... This may take a while...");
     const categories = [
       "963181651570085989",
       "946518364216520775",
@@ -48,6 +48,9 @@ module.exports = {
           c.permissionOverwrites.edit("946524059724820500", {
             SEND_MESSAGES: true,
           });
+          c.permissionOverwrites.edit("946525021545828422", {
+            SEND_MESSAGES: true,
+          });
           c.send({
             embeds: [
               new MessageEmbed()
@@ -60,7 +63,11 @@ module.exports = {
             ],
           });
           if (totalChannelsLocked === lockableChannels) {
-            interaction.channel.send("Server has been unlocked.");
+            interaction.channel.send(
+              `Server has been unlocked. (Took ${
+                (totalChannelsLocked * 250) / 1000
+              } seconds)`
+            );
             return;
           }
         } catch (e) {

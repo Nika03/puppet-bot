@@ -53,6 +53,9 @@ module.exports = {
       channel.permissionOverwrites.edit("946524059724820500", {
         SEND_MESSAGES: true,
       });
+      channel.permissionOverwrites.edit("946525021545828422", {
+        SEND_MESSAGES: true,
+      });
     } catch (e) {
       console.log(e);
     }
