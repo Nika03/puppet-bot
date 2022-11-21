@@ -140,6 +140,11 @@ module.exports = {
           client.l = "hours";
         }
         client.ts = Math.floor(60 * 60 * num + Date.now() / 1000);
+      } else {
+        return interaction.reply({
+          content: "You can only use days (d), minutes (m), or hours (h)!",
+          ephemeral: true,
+        });
       }
     }
     if (!reason) {

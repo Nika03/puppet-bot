@@ -1,5 +1,6 @@
 const { Client, Guild, MessageEmbed } = require("discord.js");
 const mongoose = require("mongoose");
+const axios = require("axios");
 const { db_credentials } = require("../../Structures/config.json");
 
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
       else console.log(`🔘 Successfully connected to Puppet Database.`);
     });
     const RestartsModel = require("../../Structures/Schema/Restarts.js");
-    const current_restarts = await RestartsModel.findOne({ owner: "Darkeew" });
+    const current_restarts = await RestartsModel.findOne();
     if (!current_restarts) {
       await RestartsModel.create({
         restarts: "1",
@@ -233,5 +234,9 @@ module.exports = {
         }
       });
     }, 1800000);
+    confirm_button = function (type, itemId) {
+      if (type === "pickaxe") {
+      }
+    };
   },
 };
