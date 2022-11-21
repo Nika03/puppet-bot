@@ -151,7 +151,7 @@ module.exports = {
           }
           userNewWarns = 0;
           const cases = await CasesModel.find();
-          cases.find().forEach((c) => {
+          cases.forEach((c) => {
             if (c.type == "warn" && c.expired == true && c.punished == id) {
               userNewWarns++;
             }
