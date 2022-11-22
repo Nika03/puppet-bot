@@ -13,7 +13,7 @@ module.exports = {
       await UserInventory.create({ user: interaction.user.id });
     }
     var findUser = await UserInventory.findOne({ user: interaction.user.id });
-    if (findUser.pickaxe.name === "wooden_sword") {
+    if (findUser.sword.name === "wooden_sword") {
       return interaction.reply({
         content: "You already have a wooden sword.",
         ephemeral: true,

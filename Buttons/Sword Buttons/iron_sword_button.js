@@ -13,9 +13,9 @@ module.exports = {
       await UserInventory.create({ user: interaction.user.id });
     }
     var findUser = await UserInventory.findOne({ user: interaction.user.id });
-    if (findUser.pickaxe.name === "iron_sword") {
+    if (findUser.sword.name === "iron_sword") {
       return interaction.reply({
-        content: "You already have a iron sword.",
+        content: "You already have am iron sword.",
         ephemeral: true,
       });
     }
