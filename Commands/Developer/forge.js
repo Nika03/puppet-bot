@@ -27,6 +27,10 @@ module.exports = {
           value: "sword",
         },
         {
+          name: "axe",
+          value: "axe",
+        },
+        {
           name: "fishing rod",
           value: "fishing rod",
         },

@@ -18,6 +18,7 @@ const UserInv = new mongoose.Schema({
   queueSlot1: { item: "String", queueTime: "Number" },
   queueSlot2: { item: "String", queueTime: "Number" },
   queueSlot3: { item: "String", queueTime: "Number" },
+  miningcooldown: "String",
 });
 
 const UserInventory = mongoose.model("UserInv", UserInv);
