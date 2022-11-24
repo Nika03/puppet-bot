@@ -25,17 +25,17 @@ module.exports = {
     var inventory = await UserInventory.findOne({ user: interaction.user.id });
 
     if (inventory.Stone) {
-      userStone = `Total Stone: \`${inventory.Stone}\`\n`;
+      userStone = `> Stone: \`${inventory.Stone}\``;
     } else {
       userStone = "";
     }
     if (inventory.Iron) {
-      userIron = `Total Iron: \`${inventory.Iron}\``;
+      userIron = `> Iron: \`${inventory.Iron}\``;
     } else {
       userIron = "";
     }
     if (inventory.Diamond) {
-      userDiamond = `Total Diamond: \`${inventory.Diamond}\``;
+      userDiamond = `> Diamond: \`${inventory.Diamond}\``;
     } else {
       userDiamond = "";
     }
@@ -48,23 +48,21 @@ module.exports = {
     if (userInventoryPickaxe.toString() === "{}") {
       userInventoryPickaxe = "";
     } else {
-      userInventoryPickaxe = `
-Pickaxe: \`${inventory.pickaxe.name}\`
-> Durability: **${inventory.pickaxe.durability}**`;
+      userInventoryPickaxe = `Pickaxe: \`${inventory.pickaxe.name}\`\n> Durability: **${inventory.pickaxe.durability}**`;
     }
 
     if (inventory.String) {
-      userString = `Total String: \`${inventory.String}\`\n`;
+      userString = `> String: \`${inventory.String}\``;
     } else {
       userString = "";
     }
     if (inventory.Leather) {
-      userLeather = `Total String: \`${inventory.Leather}\`\n`;
+      userLeather = `> String: \`${inventory.Leather}\``;
     } else {
       userLeather = "";
     }
     if (inventory.Wolf_Teeth) {
-      userWolf_Teeth = `Total Wolf Teeth: \`${inventory.Wolf_Teeth}\``;
+      userWolf_Teeth = `> Wolf Teeth: \`${inventory.Wolf_Teeth}\``;
     } else {
       userWolf_Teeth = "";
     }
@@ -94,17 +92,17 @@ Axe: \`${inventory.axe.name}\`
 > Durability: **${inventory.axe.durability}**`;
     }
     if (inventory.Oak_Wood) {
-      userOak_Wood = `Total Oak Wood: \`${inventory.Oak_Wood}\`\n`;
+      userOak_Wood = `> Oak Wood: \`${inventory.Oak_Wood}\``;
     } else {
       userOak_Wood = "";
     }
     if (inventory.Maple_Wood) {
-      userMaple_Wood = `Total Maple Wood: \`${inventory.Maple_Wood}\`\n`;
+      userMaple_Wood = `> Maple Wood: \`${inventory.Maple_Wood}\``;
     } else {
       userMaple_Wood = "";
     }
     if (inventory.Tiger_Wood) {
-      userTiger_Wood = `Total Tiger Wood: \`${inventory.Tiger_Wood}\``;
+      userTiger_Wood = `> Tiger Wood: \`${inventory.Tiger_Wood}\``;
     } else {
       userTiger_Wood = "";
     }
@@ -139,12 +137,26 @@ Axe: \`${inventory.axe.name}\`
       embeds: [
         new MessageEmbed()
           .setAuthor({
-            name: `${interaction.user.tag}'s Inventory`,
+            name: `${interaction.user.username}'s Inventory`,
           })
           .setDescription(
-            `${userStone}${userIron}${userDiamond}${userInventoryPickaxe}
-${userString}${userLeather}${userWolf_Teeth}${userInventorySword}
-${userOak_Wood}${userMaple_Wood}${userTiger_Wood}${userInventoryAxe}`
+            `
+Welcome to the inventory! Here you can see what you have gotten in your journey!
+${userInventoryPickaxe}
+${userStone}
+${userIron}
+${userDiamond}
+
+${userInventorySword}
+${userString}
+${userLeather}
+${userWolf_Teeth}
+
+${userInventoryAxe}
+${userOak_Wood}
+${userMaple_Wood}
+${userTiger_Wood}
+          `
           )
           .setColor("BLURPLE")
           .setFooter({ text: `Requested by ${interaction.user.tag}` })

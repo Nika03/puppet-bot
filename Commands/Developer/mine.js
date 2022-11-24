@@ -90,11 +90,11 @@ module.exports = {
         const random = Math.floor(Math.random() * 300);
         if (random <= 120) {
           mineableLoot[0]++;
-        } else if (random <= 180) {
+        } else if (random <= 140) {
           mineableLoot[1]++;
-        } else if (random <= 240) {
+        } else if (random <= 260) {
           mineableLoot[2]++;
-        } else if (random <= 280) {
+        } else if (random <= 290) {
           mineableLoot[3]++;
         } else if (random <= 300) {
           mineableLoot[4]++;
@@ -102,31 +102,35 @@ module.exports = {
         lootCounted--;
       }
       if (lootType === 1) {
-        embedLootResponse = `Stone: ${
+        embedLootResponse = `You came back from the mine! You managed to bring ${
           mineableLoot[0] +
           mineableLoot[1] +
           mineableLoot[2] +
           mineableLoot[3] +
           mineableLoot[4]
-        }`;
+        } stone.`;
       } else if (lootType === 2) {
-        embedLootResponse = `Stone: ${mineableLoot[0] + mineableLoot[3]}
-Iron: ${mineableLoot[1] + mineableLoot[2]}
-Diamond: ${mineableLoot[4]}
-        `;
+        embedLootResponse = `You came back from the mine! You managed to bring **${
+          mineableLoot[0] + mineableLoot[3]
+        }** stone, **${mineableLoot[1] + mineableLoot[2]}** iron, and **${
+          mineableLoot[4]
+        }** diamond.`;
       } else if (lootType === 3) {
-        embedLootResponse = `Stone: ${mineableLoot[0]}
-Iron: ${mineableLoot[1] + mineableLoot[2]}
-Diamond: ${mineableLoot[3]}
-Ruby: ${mineableLoot[4]}
-        `;
+        embedLootResponse = `You came back from the mine! You managed to bring **${
+          mineableLoot[0]
+        }** stone, **${mineableLoot[1] + mineableLoot[2]}** iron, **${
+          mineableLoot[3]
+        }** diamond, and **${mineableLoot[4]}** ruby.`;
       }
 
       interaction.reply({
         embeds: [
           new MessageEmbed()
-            .setAuthor({ name: `${interaction.user.tag}'s rewards` })
-            .setDescription(`${embedLootResponse}`),
+            .setAuthor({ name: `${interaction.user.username}'s loot` })
+            .setDescription(`${embedLootResponse}`)
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
+            .setTimestamp()
+            .setColor("NAVY"),
         ],
       });
     }
