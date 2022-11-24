@@ -64,15 +64,18 @@ module.exports = {
       if (pickaxe === "wooden_pickaxe") {
         rewardsLootMultiplier = 0.5;
         rewardsLootEnhancement = 5;
-        mineableLoot = [stoneLoot, "stone", "stone", "stone", "stone"];
+        mineableLoot = [stoneLoot, stoneLoot, stoneLoot, stoneLoot, stoneLoot];
+        lootType = 1;
       } else if (pickaxe === "stone_pickaxe") {
         rewardsLootMultiplier = 0.7;
         rewardsLootEnhancement = 9;
-        mineableLoot = ["stone", "iron", "iron", "stone", "diamond"];
+        mineableLoot = [stoneLoot, ironLoot, ironLoot, stoneLoot, diamondLoot];
+        lootType = 2;
       } else if (pickaxe === "iron_pickaxe") {
         rewardsLootMultiplier = 1;
         rewardsLootEnhancement = 14;
-        mineableLoot = [stoneLoot, "iron", "iron", "diamond", "ruby"];
+        lootType = 3;
+        mineableLoot = [stoneLoot, ironLoot, ironLoot, diamondLoot, rubyLoot];
       }
       const baseLoot = Math.floor(Math.random() * 3) + rewardsLootEnhancement;
       lootCounted = 0;
@@ -81,16 +84,49 @@ module.exports = {
         if (durability === 0) break;
         multipliedLoot = (baseLoot + lootCounted) * rewardsLootMultiplier;
       }
-      lootCounted = multipliedLoot;
+      lootCounted = Math.floor(multipliedLoot);
 
       while (lootCounted !== 0) {
-        console.log(mineableLoot[0], mineableLoot[0]);
+        const random = Math.floor(Math.random() * 300);
+        if (random <= 120) {
+          mineableLoot[0]++;
+        } else if (random <= 180) {
+          mineableLoot[1]++;
+        } else if (random <= 240) {
+          mineableLoot[2]++;
+        } else if (random <= 280) {
+          mineableLoot[3]++;
+        } else if (random <= 300) {
+          mineableLoot[4]++;
+        }
+        lootCounted--;
       }
+      if (lootType === 1) {
+        embedLootResponse = `Stone: ${
+          mineableLoot[0] +
+          mineableLoot[1] +
+          mineableLoot[2] +
+          mineableLoot[3] +
+          mineableLoot[4]
+        }`;
+      } else if (lootType === 2) {
+        embedLootResponse = `Stone: ${mineableLoot[0] + mineableLoot[3]}
+Iron: ${mineableLoot[1] + mineableLoot[2]}
+Diamond: ${mineableLoot[4]}
+        `;
+      } else if (lootType === 3) {
+        embedLootResponse = `Stone: ${mineableLoot[0]}
+Iron: ${mineableLoot[1] + mineableLoot[2]}
+Diamond: ${mineableLoot[3]}
+Ruby: ${mineableLoot[4]}
+        `;
+      }
+
       interaction.reply({
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `${interaction.user.tag}'s rewards` })
-            .setDescription("rewards!"),
+            .setDescription(`${embedLootResponse}`),
         ],
       });
     }
