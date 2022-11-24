@@ -89,12 +89,12 @@ module.exports = {
           ephemeral: true,
         });
       }
-      const newStone = inventory.Oak_Wood - 25;
-      const newWood = inventory.Wood - 7;
+      const newStone = inventory.Stone - 25;
+      const newOak_Wood = inventory.Oak_Wood - 7;
       const newBalance = balance.balance - 450;
       await UserInventory.findOneAndUpdate(
         { user: interaction.user.id },
-        { Oak_Wood: newStone, Wood: newWood }
+        { Stone: newStone, Oak_Wood: newOak_Wood }
       );
       await EconomyChecker.findOneAndUpdate(
         { user: interaction.user.id },

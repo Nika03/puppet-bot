@@ -23,144 +23,64 @@ module.exports = {
       await UserInventory.create({ user: interaction.user.id });
     }
     var inventory = await UserInventory.findOne({ user: interaction.user.id });
-
-    if (inventory.Stone) {
-      userStone = `> Stone: \`${inventory.Stone}\``;
+    const pickaxe = inventory.pickaxe;
+    if (pickaxe.name !== "None") {
+      userInventoryPickaxe = `\`${pickaxe.name}\` with **${pickaxe.durability}** durability.`;
     } else {
-      userStone = "";
+      userInventoryPickaxe = pickaxe.name;
     }
-    if (inventory.Iron) {
-      userIron = `> Iron: \`${inventory.Iron}\``;
+    const sword = inventory.sword;
+    if (sword.name !== "None") {
+      userInventorySword = `\`${sword.name}\` with **${sword.durability}** durability.`;
     } else {
-      userIron = "";
-    }
-    if (inventory.Diamond) {
-      userDiamond = `> Diamond: \`${inventory.Diamond}\``;
-    } else {
-      userDiamond = "";
+      userInventorySword = sword.name;
     }
 
-    if (inventory.pickaxe) {
-      userInventoryPickaxe = inventory.pickaxe;
+    const axe = inventory.axe;
+    if (axe.name !== "None") {
+      userInventoryAxe = `\`${axe.name}\` with **${axe.durability}** durability.`;
     } else {
-      userInventoryPickaxe = "{}";
-    }
-    if (userInventoryPickaxe.toString() === "{}") {
-      userInventoryPickaxe = "";
-    } else {
-      userInventoryPickaxe = `Pickaxe: \`${inventory.pickaxe.name}\`\n> Durability: **${inventory.pickaxe.durability}**`;
+      userInventoryAxe = axe.name;
     }
 
-    if (inventory.String) {
-      userString = `> String: \`${inventory.String}\``;
-    } else {
-      userString = "";
-    }
-    if (inventory.Leather) {
-      userLeather = `> String: \`${inventory.Leather}\``;
-    } else {
-      userLeather = "";
-    }
-    if (inventory.Wolf_Teeth) {
-      userWolf_Teeth = `> Wolf Teeth: \`${inventory.Wolf_Teeth}\``;
-    } else {
-      userWolf_Teeth = "";
-    }
-
-    if (inventory.sword) {
-      userInventorySword = inventory.sword;
-    } else {
-      userInventorySword = "{}";
-    }
-    if (userInventorySword.toString() === "{}") {
-      userInventorySword = "";
-    } else {
-      userInventorySword = `
-Sword: \`${inventory.sword.name}\`
-> Durability: **${inventory.sword.durability}**`;
-    }
-    if (inventory.axe) {
-      userInventoryAxe = inventory.axe;
-    } else {
-      userInventoryAxe = "{}";
-    }
-    if (userInventoryAxe.toString() === "{}") {
-      userInventoryAxe = "";
-    } else {
-      userInventoryAxe = `
-Axe: \`${inventory.axe.name}\`
-> Durability: **${inventory.axe.durability}**`;
-    }
-    if (inventory.Oak_Wood) {
-      userOak_Wood = `> Oak Wood: \`${inventory.Oak_Wood}\``;
-    } else {
-      userOak_Wood = "";
-    }
-    if (inventory.Maple_Wood) {
-      userMaple_Wood = `> Maple Wood: \`${inventory.Maple_Wood}\``;
-    } else {
-      userMaple_Wood = "";
-    }
-    if (inventory.Tiger_Wood) {
-      userTiger_Wood = `> Tiger Wood: \`${inventory.Tiger_Wood}\``;
-    } else {
-      userTiger_Wood = "";
-    }
-    if (
-      userStone === "" &&
-      userIron === "" &&
-      userDiamond === "" &&
-      userInventoryPickaxe === "" &&
-      userString === "" &&
-      userLeater === "" &&
-      userWolf_Teeth === "" &&
-      userInventorySword === "" &&
-      userOak_Wood === "" &&
-      userMaple_Wood === "" &&
-      userTiger_Wood === "" &&
-      userInventoryAxe === ""
-    ) {
-      return interaction.reply({
-        embeds: [
-          new MessageEmbed()
-            .setAuthor({
-              name: `${interaction.user.tag}'s Inventory`,
-            })
-            .setDescription("You have no items in your inventory.")
-            .setColor("BLURPLE")
-            .setFooter({ text: `Requested by ${interaction.user.tag}` })
-            .setTimestamp(),
-        ],
-      });
-    }
     interaction.reply({
       embeds: [
         new MessageEmbed()
-          .setAuthor({
-            name: `${interaction.user.username}'s Inventory`,
+          .setAuthor({ name: `${interaction.user.username}'s Inventory` })
+          .addFields({
+            name: "Mining Items",
+            value: `Pickaxe: ${userInventoryPickaxe}
+> Stone: ${inventory.Stone}
+> Iron: ${inventory.Iron}
+> Diamond: ${inventory.Diamond}
+            `,
+            inline: true,
           })
-          .setDescription(
-            `
-Welcome to the inventory! Here you can see what you have gotten in your journey!
-${userInventoryPickaxe}
-${userStone}
-${userIron}
-${userDiamond}
-
-${userInventorySword}
-${userString}
-${userLeather}
-${userWolf_Teeth}
-
-${userInventoryAxe}
-${userOak_Wood}
-${userMaple_Wood}
-${userTiger_Wood}
-          `
-          )
-          .setColor("BLURPLE")
+          .addFields({
+            name: "Hunting Items",
+            value: `Sword: ${userInventorySword}
+> String: ${inventory.String}
+> Leather: ${inventory.Leather}
+> Wolf Teeth: ${inventory.Wolf_Teeth}
+          `,
+            inline: true,
+          })
+          .addFields({ name: "\u200B", value: "\u200B", inline: true })
+          .addFields({
+            name: "Foraging Items",
+            value: `Axe: ${userInventoryAxe}
+> Oak Wood: ${inventory.Oak_Wood}
+> Maple Wood: ${inventory.Maple_Wood}
+> Tiger Wood: ${inventory.Tiger_Wood}
+          `,
+            inline: true,
+          })
+          .setColor("NAVY")
           .setFooter({ text: `Requested by ${interaction.user.tag}` })
-          .setTimestamp(),
+          .setTimestamp()
+          .setDescription(
+            "Welcome to the inventory system! Here you can see what you have stored from your journey!"
+          ),
       ],
     });
   },

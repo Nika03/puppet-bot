@@ -27,6 +27,18 @@ module.exports = {
                 queueSlot1: {},
               }
             );
+          } else if (i.queueSlot1.toString().includes("axe")) {
+            const axe = i.queueSlot1.item.toString();
+            if (axe === "wooden_axe") newItemDurability = 65;
+            if (axe === "stone_axe") newItemDurability = 320;
+            if (axe === "iron_axe") newItemDurability = 700;
+            await UserInventory.findOneAndUpdate(
+              { user: i.user },
+              {
+                axe: { name: axe, durability: newItemDurability },
+                queueSlot1: {},
+              }
+            );
           } else if (i.queueSlot1.toString().includes("sword")) {
             const sword = i.queueSlot1.item.toString();
             if (sword === "wooden_sword") newItemDurability = 35;
@@ -56,6 +68,18 @@ module.exports = {
                 queueSlot2: {},
               }
             );
+          } else if (i.queueSlot2.toString().includes("axe")) {
+            const axe = i.queueSlot2.item.toString();
+            if (axe === "wooden_axe") newItemDurability = 65;
+            if (axe === "stone_axe") newItemDurability = 320;
+            if (axe === "iron_axe") newItemDurability = 700;
+            await UserInventory.findOneAndUpdate(
+              { user: i.user },
+              {
+                axe: { name: axe, durability: newItemDurability },
+                queueSlot2: {},
+              }
+            );
           } else if (i.queueSlot2.toString().includes("sword")) {
             const sword = i.queueSlot2.item.toString();
             if (sword === "wooden_sword") newItemDurability = 35;
@@ -82,6 +106,18 @@ module.exports = {
               { user: i.user },
               {
                 pickaxe: { name: pickaxe, durability: newItemDurability },
+                queueSlot3: {},
+              }
+            );
+          } else if (i.queueSlot3.toString().includes("axe")) {
+            const axe = i.queueSlot3.item.toString();
+            if (axe === "wooden_axe") newItemDurability = 65;
+            if (axe === "stone_axe") newItemDurability = 320;
+            if (axe === "iron_axe") newItemDurability = 700;
+            await UserInventory.findOneAndUpdate(
+              { user: i.user },
+              {
+                axe: { name: axe, durability: newItemDurability },
                 queueSlot3: {},
               }
             );
