@@ -88,6 +88,12 @@ module.exports = {
       if (client.random_amount === 0) {
         client.random_amount = 1;
       }
+      const toddlers_or_tedollars = Math.floor(Math.random() * 100);
+      if (toddlers_or_tedollars >= 50) {
+        toddlers_or_tedollars = "toddlers";
+      } else {
+        toddlers_or_tedollars = "tedollars";
+      }
       message.reply({
         embeds: [
           new MessageEmbed()
@@ -96,7 +102,7 @@ module.exports = {
               iconURL: `https://cdn.discordapp.com/attachments/703686629633687683/986354411037143040/teto.png`,
             })
             .setDescription(
-              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> tedollars for chatting in ${message.channel}!`
+              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> ${toddlers_or_tedollars} for chatting in ${message.channel}!`
             )
             .setFooter({ text: "Teto Trade" })
             .setColor(`ff3067`)
