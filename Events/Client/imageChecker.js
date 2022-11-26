@@ -13,6 +13,7 @@ module.exports = {
     const setting = await RestartsModel.findOne();
     if (!setting.imageFilter) return;
     if (message.channel.id === "1029474001648623726") return;
+    if (message.channel.id === "963190186303434863") return;
     const guild = client.guilds.cache.get("946518364216520774");
     if (message.toString().startsWith("https")) {
       axios
