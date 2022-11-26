@@ -7,6 +7,19 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
+    var urlRegex =
+      /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+    const guild = client.guilds.cache.get("946518364216520774");
+    const member = guild.members.cache.get(message.author.id);
+    if (
+      !message.author.bot &&
+      Math.floor(member.joinedTimestamp / 1000 + 43200) >
+        Math.floor(Date.now() / 1000)
+    ) {
+      if (urlRegex.test(message.toString())) {
+        message.delete();
+      }
+    }
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
