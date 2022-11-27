@@ -88,7 +88,7 @@ module.exports = {
       if (client.random_amount === 0) {
         client.random_amount = 1;
       }
-      const toddlers_or_tedollars = Math.floor(Math.random() * 100);
+      toddlers_or_tedollars = Math.floor(Math.random() * 100);
       if (toddlers_or_tedollars >= 50) {
         toddlers_or_tedollars = "toddlers";
       } else {
