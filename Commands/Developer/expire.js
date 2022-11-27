@@ -78,12 +78,12 @@ module.exports = {
     logs.send({
       embeds: [
         new MessageEmbed()
-          .setAuthor({ name: `Case ${caseNumber} Expired` })
+          .setAuthor({ name: `Case Expired` })
           .setDescription(
-            `Case ${caseNumber} has been expired. 
-> The user warned is <@!${findCase.punished}> (${findCase.punished})
-> The staff that expired is ${interaction.user} (${interaction.user.id}) 
-> Reason for expire: \`${reason}\`)`
+            `Case **${caseNumber}** has been expired. 
+> The user warned is <@!${findCase.punished}> \`(${findCase.punished})\`
+> The staff that expired is ${interaction.user} \`(${interaction.user.id})\` 
+> Reason for expire: \`${reason}\``
           )
           .setColor("DARK_GOLD")
           .setFooter({ text: `Requested by ${interaction.user.tag}` })
@@ -124,10 +124,10 @@ module.exports = {
             .setDescription(
               `**Case ${findCase.case}** has been expired. Be more careful next time and read the rules!
 > Reason of the punishment: \`${findCase.reason}\`
-> Punisher: <@!${findCase.punisher}> (${findCase.punisher})
+> Punisher: <@!${findCase.punisher}> \`(${findCase.punisher})\`
 
 > Reason for expire: \`${reason}\`.
-> Staff that expired: ${interaction.user} (${interaction.user.id})
+> Staff that expired: ${interaction.user} \`(${interaction.user.id})\`
                 `
             )
             .setColor("DARK_AQUA")
