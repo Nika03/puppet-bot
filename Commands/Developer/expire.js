@@ -66,7 +66,7 @@ module.exports = {
         new MessageEmbed()
           .setAuthor({ name: `Case Expired` })
           .setDescription(
-            `Case ${caseNumber} has been expired. 
+            `Case **${caseNumber}** has been expired. 
 > Reason: \`${reason}\``
           )
           .setColor("DARK_NAVY")
