@@ -64,9 +64,10 @@ module.exports = {
     interaction.reply({
       embeds: [
         new MessageEmbed()
-          .setAuthor({ name: `Case ${caseNumber} Expired` })
+          .setAuthor({ name: `Case Expired` })
           .setDescription(
-            `Case ${caseNumber} has been expired. Reason: \`${reason}\``
+            `Case ${caseNumber} has been expired. 
+> Reason: \`${reason}\``
           )
           .setColor("DARK_NAVY")
           .setFooter({ text: `Requested by ${interaction.user.tag}` })
@@ -79,7 +80,10 @@ module.exports = {
         new MessageEmbed()
           .setAuthor({ name: `Case ${caseNumber} Expired` })
           .setDescription(
-            `Case ${caseNumber} has been expired. The user warned is <@!${findCase.punished}> (${findCase.punished}), the staff that expired is ${interaction.user} (${interaction.user.id} and the reason for the expire is: \`${reason}\`)`
+            `Case ${caseNumber} has been expired. 
+> The user warned is <@!${findCase.punished}> (${findCase.punished})
+> The staff that expired is ${interaction.user} (${interaction.user.id}) 
+> Reason for expire: \`${reason}\`)`
           )
           .setColor("DARK_GOLD")
           .setFooter({ text: `Requested by ${interaction.user.tag}` })
@@ -107,7 +111,7 @@ module.exports = {
       }
     });
     await UserModeration.findOneAndUpdate(
-      { user: user.id },
+      { user: findCase.punished },
       { warns: userCurrentWarns }
     );
 
