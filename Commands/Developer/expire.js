@@ -32,7 +32,10 @@ module.exports = {
 
     const guild = client.guilds.cache.get("946518364216520774");
     const member = guild.members.cache.get(interaction.user.id);
-    if (!member.roles.cache.has("993410506926850068")) {
+    if (
+      !member.roles.cache.has("993410506926850068") ||
+      !member.roles.cache.has("946525953033646130")
+    ) {
       return interaction.reply({
         content:
           "You are not able to use this command. If you want to expire a warning, ask a <@&993410506926850068> or a higher role.",
