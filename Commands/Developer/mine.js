@@ -156,8 +156,8 @@ module.exports = {
         if (l === "stone") {
           newUserStone = newUserStone + mineableLoot[counter];
         } else if (l === "iron") {
-          newUserIron = "diamond" + mineableLoot[counter];
-        } else if (l === diamondLoot) {
+          newUserIron = newUserIron + mineableLoot[counter];
+        } else if (l === "diamond") {
           newUserDiamond = newUserDiamond + mineableLoot[counter];
         }
         counter++;

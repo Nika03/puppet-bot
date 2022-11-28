@@ -65,7 +65,6 @@ module.exports = {
           `,
             inline: true,
           })
-          .addFields({ name: "\u200B", value: "\u200B", inline: true })
           .addFields({
             name: "Foraging Items",
             value: `Axe: ${userInventoryAxe}
