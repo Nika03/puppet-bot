@@ -7,6 +7,19 @@ module.exports = {
    * @param {Client} client
    */
   async execute(message, client) {
+    var urlRegex =
+      /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+    const guild = client.guilds.cache.get("946518364216520774");
+    const member = guild.members.cache.get(message.author.id);
+    if (
+      !message.author.bot &&
+      Math.floor(member.joinedTimestamp / 1000 + 43200) >
+        Math.floor(Date.now() / 1000)
+    ) {
+      if (urlRegex.test(message.toString())) {
+        message.delete();
+      }
+    }
     if (message.channel.id === "1006613586157764659") {
       if (message.author.bot) {
         message.delete();
@@ -75,6 +88,12 @@ module.exports = {
       if (client.random_amount === 0) {
         client.random_amount = 1;
       }
+      toddlers_or_tedollars = Math.floor(Math.random() * 100);
+      if (toddlers_or_tedollars >= 50) {
+        toddlers_or_tedollars = "toddlers";
+      } else {
+        toddlers_or_tedollars = "tedollars";
+      }
       message.reply({
         embeds: [
           new MessageEmbed()
@@ -83,7 +102,7 @@ module.exports = {
               iconURL: `https://cdn.discordapp.com/attachments/703686629633687683/986354411037143040/teto.png`,
             })
             .setDescription(
-              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> tedollars for chatting in ${message.channel}!`
+              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> ${toddlers_or_tedollars} for chatting in ${message.channel}!`
             )
             .setFooter({ text: "Teto Trade" })
             .setColor(`ff3067`)

@@ -14,6 +14,9 @@ module.exports = {
     const verified = "946524059724820500"; //Puppet server id
 
     const guild = client.guilds.cache.get(g);
+    const BlacklistModel = require("../../Structures/Schema/Blacklist");
+    const findUser = await BlacklistModel.findOne({ user: user.id });
+    if (findUser) return;
 
     const RestartsModel = require("../../Structures/Schema/Restarts");
     const verification = await RestartsModel.findOne();
