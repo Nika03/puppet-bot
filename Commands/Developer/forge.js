@@ -142,11 +142,11 @@ __Wooden Pickaxe:__
 > Durability: *50*
 > Drop Rarity: *0.5x*
 __Stone Pickaxe:__
-> Cost: **450 tedollars, 25 stone, 7 oak wood**
+> Cost: **450 tedollars, 7 string, 20 stone, 31 oak wood**
 > Durability: *125*
 > Drop Rarity: *0.7x*
 __Iron Pickaxe:__
-> Cost: **1200 tedollars, 15 iron, 4 leather, 3 maple wood**
+> Cost: **1200 tedollars, 15 iron, 4 leather, 5 tiger wood**
 > Durability: *350*
 > Drop Rarity: *1x*
             `
@@ -191,15 +191,15 @@ __Iron Pickaxe:__
             .setDescription(
               `
 __Wooden Sword:__
-> Cost: 125 tedollars, 4 oak wood
+> Cost: 125 tedollars, 12 maple wood
 > Durability: *35*
 > Drop Rarity: *0.3x*
 __Stone Sword:__
-> Cost: **750 tedollars, 16 stone, 7 oak wood**
+> Cost: **750 tedollars, 20 string, 45 stone, 50 maple wood**
 > Durability: *160*
 > Drop Rarity: *0.5x*
 __Iron Sword:__
-> Cost: **1750 tedollars, 9 iron, 11 leather, 3 maple wood**
+> Cost: **1750 tedollars, 9 iron, 15 leather, 10 tiger wood**
 > Durability: *350*
 > Drop Rarity: *1x*
             `
@@ -248,11 +248,11 @@ __Wooden Axe:__
 > Durability: *65*
 > Drop Rarity: *0.6x*
 __Stone Axe:__
-> Cost: **450 tedollars, 9 stone, 14 oak wood**
+> Cost: **450 tedollars, 4 string, 30 stone, 45 oak wood**
 > Durability: *320*
 > Drop Rarity: *1x*
 __Iron Axe:__
-> Cost: **1200 tedollars, 16 iron, 2 leather, 27 oak wood**
+> Cost: **1200 tedollars, 16 iron, 21 string, 15 tiger wood**
 > Durability: *700*
 > Drop Rarity: *1.4x*
             `

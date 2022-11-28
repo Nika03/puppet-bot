@@ -101,7 +101,7 @@ module.exports = {
             const pickaxe = i.queueSlot3.item.toString();
             if (pickaxe === "wooden_pickaxe") newItemDurability = 50;
             if (pickaxe === "stone_pickaxe") newItemDurability = 125;
-            if (pickaxe === "iron_pickaxe") newItemDurability = 325;
+            if (pickaxe === "iron_pickaxe") newItemDurability = 350;
             await UserInventory.findOneAndUpdate(
               { user: i.user },
               {

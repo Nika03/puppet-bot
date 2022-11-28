@@ -43,7 +43,7 @@ module.exports = {
     }
     var balance = await EconomyChecker.findOne({ user: interaction.user.id });
     var inventory = await UserInventory.findOne({ user: interaction.user.id });
-    if (inventory.Oak_Wood >= 4 && balance.balance >= 125) {
+    if (inventory.Maple_Wood >= 12 && balance.balance >= 125) {
       if (findUser.queueSlot1.toString() === "{}") {
         await UserInventory.findOneAndUpdate(
           { user: interaction.user.id },
@@ -80,11 +80,11 @@ module.exports = {
           ephemeral: true,
         });
       }
-      const newWood = inventory.Oak_Wood - 4;
+      const newWood = inventory.Maple_Wood - 12;
       const newBalance = balance.balance - 125;
       await UserInventory.findOneAndUpdate(
         { user: interaction.user.id },
-        { Oak_Wood: newWood }
+        { Maple_Wood: newWood }
       );
       await EconomyChecker.findOneAndUpdate(
         { user: interaction.user.id },

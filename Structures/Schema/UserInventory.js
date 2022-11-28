@@ -29,6 +29,7 @@ const UserInv = new mongoose.Schema({
 
   miningcooldown: "String",
   choppingcooldown: "String",
+  huntingcooldown: "String",
 });
 
 const UserInventory = mongoose.model("UserInv", UserInv);
