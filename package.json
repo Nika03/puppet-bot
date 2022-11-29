@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
+    "@tensorflow/tfjs-node": "^4.1.0",
     "ascii-table": "^0.0.9",
     "axios": "^1.1.2",
     "discord-player": "^5.2.2",
