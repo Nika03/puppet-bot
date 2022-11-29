@@ -14,7 +14,8 @@
     "mongoose": "^6.2.10",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
-    "serve": "^13.0.2",
+    "nsfwjs": "^2.2.0",
+    "serve": "^14.1.2",
     "snoowrap": "^1.23.0"
   },
   "name": "puppet-bot",
