@@ -1,6 +1,5 @@
 const { Message, MessageEmbed, Client } = require("discord.js");
 const axios = require("axios");
-const { moderatecontentkey } = require("../../Structures/config.json");
 const RestartsModel = require("../../Structures/Schema/Restarts");
 const tf = require("@tensorflow/tfjs-node");
 const nsfw = require("nsfwjs");
@@ -18,11 +17,11 @@ module.exports = {
     if (message.channel.id === "963190186303434863") return;
     const guild = client.guilds.cache.get("946518364216520774");
     const logs = guild.channels.cache.get("1028748150149763092");
-    attachmentURL = false;
+    global.attachmentURL = false;
     if (message.attachments.size !== 0) {
       if (message.attachments.size === 1) {
         message.attachments.forEach((m) => {
-          attachmentURL = m.url;
+          global.attachmentURL = m.url;
         });
       } else {
         var shouldSkip = false;
@@ -53,12 +52,18 @@ ${predictions[4].className} rating: \`${predictions[4].probability * 100}\`
                 .setImage(`${m.url}`),
             ],
           });
-          if (predictions[0].className === "Hentai") {
+          if (
+            predictions[0].className === "Hentai" &&
+            predictions[0].probability < 90
+          ) {
             if (shouldSkip === false) {
               message.delete();
             }
             shouldSkip = true;
-          } else if (predictions[0].className === "Porn") {
+          } else if (
+            predictions[0].className === "Porn" &&
+            predictions[0].probability < 90
+          ) {
             if (shouldSkip === false) {
               message.delete();
             }
@@ -73,11 +78,11 @@ ${predictions[4].className} rating: \`${predictions[4].probability * 100}\`
       !message.toString().startsWith("https://")
     )
       return;
-    if (attachmentURL === false) {
-      attachmentURL = message.toString();
+    if (global.attachmentURL === false) {
+      global.attachmentURL = message.toString();
     }
     try {
-      const pic = await axios.get(attachmentURL, {
+      const pic = await axios.get(global.attachmentURL, {
         responseType: "arraybuffer",
       });
       const model = await nsfw.load();
@@ -100,12 +105,18 @@ ${predictions[4].className} rating: \`${predictions[4].probability * 100}\`
           `
             )
             .setColor("BLURPLE")
-            .setImage(`${attachmentURL}`),
+            .setImage(`${global.attachmentURL}`),
         ],
       });
-      if (predictions[0].className === "Hentai") {
+      if (
+        predictions[0].className === "Hentai" &&
+        predictions[0].probability < 90
+      ) {
         message.delete();
-      } else if (predictions[0].className === "Porn") {
+      } else if (
+        predictions[0].className === "Porn" &&
+        predictions[0].probability < 90
+      ) {
         message.delete();
       }
     } catch (e) {
