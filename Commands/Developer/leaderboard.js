@@ -20,6 +20,7 @@ module.exports = {
     const is_blacklisted = await SettingsModel.findOne({
       channel: interaction.channel.id,
     });
+    const emoji = "<:tedollar:987097348305997847>";
     if (is_blacklisted !== null) {
       if (!is_blacklisted.commands.includes(`leaderboard`)) {
         return interaction.reply({
@@ -54,9 +55,7 @@ module.exports = {
     u.forEach((u) => {
       if (dontAdd == false) {
         array.push(
-          `#${x + 1} | <@!${u.user}> with **${
-            u.balance
-          }** <:tedollar:987097348305997847> tedollars.`
+          `#${x + 1} | <@!${u.user}> with **${u.balance}** ${emoji} tedollars.`
         );
         x++;
       }
@@ -82,7 +81,7 @@ module.exports = {
             name: "Your Position",
             value: ` #${userPlace} | ${interaction.user} with **${
               u[userPlace - 1].balance
-            }** <:tedollar:987097348305997847> tedollars.`,
+            }** ${emoji} tedollars.`,
           })
           .setAuthor({ name: "Leaderboard" })
           .setColor("ff3067")
