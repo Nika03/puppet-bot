@@ -31,7 +31,57 @@ module.exports = {
           ephemeral: true,
         });
       }
-      command.execute(interaction, client);
+      try {
+        command.execute(interaction, client);
+        const guild = client.guilds.cache.get("946518364216520774");
+        const channel = guild.channels.cache.get("1051530360753750016");
+        channel.send({
+          embeds: [
+            new MessageEmbed()
+              .setAuthor({
+                name: `Command Logging`,
+              })
+              .setDescription(
+                `
+${interaction.user} (${interaction.user.id}, ${
+                  interaction.user.username
+                }) has ran a command:
+
+> Channel:
+${interaction.channel} (${interaction.channel.id})
+
+> Command: 
+Name: ${interaction.commandName} 
+Command ID: ${interaction.commandId}
+
+> Timestamp:
+<t:${Math.floor(Date.now() / 1000)}> (${Math.floor(Date.now() / 1000)})
+            `
+              )
+              .setColor("AQUA"),
+          ],
+        });
+      } catch (e) {
+        console.log(e);
+        const guild = client.guilds.cache.get("946518364216520774");
+        const channel = guild.channels.cache.get("1051530360753750016");
+        channel.send({
+          content: "@everyone",
+          embeds: [
+            new MessageEmbed()
+              .setAuthor({ name: "Something went wrong." })
+              .setDescription(
+                `Failed to execute ${interaction.commandName} at <t:${
+                  Date.now() / 1000
+                }>
+Channel: ${interaction.channel}
+User: ${interaction.user.username} (${interaction.user}, ${interaction.user.id})
+          .`
+              )
+              .setColor("AQUA"),
+          ],
+        });
+      }
     }
   },
 };

@@ -1,7 +1,8 @@
 const { Message, MessageEmbed, Client } = require("discord.js");
 const axios = require("axios");
-const { moderatecontentkey } = require("../../Structures/config.json");
 const RestartsModel = require("../../Structures/Schema/Restarts");
+const tf = require("@tensorflow/tfjs-node");
+const nsfw = require("nsfwjs");
 
 module.exports = {
   name: "messageCreate",
@@ -14,148 +15,127 @@ module.exports = {
     if (!setting.imageFilter) return;
     if (message.channel.id === "1029474001648623726") return;
     if (message.channel.id === "963190186303434863") return;
-    if (message.author.id === "986354647688179742") return;
-    if (message.author.id === "243367168006291456") return;
     const guild = client.guilds.cache.get("946518364216520774");
-    if (message.toString().startsWith("https")) {
-      axios
-        .get("https://api.moderatecontent.com/moderate/", {
-          params: {
-            key: moderatecontentkey,
-            url: message.toString(),
-          },
-        })
-        .then((response) => {
-          try {
-            if (response.data.predictions.adult > 93) {
-              const channel = guild.channels.cache.get(message.channel.id);
-              try {
-                message.delete();
-                channel.send({
-                  content: `${message.author}`,
-                  embeds: [
-                    new MessageEmbed()
-                      .setDescription(
-                        "Your message has been deleted due to containing sensitive content."
-                      )
-                      .setColor("BLURPLE"),
-                  ],
-                });
-              } catch (e) {
-                channel.send(
-                  `<@!452436342841016341> something went wrong, ${e.toString()}`
-                );
-              }
-            }
-            const logs = guild.channels.cache.get("1028748150149763092");
-            logs.send({
-              embeds: [
-                new MessageEmbed()
-                  .setDescription(
-                    `
+    const logs = guild.channels.cache.get("1028748150149763092");
+    global.attachmentURL = false;
+    if (message.attachments.size !== 0) {
+      if (message.attachments.size === 1) {
+        message.attachments.forEach((m) => {
+          global.attachmentURL = m.url;
+        });
+      } else {
+        var shouldSkip = false;
+        message.attachments.every(async (m) => {
+          const pic = await axios.get(m.url, {
+            responseType: "arraybuffer",
+          });
+          const model = await nsfw.load();
+          const image = await tf.node.decodeImage(pic.data, 3);
+          const predictions = await model.classify(image);
+          image.dispose();
+          logs.send({
+            embeds: [
+              new MessageEmbed()
+                .setDescription(
+                  `
 ${message.author} (${message.author.id}) sent an image in ${message.channel}.
 
-Adult rating: \`${response.data.predictions.adult}\`
-Everyone rating: \`${response.data.predictions.everyone}\`
-Teen rating: \`${response.data.predictions.teen}\`
+${predictions[0].className} rating: \`${predictions[0].probability * 100}\`
+${predictions[1].className} rating: \`${predictions[1].probability * 100}\`
+${predictions[2].className} rating: \`${predictions[2].probability * 100}\`
+${predictions[3].className} rating: \`${predictions[3].probability * 100}\`
+${predictions[4].className} rating: \`${predictions[4].probability * 100}\`
+
             `
-                  )
-                  .setColor("BLURPLE")
-                  .setImage(`${message.toString()}`),
-              ],
-            });
-          } catch (e) {
-            if (
-              !e.toString(
-                "TypeError: Cannot read properties of undefined (reading 'adult')"
-              )
-            ) {
-              console.log(e);
+                )
+                .setColor("BLURPLE")
+                .setImage(`${m.url}`),
+            ],
+          });
+          if (
+            predictions[0].className === "Hentai" &&
+            predictions[0].probability < 90
+          ) {
+            if (shouldSkip === false) {
+              message.delete();
             }
+            shouldSkip = true;
+          } else if (
+            predictions[0].className === "Porn" &&
+            predictions[0].probability < 90
+          ) {
+            if (shouldSkip === false) {
+              message.delete();
+            }
+            shouldSkip = true;
           }
         });
-    } else if (message.attachments.size < 1) {
-      return;
-    } else {
-      message.attachments.every((m) => {
-        if (m.url.endsWith(".mov")) return;
-        if (m.url.endsWith(".mp4")) return;
-        axios
-          .get("https://api.moderatecontent.com/moderate/", {
-            params: {
-              key: moderatecontentkey,
-              url: m.url,
-            },
-          })
-          .then((response) => {
-            try {
-              if (response.data.predictions.adult > 93) {
-                const channel = guild.channels.cache.get(message.channel.id);
-                if (message.attachments.size > 1) {
-                  try {
-                    message.delete();
-                    const logs = guild.channels.cache.get(
-                      "1028748150149763092"
-                    );
-                    logs.send({
-                      embeds: [
-                        new MessageEmbed()
-                          .setDescription(
-                            `
-  ${message.author} (${message.author.id}) sent an image in ${message.channel}.
-  
-  Adult rating: \`${response.data.predictions.adult}\`
-  Everyone rating: \`${response.data.predictions.everyone}\`
-  Teen rating: \`${response.data.predictions.teen}\`
-              `
-                          )
-                          .setColor("BLURPLE")
-                          .setImage(`${m.url}`),
-                      ],
-                    });
-                    return;
-                  } catch (e) {
-                    channel.send(
-                      `<@!452436342841016341> something went wrong, ${e.toString()}`
-                    );
-                  }
-                }
-                try {
-                  message.delete();
-                } catch (e) {
-                  channel.send(
-                    `<@!452436342841016341> something went wrong, ${e.toString()}`
-                  );
-                }
-              }
-            } catch (e) {
-              if (
-                !e.toString(
-                  "TypeError: Cannot read properties of undefined (reading 'adult')"
-                )
-              ) {
-                console.log(e);
-              }
-            }
-            const logs = guild.channels.cache.get("1028748150149763092");
-            logs.send({
-              embeds: [
-                new MessageEmbed()
-                  .setDescription(
-                    `
-  ${message.author} (${message.author.id}) sent an image in ${message.channel}.
-  
-  Adult rating: \`${response.data.predictions.adult}\`
-  Everyone rating: \`${response.data.predictions.everyone}\`
-  Teen rating: \`${response.data.predictions.teen}\`
-              `
-                  )
-                  .setColor("BLURPLE")
-                  .setImage(`${m.url}`),
-              ],
-            });
-          });
-      });
+        return;
+      }
     }
+    if (
+      message.attachments.size !== 1 &&
+      !message.toString().startsWith("https://")
+    )
+      return;
+    if (global.attachmentURL === false) {
+      global.attachmentURL = message.toString();
+    }
+    try {
+      const pic = await axios.get(global.attachmentURL, {
+        responseType: "arraybuffer",
+      });
+      const model = await nsfw.load();
+      const image = await tf.node.decodeImage(pic.data, 3);
+      const predictions = await model.classify(image);
+      image.dispose();
+      logs.send({
+        embeds: [
+          new MessageEmbed()
+            .setDescription(
+              `
+${message.author} (${message.author.id}) sent an image in ${message.channel}.
+
+${predictions[0].className} rating: \`${predictions[0].probability * 100}\`
+${predictions[1].className} rating: \`${predictions[1].probability * 100}\`
+${predictions[2].className} rating: \`${predictions[2].probability * 100}\`
+${predictions[3].className} rating: \`${predictions[3].probability * 100}\`
+${predictions[4].className} rating: \`${predictions[4].probability * 100}\`
+
+          `
+            )
+            .setColor("BLURPLE")
+            .setImage(`${global.attachmentURL}`),
+        ],
+      });
+      if (
+        predictions[0].className === "Hentai" &&
+        predictions[0].probability < 90
+      ) {
+        message.delete();
+      } else if (
+        predictions[0].className === "Porn" &&
+        predictions[0].probability < 90
+      ) {
+        message.delete();
+      }
+    } catch (e) {
+      if (
+        e.toString !== "AxiosError: Request failed with status code 404" &&
+        e.toString() !==
+          "Error: Expected image (BMP, JPEG, PNG, or GIF), but got unsupported image type"
+      ) {
+        console.log(e);
+      }
+    }
+    //console.log(isImgUrl(message.toString()));
+    //const pic = await axios.get(message.toString(), {
+    //  responseType: "arraybuffer",
+    //});
+    //const model = await nsfw.load();
+    //const image = await tf.node.decodeImage(pic.data, 3);
+    //const predictions = await model.classify(image);
+    //image.dispose();
+    //console.log(predictions);
   },
 };

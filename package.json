@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
+    "@tensorflow/tfjs-node": "^4.1.0",
     "ascii-table": "^0.0.9",
     "axios": "^1.1.2",
     "discord-player": "^5.2.2",
@@ -15,6 +16,7 @@
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
     "nsfwjs": "^2.2.0",
+    "pngjs": "^6.0.0",
     "serve": "^14.1.2",
     "snoowrap": "^1.23.0"
   },
