@@ -10,7 +10,7 @@ module.exports = (client) => {
 
     p.catch((p) => {
       logs.send({
-        content: "@everyone, an `unhandledRejection` occured.",
+        content: "<@!452436342841016341>, an `unhandledRejection` occured.",
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `${reason}` })
@@ -29,7 +29,7 @@ module.exports = (client) => {
     const logs = guild.channels.cache.get("1051956107511332975");
     p.catch((p) => {
       logs.send({
-        content: "@everyone, an `uncaughtException` occured.",
+        content: "<@!452436342841016341>, an `uncaughtException` occured.",
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `${reason}` })
