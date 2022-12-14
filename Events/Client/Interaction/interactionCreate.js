@@ -32,7 +32,7 @@ module.exports = {
         });
       }
       try {
-        command.execute(interaction, client);
+        await command.execute(interaction, client);
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = guild.channels.cache.get("1051530360753750016");
         channel.send({
