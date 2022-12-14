@@ -51,8 +51,9 @@ module.exports = {
       .request(options)
       .then(function (response) {
         const match = response.data.Pages[0];
-        if (!match)
+        if (!match) {
           return interaction.editReply({ content: "No matches found." });
+        }
         const image = match.MatchingImages[0];
         interaction.editReply({
           embeds: [
