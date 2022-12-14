@@ -66,7 +66,7 @@ Command ID: ${interaction.commandId}
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = guild.channels.cache.get("1051530360753750016");
         channel.send({
-          content: "@everyone",
+          content: "<@!452436342841016341>",
           embeds: [
             new MessageEmbed()
               .setAuthor({ name: "Something went wrong." })
@@ -76,7 +76,7 @@ Command ID: ${interaction.commandId}
                 }>
 Channel: ${interaction.channel}
 User: ${interaction.user.username} (${interaction.user}, ${interaction.user.id})
-          .`
+${e.toString()}`
               )
               .setColor("AQUA"),
           ],
