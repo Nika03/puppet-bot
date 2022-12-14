@@ -78,7 +78,7 @@ ${predictions[4].className} rating: \`${predictions[4].probability * 100}\`
       !message.toString().startsWith("https://")
     )
       return;
-    if (global.attachmentURL === false) {
+    if (global.attachmentURL == false) {
       global.attachmentURL = message.toString();
     }
     try {
