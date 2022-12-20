@@ -31,6 +31,8 @@ module.exports = {
     const guild = client.guilds.cache.get("946518364216520774");
     const member = guild.members.cache.get(user.id);
     const channel = guild.channels.cache.get(interaction.channel.id);
+    const interactionUser = guild.members.cache.get(interaction.user.id);
+    const interactionRoles = interactionUser.roles.cache;
     if (!member) {
       return interaction.reply({
         content: "You cannot warn someone that isnt in the server!",
@@ -44,7 +46,17 @@ module.exports = {
         ephemeral: true,
       });
     }
-
+    const memberRoles = member.roles.cache;
+    if (
+      memberRoles.has("970229987405877259") &&
+      interactionRoles.has("970229987405877259") &&
+      !interactionRoles.has("946525953033646130")
+    ) {
+      return interaction.reply({
+        content: "You cannot warn other staff members.",
+        ephemeral: true,
+      });
+    }
     const RestartsModel = require("../../Structures/Schema/Restarts");
     const CasesModel = require("../../Structures/Schema/Cases");
 
