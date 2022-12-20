@@ -57,6 +57,15 @@ module.exports = {
         ephemeral: true,
       });
     }
+    if (
+      memberRoles.has("946525953033646130") &&
+      interactionRoles.has("946525953033646130")
+    ) {
+      return interaction.reply({
+        content: "You cannot warn other staff members.",
+        ephemeral: true,
+      });
+    }
     const RestartsModel = require("../../Structures/Schema/Restarts");
     const CasesModel = require("../../Structures/Schema/Cases");
 
