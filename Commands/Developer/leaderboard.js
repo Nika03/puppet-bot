@@ -47,7 +47,7 @@ module.exports = {
     if (!u) {
       await EconomyChecker.create({ user: interaction.user.id, balance: 0 });
     }
-    interaction.deferReply();
+    await interaction.deferReply();
     var u = await EconomyChecker.find().sort("-balance");
     const array = [];
     let x = 0;
@@ -73,7 +73,7 @@ module.exports = {
         }
       }
     });
-    interaction.editReply({
+    await interaction.editReply({
       embeds: [
         new MessageEmbed()
           .setDescription(array.join("\n").toString())
