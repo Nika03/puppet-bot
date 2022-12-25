@@ -158,7 +158,7 @@ module.exports = {
                 })
                 .setColor(`#ff3067`)
                 .setDescription(
-                  `You currently have **${user.balance}** <:tedollar:987097348305997847> tedollars!`
+                  `You currently have **${user.balance}** <:tedollar:987097348305997847> tedollars, and ${user.tbalance} TCoins!`
                 )
                 .setFooter({ text: `${footer}` }),
             ],
@@ -179,7 +179,7 @@ module.exports = {
                 })
                 .setColor(`#ff3067`)
                 .setDescription(
-                  `<@!${whatuser}> currently has **${check_user.balance}** <:tedollar:987097348305997847> tedollars! Why do you want to know this tho...`
+                  `<@!${whatuser}> currently has **${check_user.balance}** <:tedollar:987097348305997847> tedollars and ${check_user.tbalance} TCoins! Why do you want to know this tho...`
                 )
                 .setFooter({ text: `${other_footer}` }),
             ],
@@ -201,7 +201,7 @@ module.exports = {
             })
             .setColor(`#ff3067`)
             .setDescription(
-              `You currently have **${user.balance}** <:tedollar:987097348305997847> tedollars!`
+              `You currently have **${user.balance}** <:tedollar:987097348305997847> tedollars and **${user.tbalance}** TCoins!`
             )
             .setFooter({ text: `${footer}` }),
         ],

@@ -78,21 +78,15 @@ module.exports = {
     const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
     const exists = await EconomyChecker.findOne({ user: message.author.id });
     if (!exists) {
-      await EconomyChecker.create({ user: message.author.id, balance: 0 });
+      await EconomyChecker.create({ user: message.author.id, tbalance: 0 });
     }
 
     const user = await EconomyChecker.findOne({ user: message.author.id });
 
     if (random_number1 === random_number2) {
-      client.random_amount = Math.floor(Math.random() * 250);
+      client.random_amount = Math.floor(Math.random() * 150);
       if (client.random_amount === 0) {
         client.random_amount = 1;
-      }
-      toddlers_or_tedollars = Math.floor(Math.random() * 100);
-      if (toddlers_or_tedollars >= 50) {
-        toddlers_or_tedollars = "toddlers";
-      } else {
-        toddlers_or_tedollars = "tedollars";
       }
       message.reply({
         embeds: [
@@ -102,9 +96,9 @@ module.exports = {
               iconURL: `https://cdn.discordapp.com/attachments/703686629633687683/986354411037143040/teto.png`,
             })
             .setDescription(
-              `Nya! I've given you **${client.random_amount}** <:tedollar:987097348305997847> ${toddlers_or_tedollars} for chatting in ${message.channel}!`
+              `Nya! I've given you **${client.random_amount}** TCoins for chatting in ${message.channel}!`
             )
-            .setFooter({ text: "Teto Trade" })
+            .setFooter({ text: "Burunyaa!" })
             .setColor(`ff3067`)
             .setThumbnail(
               `https://ih1.redbubble.net/image.3081807300.1669/throwpillow,small,1000x-bg,f8f8f8-c,0,200,1000,1000.jpg`
@@ -112,10 +106,10 @@ module.exports = {
             .setTimestamp(),
         ],
       });
-      const new_balance = user.balance + client.random_amount;
+      const new_balance = user.tbalance + client.random_amount;
       await EconomyChecker.findOneAndUpdate(
         { user: message.author.id },
-        { balance: new_balance }
+        { tbalance: new_balance }
       );
     }
   },

