@@ -36,8 +36,59 @@ module.exports = {
 
     try {
       await guild.members.unban(user);
+      const bancase = await CasesModel.findOne({
+        punished: user,
+        type: "ban",
+        expired: false,
+      });
+      await CasesModel.findOneAndUpdate(
+        { punished: user, type: "ban", expired: false },
+        {
+          expired: true,
+          staff_who_expired: interaction.user.id,
+          reason_for_expire: reason,
+        }
+      );
+      await CasesModel.create({
+        type: "unban",
+        punished: user,
+        case: c.cases,
+        pardoner: interaction.user.id,
+        reason_for_expire: reason,
+        time: Math.floor(Date.now() / 1000),
+      });
+      interaction.reply({
+        embeds: [
+          new MessageEmbed()
+            .setAuthor({ name: `Case ${c.cases}` })
+            .setDescription(
+              `<@!${user}> (${user}) has been unbanned with reason: \`${reason}\`. They can now join the server.`
+            )
+            .setColor("DARK_GREEN")
+            .setFooter({ text: `Requested by ${interaction.user.tag}` })
+            .setTimestamp(),
+        ],
+      });
+      c.cases++;
+      await c.save();
+      const logs = guild.channels.cache.get("1009968902941442119");
+      logs.send({
+        embeds: [
+          new MessageEmbed()
+            .setAuthor({ name: `User Unbanned` })
+            .setColor("DARK_GOLD")
+            .setDescription(
+              `<@!${user}> (${user}) has been unbanned by <@!${interaction.user.id}> with reason: \`\`${reason}\`\`. The case for the user's ban is case **${bancase.case}**.`
+            )
+            .setTimestamp(),
+        ],
+      });
+      if (!(await UserModeration.findOne({ user: user }))) {
+        await UserModeration.create({ user: user, warns: 0 });
+      } else {
+        await UserModeration.findOneAndUpdate({ user: user, warns: 0 });
+      }
     } catch (e) {
-      client.woopsie = true;
       const err = e.toString();
       if (err === "DiscordAPIError: Unknown User") {
         return interaction.reply({
@@ -54,67 +105,11 @@ module.exports = {
           content: "That user is not banned!",
           ephemeral: true,
         });
-      }
-    } finally {
-      if (!client.woopsie) {
-        interaction.reply({
-          embeds: [
-            new MessageEmbed()
-              .setAuthor({ name: `Case ${c.cases}` })
-              .setDescription(
-                `<@!${user}> (${user}) has been unbanned with reason: \`${reason}\`. They can now join the server.`
-              )
-              .setColor("DARK_GREEN")
-              .setFooter({ text: `Requested by ${interaction.user.tag}` })
-              .setTimestamp(),
-          ],
-        });
-      }
-      const bancase = await CasesModel.findOne({
-        punished: user,
-        type: "ban",
-        expired: false,
-      });
-      try {
-        await CasesModel.findOneAndUpdate(
-          { punished: user, type: "ban", expired: false },
-          {
-            expired: true,
-            staff_who_expired: interaction.user.id,
-            reason_for_expire: reason,
-          }
+      } else {
+        interaction.reply(
+          `Something went wrong. <@!452436342841016341> ${e.toString()}`
         );
-        await CasesModel.create({
-          type: "unban",
-          punished: user,
-          case: c.cases,
-          pardoner: interaction.user.id,
-          reason_for_expire: reason,
-          time: Math.floor(Date.now() / 1000),
-        });
-        c.cases++;
-        await c.save();
-        if (!(await UserModeration.findOne({ user: user }))) {
-          await UserModeration.create({ user: user, warns: 0 });
-        } else {
-          await UserModeration.findOneAndUpdate({ user: user, warns: 0 });
-        }
-      } catch (e) {
-        console.log(e);
       }
-      const ch = "1009968902941442119";
-      const logs = guild.channels.cache.get(ch);
-      logs.send({
-        embeds: [
-          new MessageEmbed()
-            .setAuthor({ name: `User Unbanned` })
-            .setColor("DARK_GOLD")
-            .setDescription(
-              `<@!${user}> (${user}) has been unbanned by <@!${interaction.user.id}> with reason: ${reason}. The case for the user's ban is case ${bancase.case}.`
-            )
-            .setTimestamp(),
-        ],
-      });
     }
   },
 };

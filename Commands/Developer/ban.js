@@ -165,7 +165,12 @@ module.exports = {
         ],
       });
     } catch (e) {
-      console.log(e);
+      if (
+        e.toString() !==
+        `TypeError: Cannot read properties of undefined (reading 'send')`
+      ) {
+        console.log(e);
+      }
     }
     setTimeout(() => {
       guild.members.ban(uid).catch((e) => {

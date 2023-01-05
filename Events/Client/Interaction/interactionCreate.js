@@ -73,9 +73,9 @@ Command ID: ${interaction.commandId}
             new MessageEmbed()
               .setAuthor({ name: "Something went wrong." })
               .setDescription(
-                `Failed to execute ${interaction.commandName} at <t:${
-                  Date.now() / 1000
-                }>
+                `Failed to execute ${
+                  interaction.commandName
+                } at <t:${Math.floor(Date.now() / 1000)}>
 Channel: ${interaction.channel}
 User: ${interaction.user.username} (${interaction.user}, ${interaction.user.id})
 ${e.toString()}`
