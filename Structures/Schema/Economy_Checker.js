@@ -2,7 +2,7 @@ const { mongoose } = require("mongoose");
 
 const Economy_Checker = new mongoose.Schema({
   user: `String`,
-  balance: `Number`,
+  balance: { type: "Number", default: 0 },
   tbalance: { type: "Number", default: 0 },
   inventory: `Array`,
   ask_cooldown: `Number`,
