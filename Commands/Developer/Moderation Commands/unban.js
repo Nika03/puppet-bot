@@ -29,9 +29,9 @@ module.exports = {
     const reason = interaction.options.getString("reason");
     const guild = client.guilds.cache.get(interaction.guild.id);
 
-    const CasesModel = require("../../Structures/Schema/Cases");
-    const UserModeration = require("../../Structures/Schema/UserModeration");
-    const RestartsModel = require("../../Structures/Schema/Restarts");
+    const CasesModel = require("../../../Structures/Schema/Cases");
+    const UserModeration = require("../../../Structures/Schema/UserModeration");
+    const RestartsModel = require("../../../Structures/Schema/Restarts");
     const c = await RestartsModel.findOne();
 
     try {

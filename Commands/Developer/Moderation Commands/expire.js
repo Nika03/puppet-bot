@@ -1,6 +1,6 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-const CasesModel = require("../../Structures/Schema/Cases");
-const UserModeration = require("../../Structures/Schema/UserModeration");
+const CasesModel = require("../../../Structures/Schema/Cases");
+const UserModeration = require("../../../Structures/Schema/UserModeration");
 
 module.exports = {
   name: "expire",

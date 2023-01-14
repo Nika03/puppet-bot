@@ -66,8 +66,8 @@ module.exports = {
         ephemeral: true,
       });
     }
-    const RestartsModel = require("../../Structures/Schema/Restarts");
-    const CasesModel = require("../../Structures/Schema/Cases");
+    const RestartsModel = require("../../../Structures/Schema/Restarts");
+    const CasesModel = require("../../../Structures/Schema/Cases");
 
     const find_cases = await RestartsModel.findOne();
     if (!find_cases.cases) {
@@ -75,7 +75,7 @@ module.exports = {
     }
     const tc = await RestartsModel.findOne();
 
-    const UserModeration = require("../../Structures/Schema/UserModeration");
+    const UserModeration = require("../../../Structures/Schema/UserModeration");
     userWarns = await UserModeration.findOne({ user: user.id });
     if (!userWarns) {
       await UserModeration.create({ user: user.id, warns: 0 });

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const User = require("../Structures/Schema/User");
+const User = require("../../Structures/Schema/User");
 
 module.exports = {
   id: "clicks-leaderboard",

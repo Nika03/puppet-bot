@@ -65,7 +65,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const SettingsModel = require("../../Structures/Schema/Settings.js");
+    const SettingsModel = require("../../../Structures/Schema/Settings.js");
     const is_blacklisted = await SettingsModel.findOne({
       channel: interaction.channel.id,
     });
@@ -91,7 +91,7 @@ module.exports = {
       });
     }
 
-    const CommandModel = require(`../../Structures/Schema/Command_Checker`);
+    const CommandModel = require(`../../../Structures/Schema/Command_Checker`);
     const cmdchecker = await CommandModel.findOne({
       user: interaction.user.id,
     });
@@ -99,7 +99,7 @@ module.exports = {
       await CommandModel.create({ user: interaction.user.id });
     }
     const usercmds = await CommandModel.findOne({ user: interaction.user.id });
-    const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
+    const EconomyChecker = require("../../../Structures/Schema/Economy_Checker");
     const amount = interaction.options.getNumber(`amount`);
     const what_user = interaction.options.getUser(`user`);
     const member = await interaction.guild.members.fetch(interaction.user.id);

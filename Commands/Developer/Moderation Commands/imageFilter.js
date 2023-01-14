@@ -1,5 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-const RestartsModel = require("../../Structures/Schema/Restarts");
+const RestartsModel = require("../../../Structures/Schema/Restarts");
 
 module.exports = {
   name: "imgfilter",

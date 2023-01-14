@@ -11,8 +11,8 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const SettingsModel = require("../../Structures/Schema/Settings.js");
-    const CommandModel = require(`../../Structures/Schema/Command_Checker`);
+    const SettingsModel = require("../../../Structures/Schema/Settings.js");
+    const CommandModel = require(`../../../Structures/Schema/Command_Checker`);
     const cmdchecker = await CommandModel.findOne({
       user: interaction.user.id,
     });
@@ -44,7 +44,7 @@ module.exports = {
         ephemeral: true,
       });
     }
-    const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
+    const EconomyChecker = require("../../../Structures/Schema/Economy_Checker");
     const user_exists = await EconomyChecker.findOne({
       user: interaction.user.id,
     });

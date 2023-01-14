@@ -45,8 +45,8 @@ module.exports = {
     const reason = interaction.options.getString(`reason`);
     const time = interaction.options.getString(`time`);
 
-    const RestartsModel = require("../../Structures/Schema/Restarts");
-    const CasesModel = require("../../Structures/Schema/Cases");
+    const RestartsModel = require("../../../Structures/Schema/Restarts");
+    const CasesModel = require("../../../Structures/Schema/Cases");
     ban_found = true;
     member_exists = true;
 

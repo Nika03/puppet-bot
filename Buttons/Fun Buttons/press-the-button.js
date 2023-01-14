@@ -1,6 +1,6 @@
 const { MessageActionRow, MessageButton } = require("discord.js");
-const User = require("../Structures/Schema/User");
-const RestartsModel = require("../Structures/Schema/Restarts");
+const User = require("../../Structures/Schema/User");
+const RestartsModel = require("../../Structures/Schema/Restarts");
 
 module.exports = {
   id: "press-the-button",

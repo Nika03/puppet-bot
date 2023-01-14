@@ -1,5 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-const UserInventory = require("../../Structures/Schema/UserInventory");
+const UserInventory = require("../../../Structures/Schema/UserInventory");
 
 module.exports = {
   name: "hunt",

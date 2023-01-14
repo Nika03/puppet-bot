@@ -1,5 +1,5 @@
 const { MessageActionRow, MessageButton, UserFlags } = require("discord.js");
-const BlacklistModel = require("../Structures/Schema/Blacklist");
+const BlacklistModel = require("../../Structures/Schema/Blacklist");
 module.exports = {
   id: "unblacklist",
   permission: "SEND_MESSAGES",

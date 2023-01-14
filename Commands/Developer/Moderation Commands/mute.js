@@ -137,8 +137,8 @@ module.exports = {
       }
     } finally {
       if (!client.er) {
-        const CasesModel = require("../../Structures/Schema/Cases");
-        const RestartsModel = require("../../Structures/Schema/Restarts");
+        const CasesModel = require("../../../Structures/Schema/Cases");
+        const RestartsModel = require("../../../Structures/Schema/Restarts");
         const r = await RestartsModel.findOne({ owner: "Darkeew" });
         interaction.reply({
           embeds: [

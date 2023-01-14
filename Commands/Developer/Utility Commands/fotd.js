@@ -19,7 +19,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const SettingsModel = require("../../Structures/Schema/Settings.js");
+    const SettingsModel = require("../../../Structures/Schema/Settings.js");
     const is_blacklisted = await SettingsModel.findOne({
       channel: interaction.channel.id,
     });

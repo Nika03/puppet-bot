@@ -1,6 +1,6 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const axios = require("axios");
-const { reverseimageapikey } = require("../../Structures/config.json");
+const { reverseimageapikey } = require("../../../Structures/config.json");
 
 module.exports = {
   name: "reverse-search",

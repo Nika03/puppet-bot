@@ -55,7 +55,7 @@ module.exports = {
       }
     }
 
-    const CasesModel = require("../../Structures/Schema/Cases");
+    const CasesModel = require("../../../Structures/Schema/Cases");
 
     if (interaction.toString().includes(`/cases view case:`)) {
       const c = interaction.options.getNumber("case");
@@ -124,7 +124,7 @@ ${client.o}
         ],
       });
     } else if (interaction.toString().includes("/cases view user:")) {
-      const CasesModel = require("../../Structures/Schema/Cases");
+      const CasesModel = require("../../../Structures/Schema/Cases");
       const user = interaction.options.getUser("user");
       const u = await CasesModel.find().sort("-cases");
       cases = [];

@@ -108,7 +108,7 @@ module.exports = {
         ],
       });
     }
-    const SettingsModel = require(`../../Structures/Schema/Settings`);
+    const SettingsModel = require(`../../../Structures/Schema/Settings`);
     const cta = interaction.options.getChannel("add-channel");
     if (cta) client.cta = cta.id;
     const ctr = interaction.options.getChannel("remove-channel");

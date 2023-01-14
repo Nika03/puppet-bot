@@ -11,11 +11,11 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
+    const EconomyChecker = require("../../../Structures/Schema/Economy_Checker");
     const user_exists = await EconomyChecker.findOne({
       user: interaction.user.id,
     });
-    const SettingsModel = require("../../Structures/Schema/Settings.js");
+    const SettingsModel = require("../../../Structures/Schema/Settings.js");
     const is_blacklisted = await SettingsModel.findOne({
       channel: interaction.channel.id,
     });

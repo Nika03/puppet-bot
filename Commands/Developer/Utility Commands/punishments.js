@@ -11,7 +11,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const CaseModel = require("../../Structures/Schema/Cases");
+    const CaseModel = require("../../../Structures/Schema/Cases");
     const arr = [];
     const c = await CaseModel.find();
     c.forEach((c) => {

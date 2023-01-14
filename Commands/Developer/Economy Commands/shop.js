@@ -87,10 +87,10 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const ShopItems = require("../../Structures/Schema/Shop_Items");
-    const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
+    const ShopItems = require("../../../Structures/Schema/Shop_Items");
+    const EconomyChecker = require("../../../Structures/Schema/Economy_Checker");
 
-    const SettingsModel = require("../../Structures/Schema/Settings.js");
+    const SettingsModel = require("../../../Structures/Schema/Settings.js");
     const is_blacklisted = await SettingsModel.findOne({
       channel: interaction.channel.id,
     });

@@ -11,7 +11,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const RestartsModel = require("../../Structures/Schema/Restarts");
+    const RestartsModel = require("../../../Structures/Schema/Restarts");
     const status = await RestartsModel.findOne();
     if (status.verification === true) {
       interaction.reply({

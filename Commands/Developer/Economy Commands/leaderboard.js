@@ -4,7 +4,7 @@ const {
   MessageActionRow,
   MessageButton,
 } = require("discord.js");
-const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
+const EconomyChecker = require("../../../Structures/Schema/Economy_Checker");
 
 module.exports = {
   name: "leaderboard",
@@ -16,7 +16,7 @@ module.exports = {
    * @param {CommandInteraction} interaction
    */
   async execute(interaction) {
-    const SettingsModel = require("../../Structures/Schema/Settings");
+    const SettingsModel = require("../../../Structures/Schema/Settings");
     const is_blacklisted = await SettingsModel.findOne({
       channel: interaction.channel.id,
     });
@@ -42,7 +42,7 @@ module.exports = {
         ephemeral: true,
       });
     }
-    const EconomyChecker = require("../../Structures/Schema/Economy_Checker");
+    const EconomyChecker = require("../../../Structures/Schema/Economy_Checker");
     var u = await EconomyChecker.findOne({ user: interaction.user.id });
     if (!u) {
       await EconomyChecker.create({ user: interaction.user.id, balance: 0 });
