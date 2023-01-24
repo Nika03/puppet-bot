@@ -5,7 +5,7 @@ module.exports = {
   description: "Say something. Staff only.",
   permission: "MANAGE_MESSAGES",
   type: "Fun",
-  usage: "`/say [message] [channel]`",
+  usage: "`/say [message] [channel], /say [message] [channel] [message_id]`",
   options: [
     {
       name: `message`,
@@ -20,18 +20,18 @@ module.exports = {
       type: `CHANNEL`,
       channelTypes: [`GUILD_TEXT`],
     },
+    {
+      name: "message_id",
+      description: "The message to reply to.",
+      required: false,
+      type: "STRING",
+    },
   ],
   /**
    * @param {CommandInteraction} interaction
    * @param {Client} client
    */
   async execute(interaction, client) {
-    //Change this
-
-    const role_to_ping = `963473020108824647`; // Neco Arc Server
-    //const role_to_ping = `993169053906636890` // Test server
-
-    //Change this
     const member = await interaction.guild.members.fetch(interaction.user.id);
     if (member.roles.cache.has("946525021545828422")) {
       return interaction.reply({
@@ -45,6 +45,7 @@ module.exports = {
       });
     }
     const message = interaction.options.getString(`message`);
+    const message_id = interaction.options.getString("message_id");
     const c = interaction.options.getChannel(`channel`);
     const channel = interaction.guild.channels.cache.get(c.id);
     if (
@@ -74,15 +75,28 @@ module.exports = {
     // return interaction.reply({content: `Failed to send your message, try again!`, ephemeral: true})
     //}
     interaction.reply({
-      content: `Sent message to ${channel}!`,
+      content: `Sent message to ${channel}! *If the message failed, something went wrong!*`,
       ephemeral: true,
     });
-    channel.send({
-      content: message,
-      allowedMentions: {
-        roles: [role_to_ping],
-      },
-    });
+    if (message_id) {
+      channel.messages.fetch(message_id).then((m) => {
+        console.log(m);
+        m.reply({
+          content: message,
+          allowedMentions: {
+            roles: ["963473020108824647"],
+            users: [m.author.id],
+          },
+        });
+      });
+    } else {
+      channel.send({
+        content: message,
+        allowedMentions: {
+          roles: ["963473020108824647"],
+        },
+      });
+    }
     console.log(
       `${interaction.user.id} ${interaction.user.tag} has sent \`${message}\` to ${channel.name}.`
     );
