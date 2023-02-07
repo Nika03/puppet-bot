@@ -11,7 +11,7 @@ var app = express();
 client.commands = new Collection();
 client.buttons = new Collection();
 
-["Events", "Commands", "Buttons", "Errors"].forEach((handler) => {
+["Events", "Commands", "Buttons"].forEach((handler) => { // "Errors"
   require(`./Structures/Handlers/${handler}`)(client, PG, Ascii);
 });
 client.login(Token);

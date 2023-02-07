@@ -45,7 +45,7 @@ module.exports = async (client, PG, Ascii) => {
     client.commandList.push(command.name);
   });
 
-  console.log(Table.toString());
+  //console.log(Table.toString());
 
   // PERMISSIONS CHECK //
 

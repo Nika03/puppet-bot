@@ -3,10 +3,10 @@ const { Client, MessageEmbed } = require("discord.js");
  *
  * @param {Client} client
  */
-module.exports = (client) => {
+/* module.exports = (client) => {
   process.on("unhandledRejection", (reason, p) => {
-    const guild = client.guilds.cache.get("946518364216520774");
-    const logs = guild.channels.cache.get("1051956107511332975");
+    const guild = client.guilds.cache.get("752104036102176778");
+    const logs = client.channels.cache.get("1071628325761585252");
 
     p.catch((p) => {
       logs.send({
@@ -25,9 +25,9 @@ module.exports = (client) => {
     });
   });
   process.on("uncaughtException", (reason, p) => {
-    const guild = client.guilds.cache.get("946518364216520774");
-    const logs = guild.channels.cache.get("1051956107511332975");
-    p.catch((p) => {
+    const guild = client.guilds.cache.get("752104036102176778");
+    const logs = client.channels.cache.get("1071628325761585252");
+    p.match((p) => {
       logs.send({
         content: "<@!452436342841016341>, an `uncaughtException` occured.",
         embeds: [
@@ -43,4 +43,4 @@ module.exports = (client) => {
       });
     });
   });
-};
+}; */

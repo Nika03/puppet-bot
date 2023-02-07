@@ -8,8 +8,8 @@ const {
 module.exports = {
   name: "send",
   description: "Send a programmed message to a certain channel.",
-  permission: "ADMINISTRATOR",
-  type: "Forbidden",
+  permission: "SEND_MESSAGES",
+  //type: "Forbidden",
   usage: "`/send`",
   /**
    * @param {CommandInteraction} interaction

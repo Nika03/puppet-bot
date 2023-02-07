@@ -9,5 +9,5 @@ module.exports = async (client, PG, Ascii) => {
     client.buttons.set(buttonFile.id, buttonFile);
     Table.addRow(buttonFile.id, "LOADED");
   });
-  console.log(Table.toString());
+  //console.log(Table.toString());
 };

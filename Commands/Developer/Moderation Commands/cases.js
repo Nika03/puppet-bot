@@ -39,8 +39,10 @@ module.exports = {
 
     //const g = `986357448925401168` //Test server
     //const staff = `986600882810544138` //Test server staff role
-    const g = `946518364216520774`; //Neco server
-    const staff = `970229987405877259`; //Neco server staff role
+    const guilda = `946518364216520774`; //Neco server
+	const g = `752104036102176778`; // nika server
+	const staff = '1071605420218650714'; // staff nika server (dev role)
+    //const staff = `970229987405877259`; //Neco server staff role
 
     //Change this
 

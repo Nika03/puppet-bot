@@ -37,8 +37,10 @@ module.exports = {
 
     //const g = `986357448925401168` //Test server
     //const staff = `986600882810544138` //Test server staff role
-    const g = `946518364216520774`; //Neco server
+    const guilda = `946518364216520774`; //Neco server
+	const g = `752104036102176778`; // nika server
     const staff = `970229987405877259`; //Neco server staff role
+    //const staff = `970229987405877259`; //Neco server staff role
 
     const num = time.replace(/\D/g, "");
     if (num === "") {
@@ -100,7 +102,8 @@ module.exports = {
         ephemeral: true,
       });
     }
-    if (!author.roles.cache.has("946525953033646130")) {
+    //if (!author.roles.cache.has("946525953033646130")) { // admin perms
+	if (!author.roles.cache.has("1071605420218650714")) { // dev role nika server
       if (member.roles.cache.has(staff)) {
         return interaction.reply({
           content: `You cannot mute someone that is a staff member!`,
@@ -140,19 +143,23 @@ module.exports = {
         const CasesModel = require("../../../Structures/Schema/Cases");
         const RestartsModel = require("../../../Structures/Schema/Restarts");
         const r = await RestartsModel.findOne({ owner: "Darkeew" });
-        interaction.reply({
-          embeds: [
-            new MessageEmbed()
-              .setAuthor({ name: `Case ${r.cases}` })
-              .setDescription(
-                `${user} has been muted for **${num} ${client.letter}** with reason: \`${reason}\``
-              )
-              .setColor("DARK_RED")
-              .setFooter({ text: `Requested by ${interaction.user.tag}` })
-              .setTimestamp(),
-          ],
-        });
-        const ch = "1009968902941442119";
+		if (!r) {
+			await r.create({ cases: 1}) && await r.save();
+		}
+		interaction.reply({
+		  embeds: [
+			new MessageEmbed()
+			  .setAuthor({ name: `Case ${r.cases}` })
+			  .setDescription(
+				`${user} has been muted for **${num} ${client.letter}** with reason: \`${reason}\``
+			  )
+			  .setColor("DARK_RED")
+			  .setFooter({ text: `Requested by ${interaction.user.tag}` })
+			  .setTimestamp(),
+		  ],
+		});
+        //const ch = "1009968902941442119"; // teto-log
+		const ch = "1071628325761585252"; // bot-log
         const logs = guild.channels.cache.get(ch);
         logs.send({
           embeds: [

@@ -23,5 +23,5 @@ module.exports = async (client, PG, Ascii) => {
 
     await Table.addRow(event.name, "✔ Event loaded successfully.");
   });
-  console.log(Table.toString());
+  //console.log(Table.toString());
 };

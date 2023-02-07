@@ -22,7 +22,7 @@ module.exports = {
             ],
           }) && client.commands.delete(interaction.commandName)
         );
-      if (interaction.member.user.id === "452436342841016341") {
+      if (interaction.member.user.id === "453944662093332490") {
         return await command.execute(interaction, client);
       } else if (
         command.permission &&
@@ -36,7 +36,7 @@ module.exports = {
       try {
         await command.execute(interaction, client);
         const guild = client.guilds.cache.get("946518364216520774");
-        const channel = guild.channels.cache.get("1051530360753750016");
+        const channel = client.channels.cache.get("1071628325761585252"); // bot-logs
         channel.send({
           embeds: [
             new MessageEmbed()
@@ -66,7 +66,7 @@ Command ID: ${interaction.commandId}
       } catch (e) {
         console.log(e);
         const guild = client.guilds.cache.get("946518364216520774");
-        const channel = guild.channels.cache.get("1051530360753750016");
+        const channel = client.channels.cache.get("1071628325761585252"); // bot logs
         channel.send({
           content: "<@!452436342841016341>",
           embeds: [

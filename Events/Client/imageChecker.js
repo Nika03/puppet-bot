@@ -1,16 +1,16 @@
 const { Message, MessageEmbed, Client } = require("discord.js");
 const axios = require("axios");
 const RestartsModel = require("../../Structures/Schema/Restarts");
-const tf = require("@tensorflow/tfjs-node");
+//const tf = require("@tensorflow/tfjs-node");
 const nsfw = require("nsfwjs");
 
-module.exports = {
-  name: "messageCreate",
+//module.exports = {
+//  name: "messageCreate",
   /**
    * @param {Message} message
    * @param {Client} client
    */
-  async execute(message, client) {
+/*   async execute(message, client) {
     const setting = await RestartsModel.findOne();
     if (!setting.imageFilter) return;
     if (message.channel.id === "1029474001648623726") return;
@@ -138,4 +138,4 @@ ${predictions[4].className} rating: \`${predictions[4].probability * 100}\`
     //image.dispose();
     //console.log(predictions);
   },
-};
+}; */
