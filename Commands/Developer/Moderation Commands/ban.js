@@ -35,8 +35,7 @@ module.exports = {
     //const g = `986357448925401168` //Test server
     //const staff = `986600882810544138` //Test server staff role
     //const trainee = `986600882810544138` //Test server trainee role
-    const guilda = `946518364216520774`; //Neco server
-	const g = `752104036102176778`; // nika server
+    const g = `946518364216520774`; //Neco server
     const staff = `970229987405877259`; //Neco server staff role
     const trainee = `946525021545828422`; //Neco server trainee role
 
@@ -192,7 +191,7 @@ module.exports = {
           .setTimestamp(),
       ],
     });
-    const c = "1071628325761585252"; // bot-log
+    const c = "1009968902941442119"; // teto-log
     const logs = guild.channels.cache.get(c);
     logs.send({
       content: `${user.id}`,

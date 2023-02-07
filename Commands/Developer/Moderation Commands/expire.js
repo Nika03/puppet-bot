@@ -30,10 +30,9 @@ module.exports = {
 		const caseNumber = interaction.options.getNumber("case");
 		const reason = interaction.options.getString("reason");
 
-		const guild = client.guilds.cache.get("752104036102176778"); // nika server
+		const guild = client.guilds.cache.get("946518364216520774"); // puppet server
 		const member = guild.members.cache.get(interaction.user.id);
-		//if (!member.roles.cache.has("993410506926850068") && !member.roles.cache.has("946525953033646130")) { // manager and admin perms
-		if (!member.roles.cache.has("1071605420218650714")) { // dev role nika server
+		if (!member.roles.cache.has("993410506926850068") && !member.roles.cache.has("946525953033646130")) { // manager and admin perms
 			return interaction.reply({
 				content:
 					"You are not able to use this command. If you want to expire a warning, ask a <@&993410506926850068> or a higher role.",
@@ -72,8 +71,7 @@ module.exports = {
 					.setTimestamp(),
 			],
 		});
-		//const logs = guild.channels.cache.get("1009968902941442119"); // teto-log
-		const logs = guild.channels.cache.get("1071628325761585252"); // bot-logs nika server
+		const logs = guild.channels.cache.get("1009968902941442119"); // teto-log
 		logs.send({
 			embeds: [
 				new MessageEmbed()

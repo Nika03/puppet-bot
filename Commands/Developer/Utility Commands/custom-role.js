@@ -46,23 +46,22 @@ module.exports = {
       });
     }
     const roles = member.roles.cache;
-    if (!roles.has("998713449783771156") && !roles.has("946524586080628856")) {
+    if (!roles.has("998713449783771156") && !roles.has("946524586080628856")) { // custom role pass and lvl 50 role
       return interaction.reply({
         content:
           "You cannot use this command without <@&998713449783771156> or <@&946524586080628856>.",
         ephemeral: true,
       });
     }
-    if (!roles.has("998713449783771156")) {
+
+    if (!roles.has("998713449783771156")) // custom role pass
       role_create_ding = 1;
-    } else {
-      role_create_ding = 0;
-    }
-    if (!roles.has("946524586080628856")) {
+    role_create_ding = 0;
+
+    if (!roles.has("946524586080628856")) // lvl 50 role
       role_create_dong = 1;
-    } else {
-      role_create_dong = 0;
-    }
+    role_create_dong = 0;
+
     if (role_create_ding + role_create_dong === 2) {
       return interaction.reply({
         content:
@@ -77,7 +76,7 @@ module.exports = {
         role_to_modify = r;
       }
     });
-    if (roles.has("970229987405877259")) {
+    if (roles.has("970229987405877259")) { // staff perms role
       role_position = guild.roles.cache.get("1026815594001092638").position - 1;
       if (icon && color) {
         return interaction.reply({
@@ -87,7 +86,7 @@ module.exports = {
         });
       }
     } else {
-      role_position = guild.roles.cache.get("970229987405877259").position - 1;
+      role_position = guild.roles.cache.get("970229987405877259").position - 1; // staff perms role
     }
     if (name) {
       if (name.length > 100 - 9) {
@@ -120,7 +119,7 @@ module.exports = {
     if (name) {
       if (name.includes("(Custom)")) {
         name_for_role = name.replace("(Custom)", "");
-        name_for_role = name_for_role + " (Custom)";
+        name_for_role += " (Custom)";
       } else {
         name_for_role = name + " (Custom)";
       }

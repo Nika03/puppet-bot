@@ -28,7 +28,7 @@ module.exports = {
     const user = interaction.options.getUser("user");
     const reason = interaction.options.getString("reason");
 
-    const guild = client.guilds.cache.get("752104036102176778"); // nika server
+    const guild = client.guilds.cache.get("946518364216520774");
     const member = guild.members.cache.get(user.id);
     const channel = guild.channels.cache.get(interaction.channel.id);
     const interactionUser = guild.members.cache.get(interaction.user.id);
@@ -94,7 +94,7 @@ module.exports = {
           .setTimestamp(),
       ],
     });
-    const logs = guild.channels.cache.get("1071628325761585252"); // bot-logs
+    const logs = guild.channels.cache.get("1009968902941442119"); // teto-logs
     logs.send({
       content: `${user.id}`,
       embeds: [
