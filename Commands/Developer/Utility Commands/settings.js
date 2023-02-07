@@ -97,6 +97,7 @@ module.exports = {
     ];
 
     const member = await interaction.guild.members.fetch(interaction.user.id);
+    //if (!member.roles.cache.has(`970229987405877259`)) { // staff perms role
     if (!member.roles.cache.has(`1071605420218650714`)) { // dev role
       return interaction.reply({
         embeds: [

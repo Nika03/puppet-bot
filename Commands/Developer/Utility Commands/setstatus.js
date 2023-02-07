@@ -57,7 +57,7 @@ module.exports = {
     }
     if (!client.acterr) {
       interaction.reply({
-        content: "Successfuly changed the bot's status.",
+        content: `Successfuly changed the bot's status to:\nStatus: \`${status}\`\nStatus Type: \`${statustype}\``,
         ephemeral: true,
       });
     }
