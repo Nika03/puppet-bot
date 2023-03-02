@@ -16,7 +16,7 @@ module.exports = {
 
 	
 	/* This the db stuff */
-    /* const URI = db_credentials;
+    const URI = db_credentials;
     const URIParams = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -36,7 +36,7 @@ module.exports = {
     } else {
       current_restarts.restarts++;
       await current_restarts.save();
-    } */
+    }
 	/* End of the db stuff */
 
 

@@ -90,6 +90,7 @@ module.exports = {
       `shop`,
       `staff-list`,
       `hug`,
+	  `kiss`,
       "search",
       "leaderboard",
       "fotd",
@@ -97,8 +98,9 @@ module.exports = {
     ];
 
     const member = await interaction.guild.members.fetch(interaction.user.id);
-    //if (!member.roles.cache.has(`970229987405877259`)) { // staff perms role
-    if (!member.roles.cache.has(`1071605420218650714`)) { // dev role
+    //if (!member.roles.cache.has(`970229987405877259`)) { // staff perms role or dev role in nika server
+	if (!member.roles.cache.has(`1071605420218650714`)) { // staff perms role or dev role in nika server
+
       return interaction.reply({
         embeds: [
           new MessageEmbed()

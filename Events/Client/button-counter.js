@@ -10,7 +10,7 @@ module.exports = {
 	async execute(client) {
 		const guild = client.guilds.cache.get("752104036102176778");
 		const channel = client.channels.cache.get("1072243970261921792");
-		setInterval(async () => {
+		/* setInterval(async () => {
 			let find = await RestartsModel.findOne({
 				GuildID: guild
 			});
@@ -47,6 +47,6 @@ Updates in: <t:${Math.floor(Date.now() / 1000) + 60}:R>
 					],
 				});
 			});
-		}, 60000); // 1 min
+		}, 60000); // 1 min */
 	},
 };

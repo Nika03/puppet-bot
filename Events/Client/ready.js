@@ -1,7 +1,6 @@
 const color = require("colors");
-const { Client, Guild, MessageEmbed, ActivityType } = require("discord.js");
+const { Client } = require("discord.js");
 const { connect } = require("mongoose");
-const axios = require("axios");
 const { MONGO_URI } = require("../../Structures/config.json");
 
 module.exports = {
@@ -17,16 +16,16 @@ module.exports = {
 		const arrayOfActivities = [
 			`Over ${client.guilds.cache.size} servers! 🙂`,
 			`Prefix is: "/"`,
-			"/help | yourbestbot.pt/support",
+			"/help | discord.gg/neco-arc",
 			`Over ${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Users!`,
 		];
-	
+
 		const arrayOfStatus = [
 			'WATCHING',
 			//'STREAMING',
 			'WATCHING',
 		]
-	
+
 		let counter = 0
 		const updateActivities = () => {
 			client.user.setPresence({
@@ -36,11 +35,11 @@ module.exports = {
 					type: 'WATCHING',
 				}]
 			})
-	
+
 			if (++counter >= arrayOfActivities.length) {
 				counter = 0
 			}
-	
+
 			setTimeout(updateActivities, 100000)
 		}
 		updateActivities()

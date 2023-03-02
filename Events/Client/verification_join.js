@@ -16,7 +16,7 @@ module.exports = {
    */
   async execute(member, client) {
     const guild = client.guilds.cache.get("946518364216520774");
-    axios
+    /* axios
       .get("https://api.moderatecontent.com/moderate/", {
         params: {
           key: moderatecontentkey,
@@ -70,6 +70,6 @@ ${member.user}
           console.log(e);
         }
       }
-    }
+    } */
   },
 };

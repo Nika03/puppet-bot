@@ -37,8 +37,15 @@ module.exports = {
 
     //const g = `986357448925401168` //Test server
     //const staff = `986600882810544138` //Test server staff role
+	//const g = `752104036102176778`; //  nika server
+	//const staff = `1071605420218650714`; // nika dev role
     const g = `946518364216520774`; //Neco server
     const staff = `970229987405877259`; //Neco server staff role
+
+	if (!time) return interaction.reply({
+        content: "You need to input a valid time! (ex: 15s, 7h, 5m)",
+        ephemeral: true,
+      });
 
     const num = time.replace(/\D/g, "");
     if (num === "") {
@@ -155,7 +162,7 @@ module.exports = {
 			  .setTimestamp(),
 		  ],
 		});
-        const ch = "1009968902941442119"; // teto-log
+        /* const ch = "1009968902941442119"; // teto-log
         const logs = guild.channels.cache.get(ch);
         logs.send({
           embeds: [
@@ -167,7 +174,7 @@ module.exports = {
               )
               .setTimestamp(),
           ],
-        });
+        }); */
         await CasesModel.create({
           punished: user.id,
           punisher: interaction.user.id,

@@ -11,10 +11,10 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    const guild = client.guilds.cache.get("946518364216520774"); // puppet server
-    const channel = guild.channels.cache.get("946528426687336559"); // verify-here
-	//const guild = client.guilds.cache.get("752104036102176778"); // nika server
-    //const channel = guild.channels.cache.get("1072243970261921792"); // static
+    //const guild = client.guilds.cache.get("946518364216520774"); // puppet server
+    //const channel = guild.channels.cache.get("946528426687336559"); // verify-here
+	const guild = client.guilds.cache.get("752104036102176778"); // nika server
+    const channel = guild.channels.cache.get("1072243970261921792"); // static
     const rc = await Math.floor(Math.random() * 5);
     if (rc === 0) client.color = "🟥";
     if (rc === 1) client.color = "🟩";
@@ -22,7 +22,7 @@ module.exports = {
     if (rc === 3) client.color = "🟫";
     if (rc === 4) client.color = "🟧";
     if (rc === 5) client.color = "🟪";
-    channel.messages.fetch("1008858316509806644").then((m) => { // msg id
+    channel.messages.fetch("1080204574729699429").then((m) => { // msg id
       try {
         m.edit({
           embeds: [
@@ -52,7 +52,7 @@ module.exports = {
       embeds: [
         new MessageEmbed()
           .setDescription(
-            `The reaction for verification has been succesfully changed. You can see it in <#946528426687336559>`
+            `The reaction for verification has been succesfully changed. You can see it in <#${channel}>`
           )
           .setColor("WHITE"),
       ],

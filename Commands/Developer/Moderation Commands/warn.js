@@ -28,7 +28,7 @@ module.exports = {
     const user = interaction.options.getUser("user");
     const reason = interaction.options.getString("reason");
 
-    const guild = client.guilds.cache.get("946518364216520774");
+    const guild = client.guilds.cache.get("946518364216520774"); // puppets server
     const member = guild.members.cache.get(user.id);
     const channel = guild.channels.cache.get(interaction.channel.id);
     const interactionUser = guild.members.cache.get(interaction.user.id);

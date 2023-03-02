@@ -9,12 +9,10 @@ module.exports = {
 	async execute(message, client) {
 		var urlRegex =
 			/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
-		const guild = client.guilds.cache.get("752104036102176778"); // nika server
+		const guild = client.guilds.cache.get("946518364216520774"); // puppet server
 		const member = guild.members.cache.get(message.author.id);
 		if (
-			!message.author.bot &&
-			Math.floor(member.joinedTimestamp / 1000 + 43200) >
-			Math.floor(Date.now() / 1000)
+			!message.author.bot // && Math.floor(member.joinedTimestamp / 1000 + 43200) > Math.floor(Date.now() / 1000)
 		) {
 			if (urlRegex.test(message.toString())) {
 				message.delete();
@@ -70,7 +68,7 @@ module.exports = {
 			`946521074647048212`,
 		];
 
-		if (!allowedchannels.includes(message.channel.id)) return;
+		//if (!allowedchannels.includes(message.channel.id)) return;
 
 		const random_number1 = Math.floor(Math.random() * 100);
 		const random_number2 = Math.floor(Math.random() * 100);
@@ -107,25 +105,30 @@ module.exports = {
 				],
 			});
 
-			const gifs = ['https://tenor.com/view/whygena-reggie-gif-20262381','https://imgur.com/a/c9AyI5a','https://media.discordapp.net/attachments/665624930599174154/986280946166796378/B6A6A6F6-0940-4AA0-83EB-B0E0C046180C-1.gif','https://tenor.com/view/whygena-whygena-tentacles-reggie-reggie-the-rat-cute-rat-boy-gif-24174715','https://tenor.com/view/reggie-mouse-trap-gif-25221480','https://media.discordapp.net/attachments/473197954132475907/987137675960131614/FDXskHtVQAMsNM_.gif','https://tenor.com/view/meme-reggie-the-rat-berserk-skeleton-gif-25594200','https://tenor.com/view/dansen-whygena-reggie-gif-21008024','https://tenor.com/view/almic-gif-19160345'];
-			const gif = Math.floor(Math.random() * gifs.length);
-			const resgif = gifs[gif];
-
-			//if (message.channel.id === "946520764297912343") { // general chat in puppet
-			if (message.channel.id === "1071605291281551370") { // general chat in puppet
-				const random_number1 = Math.floor(Math.random() * 100);
-				const random_number2 = Math.floor(Math.random() * 100);
-				if (random_number1 === random_number2) {
-					const ch = "1071605291281551370"; // bot-log
-        			const channel = guild.channels.cache.get(ch);
-					channel.reply(resgif);
-				}
-			}
 			const new_balance = user.tbalance + client.random_amount;
 			await EconomyChecker.findOneAndUpdate(
 				{ user: message.author.id },
 				{ tbalance: new_balance }
 			);
+		}
+
+		const gifs = ['https://tenor.com/view/whygena-reggie-gif-20262381', 'https://imgur.com/a/c9AyI5a', 'https://media.discordapp.net/attachments/665624930599174154/986280946166796378/B6A6A6F6-0940-4AA0-83EB-B0E0C046180C-1.gif', 'https://tenor.com/view/whygena-whygena-tentacles-reggie-reggie-the-rat-cute-rat-boy-gif-24174715', 'https://tenor.com/view/reggie-mouse-trap-gif-25221480', 'https://media.discordapp.net/attachments/473197954132475907/987137675960131614/FDXskHtVQAMsNM_.gif', 'https://tenor.com/view/meme-reggie-the-rat-berserk-skeleton-gif-25594200', 'https://tenor.com/view/dansen-whygena-reggie-gif-21008024', 'https://tenor.com/view/almic-gif-19160345'];
+		const gif = Math.floor(Math.random() * gifs.length);
+		const resgif = gifs[gif];
+
+		if (message.channel.id === "946520764297912343") { // general puppets
+			let random_number1 = Math.floor(Math.random() * 100);
+			let random_number2 = Math.floor(Math.random() * 100);
+			//random_number1 = 1;
+			//random_number2 = 1;
+			console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
+			if (random_number1 === random_number2) {
+				const ch = "1080570881396441288"; // reggie nika
+				const channel = client.channels.cache.get(ch);
+				channel.send({ content: resgif });
+				//message.channel.send({content: resgif});
+				message.reply({ content: resgif });
+			}
 		}
 	},
 };
