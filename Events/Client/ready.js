@@ -14,10 +14,11 @@ module.exports = {
 		//client.user.setActivity("you from the closet.", { type: "WATCHING" });
 
 		const arrayOfActivities = [
-			`Over ${client.guilds.cache.size} servers! 🙂`,
-			`Prefix is: "/"`,
+			//`Over ${client.guilds.cache.size} servers! 🙂`,
+			//`Prefix is: "/"`,
 			"/help | discord.gg/neco-arc",
-			`Over ${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Users!`,
+			"I live in your walls"
+			//`Over ${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Users!`,
 		];
 
 		const arrayOfStatus = [
