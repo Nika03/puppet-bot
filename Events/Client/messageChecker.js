@@ -1,3 +1,4 @@
+const color = require("colors");
 const { Message, MessageEmbed, Client } = require("discord.js");
 
 module.exports = {
@@ -11,13 +12,13 @@ module.exports = {
 			/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
 		const guild = client.guilds.cache.get("946518364216520774"); // puppet server
 		const member = guild.members.cache.get(message.author.id);
-		if (
-			!message.author.bot // && Math.floor(member.joinedTimestamp / 1000 + 43200) > Math.floor(Date.now() / 1000)
+		/* if (
+			!message.author.bot && Math.floor(member.joinedTimestamp / 1000 + 43200) > Math.floor(Date.now() / 1000)
 		) {
 			if (urlRegex.test(message.toString())) {
 				message.delete();
 			}
-		}
+		} */
 		if (message.channel.id === "1006613586157764659") {
 			if (message.author.bot) {
 				message.delete();
@@ -123,6 +124,7 @@ module.exports = {
 			//random_number2 = 1;
 			console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
 			if (random_number1 === random_number2) {
+				console.log(`Sent a gif to chat!`.brightGreen);
 				const ch = "1080570881396441288"; // reggie nika
 				const channel = client.channels.cache.get(ch);
 				channel.send({ content: resgif });

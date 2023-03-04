@@ -108,24 +108,24 @@ module.exports = {
     });
 
     if (!user_exists) {
-      await EconomyChecker.create({ user: interaction.user.id, balance: 0 });
+      await EconomyChecker.create({ user: interaction.user.id, tbalance: 0 });
     }
     if (what_user !== null) {
       const other_user_exists = await EconomyChecker.findOne({
         user: what_user.id,
       });
       if (!other_user_exists) {
-        await EconomyChecker.create({ user: what_user.id, balance: 0 });
+        await EconomyChecker.create({ user: what_user.id, tbalance: 0 });
       }
     }
 
     const user = await EconomyChecker.findOne({ user: interaction.user.id });
 
-    if (user.balance === 0) {
+    if (user.tbalance === 0) {
       global.footer = `Imagine having no tedollars, what a loser.`;
-    } else if (user.balance < 10000) {
+    } else if (user.tbalance < 10000) {
       global.footer = `Not enough tedollars, work more!`;
-    } else if (user.balance < 50000) {
+    } else if (user.tbalance < 50000) {
       global.footer = `Sounds like a good amount to me. Dont get robbed!`;
     } else {
       global.footer = `Alright, you're the Elon of Musks with that amount of tedollars...`;
@@ -139,11 +139,11 @@ module.exports = {
       }
       if (interaction.toString() === `/balance view user:${whatuser}`) {
         const check_user = await EconomyChecker.findOne({ user: whatuser });
-        if (user.balance === 0) {
+        if (user.tbalance === 0) {
           global.other_footer = `Imagine having no tedollars, what a loser.`;
-        } else if (user.balance < 10000) {
+        } else if (user.tbalance < 10000) {
           global.other_footer = `Let that person get some more money, one day they will get robbed...`;
-        } else if (user.balance < 50000) {
+        } else if (user.tbalance < 50000) {
           global.other_footer = `Would be bad if that person got robbed...`;
         } else {
           global.other_footer = `Kinda weird how none of this tedollars were stolen yet...`;
@@ -158,7 +158,7 @@ module.exports = {
                 })
                 .setColor(`#ff3067`)
                 .setDescription(
-                  `You currently have **${user.balance}** <:tedollar:987097348305997847> tedollars, and ${user.tbalance} TCoins!`
+                  `You currently have **${user.tbalance}** <:tedollar:987097348305997847> TCoins!`
                 )
                 .setFooter({ text: `${footer}` }),
             ],
@@ -201,7 +201,7 @@ module.exports = {
             })
             .setColor(`#ff3067`)
             .setDescription(
-              `You currently have **${user.balance}** <:tedollar:987097348305997847> tedollars and **${user.tbalance}** TCoins!`
+              `You currently have **${user.tbalance}** <:tedollar:987097348305997847> TCoins!`
             )
             .setFooter({ text: `${footer}` }),
         ],
@@ -231,7 +231,7 @@ module.exports = {
       }
       const user_exists = await EconomyChecker.findOne({ user: what_user.id });
       if (!user_exists) {
-        await EconomyChecker.create({ user: what_user.id, balance: 0 });
+        await EconomyChecker.create({ user: what_user.id, tbalance: 0 });
       }
       interaction.reply({
         embeds: [
@@ -248,10 +248,10 @@ module.exports = {
         ],
       });
       const user_giving = await EconomyChecker.findOne({ user: what_user.id });
-      const new_balance = Math.floor(user_giving.balance + amount);
+      const new_balance = Math.floor(user_giving.tbalance + amount);
       await EconomyChecker.findOneAndUpdate(
         { user: what_user.id },
-        { balance: new_balance }
+        { tbalance: new_balance }
       );
       const othercmdchecker = await CommandModel.findOne({
         user: what_user.id,
@@ -293,10 +293,10 @@ module.exports = {
       }
       const user_exists = await EconomyChecker.findOne({ user: what_user.id });
       if (!user_exists) {
-        await EconomyChecker.create({ user: what_user.id, balance: 0 });
+        await EconomyChecker.create({ user: what_user.id, tbalance: 0 });
       }
       const user = await EconomyChecker.findOne({ user: what_user.id });
-      if (user.balance === 0) {
+      if (user.tbalance === 0) {
         interaction.reply({
           embeds: [
             new MessageEmbed()
@@ -311,7 +311,7 @@ module.exports = {
               .setFooter({ text: `What is wrong with you?` }),
           ],
         });
-      } else if (Math.floor(user.balance - amount) < 0) {
+      } else if (Math.floor(user.tbalance - amount) < 0) {
         interaction.reply({
           embeds: [
             new MessageEmbed()
@@ -341,10 +341,10 @@ module.exports = {
               }),
           ],
         });
-        const new_balance = user.balance - amount;
+        const new_balance = user.tbalance - amount;
         await EconomyChecker.findOneAndUpdate(
           { user: what_user.id },
-          { balance: new_balance }
+          { tbalance: new_balance }
         );
         const othercmdchecker = await CommandModel.findOne({
           user: what_user.id,

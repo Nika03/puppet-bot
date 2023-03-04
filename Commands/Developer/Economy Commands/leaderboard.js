@@ -20,7 +20,8 @@ module.exports = {
 		const is_blacklisted = await SettingsModel.findOne({
 			channel: interaction.channel.id,
 		});
-		const emoji = "<:tedollar:987097348305997847>";
+		//const emoji = "<:tedollar:987097348305997847>";
+		const emoji = "💩";
 		if (is_blacklisted !== null) {
 			if (!is_blacklisted.commands.includes(`leaderboard`)) {
 				return interaction.reply({
@@ -43,24 +44,27 @@ module.exports = {
 			});
 		}
 		const EconomyChecker = require("../../../Structures/Schema/Economy_Checker");
-		var u = await EconomyChecker.findOne({ user: interaction.user.id });
-		if (!u) {
-			await EconomyChecker.create({ user: interaction.user.id, balance: 0 });
+		var userData = await EconomyChecker.findOne({ user: interaction.user.id });
+		if (!userData) {
+			await EconomyChecker.create({ user: interaction.user.id, tbalance: 0 });
 		}
 		await interaction.deferReply();
-		var u = await EconomyChecker.find().sort("-balance");
+		var u = await EconomyChecker.find().sort("-tbalance");
 		const array = [];
 		let x = 0;
+		let yes = false
 		dontAdd = false;
 		u.forEach((u) => {
 			if (dontAdd == false) {
 				array.push(
-					`#${x + 1} | <@!${u.user}> with **${u.balance}** ${emoji} tedollars.`
+					`#${x + 1} | <@!${u.user}> with **${u.tbalance}** ${emoji} Coins.`
 				);
 				x++;
 			}
-			if (u.user == interaction.user.id)
-				yes = true
+			if (x < 10){
+				if (u.user == interaction.user.id)
+					yes = true
+			}
 			if (x == 10) dontAdd = true;
 		});
 		let z = 1;
@@ -86,7 +90,7 @@ module.exports = {
 		if (yes == false) {
 			newEmbed.addFields({
 				name: "Your Position",
-				value: ` #${userPlace} | ${interaction.user} with **${userData.balance}** coins.`,
+				value: ` #${userPlace} | ${interaction.user} with **${userData.tbalance}** ${emoji} Coins.`,
 			})
 		}
 

@@ -50,7 +50,7 @@ module.exports = {
     });
 
     if (!user_exists) {
-      await EconomyChecker.create({ user: interaction.user.id, balance: 0 });
+      await EconomyChecker.create({ user: interaction.user.id, tbalance: 0 });
     }
 
     const command = await EconomyChecker.findOne({ user: interaction.user.id });
@@ -98,11 +98,11 @@ module.exports = {
             .setTimestamp(),
         ],
       });
-      const new_balance = Math.floor(command.balance + coins);
+      const new_balance = Math.floor(command.tbalance + coins);
       const cooldown = Math.floor(Date.now() / 1000 + 30);
       await EconomyChecker.findOneAndUpdate(
         { user: interaction.user.id },
-        { balance: new_balance, search_cooldown: cooldown }
+        { tbalance: new_balance, search_cooldown: cooldown }
       );
     }
   },

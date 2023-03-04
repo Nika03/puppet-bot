@@ -327,7 +327,7 @@ module.exports = {
               client.stock = "";
             }
             return `
-  - __${c.name}__ for **${c.price}** <:tedollar:987097348305997847> tedollars!
+  - __${c.name}__ for **${c.price}** <:tedollar:987097348305997847> TCoins!
   > **Description:** *${c.description}*
   ${client.role}
   ${client.stock}

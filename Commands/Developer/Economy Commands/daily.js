@@ -44,7 +44,7 @@ module.exports = {
     if (!user_exists) {
       await EconomyChecker.create({
         user: interaction.user.id,
-        balance: 0,
+        tbalance: 0,
         daily_streak: 1,
       });
     }
@@ -83,7 +83,7 @@ module.exports = {
         new MessageEmbed()
           .setAuthor({ name: `Daily Claimed!` })
           .setDescription(
-            `Neco arc has given you **250 + ${streak_coins}** coins!`
+            `Neco arc has given you **250 + ${streak_coins}** TCoins!`
           )
           .setFooter({
             text: `You claimed daily for ${user_balance.daily_streak} days!`,
@@ -96,8 +96,8 @@ module.exports = {
     });
     const new_streak = user_balance.daily_streak + 1;
     const cooldown = Math.floor(Date.now() / 1000 + 86400);
-    const new_balance = Math.floor(streak_coins + 250 + user_balance.balance);
-    user_balance.balance = new_balance;
+    const new_balance = Math.floor(streak_coins + 250 + user_balance.tbalance);
+    user_balance.tbalance = new_balance;
     user_balance.daily_streak = new_streak;
     user_balance.daily_cooldown = cooldown;
     user_balance.daily_last_claimed = Math.floor(Date.now() / 1000);

@@ -98,9 +98,7 @@ module.exports = {
     ];
 
     const member = await interaction.guild.members.fetch(interaction.user.id);
-    //if (!member.roles.cache.has(`970229987405877259`)) { // staff perms role or dev role in nika server
-	if (!member.roles.cache.has(`1071605420218650714`)) { // staff perms role or dev role in nika server
-
+    if (!member.roles.cache.has(`946525953033646130`)) { // admin role in puppets
       return interaction.reply({
         embeds: [
           new MessageEmbed()
