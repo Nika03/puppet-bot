@@ -18,7 +18,7 @@ module.exports = {
 			//`Prefix is: "/"`,
 			//`Over ${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Users!`,
 			"/help | discord.gg/neco-arc",
-			"I live in your walls"
+			"you from the walls"
 			/*  ideias for status given but chat <3
 				Watching, lurking in the shadows, I see you.(001#0003 590871868731293726)
 			
