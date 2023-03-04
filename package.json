@@ -11,6 +11,7 @@
     "ffmpeg-static": "^4.4.1",
     "glob": "^7.2.0",
     "jquery-csv": "^1.0.21",
+    "mariadb": "file:mariadb-connector-nodejs-3.1.0.tar.gz",
     "mongodb": "^4.5.0",
     "mongoose": "^6.2.10",
     "mysql2": "^2.3.3",
