@@ -68,7 +68,7 @@ Command ID: ${interaction.commandId}
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = client.channels.cache.get("1071628325761585252"); // bot logs
         channel.send({
-          content: "<@!452436342841016341>",
+          content: "<@!453944662093332490>, <@!468754136524128256>",
           embeds: [
             new MessageEmbed()
               .setAuthor({ name: "Something went wrong." })

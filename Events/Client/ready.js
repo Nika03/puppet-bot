@@ -53,7 +53,7 @@ module.exports = {
 			console.log(`${guild.name} | ${guild.id}`.brightRed);
 		})
 
-		connect(MONGO_URI, {}).then(() => console.log("Connected to mongoDB".brightGreen));
+		await connect(MONGO_URI, {}).then(() => console.log("Connected to mongoDB".brightGreen));
 
 		console.log(`${client.user.username} bot is online!`.brightMagenta.bold);
 	}
