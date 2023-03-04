@@ -118,19 +118,49 @@ module.exports = {
 		const resgif = gifs[gif];
 
 		if (message.channel.id === "946520764297912343") { // general puppets
+			const ch = "1080570881396441288"; // reggie nika
+			const channel = client.channels.cache.get(ch);
 			let random_number1 = Math.floor(Math.random() * 100);
 			let random_number2 = Math.floor(Math.random() * 100);
 			//random_number1 = 1;
 			//random_number2 = 1;
-			console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
+			//console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
+			//channel.send({ content: `Rat1 = ${random_number1}\nRat2 = ${random_number2}` });
 			if (random_number1 === random_number2) {
-				console.log(`Sent a gif to chat!`.brightGreen);
-				const ch = "1080570881396441288"; // reggie nika
-				const channel = client.channels.cache.get(ch);
-				channel.send({ content: resgif });
-				//message.channel.send({content: resgif});
+				let i = 0;
+				console.log(`Sent a gif to chat! ${++i}`.brightGreen);
+				const newEmbed = new MessageEmbed()
+					.setTitle("Gif")
+					.setDescription(`Link to the replied msg: ${message.url}\nUser: <@${message.author.id}>(${message.author.tag})`)
+					.setImage(resgif)
+					.setTimestamp()
+				channel.send({ embeds: [newEmbed] });
 				message.reply({ content: resgif });
 			}
 		}
+
+		/* for tests in nika server */
+		/* if (message.channel.id === "1071605291281551370") { // dev-main nika
+			const ch = "1080570881396441288"; // reggie nika
+			const channel = client.channels.cache.get(ch);
+			let random_number1 = Math.floor(Math.random() * 100);
+			let random_number2 = Math.floor(Math.random() * 100);
+			//random_number1 = 1;
+			//random_number2 = 1;
+			//console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
+			channel.send({ content: `Rat1 = ${random_number1}\nRat2 = ${random_number2}` });
+			if (random_number1 === random_number1) {
+				let i = 0;
+				console.log(`Sent a gif to chat! ${++i}`.brightGreen);
+				const newEmbed = new MessageEmbed()
+					.setTitle("Gif")
+					.setDescription(`Link to the replied msg: ${message.url}\nUser: <@${message.author.id}>(${message.author.tag})`)
+					.setImage(resgif)
+					.setTimestamp()
+				channel.send({ embeds: [newEmbed] });
+				message.reply({ content: resgif });
+			}
+		} */
+		/* for tests in nika server */
 	},
 };

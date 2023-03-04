@@ -1,4 +1,4 @@
-const { Client, MessageEmbed } = require("discord.js");
+const { Client } = require("discord.js");
 
 module.exports = {
   name: "ready",
@@ -7,8 +7,8 @@ module.exports = {
    * @param {Guild} guild
    */
   async execute(client) {
-    /* setInterval(async () => {
-      const guild = client.guilds.cache.get("946518364216520774");
+    setInterval(async () => {
+      const guild = client.guilds.cache.get("946518364216520774"); // puppets server id
       await guild.members.fetch();
       const trainees = guild.roles.cache.get("946525021545828422");
       traineesArr = [];
@@ -19,13 +19,13 @@ module.exports = {
       } else {
         trainees.members.forEach(async (m) => {
           if (!m.presence || m.presence.status === "offline") {
-            traineesArr.push(`<:offline:989591896521338971> ${m.user}\n`);
+            traineesArr.push(`<:offline:1077263341615059054> ${m.user}\n`);
           } else if (m.presence.status === "online") {
-            traineesArr.push(`<:online:989591925407481857> ${m.user}\n`);
+            traineesArr.push(`<:online:1077263195892359322> ${m.user}\n`);
           } else if (m.presence.status === "dnd") {
-            traineesArr.push(`<:dnd:989591866213290004> ${m.user}\n`);
+            traineesArr.push(`<:dnd:1077262751040294912> ${m.user}\n`);
           } else if (m.presence.status === "idle") {
-            traineesArr.push(`<:idle:989591949994491934> ${m.user}\n`);
+            traineesArr.push(`<:idle:1077263703214391408> ${m.user}\n`);
           }
         });
       }
@@ -38,13 +38,13 @@ module.exports = {
       } else {
         mods.members.forEach(async (m) => {
           if (!m.presence || m.presence.status === "offline") {
-            modsArr.push(`<:offline:989591896521338971> ${m.user}\n`);
+            modsArr.push(`<:offline:1077263341615059054> ${m.user}\n`);
           } else if (m.presence.status === "online") {
-            modsArr.push(`<:online:989591925407481857> ${m.user}\n`);
+            modsArr.push(`<:online:1077263195892359322> ${m.user}\n`);
           } else if (m.presence.status === "dnd") {
-            modsArr.push(`<:dnd:989591866213290004> ${m.user}\n`);
+            modsArr.push(`<:dnd:1077262751040294912> ${m.user}\n`);
           } else if (m.presence.status === "idle") {
-            modsArr.push(`<:idle:989591949994491934> ${m.user}\n`);
+            modsArr.push(`<:idle:1077263703214391408> ${m.user}\n`);
           }
         });
       }
@@ -57,13 +57,13 @@ module.exports = {
       } else {
         staffm.members.forEach(async (m) => {
           if (!m.presence || m.presence.status === "offline") {
-            staffmArr.push(`<:offline:989591896521338971> ${m.user}\n`);
+            staffmArr.push(`<:offline:1077263341615059054> ${m.user}\n`);
           } else if (m.presence.status === "online") {
-            staffmArr.push(`<:online:989591925407481857> ${m.user}\n`);
+            staffmArr.push(`<:online:1077263195892359322> ${m.user}\n`);
           } else if (m.presence.status === "dnd") {
-            staffmArr.push(`<:dnd:989591866213290004> ${m.user}\n`);
+            staffmArr.push(`<:dnd:1077262751040294912> ${m.user}\n`);
           } else if (m.presence.status === "idle") {
-            staffmArr.push(`<:idle:989591949994491934> ${m.user}\n`);
+            staffmArr.push(`<:idle:1077263703214391408> ${m.user}\n`);
           }
         });
       }
@@ -76,13 +76,13 @@ module.exports = {
       } else {
         admin.members.forEach(async (m) => {
           if (!m.presence || m.presence.status === "offline") {
-            adminArr.push(`<:offline:989591896521338971> ${m.user}\n`);
+            adminArr.push(`<:offline:1077263341615059054> ${m.user}\n`);
           } else if (m.presence.status === "online") {
-            adminArr.push(`<:online:989591925407481857> ${m.user}\n`);
+            adminArr.push(`<:online:1077263195892359322> ${m.user}\n`);
           } else if (m.presence.status === "dnd") {
-            adminArr.push(`<:dnd:989591866213290004> ${m.user}\n`);
+            adminArr.push(`<:dnd:1077262751040294912> ${m.user}\n`);
           } else if (m.presence.status === "idle") {
-            adminArr.push(`<:idle:989591949994491934> ${m.user}\n`);
+            adminArr.push(`<:idle:1077263703214391408> ${m.user}\n`);
           }
         });
       }
@@ -95,13 +95,13 @@ module.exports = {
       } else {
         owner.members.forEach(async (m) => {
           if (!m.presence || m.presence.status === "offline") {
-            ownerArr.push(`<:offline:989591896521338971> ${m.user}\n`);
+            ownerArr.push(`<:offline:1077263341615059054> ${m.user}\n`);
           } else if (m.presence.status === "online") {
-            ownerArr.push(`<:online:989591925407481857> ${m.user}\n`);
+            ownerArr.push(`<:online:1077263195892359322> ${m.user}\n`);
           } else if (m.presence.status === "dnd") {
-            ownerArr.push(`<:dnd:989591866213290004> ${m.user}\n`);
+            ownerArr.push(`<:dnd:1077262751040294912> ${m.user}\n`);
           } else if (m.presence.status === "idle") {
-            ownerArr.push(`<:idle:989591949994491934> ${m.user}\n`);
+            ownerArr.push(`<:idle:1077263703214391408> ${m.user}\n`);
           }
         });
       }
@@ -110,8 +110,8 @@ module.exports = {
       staffmArr = staffmArr.toString().replaceAll(",", "");
       adminArr = adminArr.toString().replaceAll(",", "");
       ownerArr = ownerArr.toString().replaceAll(",", "");
-      const channel = guild.channels.cache.get("1027151274111684628");
-      channel.messages.fetch("1027157893247668266").then((m) => {
+      const channel = guild.channels.cache.get("1027151274111684628"); // staff-list puppets
+      channel.messages.fetch("1081382668912038038").then((m) => {
         try {
           m.edit({
             content: `
@@ -133,7 +133,7 @@ ${modsArr}
 > These are the people who moderate the server but still are being trained.
 ${traineesArr}
 
-> If you have any questions about the server, make a ticket in <#946523109924696074>, and if you have any questions about <@986354647688179742> feel free to DM <@452436342841016341>.
+> If you have any questions about the server, make a ticket in <#946523109924696074>, and if you have any questions about <@1080804873286713424> feel free to DM <@468754136524128256>.
 Last updated at <t:${Math.floor(Date.now() / 1000)}>.
           `,
           });
@@ -141,6 +141,6 @@ Last updated at <t:${Math.floor(Date.now() / 1000)}>.
           console.log(e);
         }
       });
-    }, 15000); */
+    }, 15000); // (21600000 6H)
   },
 };
