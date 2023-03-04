@@ -83,7 +83,7 @@ module.exports = {
     }
 
     if (!user_exists) {
-      await EconomyChecker.create({ user: interaction.user.id, balance: 0 });
+      await EconomyChecker.create({ user: interaction.user.id, tbalance: 0 });
     }
     const member = await interaction.guild.members.fetch(interaction.user.id);
     const channel = interaction.guild.channels.cache.get("987794045080338452");
@@ -123,8 +123,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_5 = true;
-        const new_balance = claimed.balance + 500;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 500;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
@@ -173,8 +173,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_10 = true;
-        const new_balance = claimed.balance + 1000;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 1000;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
@@ -223,8 +223,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_20 = true;
-        const new_balance = claimed.balance + 2000;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 2000;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
@@ -273,8 +273,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_30 = true;
-        const new_balance = claimed.balance + 3000;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 3000;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
@@ -323,8 +323,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_40 = true;
-        const new_balance = claimed.balance + 4000;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 4000;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
@@ -373,8 +373,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_50 = true;
-        const new_balance = claimed.balance + 5000;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 5000;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
@@ -423,8 +423,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_75 = true;
-        const new_balance = claimed.balance + 10000;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 10000;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
@@ -473,8 +473,8 @@ module.exports = {
           ],
         });
         claimed.claimed_level_100 = true;
-        const new_balance = claimed.balance + 100000;
-        claimed.balance = new_balance;
+        const new_balance = claimed.tbalance + 100000;
+        claimed.tbalance = new_balance;
         await claimed.save();
         channel.send({
           embeds: [
