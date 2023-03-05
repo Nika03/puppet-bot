@@ -17,7 +17,6 @@ module.exports = {
       { user: interaction.user.id },
       { button_presses: presses }
     );
-    var find = await RestartsModel.findOne();
     if (!find.button_presses)
       await RestartsModel.findOneAndUpdate({}, { button_presses: 0 });
     var find = await RestartsModel.findOne();
