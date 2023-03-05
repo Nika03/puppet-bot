@@ -21,7 +21,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    if (interaction.user.id !== "452436342841016341") {
+    if (interaction.user.id !== "453944662093332490") {
       return interaction.reply({
         content: "You cannot run this command.",
         ephemeral: true,

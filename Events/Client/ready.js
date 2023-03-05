@@ -50,7 +50,7 @@ module.exports = {
 		updateActivities()
 
 		client.guilds.cache.forEach(guild => {
-			console.log(`${guild.name} | ${guild.id}`.brightRed);
+			console.log(`${guild.name} | ${guild.id} | ${guild.memberCount} members`.brightRed);
 		})
 
 		await connect(MONGO_URI, {}).then(() => console.log("Connected to mongoDB".brightGreen));
