@@ -1,6 +1,6 @@
 const color = require("colors");
 const { Client } = require("discord.js");
-const { connect } = require("mongoose");
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const { MONGO_URI } = require("../../Structures/config.json");
 
 module.exports = {
@@ -53,7 +53,10 @@ module.exports = {
 			console.log(`${guild.name} | ${guild.id} | ${guild.memberCount} members`.brightRed);
 		})
 
-		await connect(MONGO_URI, {}).then(() => console.log("Connected to mongoDB".brightGreen));
+		/* await connect(MONGO_URI, {}).then(() => console.log("Connected to mongoDB".brightGreen)); */
+
+		const mdb_client = new MongoClient(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+		mdb_client.connect().then(() => console.log("Connected to mongoDB".brightGreen));
 
 		console.log(`${client.user.username} bot is online!`.brightMagenta.bold);
 	}
