@@ -156,7 +156,7 @@ module.exports = {
                   name: `${interaction.member.user.tag}`,
                   iconURL: `${interaction.member.user.avatarURL()}`,
                 })
-                .setColor(`#ff3067`)
+                .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
                 .setDescription(
                   `You currently have **${user.tbalance}** <:tedollar:987097348305997847> TCoins!`
                 )
@@ -177,7 +177,7 @@ module.exports = {
                   name: `${interaction.member.user.tag}`,
                   iconURL: `${interaction.member.user.avatarURL()}`,
                 })
-                .setColor(`#ff3067`)
+                .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
                 .setDescription(
                   `<@!${whatuser}> currently has **${check_user.balance}** <:tedollar:987097348305997847> tedollars and ${check_user.tbalance} TCoins! Why do you want to know this tho...`
                 )
@@ -199,7 +199,7 @@ module.exports = {
               name: `${interaction.member.user.tag}`,
               iconURL: `${interaction.member.user.avatarURL()}`,
             })
-            .setColor(`#ff3067`)
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setDescription(
               `You currently have **${user.tbalance}** <:tedollar:987097348305997847> TCoins!`
             )
@@ -240,7 +240,7 @@ module.exports = {
               name: `${interaction.member.user.tag}`,
               iconURL: `${interaction.member.user.avatarURL()}`,
             })
-            .setColor(`#ff3067`)
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setDescription(
               `You have given **${amount}** tedollars to <@!${what_user.id}>!`
             )
@@ -304,7 +304,7 @@ module.exports = {
                 name: `${interaction.member.user.tag}`,
                 iconURL: `${interaction.member.user.avatarURL()}`,
               })
-              .setColor(`#ff3067`)
+              .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
               .setDescription(
                 `You cannot remove tedollars from someone that has no tedollars.`
               )
@@ -319,7 +319,7 @@ module.exports = {
                 name: `${interaction.member.user.tag}`,
                 iconURL: `${interaction.member.user.avatarURL()}`,
               })
-              .setColor(`#ff3067`)
+              .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
               .setDescription(`You cannot make someone's balance negative!`)
               .setFooter({ text: `Do you want their soul too?` }),
           ],
@@ -332,7 +332,7 @@ module.exports = {
                 name: `${interaction.member.user.tag}`,
                 iconURL: `${interaction.member.user.avatarURL()}`,
               })
-              .setColor(`#ff3067`)
+              .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
               .setDescription(
                 `You have removed **${amount}** tedollars from <@!${what_user.id}>!`
               )

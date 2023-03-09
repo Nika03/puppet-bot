@@ -19,7 +19,7 @@ module.exports = {
           new MessageEmbed()
             .setAuthor({ name: "Verification" })
             .setDescription("Verification has been **disabled**.")
-            .setColor("WHITE")
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
@@ -32,7 +32,7 @@ module.exports = {
           new MessageEmbed()
             .setAuthor({ name: "Verification" })
             .setDescription("Verification has been **enabled**.")
-            .setColor("WHITE")
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
@@ -45,7 +45,7 @@ module.exports = {
           new MessageEmbed()
             .setAuthor({ name: "Verification" })
             .setDescription("Verification has been **enabled.**")
-            .setColor("WHITE")
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],

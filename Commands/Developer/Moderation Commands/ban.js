@@ -158,7 +158,7 @@ module.exports = {
       member.send({
         embeds: [
           new MessageEmbed()
-            .setColor("DARK_NAVY")
+            .setColor(interaction.guild.me.displayHexColor || "DARK_NAVY")
             .setDescription(
               `You have been banned in **Neco Puppeteers' Cult** for: ${client.reason}. You have been banned ${client.time} and can appeal at https://forms.gle/CXawHH1m3tjJGDvs6. discord.gg/neco-arc`
             ),
@@ -181,7 +181,7 @@ module.exports = {
       embeds: [
         new MessageEmbed()
           .setAuthor({ name: `Case ${cases}` })
-          .setColor("DARK_GOLD")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
           .setDescription(
             `${user} (${user.id}) has been banned ${client.time} with ${client.reason}.`
           )

@@ -20,6 +20,7 @@ module.exports = {
 		});
 
 		const serversEmbed = new MessageEmbed()
+		.setColor(interaction.guild.me.displayHexColor || "GREEN")
 			.setTitle(
 				`Every server Teto Trader is in :)` // [${client.guilds.cache.size}]
 			)

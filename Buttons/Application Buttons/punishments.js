@@ -33,7 +33,7 @@ module.exports = {
         new MessageEmbed()
           .setDescription(description)
           .setAuthor({ name: "Active Warnings" })
-          .setColor("DARK_RED")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
           .setTimestamp()
           .setFooter({ text: "Requested at" }),
       ],

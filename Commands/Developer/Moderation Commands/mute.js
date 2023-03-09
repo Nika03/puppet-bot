@@ -157,7 +157,7 @@ module.exports = {
 			  .setDescription(
 				`${user} has been muted for **${num} ${client.letter}** with reason: \`${reason}\``
 			  )
-			  .setColor("DARK_RED")
+			  .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
 			  .setFooter({ text: `Requested by ${interaction.user.tag}` })
 			  .setTimestamp(),
 		  ],

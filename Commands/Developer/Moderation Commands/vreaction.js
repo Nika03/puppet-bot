@@ -40,7 +40,7 @@ module.exports = {
   Remember, have fun in the server!
             `
               )
-              .setColor("DARK_RED")
+              .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
               .setTimestamp(),
           ],
         });
@@ -54,7 +54,7 @@ module.exports = {
           .setDescription(
             `The reaction for verification has been succesfully changed. You can see it in <#${channel}>`
           )
-          .setColor("WHITE"),
+          .setColor(interaction.guild.me.displayHexColor || "DARK_RED"),
       ],
       ephemeral: true,
     });

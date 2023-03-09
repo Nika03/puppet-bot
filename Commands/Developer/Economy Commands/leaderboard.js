@@ -83,7 +83,7 @@ module.exports = {
 		const newEmbed = new MessageEmbed()
 			.setDescription(array.join("\n").toString())
 			.setAuthor({ name: "Leaderboard" })
-			.setColor("ff3067")
+			.setColor(interaction.guild.me.displayHexColor || "DARK_RED")
 			.setFooter({ text: `Requested by ${interaction.user.tag}` })
 			.setTimestamp()
 

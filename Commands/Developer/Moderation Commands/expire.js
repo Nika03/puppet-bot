@@ -82,7 +82,7 @@ module.exports = {
 > The staff that expired is ${interaction.user} \`(${interaction.user.id})\` 
 > Reason for expire: \`${reason}\``
 					)
-					.setColor("DARK_GOLD")
+					.setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
 					.setFooter({ text: `Requested by ${interaction.user.tag}` })
 					.setTimestamp(),
 			],
@@ -127,7 +127,7 @@ module.exports = {
 > Staff that expired: ${interaction.user} \`(${interaction.user.id})\`
                 `
 						)
-						.setColor("DARK_AQUA")
+						.setColor(interaction.guild.me.displayHexColor || "DARK_AQUA")
 						.setFooter({
 							text: "Be careful next time! Check your active warns with '/punishments'",
 						}),

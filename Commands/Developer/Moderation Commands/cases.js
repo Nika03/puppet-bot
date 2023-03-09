@@ -199,7 +199,7 @@ ${client.o}
           new MessageEmbed()
             .setAuthor({ name: `${user.username}'s cases` })
             .setDescription(`${casesArray}`)
-            .setColor("RED")
+            .setColor(interaction.guild.me.displayHexColor || "RED")
             .setFooter({
               text: `${user.username} has been punished ${pt} times. • Requested by ${interaction.user.tag} • Page ${casesPage}/${max_pages}`,
             }),

@@ -33,7 +33,7 @@ module.exports = {
 Now, if you meet all requirements, start the application by clicking the "Application - User Questions" button!
             `
           )
-          .setColor("DARK_AQUA"),
+          .setColor(interaction.guild.me.displayHexColor || "DARK_RED"),
       ],
       components: [
         new MessageActionRow().addComponents(

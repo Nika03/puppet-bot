@@ -54,7 +54,7 @@ module.exports = {
             .setDescription(
               `You are currently on cooldown! You can only ask for money again at <t:${command.ask_cooldown}:T>.`
             )
-            .setColor(`#ff3067`),
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED"),
         ],
         ephemeral: true,
       });
@@ -64,7 +64,7 @@ module.exports = {
         embeds: [
           new MessageEmbed()
             .setDescription("Honestly, its a skill issue. And a you problem.")
-            .setColor(`#ff3067`)
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
@@ -80,7 +80,7 @@ module.exports = {
             .setDescription(
               "You managed to get a couple coins by faking a disease. Trash human."
             )
-            .setColor(`#ff3067`)
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],

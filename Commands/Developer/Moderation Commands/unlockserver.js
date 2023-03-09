@@ -58,7 +58,7 @@ module.exports = {
                 .setDescription(
                   `Nya! <#${c.id}> has been unlocked! Happy chattering!`
                 )
-                .setColor("DARK_RED")
+                .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
                 .setTimestamp(),
             ],
           });
@@ -82,7 +82,7 @@ module.exports = {
         new MessageEmbed()
           .setAuthor({ name: "Server Unlocked" })
           .setDescription(`${interaction.user} has unlocked the server.`)
-          .setColor("DARK_GOLD")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
           .setTimestamp(),
       ],
     });

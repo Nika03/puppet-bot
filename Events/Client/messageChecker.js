@@ -131,10 +131,10 @@ module.exports = {
 				console.log(`Sent a gif to chat! ${++i}`.brightGreen);
 				const newEmbed = new MessageEmbed()
 					.setTitle("Gif")
-					.setDescription(`Link to the replied msg: ${message.url}\nUser: <@${message.author.id}>(${message.author.tag})`)
-					.setImage(resgif)
+					.setDescription(`Link to the replied msg: ${message.url}\nChannel: ${message.channel}\nUser: <@${message.author.id}>(${message.author.tag})`)
+					//.setImage(resgif)
 					.setTimestamp()
-				channel.send({ embeds: [newEmbed] });
+				channel.send({ content: resgif, embeds: [newEmbed] });
 				message.reply({ content: resgif });
 			}
 		}

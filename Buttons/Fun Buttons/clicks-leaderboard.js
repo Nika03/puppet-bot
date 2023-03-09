@@ -37,7 +37,7 @@ module.exports = {
 Updated at: <t:${Math.floor(Date.now() / 1000)}>
       `
           )
-          .setColor("BLURPLE"),
+          .setColor(interaction.guild.me.displayHexColor || "DARK_RED"),
       ],
       ephemeral: true,
     });

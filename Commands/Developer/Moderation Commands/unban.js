@@ -76,7 +76,7 @@ module.exports = {
         embeds: [
           new MessageEmbed()
             .setAuthor({ name: `User Unbanned` })
-            .setColor("DARK_GOLD")
+            .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
             .setDescription(
               `<@!${user}> (${user}) has been unbanned by <@!${interaction.user.id}> with reason: \`\`${reason}\`\`. The case for the user's ban is case **${bancase.case}**.`
             )

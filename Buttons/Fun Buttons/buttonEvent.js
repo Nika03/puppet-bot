@@ -17,7 +17,7 @@ module.exports = {
           .setDescription(
             `${interaction.user} was the first one to click the button. They win... nothing.`
           )
-          .setColor("DARK_NAVY")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
           .setFooter({ text: `${time}` }),
       ],
       components: [

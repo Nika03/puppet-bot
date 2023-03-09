@@ -86,7 +86,7 @@ module.exports = {
       embeds: [
         new MessageEmbed()
           .setAuthor({ name: `Case ${tc.cases}` })
-          .setColor("DARK_GOLD")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
           .setDescription(`${user} has been warned for: \`${reason}\``)
           .setFooter({
             text: `They now have ${userWarns.warns + 1} active warnings.`,
@@ -100,7 +100,7 @@ module.exports = {
       embeds: [
         new MessageEmbed()
           .setAuthor({ name: `Case ${tc.cases}` })
-          .setColor("DARK_GOLD")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
           .setDescription(
             `\`${user.tag}\` has been warned for: \`${reason}\`. This was done by ${interaction.user}.`
           )
@@ -129,7 +129,7 @@ Reason: \`${reason}\`
 This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
 `
             )
-            .setColor("DARK_RED")
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({
               text: "You can check your active warnings with /punishments.",
             }),
@@ -160,7 +160,7 @@ This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
               .setDescription(
                 `${user} has been muted for **15 minutes.** Reason:\`reaching 2 warns\`.`
               )
-              .setColor("DARK_GOLD"),
+              .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD"),
           ],
         });
       } catch (e) {
@@ -175,7 +175,7 @@ This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
               .setDescription(
                 `${user} has been muted for **1 hour.** Reason:\`reaching 3 warns\`.`
               )
-              .setColor("DARK_GOLD"),
+              .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD"),
           ],
         });
       } catch (e) {
@@ -190,7 +190,7 @@ This warning will expire <t:${Math.floor(Date.now() / 1000) + 1209600}>.
               .setDescription(
                 `${user} has been muted for **12 hours.** Reason:\`reaching 4 warns\`.`
               )
-              .setColor("DARK_GOLD"),
+              .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD"),
           ],
         });
       } catch (e) {

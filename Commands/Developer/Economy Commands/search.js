@@ -63,7 +63,7 @@ module.exports = {
             .setDescription(
               `You are currently on cooldown! You can only ask for money again at <t:${command.search_cooldown}:T>.`
             )
-            .setColor(`#ff3067`),
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED"),
         ],
         ephemeral: true,
       });
@@ -76,7 +76,7 @@ module.exports = {
             .setDescription(
               "What did you expect? You tried searching behind a police station's dumpster. You were luck you were not arrested."
             )
-            .setColor(`#ff3067`)
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
@@ -93,7 +93,7 @@ module.exports = {
             .setDescription(
               `You dig up an old time capsule someone buried in their front yard a few years ago, you find ${coins} inside, neato!`
             )
-            .setColor(`#ff3067`)
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],

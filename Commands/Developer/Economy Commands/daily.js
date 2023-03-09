@@ -64,7 +64,7 @@ module.exports = {
             .setDescription(
               `You are currently on cooldown! You can only claim the next daily at <t:${check_streak.daily_cooldown}>.`
             )
-            .setColor(`#ff3067`),
+            .setColor(interaction.guild.me.displayHexColor || "DARK_RED"),
         ],
       });
     } else if (
@@ -88,7 +88,7 @@ module.exports = {
           .setFooter({
             text: `You claimed daily for ${user_balance.daily_streak} days!`,
           })
-          .setColor(`#ff3067`)
+          .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
           .setThumbnail(
             `https://cdn.discordapp.com/avatars/482926485359951893/dbc90304aa4a03214dff07f020c9fe30.png?size=256`
           ),

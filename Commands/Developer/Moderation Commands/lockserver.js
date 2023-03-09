@@ -58,7 +58,7 @@ module.exports = {
                 .setDescription(
                   `Nya! <#${c.id}> has been locked! Our staff have decided to lock the channel, but dont worry! It will be unlocked soon! *If you have any issues during the lockdown, make a ticket in <#946523109924696074>*`
                 )
-                .setColor("DARK_RED")
+                .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
                 .setTimestamp(),
             ],
           });
@@ -82,7 +82,7 @@ module.exports = {
         new MessageEmbed()
           .setAuthor({ name: "Server Locked" })
           .setDescription(`${interaction.user} has locked down the server.`)
-          .setColor("DARK_GOLD")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
           .setTimestamp(),
       ],
     });

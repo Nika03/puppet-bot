@@ -54,7 +54,7 @@ ${parseFloat(os.freemem() / 1000000000).toFixed(1)} / ${parseFloat(
 OS: ${os.version()} (${os.platform()})
 CPU: ${os.cpus()[0].model}
 CPU Speed: ${os.cpus()[0].speed} MHz
-        `),
+        `).setColor(interaction.guild.me.displayHexColor || "GREEN"),
       ],
     });
   },

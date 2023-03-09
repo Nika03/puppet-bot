@@ -68,7 +68,7 @@ module.exports = {
           .setDescription(
             `${interaction.user} has unlocked the channel ${interaction.channel}.`
           )
-          .setColor("DARK_GOLD")
+          .setColor(interaction.guild.me.displayHexColor || "DARK_GOLD")
           .setTimestamp(),
       ],
     });
