@@ -56,6 +56,24 @@ module.exports = {
 				}
 			}
 		}
+
+		if (message.channel.id === "1084207748331339837") { // gangshit chain
+			if (message.author.bot) {
+				message.delete();
+			} else if (message.toString() !== "<a:gangshit:1082295022059274300>") {
+				setTimeout(() => {
+					message.delete();
+				}, 100);
+				try {
+					const guild = client.guilds.cache.get("946518364216520774");
+					const member = guild.members.cache.get(message.author.id);
+					await member.timeout(60000, "gangshit <a:gangshit:1082295022059274300>");
+				} catch (e) {
+					console.log(e);
+				}
+			}
+		}
+
 		if (message.author.bot) return;
 		if (message.toString().includes("/")) return;
 

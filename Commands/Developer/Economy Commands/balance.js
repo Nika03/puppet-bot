@@ -179,7 +179,7 @@ module.exports = {
                 })
                 .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
                 .setDescription(
-                  `<@!${whatuser}> currently has **${check_user.balance}** <:tedollar:987097348305997847> tedollars and ${check_user.tbalance} TCoins! Why do you want to know this tho...`
+                  `<@!${whatuser}> currently has **${check_user.tbalance}** TCoins! Why do you want to know this tho...`
                 )
                 .setFooter({ text: `${other_footer}` }),
             ],

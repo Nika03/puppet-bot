@@ -60,7 +60,7 @@ Other Commands:
 ${otherArray.toString().replaceAll(",", ", ")}
 `
             )
-            .setColor("DARK_NAVY")
+            .setColor(interaction.guild.me.displayHexColor || "DARK_NAVY")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
@@ -91,7 +91,7 @@ Permissions: ${c.permission}
           embeds: [
             new MessageEmbed()
               .setDescription(`${embedMessage.toString()}`)
-              .setColor("DARK_NAVY")
+              .setColor(interaction.guild.me.displayHexColor || "DARK_NAVY")
               .setFooter({ text: `Requested by ${interaction.user.tag}` })
               .setTimestamp(),
           ],
