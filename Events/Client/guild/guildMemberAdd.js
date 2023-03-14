@@ -2,7 +2,11 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "guildMemberAdd",
-	async execute(member) {
+	async execute(member, client) {
+		const { guild } = member;
+
+		const ch = "1009968902941442119" // teto-log puppets
+		const channel = client.channels.cache.get(ch);
 		const regex = new RegExp(/[^\w\s\d\t\n\r~`!@#\$%\^&\*\(\)_\-\+={\[\}\]\|\\:;"'<,>\.\?\/\´ºª]/gi);
 		// the function that generates the numbers
 		const randomID = length => Math.floor(Math.random() * Math.pow(10, length));
@@ -39,6 +43,20 @@ module.exports = {
 			} catch (err) {
 				console.log(err);
 				console.log(`Couldn\'t send a dm to ${member.user.tag}(${member.user.id})`);
+			}
+			try {
+				const logEmbed = new EmbedBuilder()
+					.setColor(guild.members.me.displayHexColor || "DARK_GOLD")
+					.setThumbnail(guild.iconURL())
+					.setTitle(`${member.user.tag}'s nickname on \`${member.guild.name}\`has been changed!`)
+					.setDescription(`${member.user} | id: ${member.user.id}\nGuildId: \`${guild.id}\` MemberCount: ${guild.memberCount}\nOwner: <@!${guild.ownerId}> | ${guild.ownerId}`)
+					.setTimestamp()
+
+				channel.send({ embeds: [logEmbed] });
+
+			} catch (err) {
+				console.log(err);
+				console.log(`Couldn't send the msg to ${channel}`);
 			}
 		}
 	},
