@@ -33,10 +33,6 @@ module.exports = {
           member.roles.add(verified);
           const guild = client.guilds.cache.get("946518364216520774");
           const puppets = guild.channels.cache.get("1009968902941442119"); // teto-log
-		  const channel = client.channels.cache.get("1071628325761585252"); // bot-log
-          channel.send(
-            `${user} has passed verification.`
-          );
 		  puppets.send(
             `${user} has passed verification.`
           );

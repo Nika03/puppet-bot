@@ -35,8 +35,7 @@ module.exports = {
       }
       try {
         await command.execute(interaction, client);
-        const guild = client.guilds.cache.get("946518364216520774");
-        const channel = client.channels.cache.get("1071628325761585252"); // bot-logs
+        const channel = client.channels.cache.get("1009968902941442119"); // teto-log puppets
         channel.send({
           embeds: [
             new MessageEmbed()
@@ -65,8 +64,7 @@ Command ID: ${interaction.commandId}
         });
       } catch (e) {
         console.log(e);
-        const guild = client.guilds.cache.get("946518364216520774");
-        const channel = client.channels.cache.get("1071628325761585252"); // bot logs
+        const channel = client.channels.cache.get("1009968902941442119"); // teto-log puppets
         channel.send({
           content: "<@!453944662093332490>, <@!468754136524128256>",
           embeds: [
