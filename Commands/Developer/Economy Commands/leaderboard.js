@@ -21,7 +21,7 @@ module.exports = {
 			channel: interaction.channel.id,
 		});
 		//const emoji = "<:tedollar:987097348305997847>";
-		const emoji = "💩";
+		const emoji = "<:coin:1085660357814669392>";
 		if (is_blacklisted !== null) {
 			if (!is_blacklisted.commands.includes(`leaderboard`)) {
 				return interaction.reply({
@@ -90,7 +90,7 @@ module.exports = {
 		if (yes == false) {
 			newEmbed.addFields({
 				name: "Your Position",
-				value: ` #${userPlace} | ${interaction.user} with **${userData.tbalance}** ${emoji} Coins.`,
+				value: ` #${userPlace} | ${interaction.user} with **${userData.tbalance}** ${emoji} TCoins.`,
 			})
 		}
 

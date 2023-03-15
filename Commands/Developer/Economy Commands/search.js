@@ -91,7 +91,7 @@ module.exports = {
         embeds: [
           new MessageEmbed()
             .setDescription(
-              `You dig up an old time capsule someone buried in their front yard a few years ago, you find ${coins} inside, neato!`
+              `You dig up an old time capsule someone buried in their front yard a few years ago, you find ${coins} TCoins inside, neato!`
             )
             .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })

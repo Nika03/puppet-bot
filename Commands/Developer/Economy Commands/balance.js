@@ -158,7 +158,7 @@ module.exports = {
                 })
                 .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
                 .setDescription(
-                  `You currently have **${user.tbalance}** <:tedollar:987097348305997847> TCoins!`
+                  `You currently have **${user.tbalance}** <:coin:1085660357814669392> TCoins!`
                 )
                 .setFooter({ text: `${footer}` }),
             ],
@@ -201,7 +201,7 @@ module.exports = {
             })
             .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setDescription(
-              `You currently have **${user.tbalance}** <:tedollar:987097348305997847> TCoins!`
+              `You currently have **${user.tbalance}** <:coin:1085660357814669392> TCoins!`
             )
             .setFooter({ text: `${footer}` }),
         ],

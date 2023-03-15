@@ -117,7 +117,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <@&946524142025465868>! **500** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <@&946524142025465868>! **500** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -131,7 +131,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 5** reward! They have gained **500** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 5** reward! They have gained **500** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
@@ -167,7 +167,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <@&946524226804920392>! **1000** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <@&946524226804920392>! **1000** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -181,7 +181,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 10** reward! They have gained **1000** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 10** reward! They have gained **1000** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
@@ -217,7 +217,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <@&946524331649937408>! **2000** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <@&946524331649937408>! **2000** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -231,7 +231,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 20** reward! They have gained **2000** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 20** reward! They have gained **2000** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
@@ -267,7 +267,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <@&946524414642642974>! **3000** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <@&946524414642642974>! **3000** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -281,7 +281,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 30** reward! They have gained **3000** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 30** reward! They have gained **3000** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
@@ -317,7 +317,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <@&946524509937238067>! **4000** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <@&946524509937238067>! **4000** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -331,7 +331,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 40** reward! They have gained **4000** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 40** reward! They have gained **4000** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
@@ -367,7 +367,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <@&946524586080628856>! **5000** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <@&946524586080628856>! **5000** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -381,7 +381,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 50** reward! They have gained **5000** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 50** reward! They have gained **5000** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
@@ -417,7 +417,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <&946525294217547796>! **10000** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <&946525294217547796>! **10000** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -431,7 +431,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 75** reward! They have gained **10000** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 75** reward! They have gained **10000** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
@@ -467,7 +467,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `You have claimed the reward for the role <&946525383480721438>! **10000** tedollars have been added to your balance.`
+                `You have claimed the reward for the role <&946525383480721438>! **10000** <:coin:1085660357814669392> TCoins have been added to your balance.`
               )
               .setColor(`#ff3067`),
           ],
@@ -481,7 +481,7 @@ module.exports = {
             new MessageEmbed()
               .setAuthor({ name: `Reward Claimed` })
               .setDescription(
-                `<@!${interaction.user.id}> has claimed the **Level 100** reward! They have gained **100000** tedollars.`
+                `<@!${interaction.user.id}> has claimed the **Level 100** reward! They have gained **100000** <:coin:1085660357814669392> TCoins.`
               )
               .setColor(`DARK_GOLD`)
               .setTimestamp(),
