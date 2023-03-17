@@ -49,7 +49,7 @@ module.exports = {
 					console.log(`Couldn\'t send a dm to ${newMember.user.tag}(${newMember.user.id})`);
 				}
 				try {
-					const logEmbed = new EmbedBuilder()
+					const logEmbed = new MessageEmbed()
 						.setColor(newMember.guild.members.me.displayHexColor || "DARK_GOLD")
 						.setThumbnail(guild.iconURL())
 						.setTitle(`${newMember.user.tag}'s nickname on \`${newMember.guild.name}\`has been changed!`)

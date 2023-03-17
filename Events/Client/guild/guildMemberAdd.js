@@ -22,7 +22,7 @@ module.exports = {
 		}
 		let num = countNKC(newNick);
 		if (num > 4) {
-			const reason = "Your new nickname has more than 4 non QWERTY characters.\nPlease change it back and then message a mod so that they will remove the moderated nickname.";
+			const reason = "Your name has more than 4 non QWERTY characters.\nPlease change it and then message a mod so that they will remove the moderated nickname.";
 
 			const newEmbed = new MessageEmbed()
 				.setColor()
@@ -45,7 +45,7 @@ module.exports = {
 				console.log(`Couldn\'t send a dm to ${member.user.tag}(${member.user.id})`);
 			}
 			try {
-				const logEmbed = new EmbedBuilder()
+				const logEmbed = new MessageEmbed()
 					.setColor(guild.members.me.displayHexColor || "DARK_GOLD")
 					.setThumbnail(guild.iconURL())
 					.setTitle(`${member.user.tag}'s nickname on \`${member.guild.name}\`has been changed!`)

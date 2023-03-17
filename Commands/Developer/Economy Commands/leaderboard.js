@@ -57,7 +57,7 @@ module.exports = {
 		u.forEach((u) => {
 			if (dontAdd == false) {
 				array.push(
-					`#${x + 1} | <@!${u.user}> with **${u.tbalance}** ${emoji} Coins.`
+					`#${x + 1} | <@!${u.user}> with **${u.tbalance}** ${emoji} TCoins.`
 				);
 				x++;
 			}
