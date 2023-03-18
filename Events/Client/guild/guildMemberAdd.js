@@ -25,7 +25,7 @@ module.exports = {
 			const reason = "Your name has more than 4 non QWERTY characters.\nPlease change it and then message a mod so that they will remove the moderated nickname.";
 
 			const newEmbed = new MessageEmbed()
-				.setColor()
+				.setColor("DARK_GOLD")
 				.setTitle(`Your nickname on \`${member.guild.name}\`has been changed!`)
 				.setDescription(`It has been change to: \`Moderated Nickname ${newnick}\`.\n\`\`\`${reason}\`\`\``)
 				.setTimestamp()
@@ -46,7 +46,7 @@ module.exports = {
 			}
 			try {
 				const logEmbed = new MessageEmbed()
-					.setColor(guild.members.me.displayHexColor || "DARK_GOLD")
+					.setColor("DARK_GOLD")
 					.setThumbnail(guild.iconURL())
 					.setTitle(`${member.user.tag}'s nickname on \`${member.guild.name}\`has been changed!`)
 					.setDescription(`${member.user} | id: ${member.user.id}\nGuildId: \`${guild.id}\` MemberCount: ${guild.memberCount}\nOwner: <@!${guild.ownerId}> | ${guild.ownerId}`)

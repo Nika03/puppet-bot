@@ -135,8 +135,8 @@ module.exports = {
 		const gif = Math.floor(Math.random() * gifs.length);
 		const resgif = gifs[gif];
 
+		let i = 0;
 		if (message.channel.id === "946520764297912343") { // general puppets
-			let i = 0;
 			const ch = "1080570881396441288"; // reggie nika
 			const channel = client.channels.cache.get(ch);
 			let random_number1 = Math.floor(Math.random() * 150);
@@ -146,6 +146,7 @@ module.exports = {
 			//console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
 			//channel.send({ content: `Rat1 = ${random_number1}\nRat2 = ${random_number2}` });
 			if (random_number1 === random_number2) {
+				if(message.author.id === "453944662093332490") return; // <3
 				console.log(`Sent a gif to chat! ${++i}`.brightGreen);
 				const newEmbed = new MessageEmbed()
 					.setTitle("Gif")

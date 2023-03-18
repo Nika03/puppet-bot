@@ -95,6 +95,7 @@ module.exports = {
       "leaderboard",
       "fotd",
       "avatar",
+	  "streak",
     ];
 
     const member = await interaction.guild.members.fetch(interaction.user.id);
