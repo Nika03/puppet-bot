@@ -109,14 +109,14 @@ module.exports = {
 				embeds: [
 					new MessageEmbed()
 						.setAuthor({
-							name: `Teto Trader`,
-							iconURL: `https://cdn.discordapp.com/attachments/703686629633687683/986354411037143040/teto.png`,
+							name: client.user.username,
+							iconURL: client.member.user.avatarURL(),
 						})
 						.setDescription(
 							`Nya! I've given you **${client.random_amount}** TCoins for chatting in ${message.channel}!`
 						)
 						.setFooter({ text: "Burunyaa!" })
-						.setColor(`ff3067`)
+						.setColor(message.guild.me.displayHexColor)
 						.setThumbnail(
 							`https://ih1.redbubble.net/image.3081807300.1669/throwpillow,small,1000x-bg,f8f8f8-c,0,200,1000,1000.jpg`
 						)

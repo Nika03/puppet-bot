@@ -52,15 +52,15 @@ module.exports = {
 
 		const random_image = Math.floor(Math.random() * 5);
 		if (random_image === 1) {
-			global.img = `https://i.pinimg.com/originals/3a/c9/6f/3ac96f477a690c84d81302c171d51fe1.gif`;
+			global.img = `https://cdn.discordapp.com/attachments/1057429548637110325/1086802453762158653/image0.gif`; // GBU
 		} else if (random_image === 2) {
-			global.img = `https://i.pinimg.com/originals/85/dc/ef/85dcef131af84b515106955e142df54e.gif`;
+			global.img = `https://cdn.discordapp.com/attachments/1057429548637110325/1086802533084823683/image0.gif`; //GBU
 		} else if (random_image === 3) {
-			global.img = `https://media1.giphy.com/media/GMFUrC8E8aWoo/giphy.gif`;
+			global.img = `https://cdn.discordapp.com/attachments/1057429548637110325/1086802570502221984/image0.gif`; // GBU
 		} else if (random_image === 4) {
-			global.img = `https://64.media.tumblr.com/28bb92375b809a23fc2eb42c071111d2/tumblr_nh7ozxV8qt1sglevjo1_500.gif`;
+			global.img = `https://cdn.discordapp.com/attachments/1057429548637110325/1086802613166673971/image0.gif`; // GBU
 		} else if (random_image === 5) {
-			global.img = `https://i.gifer.com/fetch/w300-preview/c2/c26b0bee0ba5d37b8dacb4077f117d6e.gif`;
+			global.img = `https://cdn.discordapp.com/attachments/1057429548637110325/1086802687238090852/image0.gif`; // GBU
 		} else {
 			global.img = `https://c.tenor.com/Cuh9WL0xklIAAAAC/anime-hug.gif`;
 		}
