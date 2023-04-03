@@ -110,7 +110,7 @@ module.exports = {
 					new MessageEmbed()
 						.setAuthor({
 							name: client.user.username,
-							iconURL: client.member.user.avatarURL(),
+							iconURL: client.user.avatarURL(),
 						})
 						.setDescription(
 							`Nya! I've given you **${client.random_amount}** TCoins for chatting in ${message.channel}!`
@@ -154,7 +154,7 @@ module.exports = {
 					//.setImage(resgif)
 					.setTimestamp()
 				channel.send({ content: resgif, embeds: [newEmbed] });
-				message.reply({ content: resgif });
+				message.reply({ content: resgif }).then(msg => {msg.react("<a:gangshit:1082295022059274300>")});
 			}
 		}
 
