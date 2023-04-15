@@ -9,6 +9,7 @@ const Economy_Checker = new mongoose.Schema({
   daily_cooldown: `Number`,
   daily_streak: { type: "Number", default: 0 },
   daily_last_claimed: `Number`,
+  button_clicked: { type: "Number", default: 0 },
   claimed_level_5: `Boolean`,
   claimed_level_10: `Boolean`,
   claimed_level_20: `Boolean`,
