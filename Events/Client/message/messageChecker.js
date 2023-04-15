@@ -92,7 +92,7 @@ module.exports = {
 		const random_number1 = Math.floor(Math.random() * 100);
 		const random_number2 = Math.floor(Math.random() * 100);
 
-		const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
+		const EconomyChecker = require(`../../../Structures/Schema/Economy_Checker`);
 		const exists = await EconomyChecker.findOne({ user: message.author.id });
 		if (!exists) {
 			await EconomyChecker.create({ user: message.author.id, tbalance: 0 });
@@ -146,7 +146,7 @@ module.exports = {
 			//console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
 			//channel.send({ content: `Rat1 = ${random_number1}\nRat2 = ${random_number2}` });
 			if (random_number1 === random_number2) {
-				if(message.author.id === "453944662093332490") return; // <3
+				if (message.author.id === "453944662093332490") return; // <3
 				console.log(`Sent a gif to chat! ${++i}`.brightGreen);
 				const newEmbed = new MessageEmbed()
 					.setTitle("Gif")
@@ -154,32 +154,24 @@ module.exports = {
 					//.setImage(resgif)
 					.setTimestamp()
 				channel.send({ content: resgif, embeds: [newEmbed] });
-				message.reply({ content: resgif }).then(msg => {msg.react("<a:gangshit:1082295022059274300>")});
+				message.reply({ content: resgif }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
 			}
 		}
 
-		/* for tests in nika server */
-		/* if (message.channel.id === "1071605291281551370") { // dev-main nika
-			const ch = "1080570881396441288"; // reggie nika
-			const channel = client.channels.cache.get(ch);
-			let random_number1 = Math.floor(Math.random() * 100);
-			let random_number2 = Math.floor(Math.random() * 100);
-			//random_number1 = 1;
-			//random_number2 = 1;
-			//console.log(`Rat1 = ${random_number1}\nRat2 = ${random_number2}`);
-			channel.send({ content: `Rat1 = ${random_number1}\nRat2 = ${random_number2}` });
-			if (random_number1 === random_number1) {
-				let i = 0;
-				console.log(`Sent a gif to chat! ${++i}`.brightGreen);
-				const newEmbed = new MessageEmbed()
-					.setTitle("Gif")
-					.setDescription(`Link to the replied msg: ${message.url}\nUser: <@${message.author.id}>(${message.author.tag})`)
-					.setImage(resgif)
-					.setTimestamp()
-				channel.send({ embeds: [newEmbed] });
-				message.reply({ content: resgif });
+		if (message.channel.id === "946520764297912343") { // general puppets
+			if (message.content === "<@570488761528352778>") { // cosmo mention
+				message.react("<:cta:1086051431179616276>");
+				//console.log("cosmo")
 			}
-		} */
-		/* for tests in nika server */
+		}
+
+		if (message.channel.id === "1028745609169092689") { // application chat
+			if (message.content === "@everyone\nEmail:") {
+				console.log(`Added reactions to the apps msg!`.brightGreen);
+				message.react("<:upvote:1090959605619757128>");
+				message.react("<:downvote:1090959604323725362>");
+			}
+		}
+
 	},
 };
