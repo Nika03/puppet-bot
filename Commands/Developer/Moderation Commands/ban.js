@@ -169,8 +169,11 @@ module.exports = {
         e.toString() !==
         `TypeError: Cannot read properties of undefined (reading 'send')`
       ) {
+		console.log("TypeError: Cannot read properties of undefined (reading 'send')")
         console.log(e);
       }
+	  console.log("Couldn't dm the banning member!")
+	  console.log(e);
     }
     setTimeout(() => {
       guild.members.ban(uid).catch((e) => {

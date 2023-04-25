@@ -159,14 +159,64 @@ module.exports = {
 		}
 
 		if (message.channel.id === "946520764297912343") { // general puppets
-			if (message.content === "<@570488761528352778>") { // cosmo mention
+			const content = message.content.toLocaleLowerCase();
+			if (content.includes("<@570488761528352778")) { // cosmo mention
 				message.react("<:cta:1086051431179616276>");
 				//console.log("cosmo")
+			}
+			// I get dms if a member with "Moderated Nickname xxxx" sends a msg in #general
+			if (message.member.nickname !== null) {
+				if (message.member.nickname.includes("Moderated Nickname")) {
+					const name = message.author.username;
+					const tag = `${message.author.username}#${message.author.discriminator} | ${message.author.id}`
+					const avatar = message.member.user.avatarURL()
+					const content = message.content;
+					const id = message.id;
+					const URL = `https://discord.com/channels/${message.guildId}/${message.channelId}/${message.id}`;
+
+					const newEmbed = new MessageEmbed()
+						.setTitle(name)
+						.setAuthor({ name: tag, iconURL: avatar, url: URL })
+						.setDescription(`\`\`\`${content}\`\`\`\n\n[Jump!](${URL})`)
+						.setColor(0x2b2d31)
+						.setFooter({ text: id })
+						.setTimestamp()
+
+					client.users.fetch('453944662093332490', false).then((user) => {
+						user.send({ content: "<@453944662093332490>", embeds: [newEmbed] });
+					});
+				}
+			}
+		}
+
+		// funny msgs and replys
+		if (message.channel.id === "946520764297912343") { // general puppet
+			// check if is mod
+			let mod = false;
+			if (message.member.roles.cache.has("970229987405877259")) mod = true;
+			// check if is admin
+			let admin = false;
+			if (message.member.roles.cache.has("946525953033646130")) admin = true;
+
+			const channel = message.channel;
+			const content = message.content.toLocaleLowerCase();
+
+			if (content.includes("fuck reggie")) {
+				channel.send(`<a:gangshit:1082295022059274300> ${message.author} <a:gangshit:1082295022059274300>`).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
+			}
+			if (content.includes("change my name")) {
+				channel.send(`we won't change your name if you ask for it unless it's a moderated nickname, you need to earn the perks yourself`);
+			}
+			if (content.includes("@everyone")) {
+				if (!(mod || admin)) {
+					channel.send("Why would you even try that?")
+				}
 			}
 		}
 
 		if (message.channel.id === "1028745609169092689") { // application chat
-			if (message.content === "@everyone\nEmail:") {
+			const content = message.content.toLocaleLowerCase();
+			if (content.includes("@everyone\nEmail:")) {
 				console.log(`Added reactions to the apps msg!`.brightGreen);
 				message.react("<:upvote:1090959605619757128>");
 				message.react("<:downvote:1090959604323725362>");
