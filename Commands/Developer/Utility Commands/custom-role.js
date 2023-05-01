@@ -17,13 +17,13 @@ module.exports = {
 		},
 		{
 			name: "icon",
-			description: "The icon for the custom role.",
+			description: "The icon for the custom role.(You need to have img perms)",
 			type: "ATTACHMENT",
 			required: false,
 		},
 		{
 			name: "color",
-			description: "The color for your custom role.",
+			description: "The color for your custom role.(HEX color. ex: #2B2D31)",
 			type: "STRING",
 			required: false,
 		},
