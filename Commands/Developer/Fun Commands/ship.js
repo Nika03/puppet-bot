@@ -96,16 +96,16 @@ module.exports = {
 		let content = `${member}, ${u} has decided to ship you.`;
 		let content2 = `${member} and ${member2}, ${u} has decided to ship you two.`;
 
-		if (u.id === "468754136524128256" || u.id === "454182894823538689" && member.id === "468754136524128256" || member.id === "454182894823538689") { // nika and puppet
-			//content = `@everyone`
-			return await interaction.reply({ content: content, embeds: [embed.setDescription(numbers[numbers.length - 1])] });
-		}
 		if (interaction.toString() === `/ship member member:${member.id}`) {
+			if (u.id === "468754136524128256" || u.id === "454182894823538689" && member.id === "468754136524128256" || member.id === "454182894823538689") { // nika and puppet
+				return await interaction.reply({ content: content, embeds: [embed.setDescription(numbers[numbers.length - 1])] });
+			}
 			return await interaction.reply({ content: content, embeds: [embed] });
 		}
 		if (interaction.toString() === `/ship members member:${member.id} memmber:${member2.id}`) {
 			if(u.id === member.id || u.id === member2.id) return interaction.reply({ content: `${u} you can't ship yourself.` });
 			if(member.id === member2.id) return interaction.reply({ content: `You can't ship the same person!` });
+			if(member.id === "468754136524128256" || member2.id === "454182894823538689" && member.id === "468754136524128256" || member2.id === "454182894823538689") return await interaction.reply({ content: content, embeds: [embed2.setDescription(numbers[numbers.length - 1])] });
 			return await interaction.reply({ content: content2, embeds: [embed2] });
 		}
 		/* if(u.id === "453944662093332490") {
