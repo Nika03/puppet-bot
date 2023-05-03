@@ -218,7 +218,7 @@ module.exports = {
 					channel.send("Why would you even try that?")
 				}
 			}
-			if(content.includes("reggie gif", "reggie", "rat")) {
+			if(content.includes("reggie", "rat")) {
 				message.reply({ content: getGif() }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
 			}
 		}
