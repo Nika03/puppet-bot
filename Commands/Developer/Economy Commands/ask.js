@@ -46,6 +46,7 @@ module.exports = {
 
     const command = await EconomyChecker.findOne({ user: interaction.user.id });
     const coins = Math.floor(Math.random() * 30);
+	const event = coins * 2; // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
     if (Math.floor(Date.now() / 1000) <= command.ask_cooldown) {
       return interaction.reply({
         embeds: [
@@ -76,7 +77,7 @@ module.exports = {
       interaction.reply({
         embeds: [
           new MessageEmbed()
-            .setAuthor({ name: `${coins} coins earned` })
+            .setAuthor({ name: `${coins} + ${event} coins earned` }) // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
             .setDescription(
               "You managed to get a couple coins by faking a disease. Trash human."
             )
@@ -85,7 +86,7 @@ module.exports = {
             .setTimestamp(),
         ],
       });
-      const new_balance = Math.floor(command.tbalance + coins);
+      const new_balance = Math.floor(command.tbalance + coins + event); // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
       const cooldown = Math.floor(Date.now() / 1000 + 180);
       command.ask_cooldown = cooldown;
       command.tbalance = new_balance;

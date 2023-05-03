@@ -55,6 +55,7 @@ module.exports = {
 
     const command = await EconomyChecker.findOne({ user: interaction.user.id });
     const coins = Math.floor(Math.random() * 150);
+	const event = coins + 2; // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
     if (Math.floor(Date.now() / 1000) <= command.search_cooldown) {
       return interaction.reply({
         embeds: [
@@ -91,14 +92,14 @@ module.exports = {
         embeds: [
           new MessageEmbed()
             .setDescription(
-              `You dig up an old time capsule someone buried in their front yard a few years ago, you find ${coins} TCoins inside, neato!`
+              `You dig up an old time capsule someone buried in their front yard a few years ago, you find ${coins} TCoins inside, + ${event} for the event <3 neato!` // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
             )
             .setColor(interaction.guild.me.displayHexColor || "DARK_RED")
             .setFooter({ text: `Requested by ${interaction.user.tag}` })
             .setTimestamp(),
         ],
       });
-      const new_balance = Math.floor(command.tbalance + coins);
+      const new_balance = Math.floor(command.tbalance + coins + event);
       const cooldown = Math.floor(Date.now() / 1000 + 30);
       await EconomyChecker.findOneAndUpdate(
         { user: interaction.user.id },
