@@ -1,5 +1,6 @@
 const color = require("colors");
 const { Message, MessageEmbed, Client } = require("discord.js");
+const settingsDB = require('../../../Structures/Schema/Settings');
 const getReggie = require('../../../Functions/getReggie');
 const randomN = require('../../../Functions/randomN');
 const checkNitro = require('../../../Functions/checkNitro');
@@ -77,6 +78,21 @@ module.exports = {
 				}
 			}
 		}
+
+		// not wroking since its not a great idea <3
+		/* if (message.channel.id === "1097998918756880506") { // counting (test)
+			const count = await settingsDB.findOne();
+			if (message.content == count.Count + 1) {
+				count.Count++;
+				await count.save();
+				message.react("👍");
+			} else {
+				message.react("👎").catch("error.");
+				message.channel.send({ content: `Since ${message.author} decided to break the count we are starting back again from **0**.`});
+				count.Count = 0;
+				count.save();
+			}
+		} */
 
 		if (message.author.bot) return;
 		if (message.toString().includes("/")) return;
@@ -206,6 +222,9 @@ module.exports = {
 			}
 			if(content.includes("reggie") || content.includes("gay rat")) {
 				message.reply({ content: getReggie() }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
+			}
+			if (content.includes("<@1080804873286713424>")) { // ping the bot
+				message.react("<a:gangshit:1082295022059274300>");
 			}
 		}
 

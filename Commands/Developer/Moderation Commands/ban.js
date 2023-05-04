@@ -155,7 +155,7 @@ module.exports = {
     if (time) client.time = `for \`${client.num} ${client.l}\``;
     else client.time = "**permanently**";
     try {
-      member.send({
+      await member.send({
         embeds: [
           new MessageEmbed()
             .setColor(interaction.guild.me.displayHexColor || "DARK_NAVY")
@@ -163,12 +163,9 @@ module.exports = {
               `You have been banned in **Neco Puppeteers' Cult** for: ${client.reason}. You have been banned ${client.time} and can appeal at https://forms.gle/CXawHH1m3tjJGDvs6. discord.gg/neco-arc`
             ),
         ],
-      });
+      }).catch(e => { console.log(`Saved bot from crash, error:\n${e.toString()}`) });
     } catch (e) {
-      if (
-        e.toString() !==
-        `TypeError: Cannot read properties of undefined (reading 'send')`
-      ) {
+      if (e.toString() === `TypeError: Cannot read properties of undefined (reading 'send')`) {
 		console.log("TypeError: Cannot read properties of undefined (reading 'send')")
         console.log(e);
       }
