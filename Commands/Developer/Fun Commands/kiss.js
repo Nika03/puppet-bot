@@ -1,6 +1,6 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-//const SettingsModel = require("../../Structures/Schema/Settings.js");
 const SettingsModel = require("../../../Structures/Schema/Settings.js");
+const { tenor } = require('../../../Functions/getTenor');
 
 module.exports = {
 	name: "kiss",
@@ -50,10 +50,7 @@ module.exports = {
 			});
 		}
 
-		const gifs = ['https://c.tenor.com/Cuh9WL0xklIAAAAC/anime-hug.gif'/* GBU */, 'https://cdn.discordapp.com/attachments/1057429548637110325/1086802687238090852/image0.gif'/* GBU */, 'https://cdn.discordapp.com/attachments/1057429548637110325/1086802613166673971/image0.gif'/* GBU */, 'https://cdn.discordapp.com/attachments/1057429548637110325/1086802570502221984/image0.gif'/* GBU */, 'https://cdn.discordapp.com/attachments/1057429548637110325/1086802533084823683/image0.gif'/* GBU */, 'https://cdn.discordapp.com/attachments/1057429548637110325/1086802453762158653/image0.gif'/* GBU */ ];
-		const gif = Math.floor(Math.random() * gifs.length);
-		const resGif = gifs[gif];
-		global.img = resGif;
+		const user = interaction.options.getUser(`user`);
 
 		const random_floppa = Math.floor(Math.random() * 5);
 		if (random_floppa === 1) {
@@ -69,7 +66,13 @@ module.exports = {
 		} else {
 			global.floppa = `https://m.media-amazon.com/images/I/61aK3rgtYxL._AC_SX679_.jpg`;
 		}
-		const user = interaction.options.getUser(`user`);
+		if (user.id === interaction.user.id) {
+			return interaction.reply({
+				embeds: [new MessageEmbed().setDescription(`You cannot hug yourself!`)],
+				ephemeral: true,
+			});
+		}
+
 		if (user.bot) {
 			return interaction.reply({
 				embeds: [
@@ -80,31 +83,21 @@ module.exports = {
 							iconURL: `${interaction.member.user.avatarURL()}`,
 						})
 						.setDescription(
-							`You cannot kiss a bot! Have a floppa pillow instead.`
+							`You cannot hug a bot! Have a floppa pillow instead.`
 						)
 						.setImage(floppa)
 						.setFooter({ text: `floppa floppa floppa floppa` }),
 				],
 			});
 		}
-		if (user.id === interaction.user.id) {
-			return interaction.reply({
-				embeds: [new MessageEmbed().setDescription(`You cannot kiss yourself!`)],
-				ephemeral: true,
-			});
+
+		const q = "Anime_Kiss";
+
+		try {
+			tenor(q, interaction, MessageEmbed, "kissed", interaction.member.user, user);
+		} catch (err) {
+			console.log(err);
+			interaction.reply('Oops, there was an error\n<@453944662093332490>');
 		}
-		interaction.reply({
-			content: `${user}, ${interaction.user} has decided to kiss you!`,
-			embeds: [
-				new MessageEmbed()
-					.setColor(`DARK_GOLD`)
-					.setAuthor({
-						name: `${interaction.member.user.tag}`,
-						iconURL: `${interaction.member.user.avatarURL()}`,
-					})
-					.setImage(img)
-					.setFooter({ text: `So cute!` }),
-			],
-		});
 	},
 };

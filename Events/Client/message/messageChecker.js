@@ -1,9 +1,7 @@
 const color = require("colors");
 const { Message, MessageEmbed, Client } = require("discord.js");
-const settingsDB = require('../../../Structures/Schema/Settings');
 const getReggie = require('../../../Functions/getReggie');
-const randomN = require('../../../Functions/randomN');
-const checkNitro = require('../../../Functions/checkNitro');
+const { checkNitro, randomN } = require('../../../Functions/utils');
 
 module.exports = {
 	name: "messageCreate",
@@ -220,7 +218,7 @@ module.exports = {
 					channel.send("Why would you even try that?")
 				}
 			}
-			if(content.includes("reggie") || content.includes("gay rat")) {
+			if (content.includes("reggie") || content.includes("gay rat")) {
 				message.reply({ content: getReggie() }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
 			}
 			if (content.includes("<@1080804873286713424>")) { // ping the bot

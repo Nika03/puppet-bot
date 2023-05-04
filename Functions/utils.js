@@ -1,4 +1,13 @@
-const check = function nitro(message, client) {
+const randomN = function number() {
+	const random_number1 = Math.floor(Math.random() * 100);
+	const random_number2 = Math.floor(Math.random() * 100);
+
+	if(random_number1 === random_number2)
+		return 1;
+	return 0;
+}
+
+const checkNitro = function nitro(message, client) {
 	const ch = "946523493061767268" // staff chat puppet
 	const channel = client.channels.cache.get(ch);
 	const content = message.content;
@@ -11,4 +20,4 @@ const check = function nitro(message, client) {
 	}
 }
 
-module.exports = check;
+module.exports = { randomN, checkNitro };
