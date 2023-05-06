@@ -69,7 +69,7 @@ module.exports = {
 		const q = "cuddle_anime";
 
 		try {
-			tenor(q, interaction, MessageEmbed, "cuddles", interaction.member.user, user);
+			tenor(q, interaction, MessageEmbed, "cuddles", interaction.member.user, user, "~ adorable!");
 		} catch (err) {
 			console.log(err);
 			interaction.reply('Oops, there was an error\n<@453944662093332490>');
