@@ -1,4 +1,6 @@
 const { Message, MessageEmbed, Client } = require("discord.js");
+const RestartsModel = require("../../Structures/Schema/Restarts");
+const CasesModel = require("../../Structures/Schema/Cases");
 
 module.exports = {
   name: "messageCreate",
@@ -47,7 +49,6 @@ module.exports = {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
         const channel = guild.channels.cache.get(message.channel.id);
-        const RestartsModel = require("../../Structures/Schema/Restarts");
         const restart = await RestartsModel.findOne();
         channel.send({
           content: "<@&970229987405877259>",
@@ -61,7 +62,6 @@ module.exports = {
               .setTimestamp(),
           ],
         });
-        const CasesModel = require("../../Structures/Schema/Cases");
         await CasesModel.create({
           punisher: `986354647688179742`,
           punished: `${message.author.id}`,

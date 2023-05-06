@@ -4,7 +4,7 @@ module.exports = {
 	name: "ship",
 	description: "Ship two people.",
 	permission: "SEND_MESSAGES",
-	type: "Fun",
+	type: "Actions",
 	usage: "`/ship [user]`",
 	options: [
 		{

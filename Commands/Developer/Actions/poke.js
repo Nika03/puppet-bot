@@ -1,17 +1,16 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-const SettingsModel = require("../../../Structures/Schema/Settings.js");
 const { tenor } = require('../../../Functions/getTenor');
 
 module.exports = {
-	name: "kiss",
-	description: "Kiss someone!",
+	name: "poke",
+	description: "Poke someone!",
 	permission: "SEND_MESSAGES",
-	type: "Fun",
-	usage: "/kiss [user]",
+	type: "Actions",
+	usage: "/poke [user]",
 	options: [
 		{
 			name: `user`,
-			description: `The user to kiss!`,
+			description: `The user to poke!`,
 			required: true,
 			type: `USER`,
 		},
@@ -25,30 +24,6 @@ module.exports = {
 			content: "This command is currently disabled.",
 			ephemeral: true,
 		}); */
-		const is_blacklisted = await SettingsModel.findOne({
-			channel: interaction.channel.id,
-		});
-		if (is_blacklisted !== null) {
-			if (!is_blacklisted.commands.includes(`kiss`)) {
-				return interaction.reply({
-					embeds: [
-						new MessageEmbed().setDescription(
-							`This command has been disabled in this channel.`
-						),
-					],
-					ephemeral: true,
-				});
-			}
-		} else if (!is_blacklisted) {
-			return interaction.reply({
-				embeds: [
-					new MessageEmbed().setDescription(
-						`This command has been disabled in this channel.`
-					),
-				],
-				ephemeral: true,
-			});
-		}
 
 		const user = interaction.options.getUser(`user`);
 
@@ -68,7 +43,7 @@ module.exports = {
 		}
 		if (user.id === interaction.user.id) {
 			return interaction.reply({
-				embeds: [new MessageEmbed().setDescription(`You cannot hug yourself!`)],
+				embeds: [new MessageEmbed().setDescription(`You cannot poke yourself!`)],
 				ephemeral: true,
 			});
 		}
@@ -83,7 +58,7 @@ module.exports = {
 							iconURL: `${interaction.member.user.avatarURL()}`,
 						})
 						.setDescription(
-							`You cannot hug a bot! Have a floppa pillow instead.`
+							`You cannot poke a bot! Have a floppa pillow instead.`
 						)
 						.setImage(floppa)
 						.setFooter({ text: `floppa floppa floppa floppa` }),
@@ -91,10 +66,10 @@ module.exports = {
 			});
 		}
 
-		const q = "Anime_Kiss";
+		const q = "poke_anime";
 
 		try {
-			tenor(q, interaction, MessageEmbed, "kissed", interaction.member.user, user);
+			tenor(q, interaction, MessageEmbed, "pokes", interaction.member.user, user, " boop!");
 		} catch (err) {
 			console.log(err);
 			interaction.reply('Oops, there was an error\n<@453944662093332490>');

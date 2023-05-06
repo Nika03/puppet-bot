@@ -2,15 +2,15 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 const { tenor } = require('../../../Functions/getTenor');
 
 module.exports = {
-	name: "pat",
-	description: "Pat someone!",
+	name: "snuggle",
+	description: "Snuggle someone!",
 	permission: "SEND_MESSAGES",
-	type: "Fun",
-	usage: "/pat [user]",
+	type: "Actions",
+	usage: "/snuggle [user]",
 	options: [
 		{
 			name: `user`,
-			description: `The user to kiss!`,
+			description: `The user to snuggle!`,
 			required: true,
 			type: `USER`,
 		},
@@ -43,7 +43,7 @@ module.exports = {
 		}
 		if (user.id === interaction.user.id) {
 			return interaction.reply({
-				embeds: [new MessageEmbed().setDescription(`You cannot hug yourself!`)],
+				embeds: [new MessageEmbed().setDescription(`You cannot snuggle yourself!`)],
 				ephemeral: true,
 			});
 		}
@@ -58,7 +58,7 @@ module.exports = {
 							iconURL: `${interaction.member.user.avatarURL()}`,
 						})
 						.setDescription(
-							`You cannot hug a bot! Have a floppa pillow instead.`
+							`You cannot snuggle a bot! Have a floppa pillow instead.`
 						)
 						.setImage(floppa)
 						.setFooter({ text: `floppa floppa floppa floppa` }),
@@ -66,10 +66,10 @@ module.exports = {
 			});
 		}
 
-		const q = "pat_anime";
+		const q = "snuggle_anime";
 
 		try {
-			tenor(q, interaction, MessageEmbed, "pets", interaction.member.user, user);
+			tenor(q, interaction, MessageEmbed, "cuddles", interaction.member.user, user, "~ adorable!");
 		} catch (err) {
 			console.log(err);
 			interaction.reply('Oops, there was an error\n<@453944662093332490>');

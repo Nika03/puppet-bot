@@ -4,7 +4,7 @@ module.exports = {
   name: "fotd",
   description: "Suggest a fact of the day to be sent.",
   permission: "SEND_MESSAGES",
-  type: "Other",
+  type: "Fun",
   usage: "`/fotd [suggestion]`",
   options: [
     {

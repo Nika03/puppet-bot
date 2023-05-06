@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { TENOR } = require('../Structures/config.json');
 
-const tenor = async function Tenor(q, interaction, MessageEmbed, word, author, user) {
+const tenor = async function Tenor(q, interaction, MessageEmbed, word, author, user, msg) {
 	const limit = 50;
 	await axios.get(`https://tenor.googleapis.com/v2/search?q=${q}&key=${TENOR}&limit=${limit}`).then(async response => {
 		const gifResults = response.data.results;
@@ -12,7 +12,8 @@ const tenor = async function Tenor(q, interaction, MessageEmbed, word, author, u
 			.setAuthor({ name: `${author.username} ${word} ${user.username}!`, url: randomGif.itemurl})
 			.setColor("#2B2D31")
 			.setImage(gif)
-		await interaction.reply({ embeds: [embed] }).catch(err => { console.log(err)});
+		if(!msg) await interaction.reply({ content: `<@${user.id}>`, embeds: [embed] }).catch(err => { console.log(err)});
+		else await interaction.reply({ content: `<@${user.id}>`, embeds: [embed.setAuthor({ name: `${author.username} ${word} ${user.username}!${msg}`, url: randomGif.itemurl})] }).catch(err => { console.log(err)});
 	}).catch(err => { console.log(err); });
 }
 

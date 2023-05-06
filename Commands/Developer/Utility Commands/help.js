@@ -25,6 +25,7 @@ module.exports = {
       moderationArray = [];
       economyArray = [];
       otherArray = [];
+	  actionsArray = [];
       client.commands.map(async (c) => {
         if (c.type === "Utility") {
           utilityArray.push(`\`${c.name}\``);
@@ -36,7 +37,9 @@ module.exports = {
           economyArray.push(`\`${c.name}\``);
         } else if (c.type === "Other") {
           otherArray.push(`\`${c.name}\``);
-        }
+        } else if (c.type === "Actions") {
+			actionsArray.push(`\`${c.name}\``);
+		  }
       });
       interaction.reply({
         embeds: [
@@ -44,20 +47,23 @@ module.exports = {
             .setDescription(
               `**Welcome to the help command. You can view more information on the commands with /help [command].**
 
-Utility Commands:
-${utilityArray.toString().replaceAll(",", ", ")}
+\`⚙️\` Utility Commands:
+${utilityArray.toString().replaceAll(",", " ")}
 
-Fun Commands:
-${funArray.toString().replaceAll(",", ", ")}
+\`🎉\` Fun Commands:
+${funArray.toString().replaceAll(",", " ")}
 
-Moderation Commands:
-${moderationArray.toString().replaceAll(",", ", ")}
+\`🔨\` Moderation Commands:
+${moderationArray.toString().replaceAll(",", " ")}
 
-Economy Commands:
-${economyArray.toString().replaceAll(",", ", ")}
+\`💸\` Economy Commands:
+${economyArray.toString().replaceAll(",", " ")}
 
-Other Commands:
-${otherArray.toString().replaceAll(",", ", ")}
+\`🤗\` Actions Commands:
+${actionsArray.toString().replaceAll(",", " ")}
+
+\`🛠️\` Other Commands:
+${otherArray.toString().replaceAll(",", " ")}
 `
             )
             .setColor(interaction.guild.me.displayHexColor || "DARK_NAVY")

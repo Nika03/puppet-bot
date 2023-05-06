@@ -2,7 +2,7 @@ const { mongoose } = require("mongoose");
 
 const AllRestarts = new mongoose.Schema({
 	GuildId: "Number",
-	restarts: "Number",
+	restarts: { type: "Number", default: 1 },
 	allguilds: "Array",
 	pages: `Number`,
 	id: `Number`,

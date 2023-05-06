@@ -1,7 +1,9 @@
 const color = require("colors");
 const { Message, MessageEmbed, Client } = require("discord.js");
-const getReggie = require('../../../Functions/getReggie');
-const { checkNitro, randomN } = require('../../../Functions/utils');
+const settingsDB = require('../../Structures/Schema/Settings');
+const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
+const getReggie = require('../../Functions/getReggie');
+const { checkNitro, randomN } = require('../../Functions/utils');
 
 module.exports = {
 	name: "messageCreate",
@@ -91,6 +93,34 @@ module.exports = {
 				count.save();
 			}
 		} */
+		// cursed version of the counting system
+		/*const countingChannel = "946523137716158515"; // counting
+		if (message.channel.id === countingChannel) {
+			const count = await settingsDB.findOne();
+			const ch = countingChannel;
+			const channel = client.channels.cache.get(ch);
+			channel.messages.fetch({ limit: 1 }).then(async (messages) => {
+				let lastMessage = messages.first();
+				if (!lastMessage.author.bot) {
+					if(isNaN(lastMessage.content)) return message.delete();
+					count.Last = lastMessage.content;
+					if (count.Last == count.Count + 1) {
+						count.Last++;
+						count.Count++;
+						//console.log(count.Last);
+						await count.save();
+						message.react("🟩"); // green square
+					} else {
+						message.react("🟥") // red square
+						message.channel.send({ content: `Since ${message.author} decided to not pay attention the last correct number was \`${count.Count}\`.` })
+						count.save();
+					}
+				}
+			})
+			//count.Count = 12714; // change this number to the current number
+			if (message.author.bot) return;
+		}*/
+
 
 		if (message.author.bot) return;
 		if (message.toString().includes("/")) return;
@@ -106,8 +136,6 @@ module.exports = {
 		];
 
 		//if (!allowedchannels.includes(message.channel.id)) return;
-
-		const EconomyChecker = require(`../../../Structures/Schema/Economy_Checker`);
 		const exists = await EconomyChecker.findOne({ user: message.author.id });
 		if (!exists) {
 			await EconomyChecker.create({ user: message.author.id, tbalance: 0 });
@@ -146,14 +174,14 @@ module.exports = {
 			);
 		}
 
-		let i = 0;
 		if (message.channel.id === "946520764297912343") { // general puppets
 			const ch = "1080570881396441288"; // reggie nika
 			const channel = client.channels.cache.get(ch);
+			let i = 1;
 			if (randomN()) {
 				let resgif = getReggie();
 				if (message.author.id === "453944662093332490") return; // <3
-				console.log(`Sent a gif to chat! ${++i}`.brightGreen);
+				console.log(`Sent a gif to chat! ${i++}`.brightGreen);
 				const newEmbed = new MessageEmbed()
 					.setTitle("Gif")
 					.setDescription(`Link to the replied msg: ${message.url}\nChannel: ${message.channel}\nUser: <@${message.author.id}>(${message.author.tag})`)
