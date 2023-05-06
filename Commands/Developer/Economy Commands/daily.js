@@ -78,13 +78,12 @@ module.exports = {
       user: interaction.user.id,
     });
     const streak_coins = Math.floor(user_balance.daily_streak * 50);
-	const event = streak_coins * 2; // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
     interaction.reply({
       embeds: [
         new MessageEmbed()
           .setAuthor({ name: `Daily Claimed!` })
           .setDescription(
-            `Neco arc has given you **250 + ${streak_coins}** TCoins! + ${event} for the event <3` // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
+            `Neco arc has given you **250 + ${streak_coins}** TCoins!`
           )
           .setFooter({
             text: `You claimed daily for ${user_balance.daily_streak} days!`,
@@ -98,7 +97,7 @@ module.exports = {
     const new_streak = user_balance.daily_streak + 1;
     const cooldown = Math.floor(Date.now() / 1000 + 86400);
     const new_balance = Math.floor(streak_coins + 250 + user_balance.tbalance);
-    user_balance.tbalance = new_balance + event; // ------------------------------------------------- REMOVE AT THE END OF THE EVENT!!!! --------------
+    user_balance.tbalance = new_balance;
     user_balance.daily_streak = new_streak;
     user_balance.daily_cooldown = cooldown;
     user_balance.daily_last_claimed = Math.floor(Date.now() / 1000);
