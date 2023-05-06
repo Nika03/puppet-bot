@@ -4,6 +4,9 @@ const settingsDB = require('../../Structures/Schema/Settings');
 const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
 const getReggie = require('../../Functions/getReggie');
 const { checkNitro, randomN } = require('../../Functions/utils');
+// this is to send msgs to my phone
+const { accountSid, authToken, phone, bot_phone } = require('../../Structures/config.json');
+const twilio = require("twilio")(accountSid, authToken);
 
 module.exports = {
 	name: "messageCreate",
@@ -219,6 +222,8 @@ module.exports = {
 					client.users.fetch('453944662093332490', false).then((user) => {
 						user.send({ content: "<@453944662093332490>", embeds: [newEmbed] });
 					});
+					const msg = `${message.member.user.username} | ${message.member.user.id}\nhas a modnick go change it!\nTheir msg: \"${content}\"\n${URL}`;
+					twilio.messages.create({ body: msg, from: bot_phone, to: phone })//.then(msg => console.log(msg.body));
 				}
 			}
 		}

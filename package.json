@@ -17,7 +17,8 @@
 		"nsfwjs": "^2.2.0",
 		"pngjs": "^6.0.0",
 		"serve": "^14.1.2",
-		"snoowrap": "^1.23.0"
+		"snoowrap": "^1.23.0",
+		"twilio": "^4.11.0"
 	},
 	"name": "puppet-bot",
 	"version": "1.0.0",
