@@ -269,7 +269,7 @@ module.exports = {
 					  });
 				}
 				message.reply({ content: getReggie() }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
-				const cooldown = Math.floor(Date.now() / 1000 + 60); // 1 min
+				const cooldown = Math.floor(Date.now() / 1000 + 15); // 15 sec
 				command.reggie_cooldown = cooldown;
 				await command.save();
 			}
