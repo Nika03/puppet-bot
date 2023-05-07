@@ -2,6 +2,7 @@ const color = require("colors");
 const { Message, MessageEmbed, Client } = require("discord.js");
 const settingsDB = require('../../Structures/Schema/Settings');
 const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
+const Cooldowns = require('../../Structures/Schema/Cooldowns');
 const getReggie = require('../../Functions/getReggie');
 const { checkNitro, randomN } = require('../../Functions/utils');
 // this is to send msgs to my phone
@@ -229,7 +230,7 @@ module.exports = {
 		}
 
 		// funny msgs and replys
-		if (message.channel.id === "946520764297912343") { // general puppet
+		if (message.channel.id === "1009400793583071243") { // general puppet
 			// check if is mod
 			let mod = false;
 			if (message.member.roles.cache.has("970229987405877259")) mod = true;
@@ -252,7 +253,25 @@ module.exports = {
 				}
 			}
 			if (content.includes("reggie") || content.includes("gay rat")) {
+				const command = await Cooldowns.findOne({ Guild: message.guild.id });
+				if(!command) await Cooldowns.create({ Guild: message.guild.id });
+				if(Math.floor(Date.now() / 1000 ) <= command.reggie_cooldown) {
+					return message.reply({
+						embeds: [
+						  new MessageEmbed()
+							.setAuthor({ name: `Cooldown` })
+							.setDescription(
+							  `You are currently on cooldown! You can ask for reggie again at <t:${command.reggie_cooldown}:T>.`
+							)
+							.setColor(message.guild.me.displayHexColor || "DARK_RED"),
+						],
+						ephemeral: true,
+					  });
+				}
 				message.reply({ content: getReggie() }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
+				const cooldown = Math.floor(Date.now() / 1000 + 60); // 1 min
+				command.reggie_cooldown = cooldown;
+				await command.save();
 			}
 			if (content.includes("<@1080804873286713424>")) { // ping the bot
 				message.react("<a:gangshit:1082295022059274300>");

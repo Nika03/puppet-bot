@@ -48,7 +48,8 @@ module.exports = {
       if (array[ax] === filter[filterX]) {
         message.delete();
         const guild = client.guilds.cache.get("946518364216520774");
-        const channel = guild.channels.cache.get(message.channel.id);
+		const ch = "1009968902941442119"; // felix-logs
+        const channel = guild.channels.cache.get(ch);
         const restart = await RestartsModel.findOne();
         channel.send({
           content: "<@&970229987405877259>",
