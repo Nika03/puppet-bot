@@ -230,7 +230,7 @@ module.exports = {
 		}
 
 		// funny msgs and replys
-		if (message.channel.id === "1009400793583071243") { // general puppet
+		if (message.channel.id === "946520764297912343") { // general puppet
 			// check if is mod
 			let mod = false;
 			if (message.member.roles.cache.has("970229987405877259")) mod = true;
