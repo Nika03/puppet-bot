@@ -12,6 +12,7 @@ module.exports = {
 		const content = message.content
 		
 		const prefix = "+";
+		if (!message.content.startsWith(prefix) || message.author.bot) return;
 		const args = message.content.toLowerCase().slice(prefix.length).trim().split(/ +/);
 		const command = args.shift().toLowerCase();
 		if(command === 'boop') {
