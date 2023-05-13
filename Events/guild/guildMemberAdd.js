@@ -39,7 +39,7 @@ module.exports = {
 				member.send({
 					content: `<@${member.user.id}>`,
 					embeds: [newEmbed]
-				})
+				}).catch(err => { console.log(err); console.log("Couldn't dm the user.")} );
 			} catch (err) {
 				console.log(err);
 				console.log(`Couldn\'t send a dm to ${member.user.tag}(${member.user.id})`);
