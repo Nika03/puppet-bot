@@ -350,6 +350,7 @@ module.exports = {
           ephemeral: true,
         });
       } else if (!member.roles.cache.has(`946524586080628856`)) {
+		member.roles.add("998713449783771156").catch(err => { console.log(err); console.log("couldnt give the \"custom role\" to the member"); });
         return interaction.reply({
           embeds: [
             new MessageEmbed()

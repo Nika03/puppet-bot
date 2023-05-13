@@ -15,11 +15,8 @@ module.exports = {
 
 		const ch = "1071605349217476638" // twtich channel
 
-		/* let streamers = ["Dinip", "xQc"];
-		
-		setInterval(() => { twitch(client, ch, streamers); }, 60 * 1000); // cada minuto */
-
 		const users = ["xQc", "Dinip"];
-		setInterval(async function () { twitch(client, ch, users) }, 60 * 1000);
+
+		setInterval(async function () { twitch(client, ch, users) }, 5 * 60 * 1000); // 60 * 1000 every minute // 5 * 60 * 1000 every 5 min
 	},
 };
