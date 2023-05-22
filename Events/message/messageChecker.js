@@ -3,7 +3,7 @@ const { Message, MessageEmbed, Client } = require("discord.js");
 const settingsDB = require('../../Structures/Schema/Settings');
 const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
 const Cooldowns = require('../../Structures/Schema/Cooldowns');
-const getReggie = require('../../Functions/getReggie');
+const { getReggie, randomNReggie } = require('../../Functions/getReggie');
 const { checkNitro, randomN } = require('../../Functions/utils');
 // this is to send msgs to my phone
 const { accountSid, authToken, phone, bot_phone } = require('../../Structures/config.json');
@@ -182,7 +182,7 @@ module.exports = {
 			const ch = "1080570881396441288"; // reggie nika
 			const channel = client.channels.cache.get(ch);
 			let i = 1;
-			if (randomN()) {
+			if (randomNReggie()) {
 				let resgif = getReggie();
 				if (message.author.id === "453944662093332490") return; // <3
 				console.log(`Sent a gif to chat! ${i++}`.brightGreen);
