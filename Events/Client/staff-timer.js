@@ -120,7 +120,7 @@ module.exports = {
 									)
 									.setColor("DARK_GOLD"),
 							],
-						}).catch(err => { console.log(err); console.log("couln't send the dm to the member!"); });
+						}).catch(err => { console.log(err, "couln't send the dm to the member!"); });
 					} catch (e) {
 						console.log(e);
 					}

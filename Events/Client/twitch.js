@@ -1,8 +1,3 @@
-const { Client } = require("discord.js");
-//const { twitch } = require('../../Functions/twitch');
-const axios = require('axios');
-const { MessageEmbed } = require('discord.js')
-const twitchDB = require('../../Structures/Schema/twitch');
 const { twitch } = require("../../Functions/twitch");
 
 module.exports = {
