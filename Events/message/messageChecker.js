@@ -5,6 +5,7 @@ const EconomyChecker = require(`../../Structures/Schema/Economy_Checker`);
 const Cooldowns = require('../../Structures/Schema/Cooldowns');
 const { getReggie, randomNReggie } = require('../../Functions/getReggie');
 const { checkNitro, randomN } = require('../../Functions/utils');
+const { checkValid } = require('../../Functions/checkValid');
 // this is to send msgs to my phone
 const { accountSid, authToken, phone, bot_phone } = require('../../Structures/config.json');
 const twilio = require("twilio")(accountSid, authToken);
@@ -17,6 +18,21 @@ module.exports = {
 	 */
 	async execute(message, client) {
 		checkNitro(message, client);
+		let check = checkValid(message, client)
+		const chID = "1009968902941442119" // felix-logs
+		const channel = client.channels.cache.get(chID);
+		const URL = `https://discord.com/channels/${message.guildId}/${message.channelId}/${message.id}`;
+		if (check == 1) { // zalgo MSG
+			channel.send({ content: `${message.author} | ${message.author.id} has sent a msg with Zalgo.\nContent: \`\`\`${message.content}\`\`\`\n${URL}\n<@453944662093332490>`}); // <@970229987405877259>
+			message.delete();
+			check = 0;
+		}
+		if (check == 2) { // StrangeLink MSG
+			channel.send({ content: `${message.author} | ${message.author.id} has sent a StrangeLink.\nContent: \`\`\`${message.content}\`\`\`\n${URL}\n<@453944662093332490>`}); // <@970229987405877259>
+			//message.delete();
+			check = 0;
+		}
+
 		var urlRegex =
 			/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
 		const guild = client.guilds.cache.get("946518364216520774"); // puppet server
@@ -40,10 +56,7 @@ module.exports = {
 				try {
 					const guild = client.guilds.cache.get("946518364216520774");
 					const member = guild.members.cache.get(message.author.id);
-					await member.timeout(
-						60000,
-						"Do you know who else suffers from dementia?"
-					);
+					await member.timeout(60000, "Do you know who else suffers from dementia?" );
 				} catch (e) {
 					console.log(e);
 				}
@@ -185,6 +198,7 @@ module.exports = {
 			if (randomNReggie()) {
 				let resgif = getReggie();
 				if (message.author.id === "453944662093332490") return; // <3
+
 				console.log(`Sent a gif to chat! ${i++}`.brightGreen);
 				const newEmbed = new MessageEmbed()
 					.setTitle("Gif")
@@ -269,7 +283,7 @@ module.exports = {
 					  });
 				}
 				message.reply({ content: getReggie() }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
-				const cooldown = Math.floor(Date.now() / 1000 + 15); // 15 sec
+				const cooldown = Math.floor(Date.now() / 1000 + 60); // 60 sec
 				command.reggie_cooldown = cooldown;
 				await command.save();
 			}
