@@ -191,7 +191,8 @@ module.exports = {
 			);
 		}
 
-		if (message.channel.id === "946520764297912343") { // general puppets
+		// reggie
+		/* if (message.channel.id === "946520764297912343") { // general puppets
 			const ch = "1080570881396441288"; // reggie nika
 			const channel = client.channels.cache.get(ch);
 			let i = 1;
@@ -208,7 +209,7 @@ module.exports = {
 				channel.send({ content: resgif, embeds: [newEmbed] });
 				message.reply({ content: resgif }).then(msg => { msg.react("<a:gangshit:1082295022059274300>") });
 			}
-		}
+		} */
 
 		if (message.channel.id === "946520764297912343") { // general puppets
 			const content = message.content.toLocaleLowerCase();
