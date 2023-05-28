@@ -5,7 +5,7 @@ module.exports = {
   name: "clicks",
   description: "Check how many times you've clicked!",
   permission: "SEND_MESSAGES",
-  type: "Utility",
+  //type: "Utility",
   usage: "`/clicks`",
 
   /**

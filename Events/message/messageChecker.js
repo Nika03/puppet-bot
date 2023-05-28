@@ -19,6 +19,11 @@ module.exports = {
 		const chID = "1009968902941442119" // felix-logs
 		const channel = client.channels.cache.get(chID);
 		const URL = `https://discord.com/channels/${message.guildId}/${message.channelId}/${message.id}`;
+		if (check == 3) { // ScamLink MSG
+			channel.send({ content: `${message.author} | ${message.author.id} has sent a ScamLink.\nContent: \`\`\`${message.content}\`\`\`\n${URL}\n<@453944662093332490>`}); // <@970229987405877259>
+			message.delete();
+			check = 0;
+		}
 		if (check == 1) { // zalgo MSG
 			channel.send({ content: `${message.author} | ${message.author.id} has sent a msg with Zalgo.\nContent: \`\`\`${message.content}\`\`\`\n${URL}\n<@453944662093332490>`}); // <@970229987405877259>
 			message.delete();

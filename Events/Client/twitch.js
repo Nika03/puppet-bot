@@ -12,6 +12,6 @@ module.exports = {
 
 		const users = ["xQc", "Dinip"];
 
-		setInterval(async function () { twitch(client, ch, users) }, 5 * 60 * 1000); // 60 * 1000 every minute // 5 * 60 * 1000 every 5 min
+		setInterval(async function () { twitch(client, ch, users) }, 10 * 60 * 1000); // 60 * 1000 every minute // 10 * 60 * 1000 every 10 min
 	},
 };
