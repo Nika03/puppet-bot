@@ -11,6 +11,7 @@
 		"glob": "^7.2.0",
 		"jpeg-js": "^0.4.4",
 		"jquery-csv": "^1.0.21",
+		"moment": "^2.29.4",
 		"mongodb": "^4.5.0",
 		"mongoose": "^6.2.10",
 		"nodemon": "^2.0.16",

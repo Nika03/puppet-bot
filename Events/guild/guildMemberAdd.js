@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const moment = require('moment');
 
 module.exports = {
 	name: "guildMemberAdd",
@@ -76,6 +77,31 @@ module.exports = {
 				member.kick('Didn\'t verify in time(1hour) so e got kicked.')
 			}
 		}, kickTimeout); */
+		// END
+
+		// logs into a channel when a new member joins
+		/* const join_log = "986243613761605683" // join-leave-log puppet
+		const log = client.channels.cache.get(join_log)
+		const guilda = client.guilds.cache.get(member.guild.id);
+
+		const joinDate = member.user.createdAt;
+		const currentDate = moment();
+		const duration = moment.duration(currentDate.diff(joinDate));
+		const years = duration.years();
+		const months = duration.months();
+		const days = duration.days();
+
+		const timeAgo = `${years} years, ${months} months and ${days} days ago`
+
+		const newEmbed = new MessageEmbed()
+			.setAuthor({ name: `${member.user.username}#${member.user.discriminator}`, iconURL: member.user.avatarURL(), url: `https://discordapp.com/users/${member.user.id}` })
+			.setTitle(`Member Joined`)
+			.setDescription(`${member} ${guilda.memberCount}th to join\nCreated ${timeAgo}`)
+			.setColor("#00FF00")
+			.setFooter({ text: `ID: ${member.user.id}` })
+			.setTimestamp()
+
+		log.send({ embeds: [newEmbed] }); */
 		// END
 	},
 };
