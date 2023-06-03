@@ -20,8 +20,8 @@ module.exports = {
 		const channel = client.channels.cache.get(chID);
 		const URL = `https://discord.com/channels/${message.guildId}/${message.channelId}/${message.id}`;
 		if (check == 3) { // ScamLink MSG
-			channel.send({ content: `${message.author} | ${message.author.id} has sent a ScamLink.\nContent: \`\`\`${message.content}\`\`\`\n${URL}\n<@453944662093332490>`}); // <@970229987405877259>
 			message.delete();
+			channel.send({ content: `${message.author} | ${message.author.id} has sent a ScamLink.\nContent: \`\`\`${message.content}\`\`\`\n${URL}\n<@453944662093332490>`}); // <@970229987405877259>
 			check = 0;
 		}
 		if (check == 1) { // zalgo MSG

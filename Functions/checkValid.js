@@ -39,6 +39,8 @@ function checkLink(msg) {
 
 function checkSLink(msg) {
 	if (msg.startsWith('https://')) {
+		if (msg.endsWith('.zip/') || msg.endsWith('.mov/'))
+			return 1;
 		let flag = 0;
 		for (let i = 0; i < safeList.length; i++) {
 			//console.log(msg.startsWith('https://' + safeList[i]), safeList[i])
@@ -50,6 +52,8 @@ function checkSLink(msg) {
 		if (flag > 0) return 0;
 	}
 	if (msg.startsWith('http://')) {
+		if (msg.endsWith('.zip/') || msg.endsWith('.mov/'))
+			return 1;
 		let flag = 0;
 		for (let i = 0; i < safeList.length; i++) {
 			//console.log(msg.startsWith('https://' + safeList[i]), safeList[i])
@@ -67,34 +71,11 @@ function checkValid(message, client) { // now i want to do the same thing as htt
 	if (message.author.bot) return;
 	const content = message.content
 	//if(content.startsWith(":") && content.endsWith(":")) return 0; // trying to fix the problem with deleting emojis
-	if (checkSLink(content)) return 3;
-	if (checkZalgo(content)) return 1;
-	if (checkLink(content)) return 2;
+	if (checkSLink(content)) return 3; // ScamLinks
+	if (checkZalgo(content)) return 1; // Zalgo msg
+	if (checkLink(content)) return 2; // Unknown Links
 
 	return 0;
 }
 
 module.exports = { checkValid };
-
-//if (checkScamLink(content)) return 2; // discord already does that for me so ya L
-/* function checkScamLink(msg) {
-	if (msg.startsWith('https://')) {
-		let flag = 0;
-		for (let i = 0; i < scamList.length; i++) {
-			if (scamList[i].includes(msg.slice(8))) { // to skip the first 7 letters in the msg (https://)
-				flag++;
-			}
-		}
-		if (flag > 0) return 1;
-	}
-	if (msg.startsWith('http://')) {
-		let flag = 0;
-		for (let i = 0; i < scamList.length; i++) {
-			if (scamList[i].includes(msg,slice(7))) { // to skip the first 7 letters in the msg (http://)
-				flag++;
-			}
-		}
-		if (flag > 0) return 1;
-	}
-	return 0;
-} */

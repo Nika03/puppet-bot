@@ -39,7 +39,7 @@ module.exports = {
 				member.send({
 					content: `<@${member.user.id}>`,
 					embeds: [newEmbed]
-				}).catch(err => { console.log(err); console.log("Couldn't dm the user.")} );
+				}).catch(err => { console.log(err); console.log("Couldn't dm the user.") });
 			} catch (err) {
 				console.log(err);
 				console.log(`Couldn\'t send a dm to ${member.user.tag}(${member.user.id})`);
@@ -59,5 +59,23 @@ module.exports = {
 				console.log(`Couldn't send the msg to ${channel}`);
 			}
 		}
+
+		// kicks the new members that don't verify in 1 hour from joining the server
+		/* const defaultRoleID = '946524059724820500'; // Burenyuu (Default role)
+		const kickTimeout = 3600000; // 1 hour in milliseconds
+
+		setTimeout(() => {
+			const defaultRole = member.guild.roles.cache.find(role => role.id === defaultRoleID);
+			if (!defaultRole) {
+				console.error(`${member.username} didn\'t verify in time (1hour) so he got kicked.`)
+				return;
+			}
+
+			if (!member.roles.cache.has(defaultRole)) {
+				member.send(`${member}\nHi! You didn\'t verify in time(1hour) in ${member.guild.name} so he kicked you, if you want to join the server again pls use this link:\nhttps://discord.gg/Vq9kTsrv8G`).catch(err => {console.error("couldn't dm the member, error in guildmemberadd")})
+				member.kick('Didn\'t verify in time(1hour) so e got kicked.')
+			}
+		}, kickTimeout); */
+		// END
 	},
 };
